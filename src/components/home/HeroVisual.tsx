@@ -1,45 +1,52 @@
-import { Bot, TrendingUp } from "lucide-react";
+import type { ReactNode } from "react";
+import { Bot } from "lucide-react";
 
-/** Hero visual: one clean growth card and a single floating AI chat bubble. Decorative. */
+/* Editor syntax colours, used only inside this decorative code window */
+const Key = ({ children }: { children: ReactNode }) => <span className="text-[#FF6B9D]">{children}</span>;
+const Fn = ({ children }: { children: ReactNode }) => <span className="text-[#6EE7B7]">{children}</span>;
+const Prop = ({ children }: { children: ReactNode }) => <span className="text-[#38BDF8]">{children}</span>;
+
+const code: ReactNode[] = [
+  <><Key>const</Key> team = <Fn>nextVision</Fn>();</>,
+  "",
+  <><Key>async function</Key> <Fn>grow</Fn>(client) {"{"}</>,
+  <>  <Key>const</Key> plan = team.<Fn>plan</Fn>();</>,
+  <>  <Key>const</Key> app = team.<Fn>build</Fn>(plan);</>,
+  "",
+  <>  <Key>if</Key> (app.<Prop>isReady</Prop>) {"{"}</>,
+  <>    team.<Fn>launch</Fn>(app);</>,
+  "  }",
+  "",
+  <>  <Key>return</Key> client.<Prop>growth</Prop>;</>,
+  "}",
+];
+
+/** Hero visual: a code editor window on a soft gradient, with a floating AI chat bubble. Decorative. */
 export function HeroVisual() {
   return (
-    <div className="relative mx-auto w-full max-w-md pb-12 lg:max-w-[28rem]" aria-hidden>
-      <div className="absolute inset-x-10 top-10 bottom-4 rounded-full bg-brand-600/30 blur-3xl" />
-
-      {/* Growth card */}
-      <div className="relative rounded-[1.75rem] border border-white/12 bg-white/[0.07] p-6 shadow-2xl backdrop-blur-xl">
-        <div className="flex items-start justify-between">
-          <div>
-            <p className="text-[11px] font-medium tracking-[0.14em] text-white/50 uppercase">Example client · Monthly leads</p>
-            <p className="mt-1 font-display text-4xl font-extrabold text-white">1,284</p>
+    <div className="relative mx-auto w-full max-w-md pb-12 lg:max-w-[29rem]" aria-hidden>
+      {/* Gradient backdrop */}
+      <div className="rounded-[1.75rem] bg-gradient-to-br from-[#A78BFA] via-[#C4A5F9] to-[#E9B8F5] p-4 pb-20 shadow-2xl sm:p-7 sm:pb-20">
+        {/* Editor window */}
+        <div className="overflow-hidden rounded-2xl border border-white/15 bg-gradient-to-br from-[#2B2340] to-[#3B2A40] shadow-[0_18px_40px_-12px_rgb(23_11_51/0.6)]">
+          <div className="relative flex h-11 items-center gap-2 px-4">
+            <span className="size-3 rounded-full bg-white/25" />
+            <span className="size-3 rounded-full bg-white/25" />
+            <span className="size-3 rounded-full bg-white/25" />
+            <span className="absolute inset-x-0 text-center text-xs font-medium text-white/60">next-vision.ts</span>
           </div>
-          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-400/15 px-2.5 py-1 text-xs font-semibold text-emerald-300">
-            <TrendingUp className="size-3.5" /> +68%
-          </span>
+          <pre className="overflow-hidden px-4 pt-1 pb-5 font-mono text-xs leading-6 text-[#F4F1FA] sm:px-5 sm:text-[13px] sm:leading-[1.7rem]">
+            <code>
+              {code.map((line, i) => <span key={i} className="block min-h-[1lh] whitespace-pre">{line}</span>)}
+            </code>
+          </pre>
         </div>
-        <svg viewBox="0 0 320 140" className="mt-4 w-full">
-          <defs>
-            <linearGradient id="hvArea" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stopColor="#F0437A" stopOpacity=".4" />
-              <stop offset="1" stopColor="#F0437A" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient id="hvLine" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stopColor="#7C3AED" />
-              <stop offset=".55" stopColor="#F0437A" />
-              <stop offset="1" stopColor="#FF9A3C" />
-            </linearGradient>
-          </defs>
-          {[35, 70, 105].map((y) => <line key={y} x1="0" x2="320" y1={y} y2={y} stroke="white" strokeOpacity=".07" />)}
-          <path d="M0 122 L40 114 L80 118 L120 94 L160 98 L200 68 L240 54 L280 28 L312 14 V140 H0Z" fill="url(#hvArea)" />
-          <path d="M0 122 L40 114 L80 118 L120 94 L160 98 L200 68 L240 54 L280 28 L312 14" fill="none" stroke="url(#hvLine)" strokeWidth="3.5" strokeLinejoin="round" strokeLinecap="round" />
-          <circle cx="312" cy="14" r="6" fill="#FF9A3C" className="animate-soft-pulse" style={{ transformOrigin: "312px 14px" }} />
-        </svg>
       </div>
 
       {/* Floating AI chat bubble */}
-      <div className="animate-float absolute bottom-0 -left-4 w-56 rounded-2xl border border-white/12 bg-navy-900/95 p-3.5 shadow-xl backdrop-blur sm:-left-10">
+      <div className="animate-float absolute bottom-0 -left-2 w-56 rounded-2xl border border-white/12 bg-navy-900 p-3.5 shadow-xl sm:-left-8">
         <div className="flex items-center gap-2">
-          <span className="bg-brand-gradient inline-flex size-7 items-center justify-center rounded-full text-white"><Bot className="size-4" /></span>
+          <span className="bg-brand-gradient inline-flex size-7 items-center justify-center rounded-full"><Bot className="size-4" /></span>
           <p className="text-xs font-semibold text-white">AI assistant</p>
           <span className="ml-auto size-2 rounded-full bg-emerald-400" />
         </div>

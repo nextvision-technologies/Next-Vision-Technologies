@@ -36,7 +36,7 @@ export function ArticleBlock({ block, h2Prefix }: { block: Block; h2Prefix?: str
     case "tip":
       return (
         <aside className="my-8 flex gap-4 rounded-2xl border border-glow-400/30 bg-glow-100/50 p-5">
-          <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-glow-400 text-white"><Lightbulb className="size-5" /></span>
+          <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-glow-400 text-on-warm"><Lightbulb className="size-5" /></span>
           <div>
             <p className="font-display font-bold text-heading">{block.title}</p>
             <p className="mt-1 !mb-0 text-[0.98rem]"><RichText text={block.text} /></p>

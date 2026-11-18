@@ -4,34 +4,25 @@ import type { Service, ServiceCategory } from "@/content/services";
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
 
 /** Each category gets its own tint within the brand palette */
+const tint = (check: string) => ({ card: "bg-card", icon: "bg-brand-gradient", check, glow: "", label: "bg-brand-50 text-brand-700" });
 export const categoryTheme: Record<ServiceCategory, { card: string; icon: string; check: string; glow: string; label: string }> = {
-  "AI & Automation": {
-    card: "from-[#f3ecff] via-card to-card dark:from-white/[0.06]", icon: "from-[#6d28d9] to-[#a855f7]", check: "text-[#7c3aed]", glow: "bg-[#a855f7]/25", label: "text-[#6d28d9] bg-[#f3ecff] dark:bg-white/10 dark:text-white/85",
-  },
-  Development: {
-    card: "from-[#fcebfd] via-card to-card dark:from-white/[0.06]", icon: "from-[#a21caf] to-[#e879f9]", check: "text-[#c026d3]", glow: "bg-[#e879f9]/25", label: "text-[#a21caf] bg-[#fcebfd] dark:bg-white/10 dark:text-white/85",
-  },
-  Marketing: {
-    card: "from-[#ffe9f0] via-card to-card dark:from-white/[0.06]", icon: "from-[#e11d74] to-[#fb7185]", check: "text-[#e11d74]", glow: "bg-[#fb7185]/25", label: "text-[#be185d] bg-[#ffe9f0] dark:bg-white/10 dark:text-white/85",
-  },
-  "Design & Consulting": {
-    card: "from-[#fff1e3] via-card to-card dark:from-white/[0.06]", icon: "from-[#ea580c] to-[#ff9a3c]", check: "text-[#ea580c]", glow: "bg-[#ff9a3c]/25", label: "text-[#c2410c] bg-[#fff1e3] dark:bg-white/10 dark:text-white/85",
-  },
+  "AI & Automation": tint("text-brand-700"),
+  Development: tint("text-brand-600"),
+  Marketing: tint("text-brand-600"),
+  "Design & Consulting": tint("text-glow-400"),
 };
 
 export function ServiceCard({ s, showCategory = false }: { s: Service; showCategory?: boolean }) {
   const t = categoryTheme[s.category];
   return (
     <article
-      className={`group relative flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-line bg-gradient-to-br ${t.card} p-7 transition duration-300 hover:-translate-y-1.5 hover:border-transparent hover:shadow-[0_24px_60px_-24px_rgb(31_10_77/0.35)]`}
+      className={`group relative flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-line ${t.card} p-7 transition duration-300 hover:-translate-y-1.5 hover:border-transparent hover:shadow-[0_24px_60px_-24px_rgb(23_11_51/0.35)]`}
     >
-      {/* soft glow that grows on hover */}
-      <span className={`pointer-events-none absolute -top-16 -right-16 size-44 rounded-full ${t.glow} blur-2xl transition duration-500 group-hover:scale-150`} aria-hidden />
       {/* gradient border on hover */}
       <span className="bg-brand-gradient pointer-events-none absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 transition duration-300 group-hover:scale-x-100" aria-hidden />
 
       <div className="relative flex items-start justify-between gap-3">
-        <span className={`inline-flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br ${t.icon} text-white shadow-lg transition duration-300 group-hover:scale-105 group-hover:-rotate-3`}>
+        <span className={`inline-flex size-14 items-center justify-center rounded-2xl ${t.icon} shadow-lg transition duration-300 group-hover:scale-105 group-hover:-rotate-3`}>
           <ServiceIcon name={s.icon} className="size-7" />
         </span>
         {showCategory && <span className={`rounded-full px-2.5 py-1 text-[11px] font-semibold ${t.label}`}>{s.category}</span>}

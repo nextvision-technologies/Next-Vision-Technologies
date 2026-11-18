@@ -14,7 +14,7 @@ import { ThemeToggle } from "./ThemeToggle";
 
 function TopBar() {
   return (
-    <div className="bg-brand-gradient hidden text-white md:block">
+    <div className="bg-navy-radial hidden text-white md:block">
       <div className="container-page flex h-9 items-center justify-between text-[13px]">
         <div className="flex items-center gap-7">
           <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 font-medium hover:opacity-80">

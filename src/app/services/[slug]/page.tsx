@@ -61,7 +61,6 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
       {/* ---------- Hero ---------- */}
       <section className="bg-navy-radial relative overflow-hidden text-white">
         <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
-        <div className="pointer-events-none absolute -top-40 -right-40 size-[32rem] rounded-full bg-[#F0437A]/20 blur-3xl" aria-hidden />
         <div className="container-page relative grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-[1.25fr_1fr]">
           <div className="flex flex-col gap-5">
             <nav aria-label="Breadcrumb">

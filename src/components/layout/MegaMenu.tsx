@@ -28,10 +28,10 @@ function PromoArt({ art }: { art: NavPromo["art"] }) {
     return (
       <div className="relative mx-4 mt-1 rounded-t-lg border border-white/15 bg-white/95 p-2.5 shadow-2xl" aria-hidden>
         <div className="flex items-center gap-1">
-          <i className="size-2 rounded-full bg-[#F25C54]" /><i className="size-2 rounded-full bg-[#FF9A3C]" /><i className="size-2 rounded-full bg-emerald-400" />
-          <i className="ml-1.5 h-1.5 flex-1 rounded-full bg-[#ece5f4]" />
+          <i className="size-2 rounded-full bg-brand-600" /><i className="size-2 rounded-full bg-glow-400" /><i className="size-2 rounded-full bg-emerald-400" />
+          <i className="ml-1.5 h-1.5 flex-1 rounded-full bg-line" />
         </div>
-        <div className="bg-brand-gradient mt-2 flex flex-col gap-1.5 rounded-md p-3">
+        <div className="bg-navy-radial mt-2 flex flex-col gap-1.5 rounded-md p-3">
           <i className="h-1.5 w-3/4 rounded-full bg-white/80" /><i className="h-1.5 w-1/2 rounded-full bg-white/50" /><i className="mt-0.5 h-3 w-14 rounded-full bg-card" />
         </div>
         <span className="absolute -top-2.5 -right-2 rounded-full bg-card px-2 py-0.5 text-[10px] font-semibold text-brand-600 shadow-lg">SEO ready</span>
@@ -43,7 +43,7 @@ function PromoArt({ art }: { art: NavPromo["art"] }) {
     return (
       <div className="flex h-20 items-end gap-1.5" aria-hidden>
         {bars.map((h, i) => (
-          <div key={i} className="relative w-5 rounded-t-md bg-gradient-to-t from-brand-700 to-[#F0437A]" style={{ height: `${h}%` }}>
+          <div key={i} className="relative w-5 rounded-t-md bg-brand-700" style={{ height: `${h}%` }}>
             <div className="absolute inset-x-1 top-1.5 grid grid-cols-2 gap-0.5">
               {Array.from({ length: Math.round(h / 16) }).map((_, j) => <i key={j} className={`h-1 rounded-[1px] ${j % 3 === 0 ? "bg-glow-400" : "bg-white/35"}`} />)}
             </div>
@@ -82,7 +82,7 @@ function PromoCard({ promo }: { promo: NavPromo }) {
             <PromoArt art={promo.art} />
             <div className="relative mt-auto flex items-center justify-between gap-3 bg-card p-3.5 text-heading">
               <p className="font-display text-sm leading-snug font-bold">{promo.title}</p>
-              <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-navy-900 text-white transition group-hover/promo:bg-brand-600">
+              <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-navy-900 text-white transition group-hover/promo:bg-brand-gradient">
                 <ArrowRight className="size-4" />
               </span>
             </div>
@@ -94,7 +94,7 @@ function PromoCard({ promo }: { promo: NavPromo }) {
               <PromoArt art={promo.art} />
             </div>
             {promo.text && <p className="text-xs leading-relaxed text-white/75">{promo.text}</p>}
-            <span className="mt-auto inline-flex size-9 items-center justify-center rounded-full bg-card text-heading transition group-hover/promo:bg-glow-400 group-hover/promo:text-white">
+            <span className="mt-auto inline-flex size-9 items-center justify-center rounded-full bg-card text-heading transition group-hover/promo:bg-glow-400 group-hover/promo:text-on-warm">
               <ArrowRight className="size-4" />
             </span>
           </div>
@@ -107,7 +107,7 @@ function PromoCard({ promo }: { promo: NavPromo }) {
 export function MegaMenuPanel({ group }: { group: NavGroup }) {
   const two = group.columns === 2;
   return (
-    <div data-lenis-prevent className="grid max-h-[calc(100dvh-9rem)] grid-cols-[1fr_15rem] gap-5 overflow-y-auto rounded-2xl border border-line bg-card p-5 shadow-[0_24px_60px_-20px_rgb(31_10_77/0.35)]">
+    <div data-lenis-prevent className="grid max-h-[calc(100dvh-9rem)] grid-cols-[1fr_15rem] gap-5 overflow-y-auto rounded-2xl border border-line bg-card p-5 shadow-[0_24px_60px_-20px_rgb(23_11_51/0.35)]">
       <div className="flex flex-col">
         {group.overview && <p className="mb-2 px-2 text-xs text-muted">{group.overview}</p>}
         <ul className={`grid gap-0.5 ${two ? "grid-cols-2" : "grid-cols-1"}`}>

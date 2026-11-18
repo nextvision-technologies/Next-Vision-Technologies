@@ -45,7 +45,6 @@ export default function Home() {
       {/* ---------- Hero ---------- */}
       <section className="bg-navy-radial relative overflow-hidden text-white">
         <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
-        <div className="pointer-events-none absolute -top-40 -right-40 size-[36rem] rounded-full bg-[#F0437A]/20 blur-3xl" aria-hidden />
         <div className="container-page relative grid items-center gap-12 pt-12 pb-28 sm:pt-16 lg:grid-cols-[1.15fr_1fr] lg:gap-12 lg:pb-32">
           <div className="animate-rise flex flex-col gap-6">
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] py-1 pr-3.5 pl-1 text-xs text-white/80 sm:text-sm">
@@ -74,7 +73,7 @@ export default function Home() {
               ))}
             </ul>
           </div>
-          <div className="animate-rise [animation-delay:.15s]"><HeroVisual /></div>
+          <div className="animate-rise [animation-delay:.15s] lg:self-start"><HeroVisual /></div>
         </div>
       </section>
 
@@ -119,7 +118,7 @@ export default function Home() {
           </div>
           {reasons.map((r) => (
             <div key={r.title} className="group flex flex-col gap-4 rounded-[1.5rem] border border-line bg-card p-7 transition hover:-translate-y-1 hover:shadow-lift">
-              <span className="inline-flex size-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition group-hover:bg-brand-600 group-hover:text-white">
+              <span className="inline-flex size-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition group-hover:bg-brand-gradient">
                 <r.icon className="size-6" aria-hidden strokeWidth={1.8} />
               </span>
               <h3 className="text-xl font-bold text-heading">{r.title}</h3>

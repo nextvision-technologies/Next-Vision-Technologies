@@ -6,7 +6,6 @@ export const metadata: Metadata = { title: "Book a Demo", description: "Book a f
 export default function BookDemoPage() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-brand-50 via-card to-card">
-      <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[60rem] -translate-x-1/2 rounded-full bg-[#F0437A]/10 blur-3xl" aria-hidden />
       <div className="container-page relative flex flex-col gap-12 py-16 sm:py-20">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
           <h1 className="text-4xl font-extrabold text-heading sm:text-6xl">Book your <span className="text-brand-gradient">free demo</span></h1>
