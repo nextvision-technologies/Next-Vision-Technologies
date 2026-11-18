@@ -1,31 +1,15 @@
 // Shared page sections: cards, CTA, FAQ, process, pricing, stats, testimonials.
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Check, Quote } from "lucide-react";
-import type { Service } from "@/content/services";
-import type { Post } from "@/content/blog";
-import { packages, testimonials } from "@/content/misc";
+import { ArrowRight, ArrowUpRight, Quote } from "lucide-react";
+import { postImage, type Post } from "@/content/blog";
+import { testimonials } from "@/content/misc";
 import { site, whatsappLink } from "@/content/site";
 import { Button } from "@/components/ui/Button";
-import { IconTile } from "@/components/ui/ServiceIcon";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SocialIcon } from "@/components/ui/SocialIcons";
-import { PixelCluster } from "./PageHero";
 
-export function ServiceCard({ s }: { s: Service }) {
-  return (
-    <Link href={`/services/${s.slug}`}
-      className="group flex h-full flex-col gap-4 rounded-card border border-line bg-white p-6 shadow-card transition hover:-translate-y-1 hover:border-brand-400/50 hover:shadow-lift">
-      <IconTile name={s.icon} />
-      <div className="flex flex-1 flex-col gap-2">
-        <h3 className="text-lg font-bold text-navy-900">{s.title}</h3>
-        <p className="text-sm leading-relaxed text-muted">{s.short}</p>
-      </div>
-      <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600">
-        Learn more <ArrowRight className="size-4 transition group-hover:translate-x-1" aria-hidden />
-      </span>
-    </Link>
-  );
-}
+export { ServiceCard } from "./ServiceCard";
 
 const dateFmt = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" });
 export const formatDate = (iso: string) => dateFmt.format(new Date(iso + "T00:00:00Z"));
@@ -34,10 +18,10 @@ export function PostCard({ p }: { p: Post }) {
   return (
     <Link href={`/blog/${p.slug}`}
       className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-white shadow-card transition hover:-translate-y-1 hover:shadow-lift">
-      <div className="bg-navy-radial relative flex aspect-[16/9] items-end p-5">
-        <div className="bg-pixel-grid absolute inset-0" aria-hidden />
-        <PixelCluster className="absolute top-4 right-4 w-20" />
-        <span className="relative rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-glow-400 backdrop-blur">{p.category}</span>
+      <div className="bg-navy-radial relative flex aspect-[16/9] items-end overflow-hidden p-4">
+        <Image src={postImage(p.slug)} alt="" fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          className="object-cover transition duration-500 group-hover:scale-105" />
+        <span className="relative rounded-full bg-navy-950/70 px-3 py-1 text-xs font-semibold text-white backdrop-blur">{p.category}</span>
       </div>
       <div className="flex flex-1 flex-col gap-3 p-6">
         <p className="text-xs text-muted">{formatDate(p.date)} · {p.readMinutes} min read</p>
@@ -99,39 +83,7 @@ export function ProcessSteps({ steps }: { steps: { title: string; text: string }
   );
 }
 
-export function PricingCards() {
-  return (
-    <div className="grid gap-6 lg:grid-cols-3">
-      {packages.map((p) => {
-        const featured = p.badge === "Most popular";
-        return (
-          <div key={p.name}
-            className={`relative flex flex-col gap-6 rounded-[1.5rem] p-8 ${featured ? "bg-navy-radial text-white shadow-lift ring-2 ring-brand-600 lg:-translate-y-3" : "border border-line bg-white shadow-card"}`}>
-            {p.badge && (
-              <span className={`absolute -top-3 left-8 rounded-full px-3 py-1 text-xs font-bold ${featured ? "bg-brand-gradient text-white" : "bg-glow-100 text-navy-900"}`}>{p.badge}</span>
-            )}
-            <div>
-              <h3 className={`text-xl font-bold ${featured ? "text-white" : "text-navy-900"}`}>{p.name}</h3>
-              <p className={`mt-1 text-sm ${featured ? "text-white/70" : "text-muted"}`}>{p.summary}</p>
-            </div>
-            <p className="flex items-baseline gap-1">
-              <span className="font-display text-5xl font-extrabold">${p.price}</span>
-              <span className={featured ? "text-white/60" : "text-muted"}>/{p.period}</span>
-            </p>
-            <ul className="flex flex-1 flex-col gap-3 text-sm">
-              {p.features.map((f) => (
-                <li key={f} className="flex gap-2.5">
-                  <Check className={`mt-0.5 size-4 shrink-0 ${featured ? "text-glow-400" : "text-brand-600"}`} aria-hidden /> {f}
-                </li>
-              ))}
-            </ul>
-            <Button href="/contact" variant={featured ? "primary" : "secondary"} className="w-full">Choose {p.name}</Button>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
+export { PricingCards } from "./PricingCards";
 
 export function StatsStrip({ tone = "light" }: { tone?: "light" | "dark" }) {
   return (

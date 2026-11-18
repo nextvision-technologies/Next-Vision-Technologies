@@ -3,6 +3,8 @@ import { Inter, Montserrat } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { ChatBot } from "@/components/chat/ChatBot";
 import { site } from "@/content/site";
 import "./globals.css";
 
@@ -24,6 +26,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main className="flex-1">{children}</main>
         <Footer />
         <WhatsAppButton />
+        <SmoothScroll />
+        <ChatBot />
       </body>
     </html>
   );

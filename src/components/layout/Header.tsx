@@ -14,19 +14,19 @@ import { MegaMenuPanel } from "./MegaMenu";
 function TopBar() {
   return (
     <div className="bg-brand-gradient hidden text-white md:block">
-      <div className="container-page flex h-11 items-center justify-between text-sm">
+      <div className="container-page flex h-9 items-center justify-between text-[13px]">
         <div className="flex items-center gap-7">
           <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 font-medium hover:opacity-80">
-            <Mail className="size-4" aria-hidden /> {site.email}
+            <Mail className="size-3.5" aria-hidden /> {site.email}
           </a>
           {site.phones.map((p) => (
             <a key={p.label} href={p.href} className="inline-flex items-center gap-2 font-medium hover:opacity-80">
-              <Phone className="size-4" aria-hidden />
+              <Phone className="size-3.5" aria-hidden />
               <span className="font-bold">{p.label === "Pakistan" ? "PK" : "UK"}</span> {p.value}
             </a>
           ))}
         </div>
-        <SocialLinks className="gap-1 [&_a]:size-8 [&_a]:border-0 [&_svg]:size-4" />
+        <SocialLinks className="gap-1 [&_a]:size-7 [&_a]:border-0 [&_svg]:size-3.5" />
       </div>
     </div>
   );
@@ -81,11 +81,11 @@ export function Header() {
     <>
       <TopBar />
       <header className={`sticky top-0 z-40 bg-white/95 backdrop-blur transition-shadow ${scrolled || active ? "shadow-card" : ""}`}>
-        <nav ref={navRef} className="container-page relative flex h-20 items-center justify-between gap-6 lg:h-24" aria-label="Main"
+        <nav ref={navRef} className="container-page relative flex h-16 items-center justify-between gap-6 lg:h-[4.5rem]" aria-label="Main"
           onMouseLeave={scheduleClose}>
           <Link href="/" className="shrink-0" aria-label={`${site.name} home`}>
             <Image src="/brand/logo-tagline.svg" alt={`${site.name}: ${site.tagline}`} width={462} height={108} priority
-              className="h-14 w-auto sm:h-16 lg:h-[4.5rem]" />
+              className="h-11 w-auto lg:h-12" />
           </Link>
 
           <ul className="hidden items-center gap-1 lg:flex">
@@ -95,7 +95,7 @@ export function Header() {
                 <li key={g.label} onMouseEnter={() => open(g.label)}>
                   <button type="button" aria-expanded={isOpen} aria-haspopup="true"
                     onClick={() => (isOpen ? setOpenMenu(null) : open(g.label))}
-                    className={`inline-flex h-11 items-center gap-1.5 rounded-full px-4 text-[15px] font-semibold transition ${isOpen ? "text-brand-600" : "text-navy-900 hover:text-brand-600"}`}>
+                    className={`inline-flex h-10 items-center gap-1 rounded-full px-3.5 text-sm font-semibold transition ${isOpen ? "text-brand-600" : "text-navy-900 hover:text-brand-600"}`}>
                     {g.label}
                     <ChevronDown className={`size-4 transition duration-200 ${isOpen ? "rotate-180" : ""}`} aria-hidden />
                   </button>
@@ -106,7 +106,7 @@ export function Header() {
 
           <div className="flex items-center gap-2">
             <span className="hidden sm:block">
-              <Link href="/book-demo" className={buttonClass("primary", "md", "h-12 px-6")}>
+              <Link href="/book-demo" className={buttonClass("primary", "md", "h-10 px-5")}>
                 <CalendarDays className="size-4" aria-hidden /> Book a Demo
               </Link>
             </span>
@@ -118,7 +118,7 @@ export function Header() {
 
           {/* Mega menu panel: hover bridge (pt-3) keeps it open while the pointer moves down */}
           {active && (
-            <div className="absolute top-full left-1/2 hidden w-[min(76rem,calc(100vw-2rem))] -translate-x-1/2 pt-1 lg:block"
+            <div className={`absolute top-full left-1/2 hidden -translate-x-1/2 pt-1 lg:block ${active.columns === 2 ? "w-[min(56rem,calc(100vw-2rem))]" : "w-[min(44rem,calc(100vw-2rem))]"}`}
               onMouseEnter={() => open(active.label)} onMouseLeave={scheduleClose}>
               <div key={active.label} className="animate-rise [animation-duration:.25s]">
                 <MegaMenuPanel group={active} />
@@ -131,7 +131,7 @@ export function Header() {
       {mobile && (
         <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label="Menu">
           <div className="absolute inset-0 bg-navy-950/50" onClick={() => setMobile(false)} />
-          <div className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col overflow-y-auto bg-white p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
+          <div data-lenis-prevent className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col overflow-y-auto bg-white p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
             <div className="flex items-center justify-between">
               <Image src="/brand/logo-tagline.svg" alt={site.name} width={462} height={108} className="h-12 w-auto" />
               <button type="button" onClick={() => setMobile(false)} aria-label="Close menu"

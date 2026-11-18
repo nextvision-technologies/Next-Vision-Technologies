@@ -74,7 +74,7 @@
 @utility animate-soft-pulse { animation: nv-pulse 2.4s ease-in-out infinite; }
 
 @layer base {
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: auto; }
   body {
     background: #fff;
     color: var(--color-ink);
@@ -94,9 +94,14 @@
 
 /* Long-form text for blog posts and legal pages */
 @layer components {
-  .prose-nv { color: var(--color-ink); line-height: 1.75; font-size: 1.0625rem; max-width: 68ch; }
-  .prose-nv h2 { font-size: 1.5rem; font-weight: 700; margin: 2.25rem 0 0.75rem; }
-  .prose-nv p { margin: 0 0 1.1rem; color: #3a2d57; }
+  .prose-nv { color: var(--color-ink); line-height: 1.8; font-size: 1.0625rem; max-width: 68ch; }
+  .prose-nv h2 {
+    font-size: clamp(1.4rem, 1.2rem + 0.8vw, 1.75rem); font-weight: 800; line-height: 1.25; color: var(--color-navy-900);
+    margin: 3rem 0 1rem; padding-top: 2rem; border-top: 1px solid var(--color-line);
+  }
+  .prose-nv > h2:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
+  .prose-nv p { margin: 0 0 1.25rem; color: #3a2d57; }
+  .prose-nv strong { color: var(--color-navy-900); font-weight: 600; }
   .prose-nv ul { margin: 0 0 1.25rem; padding-left: 1.25rem; list-style: disc; color: #3a2d57; }
   .prose-nv li { margin: 0.35rem 0; }
   .prose-nv li::marker { color: var(--color-brand-600); }

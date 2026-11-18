@@ -171,7 +171,7 @@ export function DemoBooking() {
             <div className="flex flex-col gap-3">
               <p className="text-sm font-semibold text-navy-900">{date ? longDate(date) : "Pick a date to see times"}</p>
               {date && (
-                <div className="flex max-h-80 flex-col gap-2 overflow-y-auto pr-1">
+                <div data-lenis-prevent className="flex max-h-80 flex-col gap-2 overflow-y-auto pr-1">
                   {SLOTS.map((s) => (
                     <div key={s} className="flex gap-2">
                       <button type="button" onClick={() => setTime(s)} aria-pressed={time === s}

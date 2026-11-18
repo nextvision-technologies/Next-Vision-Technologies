@@ -9,8 +9,8 @@ export function PageHero({ title, text, crumbs, eyebrow, children }: { title: Re
   return (
     <section className="bg-navy-radial relative overflow-hidden text-white">
       <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
-      <PixelCluster className="absolute top-8 right-[6%] hidden md:block" />
-      <div className="container-page relative flex flex-col gap-5 py-16 sm:py-20">
+      <PixelCluster className="absolute top-6 right-[6%] hidden w-28 md:block" />
+      <div className="container-page relative flex flex-col gap-3.5 py-10 sm:py-14">
         <nav aria-label="Breadcrumb">
           <ol className="flex flex-wrap items-center gap-1.5 text-sm text-white/60">
             {[{ label: "Home", href: "/" }, ...crumbs].map((c, i, arr) => (
@@ -22,8 +22,8 @@ export function PageHero({ title, text, crumbs, eyebrow, children }: { title: Re
           </ol>
         </nav>
         {eyebrow && <span className="text-xs font-semibold uppercase tracking-[0.16em] text-glow-400">{eyebrow}</span>}
-        <h1 className="max-w-3xl text-4xl font-extrabold leading-[1.1] sm:text-5xl">{title}</h1>
-        {text && <p className="max-w-2xl text-lg leading-relaxed text-white/70">{text}</p>}
+        <h1 className="max-w-3xl text-3xl font-extrabold leading-[1.15] sm:text-4xl lg:text-[2.75rem]">{title}</h1>
+        {text && <p className="max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg">{text}</p>}
         {children && <div className="mt-2 flex flex-wrap gap-3">{children}</div>}
       </div>
     </section>

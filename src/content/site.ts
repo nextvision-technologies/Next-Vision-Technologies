@@ -21,6 +21,7 @@ export const site = {
     facebook: "https://www.facebook.com/nextvisiontechnologies",
     instagram: "https://www.instagram.com/nextvisiontechnologies/",
     linkedin: "", // add the LinkedIn page URL here to show the icon
+    youtube: "https://www.youtube.com/@nextvision-technologies",
   },
   stats: [
     { value: "100+", label: "Projects delivered" },
