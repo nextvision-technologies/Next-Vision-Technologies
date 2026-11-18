@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<title>Next Vision Technologies</title>
+<defs><linearGradient id="03appbg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1024" y2="1024"><stop offset="0" stop-color="#062B3A"/><stop offset="1" stop-color="#05070D"/></linearGradient>
+<radialGradient id="03appgl" cx=".8" cy=".18" r=".65"><stop offset="0" stop-color="#0EA5E9" stop-opacity=".22"/><stop offset="1" stop-color="#0EA5E9" stop-opacity="0"/></radialGradient></defs>
+<rect width="1024" height="1024" rx="228" fill="url(#03appbg)"/><rect width="1024" height="1024" rx="228" fill="url(#03appgl)"/>
+<g transform="translate(134.4 158.0) scale(5.9)"><defs><linearGradient id="03appmg" gradientUnits="userSpaceOnUse" x1="10" y1="110" x2="118" y2="10"><stop offset="0" stop-color="#00C896"/><stop offset="1" stop-color="#0EA5E9"/></linearGradient></defs><path d="M30 62H13M98 58H115" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+<circle cx="10" cy="62" r="5" fill="none" stroke="#FFFFFF" stroke-width="3.5"/><circle cx="118" cy="58" r="5" fill="none" stroke="#FFFFFF" stroke-width="3.5"/>
+<path d="M30 96V30L98 90V24" fill="none" stroke="url(#03appmg)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="30" cy="96" r="3" fill="#062B3A"/><circle cx="98" cy="24" r="3" fill="#062B3A"/></g>
+</svg>

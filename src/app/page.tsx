@@ -1,0 +1,205 @@
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, BadgeCheck, Check, Headset, Mail, Phone, Rocket, Zap } from "lucide-react";
+import { services } from "@/content/services";
+import { testimonials } from "@/content/misc";
+import { site, whatsappLink } from "@/content/site";
+import { Button } from "@/components/ui/Button";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SocialIcon } from "@/components/ui/SocialIcons";
+import { PixelCluster } from "@/components/sections/PageHero";
+import { CtaBand, Faq, PricingCards, Testimonials } from "@/components/sections/Blocks";
+import { ContactForm } from "@/components/sections/ContactForm";
+import { HeroVisual } from "@/components/home/HeroVisual";
+import { TechMarquee } from "@/components/home/TechMarquee";
+import { ServiceTabs } from "@/components/home/ServiceTabs";
+
+const reasons = [
+  { icon: Rocket, title: "Built around growth", text: "Every project starts from a business goal: more leads, more sales or fewer manual hours." },
+  { icon: Zap, title: "AI-first technology", text: "Automation, AI agents and modern frameworks that keep you ahead of competitors." },
+  { icon: Headset, title: "Support that answers", text: "A dedicated contact on WhatsApp, with replies the same working day." },
+  { icon: BadgeCheck, title: "Quality checked", text: "Real-device testing, speed checks and security reviews before every launch." },
+];
+
+const steps = [
+  { title: "Discover", text: "A free call to understand your goals, audience and budget." },
+  { title: "Plan & quote", text: "A written plan, timeline and fixed price within 24 hours." },
+  { title: "Design & build", text: "Weekly previews so you see progress and give feedback early." },
+  { title: "Launch & grow", text: "Go live, track results and keep improving with ongoing support." },
+];
+
+const faqs = [
+  { q: "How much does a project cost?", a: "Websites start from a few pages on our Silver plan; larger apps and automations get a fixed quote after a free consultation." },
+  { q: "How long does it take?", a: "Most business websites take 2 to 4 weeks. AI automations and chatbots usually go live in 2 to 4 weeks as well." },
+  { q: "Do you work with clients outside Pakistan?", a: "Yes. We have teams serving clients in Pakistan and the United Kingdom, and we work remotely with businesses worldwide." },
+  { q: "Will I own my website and code?", a: "Yes. Once the project is paid, the code, domain and content belong to you." },
+];
+
+const hasRealReviews = testimonials.every((t) => !t.text.startsWith("Placeholder"));
+
+export default function Home() {
+  return (
+    <>
+      {/* ---------- Hero ---------- */}
+      <section className="bg-navy-radial relative overflow-hidden text-white">
+        <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
+        <div className="pointer-events-none absolute -top-40 -right-40 size-[36rem] rounded-full bg-[#F0437A]/20 blur-3xl" aria-hidden />
+        <div className="container-page relative grid items-center gap-12 pt-14 pb-28 sm:pt-20 lg:grid-cols-[1.05fr_1fr] lg:gap-8 lg:pb-36">
+          <div className="animate-rise flex flex-col gap-7">
+            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] py-1.5 pr-4 pl-1.5 text-sm text-white/80">
+              <span className="bg-brand-gradient rounded-full px-2.5 py-0.5 text-xs font-bold text-white">New</span>
+              AI chatbots &amp; automation for your business
+            </span>
+            <h1 className="text-[2.6rem] leading-[1.05] font-extrabold tracking-tight sm:text-6xl xl:text-7xl">
+              We build the <span className="text-brand-gradient">next version</span> of your business
+            </h1>
+            <p className="max-w-xl text-lg leading-relaxed text-white/70 sm:text-xl">
+              AI automation, SaaS products, websites and marketing, planned and delivered by one team in Pakistan and the UK.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Button href="/contact" size="lg">Get a free quote <ArrowRight className="size-4" /></Button>
+              <Button href={whatsappLink()} variant="light" size="lg"><SocialIcon name="whatsapp" className="size-5" /> WhatsApp us</Button>
+            </div>
+            <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/65">
+              {["Free consultation", "Fixed-price quotes", "You own the code"].map((t) => (
+                <li key={t} className="flex items-center gap-2"><Check className="size-4 text-glow-400" aria-hidden />{t}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="animate-rise [animation-delay:.15s]"><HeroVisual /></div>
+        </div>
+      </section>
+
+      {/* ---------- Stats card overlapping hero ---------- */}
+      <section className="container-page relative z-10 -mt-16 lg:-mt-20">
+        <dl className="grid grid-cols-2 divide-line overflow-hidden rounded-[1.5rem] border border-line bg-white shadow-lift lg:grid-cols-4 lg:divide-x">
+          {site.stats.map((s) => (
+            <div key={s.label} className="flex flex-col gap-1 p-6 text-center sm:p-8">
+              <dd className="text-brand-gradient font-display text-4xl font-extrabold sm:text-5xl">{s.value}</dd>
+              <dt className="text-sm font-medium text-muted">{s.label}</dt>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <div className="mt-16"><TechMarquee /></div>
+
+      {/* ---------- Services ---------- */}
+      <section className="bg-surface py-20 sm:py-24">
+        <div className="container-page flex flex-col gap-12">
+          <SectionHeading eyebrow="What we do" title={<>{services.length} services. <span className="text-brand-gradient">One team.</span></>}
+            text="Choose a category to see how we can help, from AI agents to Google rankings." />
+          <ServiceTabs />
+          <Button href="/services" variant="secondary" className="mx-auto">View all services <ArrowRight className="size-4" /></Button>
+        </div>
+      </section>
+
+      {/* ---------- Why us (bento) ---------- */}
+      <section className="container-page py-20 sm:py-24">
+        <div className="grid gap-5 lg:grid-cols-3">
+          <div className="bg-navy-radial relative flex flex-col justify-between gap-10 overflow-hidden rounded-[1.75rem] p-8 text-white sm:p-10 lg:row-span-2">
+            <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
+            <div className="relative flex flex-col gap-5">
+              <span className="text-xs font-semibold tracking-[0.16em] text-glow-400 uppercase">Why Next Vision</span>
+              <h2 className="text-3xl leading-tight font-extrabold sm:text-4xl">One partner for AI, software and growth</h2>
+              <p className="text-white/70">Strategy, design, development and marketing under one roof, so nothing gets lost between agencies.</p>
+            </div>
+            <div className="relative flex items-end justify-between">
+              <Image src="/brand/mark-white.svg" alt="" width={136} height={136} className="size-28 opacity-90" />
+              <Link href="/about" className="inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:text-glow-400">About us <ArrowRight className="size-4" /></Link>
+            </div>
+          </div>
+          {reasons.map((r) => (
+            <div key={r.title} className="group flex flex-col gap-4 rounded-[1.5rem] border border-line bg-white p-7 transition hover:-translate-y-1 hover:shadow-lift">
+              <span className="inline-flex size-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition group-hover:bg-brand-600 group-hover:text-white">
+                <r.icon className="size-6" aria-hidden strokeWidth={1.8} />
+              </span>
+              <h3 className="text-xl font-bold text-navy-900">{r.title}</h3>
+              <p className="leading-relaxed text-muted">{r.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ---------- Process ---------- */}
+      <section className="bg-navy-radial relative overflow-hidden py-20 text-white sm:py-24">
+        <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
+        <PixelCluster className="absolute top-10 right-8 hidden w-32 lg:block" />
+        <div className="container-page relative flex flex-col gap-14">
+          <SectionHeading tone="dark" eyebrow="How we work" title="From first call to launch in four steps" />
+          <ol className="relative grid gap-10 md:grid-cols-4 md:gap-6">
+            <span className="bg-brand-gradient absolute top-6 right-[12%] left-[12%] hidden h-0.5 md:block" aria-hidden />
+            {steps.map((s, i) => (
+              <li key={s.title} className="relative flex flex-col items-center gap-4 text-center">
+                <span className="bg-brand-gradient relative inline-flex size-12 items-center justify-center rounded-full font-display text-lg font-extrabold text-white ring-8 ring-navy-950">
+                  {i + 1}
+                </span>
+                <h3 className="text-xl font-bold">{s.title}</h3>
+                <p className="max-w-[16rem] text-sm leading-relaxed text-white/65">{s.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ---------- Pricing ---------- */}
+      <section className="py-20 sm:py-24">
+        <div className="container-page flex flex-col gap-14">
+          <SectionHeading eyebrow="Growth packages" title="Monthly plans that grow with you"
+            text="Website, marketing and automation in one simple monthly price. Need something different? We'll build a custom package." />
+          <PricingCards />
+          <p className="text-center text-sm text-muted">
+            One-off project? <Link href="/pricing" className="font-semibold text-brand-600">See all pricing</Link> or <Link href="/contact" className="font-semibold text-brand-600">ask for a custom quote</Link>.
+          </p>
+        </div>
+      </section>
+
+      {/* ---------- Reviews (shown once real reviews are added in content/misc.ts) ---------- */}
+      {hasRealReviews && (
+        <section className="bg-surface py-20">
+          <div className="container-page flex flex-col gap-12">
+            <SectionHeading eyebrow="Client reviews" title="What our clients say" />
+            <Testimonials />
+          </div>
+        </section>
+      )}
+
+      {/* ---------- Quote ---------- */}
+      <section id="quote" className="bg-surface py-20 sm:py-24">
+        <div className="container-page grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+          <div className="flex flex-col gap-7">
+            <SectionHeading align="left" eyebrow="Free consultation" title="Get a free quote in 24 hours"
+              text="Share your idea and we'll reply with a clear plan, timeline and fixed price. No obligation." />
+            <div className="flex flex-col gap-3">
+              {[
+                { label: "WhatsApp", value: site.phones[0].value, href: whatsappLink(), icon: <SocialIcon name="whatsapp" className="size-5 text-[#25D366]" /> },
+                { label: "Call UK", value: site.phones[1].value, href: site.phones[1].href, icon: <Phone className="size-5 text-brand-600" /> },
+                { label: "Email", value: site.email, href: `mailto:${site.email}`, icon: <Mail className="size-5 text-brand-600" /> },
+              ].map((c) => (
+                <a key={c.label} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
+                  className="flex items-center gap-4 rounded-2xl border border-line bg-white p-4 transition hover:border-brand-600/40 hover:shadow-card">
+                  <span className="inline-flex size-11 items-center justify-center rounded-xl bg-surface">{c.icon}</span>
+                  <span>
+                    <span className="block text-xs text-muted">{c.label}</span>
+                    <span className="block font-semibold text-navy-900">{c.value}</span>
+                  </span>
+                  <ArrowRight className="ml-auto size-4 text-brand-600" aria-hidden />
+                </a>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-[1.75rem] border border-line bg-white p-6 shadow-lift sm:p-10">
+            <h3 className="text-2xl font-bold text-navy-900">Start your project</h3>
+            <p className="mt-1 mb-7 text-sm text-muted">Takes less than a minute. We reply within one working day.</p>
+            <ContactForm />
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- FAQ ---------- */}
+      <section className="container-page py-20 sm:py-24"><Faq items={faqs} /></section>
+
+      <CtaBand />
+    </>
+  );
+}

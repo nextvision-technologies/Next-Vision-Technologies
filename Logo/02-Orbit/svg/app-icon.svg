@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<title>Next Vision Technologies</title>
+<defs><linearGradient id="oappbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#10246B"/><stop offset="1" stop-color="#060B22"/></linearGradient>
+<radialGradient id="oappgl" cx=".78" cy=".2" r=".6"><stop offset="0" stop-color="undefined" stop-opacity=".25"/><stop offset="1" stop-color="undefined" stop-opacity="0"/></radialGradient></defs>
+<rect width="1024" height="1024" rx="228" fill="url(#oappbg)"/><rect width="1024" height="1024" rx="228" fill="url(#oappgl)"/>
+<g transform="translate(115.2 148.0) scale(6.2)"><defs>
+<linearGradient id="oappmS" gradientUnits="userSpaceOnUse" x1="-56" y1="0" x2="56" y2="0"><stop offset="0" stop-color="#16CFF5"/><stop offset=".55" stop-color="#1E55F0"/><stop offset="1" stop-color="#1440C8"/></linearGradient>
+<linearGradient id="oappmN" gradientUnits="userSpaceOnUse" x1="22" y1="30" x2="98" y2="96"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#FFFFFF"/><stop offset="1" stop-color="#C7D3FF"/></linearGradient>
+<linearGradient id="oappmP" gradientUnits="userSpaceOnUse" x1="86" y1="30" x2="124" y2="4"><stop offset="0" stop-color="#1E55F0"/><stop offset="1" stop-color="#16CFF5"/></linearGradient>
+<mask id="oappmk" maskUnits="userSpaceOnUse" x="0" y="0" width="128" height="120"><rect width="128" height="120" fill="#fff"/><path d="M-56 0A56 24 0 0 0 56 0A56 15 0 0 1-56 0Z" transform="translate(60 66) rotate(-24)" fill="#000" stroke="#000" stroke-width="7" stroke-linejoin="round"/></mask>
+</defs>
+<path d="M56 0A56 20 0 0 0-52.6-6.84" transform="translate(60 66) rotate(-24)" fill="none" stroke="url(#oappmS)" stroke-width="2.6" stroke-linecap="round" opacity=".75"/>
+<path d="M22 96V30H44L78 72V30H98V96H76L42 54V96Z" fill="url(#oappmN)" stroke="url(#oappmN)" stroke-width="3" stroke-linejoin="round" mask="url(#oappmk)"/>
+<path d="M-56 0A56 24 0 0 0 56 0A56 15 0 0 1-56 0Z" transform="translate(60 66) rotate(-24)" fill="url(#oappmS)"/>
+<rect x="99" y="13" width="9" height="9" rx="1.62" fill="url(#oappmP)"/>
+<rect x="111" y="5" width="6" height="6" rx="1.08" fill="url(#oappmP)"/>
+<rect x="112" y="20" width="5" height="5" rx="0.90" fill="url(#oappmP)"/>
+<rect x="89" y="7" width="4.5" height="4.5" rx="0.81" fill="url(#oappmP)"/>
+<rect x="121" y="15" width="3.5" height="3.5" rx="0.63" fill="url(#oappmP)"/></g>
+</svg>
