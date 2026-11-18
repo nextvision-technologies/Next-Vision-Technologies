@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Dark mode is toggled by the .dark class on <html> (see ThemeToggle) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Brand tokens, taken from the final Next Vision logo (Logo/00-Final): purple, magenta, pink, orange. */
 @theme {
   --color-navy-950: #12062e;
@@ -20,6 +23,9 @@
   --color-muted: #625a78;
   --color-line: #ece5f4;
   --color-surface: #faf6fd;
+  --color-card: #ffffff;   /* card / page background */
+  --color-heading: #1f0a4d; /* headings on light backgrounds */
+  --color-body: #3a2d57;   /* long-form article text */
 
   --font-display: var(--font-montserrat), "Segoe UI", system-ui, sans-serif;
   --font-sans: var(--font-inter), "Segoe UI", system-ui, sans-serif;
@@ -27,6 +33,22 @@
   --radius-card: 1rem;
   --shadow-card: 0 1px 2px rgb(31 10 77 / 0.04), 0 8px 24px -12px rgb(31 10 77 / 0.12);
   --shadow-lift: 0 2px 4px rgb(31 10 77 / 0.05), 0 18px 40px -16px rgb(192 38 211 / 0.28);
+}
+
+.dark {
+  color-scheme: dark;
+  --color-card: #140a2b;
+  --color-surface: #1b1036;
+  --color-line: #2e2150;
+  --color-heading: #f5f0ff;
+  --color-ink: #e9e2f7;
+  --color-body: #cfc4e6;
+  --color-muted: #a597c2;
+  --color-brand-50: #261148;
+  --color-brand-100: #351962;
+  --color-brand-700: #c4a6ff; /* used for text on tinted chips */
+  --color-glow-100: #3a2416;
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.6);
 }
 
 @utility container-page {
@@ -46,7 +68,7 @@
   color: transparent;
 }
 @utility bg-brand-gradient {
-  background: linear-gradient(120deg, var(--color-brand-700), var(--color-brand-600) 40%, #f0437a 70%, var(--color-glow-400));
+  background: linear-gradient(120deg, #6d28d9, var(--color-brand-600) 40%, #f0437a 70%, var(--color-glow-400));
 }
 @utility bg-navy-radial {
   background:
@@ -70,13 +92,28 @@
 @utility animate-rise { animation: nv-rise .7s cubic-bezier(.2,.7,.2,1) both; }
 @utility animate-float { animation: nv-float 6s ease-in-out infinite; }
 @utility animate-float-slow { animation: nv-float 8s ease-in-out infinite; }
-@utility animate-marquee { animation: nv-marquee 40s linear infinite; }
+@utility animate-marquee { animation: nv-marquee 45s linear infinite; }
+@utility animate-marquee-reverse { animation: nv-marquee 45s linear infinite reverse; }
 @utility animate-soft-pulse { animation: nv-pulse 2.4s ease-in-out infinite; }
+
+/* Scroll reveal: elements only start hidden once the script has marked the page ready */
+/* Uses animations (not transitions) so card hover transitions keep working. */
+@keyframes nv-reveal-up { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: none; } }
+@keyframes nv-reveal-left { from { opacity: 0; transform: translateX(-48px); } to { opacity: 1; transform: none; } }
+@keyframes nv-reveal-right { from { opacity: 0; transform: translateX(48px); } to { opacity: 1; transform: none; } }
+@keyframes nv-reveal-zoom { from { opacity: 0; transform: scale(.92); } to { opacity: 1; transform: none; } }
+.reveal-ready [data-reveal]:not(.is-revealed),
+.reveal-ready [data-reveal-stagger] > :not(.is-revealed) { opacity: 0; }
+.reveal-ready .is-revealed { animation: nv-reveal-up .8s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms) both; }
+.reveal-ready [data-reveal="left"].is-revealed { animation-name: nv-reveal-left; }
+.reveal-ready [data-reveal="right"].is-revealed { animation-name: nv-reveal-right; }
+.reveal-ready [data-reveal="zoom"].is-revealed { animation-name: nv-reveal-zoom; }
 
 @layer base {
   html { scroll-behavior: auto; }
   body {
-    background: #fff;
+    background: var(--color-card);
+    transition: background-color .3s ease;
     color: var(--color-ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -96,13 +133,13 @@
 @layer components {
   .prose-nv { color: var(--color-ink); line-height: 1.8; font-size: 1.0625rem; max-width: 68ch; }
   .prose-nv h2 {
-    font-size: clamp(1.4rem, 1.2rem + 0.8vw, 1.75rem); font-weight: 800; line-height: 1.25; color: var(--color-navy-900);
+    font-size: clamp(1.4rem, 1.2rem + 0.8vw, 1.75rem); font-weight: 800; line-height: 1.25; color: var(--color-heading);
     margin: 3rem 0 1rem; padding-top: 2rem; border-top: 1px solid var(--color-line);
   }
   .prose-nv > h2:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
-  .prose-nv p { margin: 0 0 1.25rem; color: #3a2d57; }
-  .prose-nv strong { color: var(--color-navy-900); font-weight: 600; }
-  .prose-nv ul { margin: 0 0 1.25rem; padding-left: 1.25rem; list-style: disc; color: #3a2d57; }
+  .prose-nv p { margin: 0 0 1.25rem; color: var(--color-body); }
+  .prose-nv strong { color: var(--color-heading); font-weight: 600; }
+  .prose-nv ul { margin: 0 0 1.25rem; padding-left: 1.25rem; list-style: disc; color: var(--color-body); }
   .prose-nv li { margin: 0.35rem 0; }
   .prose-nv li::marker { color: var(--color-brand-600); }
 }

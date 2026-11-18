@@ -13,7 +13,7 @@ export default function PortfolioPage() {
       <section className="container-page py-20">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {portfolio.map((p) => (
-            <article key={p.title} className="flex flex-col overflow-hidden rounded-card border border-line bg-white shadow-card">
+            <article key={p.title} className="flex flex-col overflow-hidden rounded-card border border-line bg-card shadow-card">
               {/* TODO: replace with project screenshots in /public/portfolio */}
               <div className="bg-navy-radial relative aspect-[4/3]">
                 <div className="bg-pixel-grid absolute inset-0" aria-hidden />
@@ -21,7 +21,7 @@ export default function PortfolioPage() {
               </div>
               <div className="flex flex-col gap-2 p-6">
                 <span className="text-xs font-semibold uppercase tracking-wider text-brand-600">{p.category}</span>
-                <h2 className="text-lg font-bold text-navy-900">{p.title}</h2>
+                <h2 className="text-lg font-bold text-heading">{p.title}</h2>
                 <p className="text-sm text-muted">{p.result}</p>
               </div>
             </article>

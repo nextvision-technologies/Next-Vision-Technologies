@@ -33,7 +33,7 @@ export default function AboutPage() {
           {values.map((v) => (
             <div key={v.title} className="flex flex-col gap-3 rounded-card border border-line p-7">
               <v.icon className="size-8 text-brand-600" aria-hidden strokeWidth={1.8} />
-              <h3 className="text-xl font-bold text-navy-900">{v.title}</h3>
+              <h3 className="text-xl font-bold text-heading">{v.title}</h3>
               <p className="text-muted">{v.text}</p>
             </div>
           ))}

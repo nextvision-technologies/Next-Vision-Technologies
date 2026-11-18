@@ -5,12 +5,14 @@ import { PageHero } from "@/components/sections/PageHero";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { SocialIcon } from "@/components/ui/SocialIcons";
 
+const WhatsAppIcon = ({ className }: { className?: string }) => <SocialIcon name="whatsapp" className={className} />;
+
 export const metadata: Metadata = { title: "Contact Us", description: "Get a free quote from Next Vision Technologies within 24 hours." };
 
 export default function ContactPage() {
   const items = [
     { icon: Mail, label: "Email", value: site.email, href: `mailto:${site.email}` },
-    ...site.phones.map((p) => ({ icon: Phone, label: p.label, value: p.value, href: p.href })),
+    ...site.phones.map((p) => ({ icon: p.whatsapp ? WhatsAppIcon : Phone, label: p.whatsapp ? `${p.label} (WhatsApp)` : p.label, value: p.value, href: p.href })),
     ...site.offices.map((o) => ({ icon: MapPin, label: o.label, value: o.address, href: undefined })),
     { icon: Clock, label: "Hours", value: "Monday to Saturday, 10am to 7pm PKT", href: undefined },
   ];
@@ -25,7 +27,7 @@ export default function ContactPage() {
               <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600"><i.icon className="size-5" aria-hidden /></span>
               <div>
                 <p className="text-sm text-muted">{i.label}</p>
-                {i.href ? <a href={i.href} className="font-semibold text-navy-900 hover:text-brand-600">{i.value}</a> : <p className="font-semibold text-navy-900">{i.value}</p>}
+                {i.href ? <a href={i.href} className="font-semibold text-heading hover:text-brand-600" {...(i.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}>{i.value}</a> : <p className="font-semibold text-heading">{i.value}</p>}
               </div>
             </div>
           ))}
@@ -34,8 +36,8 @@ export default function ContactPage() {
             <SocialIcon name="whatsapp" className="size-5" /> Chat on WhatsApp
           </a>
         </div>
-        <div className="rounded-[1.5rem] border border-line bg-white p-6 shadow-card sm:p-8">
-          <h2 className="mb-6 text-2xl font-bold text-navy-900">Send us a message</h2>
+        <div className="rounded-[1.5rem] border border-line bg-card p-6 shadow-card sm:p-8">
+          <h2 className="mb-6 text-2xl font-bold text-heading">Send us a message</h2>
           <ContactForm />
         </div>
       </section>

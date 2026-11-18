@@ -6,16 +6,16 @@ import { ServiceIcon } from "@/components/ui/ServiceIcon";
 /** Each category gets its own tint within the brand palette */
 export const categoryTheme: Record<ServiceCategory, { card: string; icon: string; check: string; glow: string; label: string }> = {
   "AI & Automation": {
-    card: "from-[#f3ecff] via-white to-white", icon: "from-[#6d28d9] to-[#a855f7]", check: "text-[#7c3aed]", glow: "bg-[#a855f7]/25", label: "text-[#6d28d9] bg-[#f3ecff]",
+    card: "from-[#f3ecff] via-card to-card dark:from-white/[0.06]", icon: "from-[#6d28d9] to-[#a855f7]", check: "text-[#7c3aed]", glow: "bg-[#a855f7]/25", label: "text-[#6d28d9] bg-[#f3ecff] dark:bg-white/10 dark:text-white/85",
   },
   Development: {
-    card: "from-[#fcebfd] via-white to-white", icon: "from-[#a21caf] to-[#e879f9]", check: "text-[#c026d3]", glow: "bg-[#e879f9]/25", label: "text-[#a21caf] bg-[#fcebfd]",
+    card: "from-[#fcebfd] via-card to-card dark:from-white/[0.06]", icon: "from-[#a21caf] to-[#e879f9]", check: "text-[#c026d3]", glow: "bg-[#e879f9]/25", label: "text-[#a21caf] bg-[#fcebfd] dark:bg-white/10 dark:text-white/85",
   },
   Marketing: {
-    card: "from-[#ffe9f0] via-white to-white", icon: "from-[#e11d74] to-[#fb7185]", check: "text-[#e11d74]", glow: "bg-[#fb7185]/25", label: "text-[#be185d] bg-[#ffe9f0]",
+    card: "from-[#ffe9f0] via-card to-card dark:from-white/[0.06]", icon: "from-[#e11d74] to-[#fb7185]", check: "text-[#e11d74]", glow: "bg-[#fb7185]/25", label: "text-[#be185d] bg-[#ffe9f0] dark:bg-white/10 dark:text-white/85",
   },
   "Design & Consulting": {
-    card: "from-[#fff1e3] via-white to-white", icon: "from-[#ea580c] to-[#ff9a3c]", check: "text-[#ea580c]", glow: "bg-[#ff9a3c]/25", label: "text-[#c2410c] bg-[#fff1e3]",
+    card: "from-[#fff1e3] via-card to-card dark:from-white/[0.06]", icon: "from-[#ea580c] to-[#ff9a3c]", check: "text-[#ea580c]", glow: "bg-[#ff9a3c]/25", label: "text-[#c2410c] bg-[#fff1e3] dark:bg-white/10 dark:text-white/85",
   },
 };
 
@@ -37,7 +37,7 @@ export function ServiceCard({ s, showCategory = false }: { s: Service; showCateg
         {showCategory && <span className={`rounded-full px-2.5 py-1 text-[11px] font-semibold ${t.label}`}>{s.category}</span>}
       </div>
 
-      <h3 className="relative mt-6 text-xl font-extrabold text-navy-900">
+      <h3 className="relative mt-6 text-xl font-extrabold text-heading">
         {/* Stretched link: the whole card opens the service page */}
         <Link href={`/services/${s.slug}`} className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none">
           {s.title}
@@ -58,7 +58,7 @@ export function ServiceCard({ s, showCategory = false }: { s: Service; showCateg
           Learn more <ArrowRight className="size-4 transition group-hover:translate-x-1" aria-hidden />
         </Link>
         <Link href="/contact" aria-label={`Get a quote for ${s.title}`}
-          className="inline-flex items-center gap-1.5 rounded-full border border-navy-900/15 bg-white px-4 py-2 text-sm font-semibold text-navy-900 transition hover:border-transparent hover:bg-navy-900 hover:text-white">
+          className="inline-flex items-center gap-1.5 rounded-full border border-navy-900/15 bg-card px-4 py-2 text-sm font-semibold text-heading transition hover:border-transparent hover:bg-navy-900 hover:text-white">
           <MessageSquareQuote className="size-4" aria-hidden /> Get a quote
         </Link>
       </div>

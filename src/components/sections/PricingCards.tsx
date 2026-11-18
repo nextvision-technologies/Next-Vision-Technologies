@@ -15,7 +15,7 @@ function PlanCard({ p }: { p: Package }) {
       className={`group relative flex flex-col rounded-[1.75rem] transition duration-300 hover:-translate-y-1.5 ${
         dark
           ? "bg-navy-radial text-white shadow-[0_30px_70px_-25px_rgb(192_38_211/0.55)] ring-2 ring-brand-600/70 lg:-my-4"
-          : "border border-line bg-white shadow-card hover:shadow-lift"
+          : "border border-line bg-card shadow-card hover:shadow-lift"
       }`}
     >
       {/* Top accent bar */}
@@ -34,7 +34,7 @@ function PlanCard({ p }: { p: Package }) {
           </span>
         </div>
 
-        <h3 className={`mt-6 text-2xl font-extrabold ${dark ? "text-white" : "text-navy-900"}`}>{p.name}</h3>
+        <h3 className={`mt-6 text-2xl font-extrabold ${dark ? "text-white" : "text-heading"}`}>{p.name}</h3>
         <p className={`mt-2 min-h-[3rem] text-sm leading-relaxed ${dark ? "text-white/70" : "text-muted"}`}>{p.summary}</p>
 
         {/* Price with struck-through regular price */}
@@ -46,8 +46,8 @@ function PlanCard({ p }: { p: Package }) {
             <span className="rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-xs font-bold text-emerald-500">Save {save}%</span>
           </div>
           <p className="flex items-start gap-1">
-            <span className={`mt-2 text-xl font-bold ${dark ? "text-white/80" : "text-navy-900/70"}`}>{p.currency}</span>
-            <span className={`font-display text-6xl leading-none font-extrabold tracking-tight ${dark ? "text-white" : "text-navy-900"}`}>{fmt(p.price)}</span>
+            <span className={`mt-2 text-xl font-bold ${dark ? "text-white/80" : "text-heading/70"}`}>{p.currency}</span>
+            <span className={`font-display text-6xl leading-none font-extrabold tracking-tight ${dark ? "text-white" : "text-heading"}`}>{fmt(p.price)}</span>
             <span className={`mt-auto mb-1.5 text-sm ${dark ? "text-white/60" : "text-muted"}`}>/month</span>
           </p>
           <p className={`text-xs ${dark ? "text-white/50" : "text-muted"}`}>Billed monthly · Cancel anytime</p>

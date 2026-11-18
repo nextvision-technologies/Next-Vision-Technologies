@@ -129,7 +129,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
       </section>
 
       {/* ---------- Sticky section menu ---------- */}
-      <nav aria-label="On this page" className="sticky top-16 z-30 border-b border-line bg-white/90 backdrop-blur lg:top-[4.5rem]">
+      <nav aria-label="On this page" className="sticky top-16 z-30 border-b border-line bg-card/90 backdrop-blur lg:top-[4.5rem]">
         <ul className="container-page flex gap-1 overflow-x-auto py-2.5 text-sm font-semibold">
           {sections.map((x) => (
             <li key={x.id}>
@@ -148,8 +148,8 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
           {/* Overview */}
           <section id="overview" className="scroll-mt-40">
             <span className="text-xs font-semibold tracking-[0.16em] text-brand-600 uppercase">Overview</span>
-            <h2 className="mt-3 text-3xl leading-tight font-extrabold text-navy-900 sm:text-4xl">What {s.title} can do for you</h2>
-            <div className="mt-5 flex flex-col gap-4 text-lg leading-relaxed text-[#3a2d57]">
+            <h2 className="mt-3 text-3xl leading-tight font-extrabold text-heading sm:text-4xl">What {s.title} can do for you</h2>
+            <div className="mt-5 flex flex-col gap-4 text-lg leading-relaxed text-body">
               <p>{s.intro}</p>
               {related.length > 0 && (
                 <p>
@@ -168,7 +168,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
               {s.benefits.map((b) => (
                 <div key={b} className="flex items-center gap-3 rounded-2xl border border-line bg-surface p-4">
                   <span className="bg-brand-gradient inline-flex size-8 shrink-0 items-center justify-center rounded-full text-white"><Check className="size-4" strokeWidth={3} /></span>
-                  <span className="font-medium text-navy-900">{b}</span>
+                  <span className="font-medium text-heading">{b}</span>
                 </div>
               ))}
             </div>
@@ -177,15 +177,15 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
           {/* What we offer */}
           <section id="offer" className="scroll-mt-40">
             <span className="text-xs font-semibold tracking-[0.16em] text-brand-600 uppercase">What we offer</span>
-            <h2 className="mt-3 text-3xl leading-tight font-extrabold text-navy-900 sm:text-4xl">What&apos;s included in {s.title}</h2>
+            <h2 className="mt-3 text-3xl leading-tight font-extrabold text-heading sm:text-4xl">What&apos;s included in {s.title}</h2>
             <div className="mt-8 grid gap-5 sm:grid-cols-2">
               {s.offerings.map((o) => (
-                <article key={o.title} className="group relative overflow-hidden rounded-2xl border border-line bg-white p-6 transition hover:-translate-y-1 hover:border-brand-600/30 hover:shadow-lift">
+                <article key={o.title} className="group relative overflow-hidden rounded-2xl border border-line bg-card p-6 transition hover:-translate-y-1 hover:border-brand-600/30 hover:shadow-lift">
                   <span className="bg-brand-gradient absolute inset-x-0 top-0 h-1 origin-left scale-x-0 transition duration-300 group-hover:scale-x-100" aria-hidden />
                   <span className="inline-flex size-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition group-hover:bg-brand-gradient group-hover:text-white">
                     <ServiceIcon name={s.icon} className="size-5" />
                   </span>
-                  <h3 className="mt-4 text-lg font-bold text-navy-900">{o.title}</h3>
+                  <h3 className="mt-4 text-lg font-bold text-heading">{o.title}</h3>
                   <p className="mt-1.5 text-sm leading-relaxed text-muted">{o.text}</p>
                 </article>
               ))}
@@ -195,13 +195,13 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
           {/* Process */}
           <section id="process" className="scroll-mt-40">
             <span className="text-xs font-semibold tracking-[0.16em] text-brand-600 uppercase">Our process</span>
-            <h2 className="mt-3 text-3xl leading-tight font-extrabold text-navy-900 sm:text-4xl">How we deliver {s.title}</h2>
+            <h2 className="mt-3 text-3xl leading-tight font-extrabold text-heading sm:text-4xl">How we deliver {s.title}</h2>
             <ol className="relative mt-8 flex flex-col gap-6 before:absolute before:top-2 before:bottom-2 before:left-[1.4rem] before:w-0.5 before:bg-gradient-to-b before:from-brand-700 before:to-glow-400">
               {defaultProcess.map((p, i) => (
                 <li key={p.title} className="relative flex gap-5">
-                  <span className="bg-brand-gradient relative z-10 inline-flex size-11 shrink-0 items-center justify-center rounded-full font-display font-extrabold text-white ring-4 ring-white">{i + 1}</span>
-                  <div className="flex-1 rounded-2xl border border-line bg-white p-5">
-                    <h3 className="font-bold text-navy-900">{p.title}</h3>
+                  <span className="bg-brand-gradient relative z-10 inline-flex size-11 shrink-0 items-center justify-center rounded-full font-display font-extrabold text-white ring-4 ring-card">{i + 1}</span>
+                  <div className="flex-1 rounded-2xl border border-line bg-card p-5">
+                    <h3 className="font-bold text-heading">{p.title}</h3>
                     <p className="mt-1 text-sm leading-relaxed text-muted">{p.text}</p>
                   </div>
                 </li>
@@ -247,7 +247,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
                     <li key={x.slug}>
                       <Link href={`/services/${x.slug}`} className="group flex items-center gap-3 rounded-xl px-2 py-2.5 transition hover:bg-surface">
                         <span className="inline-flex size-8 items-center justify-center rounded-lg bg-brand-50 text-brand-600"><ServiceIcon name={x.icon} className="size-4" /></span>
-                        <span className="flex-1 text-sm font-semibold text-navy-900 group-hover:text-brand-600">{x.title}</span>
+                        <span className="flex-1 text-sm font-semibold text-heading group-hover:text-brand-600">{x.title}</span>
                         <ChevronRight className="size-4 text-muted" aria-hidden />
                       </Link>
                     </li>
@@ -260,7 +260,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
             <Link href="/pricing" className="group flex items-center gap-4 rounded-2xl border border-line p-5 transition hover:border-brand-600/30 hover:shadow-card">
               <span className="inline-flex size-10 items-center justify-center rounded-xl bg-glow-100 text-glow-400"><FileText className="size-5" /></span>
               <span className="flex-1">
-                <span className="block text-sm font-semibold text-navy-900">Monthly packages</span>
+                <span className="block text-sm font-semibold text-heading">Monthly packages</span>
                 <span className="block text-xs text-muted">From $249/month, all-in-one</span>
               </span>
               <ArrowRight className="size-4 text-brand-600 transition group-hover:translate-x-1" aria-hidden />
@@ -279,13 +279,13 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
             </div>
             <div className="grid gap-6 md:grid-cols-2">
               {articles.map((p) => (
-                <Link key={p.slug} href={`/blog/${p.slug}`} className="group grid overflow-hidden rounded-2xl border border-line bg-white transition hover:shadow-lift sm:grid-cols-[14rem_1fr]">
+                <Link key={p.slug} href={`/blog/${p.slug}`} className="group grid overflow-hidden rounded-2xl border border-line bg-card transition hover:shadow-lift sm:grid-cols-[14rem_1fr]">
                   <div className="relative aspect-[16/9] sm:aspect-auto">
                     <Image src={postImage(p.slug)} alt="" fill sizes="(min-width: 640px) 14rem, 100vw" className="object-cover transition duration-500 group-hover:scale-105" />
                   </div>
                   <div className="flex flex-col gap-2 p-5">
                     <span className="text-xs font-semibold text-brand-600">{p.category}</span>
-                    <h3 className="font-bold leading-snug text-navy-900 group-hover:text-brand-600">{p.title}</h3>
+                    <h3 className="font-bold leading-snug text-heading group-hover:text-brand-600">{p.title}</h3>
                     <p className="mt-auto flex items-center gap-3 text-xs text-muted">
                       <span>{formatDate(p.date)}</span>
                       <span className="inline-flex items-center gap-1"><Clock className="size-3.5" />{p.readMinutes} min</span>
@@ -311,7 +311,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
       {/* ---------- All services (internal links) ---------- */}
       <section className="border-t border-line py-12">
         <div className="container-page flex flex-col gap-5">
-          <p className="text-sm font-semibold text-navy-900">Explore all our services</p>
+          <p className="text-sm font-semibold text-heading">Explore all our services</p>
           <ul className="flex flex-wrap gap-2">
             {services.map((x) => (
               <li key={x.slug}>

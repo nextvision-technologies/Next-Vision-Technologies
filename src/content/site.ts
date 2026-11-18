@@ -9,8 +9,8 @@ export const site = {
   url: "https://nextvision-technologies.com", // domain taken from the company email; confirm before launch
   email: "info@nextvision-technologies.com",
   phones: [
-    { label: "Pakistan", value: "+92 300 3209005", href: "tel:+923003209005" },
-    { label: "United Kingdom", value: "+44 7448 091908", href: "tel:+447448091908" },
+    { label: "Pakistan", value: "+92 300 3209005", href: "tel:+923003209005", whatsapp: false },
+    { label: "United Kingdom", value: "+44 7448 091908", href: "https://wa.me/447448091908", whatsapp: true }, // UK number is WhatsApp only
   ],
   whatsapp: "923003209005", // WhatsApp number, international format, digits only
   offices: [

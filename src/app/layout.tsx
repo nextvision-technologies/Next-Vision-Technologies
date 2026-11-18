@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { ChatBot } from "@/components/chat/ChatBot";
+import { themeInitScript } from "@/components/layout/ThemeToggle";
 import { site } from "@/content/site";
 import "./globals.css";
 
@@ -20,7 +21,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${inter.variable} antialiased`}>
+    <html lang="en" className={`${montserrat.variable} ${inter.variable} antialiased`} suppressHydrationWarning>
+      <head>
+        {/* Applies the saved light/dark theme before the first paint */}
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="flex min-h-dvh flex-col">
         <Header />
         <main className="flex-1">{children}</main>

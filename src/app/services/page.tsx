@@ -33,14 +33,14 @@ export default function ServicesPage() {
       </PageHero>
 
       {/* Category jump links */}
-      <nav aria-label="Service categories" className="sticky top-16 z-30 border-b border-line bg-white/90 backdrop-blur lg:top-[4.5rem]">
+      <nav aria-label="Service categories" className="sticky top-16 z-30 border-b border-line bg-card/90 backdrop-blur lg:top-[4.5rem]">
         <ul className="container-page flex gap-2 overflow-x-auto py-3">
           {serviceCategories.map((c) => {
             const info = categoryInfo[c];
             const count = services.filter((s) => s.category === c).length;
             return (
               <li key={c}>
-                <a href={`#${info.id}`} className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold whitespace-nowrap text-navy-900 transition hover:border-brand-600/40 hover:text-brand-600">
+                <a href={`#${info.id}`} className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-4 py-2 text-sm font-semibold whitespace-nowrap text-heading transition hover:border-brand-600/40 hover:text-brand-600">
                   <info.icon className="size-4" aria-hidden /> {c}
                   <span className="rounded-full bg-surface px-2 text-xs text-muted">{count}</span>
                 </a>
@@ -63,7 +63,7 @@ export default function ServicesPage() {
                     <info.icon className="size-6" aria-hidden />
                   </span>
                   <div>
-                    <h2 id={`h-${info.id}`} className="text-2xl font-extrabold text-navy-900 sm:text-3xl">{c}</h2>
+                    <h2 id={`h-${info.id}`} className="text-2xl font-extrabold text-heading sm:text-3xl">{c}</h2>
                     <p className="mt-1.5 max-w-2xl text-muted">{info.text}</p>
                   </div>
                 </div>
@@ -79,7 +79,7 @@ export default function ServicesPage() {
         {/* Help choosing */}
         <section className="flex flex-col items-start justify-between gap-6 rounded-[1.75rem] border border-line bg-surface p-8 sm:flex-row sm:items-center sm:p-10">
           <div>
-            <h2 className="text-2xl font-extrabold text-navy-900">Not sure which service you need?</h2>
+            <h2 className="text-2xl font-extrabold text-heading">Not sure which service you need?</h2>
             <p className="mt-2 max-w-xl text-muted">Tell us about your business and goals. We&apos;ll recommend the right mix of services and send a fixed quote within 24 hours.</p>
           </div>
           <div className="flex flex-wrap gap-3">

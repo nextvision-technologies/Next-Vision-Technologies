@@ -2,9 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { footerNav } from "@/content/navigation";
-import { sortedPosts } from "@/content/blog";
 import { site } from "@/content/site";
-import { SocialLinks } from "@/components/ui/SocialIcons";
+import { SocialIcon, SocialLinks } from "@/components/ui/SocialIcons";
 
 function Column({ title, links }: { title: string; links: { label: string; href: string }[] }) {
   return (
@@ -22,18 +21,22 @@ function Column({ title, links }: { title: string; links: { label: string; href:
 }
 
 export function Footer() {
-  const latest = sortedPosts().slice(0, 5).map((p) => ({ label: p.title, href: `/blog/${p.slug}` }));
   return (
     <footer className="bg-navy-radial relative overflow-hidden text-white">
       <div className="bg-pixel-grid pointer-events-none absolute inset-0 opacity-60" aria-hidden />
-      <div className="container-page relative grid gap-12 py-16 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1.3fr]">
+      <div className="container-page relative grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-16">
         <div className="flex flex-col gap-5">
           <Image src="/brand/logo-tagline-white.svg" alt={site.name} width={462} height={108} className="h-16 w-auto self-start" />
           <p className="max-w-xs text-sm leading-relaxed text-white/65">{site.description}</p>
           <ul className="flex flex-col gap-3 text-sm text-white/75">
             <li className="flex gap-2.5"><Mail className="mt-0.5 size-4 shrink-0 text-glow-400" aria-hidden /><a href={`mailto:${site.email}`} className="hover:text-white">{site.email}</a></li>
             {site.phones.map((p) => (
-              <li key={p.label} className="flex gap-2.5"><Phone className="mt-0.5 size-4 shrink-0 text-glow-400" aria-hidden /><a href={p.href} className="hover:text-white">{p.label}: {p.value}</a></li>
+              <li key={p.label} className="flex gap-2.5">
+                {p.whatsapp ? <SocialIcon name="whatsapp" className="mt-0.5 size-4 shrink-0 text-glow-400" /> : <Phone className="mt-0.5 size-4 shrink-0 text-glow-400" aria-hidden />}
+                <a href={p.href} className="hover:text-white" {...(p.whatsapp ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                  {p.label}{p.whatsapp ? " (WhatsApp)" : ""}: {p.value}
+                </a>
+              </li>
             ))}
             {site.offices.map((o) => (
               <li key={o.label} className="flex gap-2.5"><MapPin className="mt-0.5 size-4 shrink-0 text-glow-400" aria-hidden /><span><strong className="font-semibold text-white">{o.label}</strong><br />{o.address}</span></li>
@@ -44,7 +47,6 @@ export function Footer() {
         <Column title="Quick links" links={footerNav.quick} />
         <Column title="Our services" links={[...footerNav.services, { label: "View all services", href: "/services" }]} />
         <Column title="Support & legal" links={footerNav.support} />
-        <Column title="Latest articles" links={[...latest, { label: "View all articles", href: "/blog" }]} />
       </div>
       <div className="relative border-t border-white/10">
         <div className="container-page flex flex-col items-center justify-between gap-3 py-6 text-xs text-white/55 sm:flex-row">

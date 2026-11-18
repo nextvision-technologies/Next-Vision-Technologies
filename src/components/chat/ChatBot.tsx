@@ -169,8 +169,8 @@ export function ChatBot() {
     <>
       {/* Teaser */}
       {teaser && !open && (
-        <div className="animate-rise fixed right-[max(1.25rem,env(safe-area-inset-right))] bottom-[calc(max(1.25rem,env(safe-area-inset-bottom))+4.75rem)] z-40 w-64 rounded-2xl border border-line bg-white p-4 pr-9 text-sm text-navy-900 shadow-lift">
-          <button type="button" onClick={dismissTeaser} aria-label="Dismiss" className="absolute top-2.5 right-2.5 text-muted hover:text-navy-900"><X className="size-4" /></button>
+        <div className="animate-rise fixed right-[max(1.25rem,env(safe-area-inset-right))] bottom-[calc(max(1.25rem,env(safe-area-inset-bottom))+4.75rem)] z-40 w-64 rounded-2xl border border-line bg-card p-4 pr-9 text-sm text-heading shadow-lift">
+          <button type="button" onClick={dismissTeaser} aria-label="Dismiss" className="absolute top-2.5 right-2.5 text-muted hover:text-heading"><X className="size-4" /></button>
           <button type="button" onClick={openChat} className="text-left">Hi 👋 Need help with your project? <strong className="text-brand-600">Ask me anything!</strong></button>
         </div>
       )}
@@ -179,13 +179,13 @@ export function ChatBot() {
       <button type="button" onClick={() => (open ? setOpen(false) : openChat())} aria-label={open ? "Close chat" : "Open chat assistant"} aria-expanded={open}
         className="bg-brand-gradient fixed right-[max(1.25rem,env(safe-area-inset-right))] bottom-[max(1.25rem,env(safe-area-inset-bottom))] z-50 inline-flex size-15 items-center justify-center rounded-full text-white shadow-lift ring-4 ring-white/70 transition hover:scale-105">
         {open ? <X className="size-7" /> : <MessageCircle className="size-7" />}
-        {!open && <span className="absolute top-0.5 right-0.5 size-3.5 rounded-full border-2 border-white bg-emerald-400" aria-hidden />}
+        {!open && <span className="absolute top-0.5 right-0.5 size-3.5 rounded-full border-2 border-card bg-emerald-400" aria-hidden />}
       </button>
 
       {/* Panel */}
       {open && (
         <section role="dialog" aria-label="Next Vision chat assistant"
-          className="animate-rise fixed right-[max(1rem,env(safe-area-inset-right))] bottom-[calc(max(1.25rem,env(safe-area-inset-bottom))+5rem)] z-50 flex h-[min(36rem,calc(100dvh-8rem))] w-[min(24rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-[1.5rem] border border-line bg-white shadow-[0_30px_80px_-20px_rgb(31_10_77/0.45)] [animation-duration:.25s]">
+          className="animate-rise fixed right-[max(1rem,env(safe-area-inset-right))] bottom-[calc(max(1.25rem,env(safe-area-inset-bottom))+5rem)] z-50 flex h-[min(36rem,calc(100dvh-8rem))] w-[min(24rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-[1.5rem] border border-line bg-card shadow-[0_30px_80px_-20px_rgb(31_10_77/0.45)] [animation-duration:.25s]">
           {/* Header */}
           <header className="bg-navy-radial relative flex items-center gap-3 px-4 py-3.5 text-white">
             <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
@@ -205,14 +205,14 @@ export function ChatBot() {
             {msgs.map((m, i) => (
               <div key={i} className={`flex flex-col gap-2 ${m.from === "user" ? "items-end" : "items-start"}`}>
                 <div className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
-                  m.from === "user" ? "bg-brand-gradient rounded-br-md text-white" : "rounded-bl-md border border-line bg-white text-ink shadow-sm"}`}>
+                  m.from === "user" ? "bg-brand-gradient rounded-br-md text-white" : "rounded-bl-md border border-line bg-card text-ink shadow-sm"}`}>
                   {m.from === "bot" ? <BotText text={m.text} /> : m.text}
                 </div>
                 {m.from === "bot" && m.chips && i === msgs.length - 1 && !typing && (
                   <div className="flex flex-wrap gap-1.5">
                     {m.chips.map((c) => (
                       <button key={c} type="button" onClick={() => send(c)}
-                        className="rounded-full border border-brand-600/30 bg-white px-3 py-1.5 text-xs font-semibold text-brand-700 transition hover:bg-brand-600 hover:text-white">
+                        className="rounded-full border border-brand-600/30 bg-card px-3 py-1.5 text-xs font-semibold text-brand-700 transition hover:bg-brand-600 hover:text-white">
                         {c}
                       </button>
                     ))}
@@ -221,14 +221,14 @@ export function ChatBot() {
               </div>
             ))}
             {typing && (
-              <div className="flex w-fit gap-1 rounded-2xl rounded-bl-md border border-line bg-white px-4 py-3" aria-label="Assistant is typing">
+              <div className="flex w-fit gap-1 rounded-2xl rounded-bl-md border border-line bg-card px-4 py-3" aria-label="Assistant is typing">
                 {[0, 1, 2].map((d) => <span key={d} className="size-2 animate-bounce rounded-full bg-brand-600/60" style={{ animationDelay: `${d * 0.15}s` }} />)}
               </div>
             )}
           </div>
 
           {/* Input */}
-          <form onSubmit={(e) => { e.preventDefault(); send(input); }} className="flex items-center gap-2 border-t border-line bg-white p-3">
+          <form onSubmit={(e) => { e.preventDefault(); send(input); }} className="flex items-center gap-2 border-t border-line bg-card p-3">
             <label htmlFor="nv-chat-input" className="sr-only">Type your message</label>
             <input id="nv-chat-input" ref={inputRef} value={input} onChange={(e) => setInput(e.target.value)} autoComplete="off"
               placeholder={lead === "phone" ? "+92 300 1234567" : lang === "ur" ? "Apna sawal likhein…" : "Type your question…"}

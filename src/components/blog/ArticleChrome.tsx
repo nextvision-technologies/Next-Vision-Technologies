@@ -47,7 +47,7 @@ export function TableOfContents({ items }: { items: { id: string; text: string }
         {items.map((i) => (
           <li key={i.id}>
             <a href={`#${i.id}`}
-              className={`-ml-px block border-l-2 py-1.5 pl-4 text-sm leading-snug transition ${active === i.id ? "border-brand-600 font-semibold text-brand-600" : "border-transparent text-muted hover:text-navy-900"}`}>
+              className={`-ml-px block border-l-2 py-1.5 pl-4 text-sm leading-snug transition ${active === i.id ? "border-brand-600 font-semibold text-brand-600" : "border-transparent text-muted hover:text-heading"}`}>
               {i.text}
             </a>
           </li>
@@ -81,12 +81,12 @@ export function ShareButtons({ url, title }: { url: string; title: string }) {
       <div className="mt-3 flex gap-2">
         {links.map((l) => (
           <a key={l.name} href={l.href} target="_blank" rel="noopener noreferrer" aria-label={l.label}
-            className={`inline-flex size-10 items-center justify-center rounded-full bg-surface text-navy-900 transition hover:text-white ${l.cls}`}>
+            className={`inline-flex size-10 items-center justify-center rounded-full bg-surface text-heading transition hover:text-white ${l.cls}`}>
             <SocialIcon name={l.name} className="size-4" />
           </a>
         ))}
         <button type="button" onClick={copy} aria-label="Copy link"
-          className="inline-flex size-10 items-center justify-center rounded-full bg-surface text-navy-900 transition hover:bg-navy-900 hover:text-white">
+          className="inline-flex size-10 items-center justify-center rounded-full bg-surface text-heading transition hover:bg-navy-900 hover:text-white">
           {copied ? <Check className="size-4" /> : <Link2 className="size-4" />}
         </button>
       </div>

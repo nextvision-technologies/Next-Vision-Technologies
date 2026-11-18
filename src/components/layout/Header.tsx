@@ -8,8 +8,9 @@ import { CalendarDays, ChevronDown, Menu, X, Mail, Phone } from "lucide-react";
 import { mainNav } from "@/content/navigation";
 import { site } from "@/content/site";
 import { buttonClass } from "@/components/ui/Button";
-import { SocialLinks } from "@/components/ui/SocialIcons";
+import { SocialIcon, SocialLinks } from "@/components/ui/SocialIcons";
 import { MegaMenuPanel } from "./MegaMenu";
+import { ThemeToggle } from "./ThemeToggle";
 
 function TopBar() {
   return (
@@ -20,8 +21,9 @@ function TopBar() {
             <Mail className="size-3.5" aria-hidden /> {site.email}
           </a>
           {site.phones.map((p) => (
-            <a key={p.label} href={p.href} className="inline-flex items-center gap-2 font-medium hover:opacity-80">
-              <Phone className="size-3.5" aria-hidden />
+            <a key={p.label} href={p.href} className="inline-flex items-center gap-2 font-medium hover:opacity-80"
+              {...(p.whatsapp ? { target: "_blank", rel: "noopener noreferrer", "aria-label": `WhatsApp ${p.value}` } : {})}>
+              {p.whatsapp ? <SocialIcon name="whatsapp" className="size-3.5" /> : <Phone className="size-3.5" aria-hidden />}
               <span className="font-bold">{p.label === "Pakistan" ? "PK" : "UK"}</span> {p.value}
             </a>
           ))}
@@ -80,12 +82,14 @@ export function Header() {
   return (
     <>
       <TopBar />
-      <header className={`sticky top-0 z-40 bg-white/95 backdrop-blur transition-shadow ${scrolled || active ? "shadow-card" : ""}`}>
+      <header className={`sticky top-0 z-40 bg-card/95 backdrop-blur transition-shadow ${scrolled || active ? "shadow-card" : ""}`}>
         <nav ref={navRef} className="container-page relative flex h-16 items-center justify-between gap-6 lg:h-[4.5rem]" aria-label="Main"
           onMouseLeave={scheduleClose}>
           <Link href="/" className="shrink-0" aria-label={`${site.name} home`}>
             <Image src="/brand/logo-tagline.svg" alt={`${site.name}: ${site.tagline}`} width={462} height={108} priority
-              className="h-11 w-auto lg:h-12" />
+              className="h-11 w-auto lg:h-12 dark:hidden" />
+            <Image src="/brand/logo-tagline-white.svg" alt={`${site.name}: ${site.tagline}`} width={462} height={108} priority
+              className="hidden h-11 w-auto lg:h-12 dark:block" />
           </Link>
 
           <ul className="hidden items-center gap-1 lg:flex">
@@ -95,7 +99,7 @@ export function Header() {
                 <li key={g.label} onMouseEnter={() => open(g.label)}>
                   <button type="button" aria-expanded={isOpen} aria-haspopup="true"
                     onClick={() => (isOpen ? setOpenMenu(null) : open(g.label))}
-                    className={`inline-flex h-10 items-center gap-1 rounded-full px-3.5 text-sm font-semibold transition ${isOpen ? "text-brand-600" : "text-navy-900 hover:text-brand-600"}`}>
+                    className={`inline-flex h-10 items-center gap-1 rounded-full px-3.5 text-sm font-semibold transition ${isOpen ? "text-brand-600" : "text-heading hover:text-brand-600"}`}>
                     {g.label}
                     <ChevronDown className={`size-4 transition duration-200 ${isOpen ? "rotate-180" : ""}`} aria-hidden />
                   </button>
@@ -104,7 +108,8 @@ export function Header() {
             })}
           </ul>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
+            <ThemeToggle />
             <span className="hidden sm:block">
               <Link href="/book-demo" className={buttonClass("primary", "md", "h-10 px-5")}>
                 <CalendarDays className="size-4" aria-hidden /> Book a Demo
@@ -131,20 +136,21 @@ export function Header() {
       {mobile && (
         <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label="Menu">
           <div className="absolute inset-0 bg-navy-950/50" onClick={() => setMobile(false)} />
-          <div data-lenis-prevent className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col overflow-y-auto bg-white p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
+          <div data-lenis-prevent className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col overflow-y-auto bg-card p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
             <div className="flex items-center justify-between">
-              <Image src="/brand/logo-tagline.svg" alt={site.name} width={462} height={108} className="h-12 w-auto" />
+              <Image src="/brand/logo-tagline.svg" alt={site.name} width={462} height={108} className="h-12 w-auto dark:hidden" />
+              <Image src="/brand/logo-tagline-white.svg" alt={site.name} width={462} height={108} className="hidden h-12 w-auto dark:block" />
               <button type="button" onClick={() => setMobile(false)} aria-label="Close menu"
                 className="inline-flex size-11 items-center justify-center rounded-full border border-line">
                 <X className="size-5" />
               </button>
             </div>
             <ul className="mt-6 flex flex-col divide-y divide-line">
-              <li><Link href="/" className="block py-3.5 font-semibold text-navy-900">Home</Link></li>
+              <li><Link href="/" className="block py-3.5 font-semibold text-heading">Home</Link></li>
               {mainNav.map((g) => (
                 <li key={g.label}>
                   <details className="group">
-                    <summary className="flex cursor-pointer list-none items-center justify-between py-3.5 font-semibold text-navy-900">
+                    <summary className="flex cursor-pointer list-none items-center justify-between py-3.5 font-semibold text-heading">
                       {g.label}
                       <ChevronDown className="size-4 transition group-open:rotate-180" aria-hidden />
                     </summary>

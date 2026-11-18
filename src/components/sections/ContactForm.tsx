@@ -7,7 +7,7 @@ import { buttonClass } from "@/components/ui/Button";
 
 type Status = { kind: "idle" } | { kind: "sending" } | { kind: "sent" } | { kind: "error"; message: string };
 
-const field = "h-12 w-full rounded-xl border border-line bg-white px-4 text-sm text-ink outline-none transition placeholder:text-muted/70 focus:border-brand-600 focus:ring-4 focus:ring-brand-100";
+const field = "h-12 w-full rounded-xl border border-line bg-card px-4 text-sm text-ink outline-none transition placeholder:text-muted/70 focus:border-brand-600 focus:ring-4 focus:ring-brand-100";
 
 export function ContactForm({ variant = "quote" }: { variant?: "quote" | "demo" }) {
   const [status, setStatus] = useState<Status>({ kind: "idle" });
@@ -34,7 +34,7 @@ export function ContactForm({ variant = "quote" }: { variant?: "quote" | "demo" 
   if (status.kind === "sent") {
     return (
       <div className="flex flex-col items-start gap-3 rounded-2xl border border-line bg-brand-50 p-8" role="status">
-        <h3 className="text-xl font-bold text-navy-900">Thanks, we got your message.</h3>
+        <h3 className="text-xl font-bold text-heading">Thanks, we got your message.</h3>
         <p className="text-muted">Our team will contact you on WhatsApp or phone within 24 hours.</p>
         <button type="button" className="text-sm font-semibold text-brand-600" onClick={() => setStatus({ kind: "idle" })}>Send another message</button>
       </div>
@@ -43,19 +43,19 @@ export function ContactForm({ variant = "quote" }: { variant?: "quote" | "demo" 
 
   return (
     <form onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2" noValidate={false}>
-      <label className="flex flex-col gap-1.5 text-sm font-medium text-navy-900">
+      <label className="flex flex-col gap-1.5 text-sm font-medium text-heading">
         Your name *
         <input id="cf-name" name="name" required autoComplete="name" className={field} placeholder="Full name" />
       </label>
-      <label className="flex flex-col gap-1.5 text-sm font-medium text-navy-900">
+      <label className="flex flex-col gap-1.5 text-sm font-medium text-heading">
         WhatsApp / phone *
         <input id="cf-phone" name="phone" required type="tel" autoComplete="tel" className={field} placeholder="+92 300 0000000" />
       </label>
-      <label className="flex flex-col gap-1.5 text-sm font-medium text-navy-900">
+      <label className="flex flex-col gap-1.5 text-sm font-medium text-heading">
         Email
         <input id="cf-email" name="email" type="email" autoComplete="email" className={field} placeholder="you@company.com" />
       </label>
-      <label className="flex flex-col gap-1.5 text-sm font-medium text-navy-900">
+      <label className="flex flex-col gap-1.5 text-sm font-medium text-heading">
         Service needed *
         <select id="cf-service" name="service" required defaultValue="" className={field}>
           <option value="" disabled>Select a service</option>
@@ -64,12 +64,12 @@ export function ContactForm({ variant = "quote" }: { variant?: "quote" | "demo" 
         </select>
       </label>
       {variant === "demo" && (
-        <label className="flex flex-col gap-1.5 text-sm font-medium text-navy-900 sm:col-span-2">
+        <label className="flex flex-col gap-1.5 text-sm font-medium text-heading sm:col-span-2">
           Preferred date and time
           <input id="cf-time" name="preferredTime" type="datetime-local" className={field} />
         </label>
       )}
-      <label className="flex flex-col gap-1.5 text-sm font-medium text-navy-900 sm:col-span-2">
+      <label className="flex flex-col gap-1.5 text-sm font-medium text-heading sm:col-span-2">
         Project details
         <textarea id="cf-details" name="details" rows={4} className={`${field} h-auto py-3`} placeholder="Tell us what you want to build or improve" />
       </label>

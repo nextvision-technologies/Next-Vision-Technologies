@@ -10,7 +10,7 @@ export function ArticleBlock({ block, h2Prefix }: { block: Block; h2Prefix?: str
     case "h2":
       return <h2 id={headingId(block.text)} className="scroll-mt-32">{h2Prefix}{block.text}</h2>;
     case "h3":
-      return <h3 className="mt-7 mb-2 text-lg font-bold text-navy-900">{block.text}</h3>;
+      return <h3 className="mt-7 mb-2 text-lg font-bold text-heading">{block.text}</h3>;
     case "ul":
       return (
         <ul className="!list-none !pl-0">
@@ -26,9 +26,9 @@ export function ArticleBlock({ block, h2Prefix }: { block: Block; h2Prefix?: str
       return (
         <ol className="my-6 flex flex-col gap-3">
           {block.items.map((i, n) => (
-            <li key={i} className="flex gap-4 rounded-2xl border border-line bg-white p-4">
+            <li key={i} className="flex gap-4 rounded-2xl border border-line bg-card p-4">
               <span className="bg-brand-gradient inline-flex size-8 shrink-0 items-center justify-center rounded-full font-display text-sm font-bold text-white">{n + 1}</span>
-              <span className="pt-0.5 text-[#3a2d57]"><RichText text={i} /></span>
+              <span className="pt-0.5 text-body"><RichText text={i} /></span>
             </li>
           ))}
         </ol>
@@ -38,7 +38,7 @@ export function ArticleBlock({ block, h2Prefix }: { block: Block; h2Prefix?: str
         <aside className="my-8 flex gap-4 rounded-2xl border border-glow-400/30 bg-glow-100/50 p-5">
           <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-glow-400 text-white"><Lightbulb className="size-5" /></span>
           <div>
-            <p className="font-display font-bold text-navy-900">{block.title}</p>
+            <p className="font-display font-bold text-heading">{block.title}</p>
             <p className="mt-1 !mb-0 text-[0.98rem]"><RichText text={block.text} /></p>
           </div>
         </aside>
@@ -60,8 +60,8 @@ export function ArticleBlock({ block, h2Prefix }: { block: Block; h2Prefix?: str
               </thead>
               <tbody>
                 {block.rows.map((r, i) => (
-                  <tr key={i} className="border-t border-line odd:bg-white even:bg-surface">
-                    {r.map((c, j) => <td key={j} className={`px-5 py-3.5 ${j === 0 ? "font-semibold text-navy-900" : "text-[#3a2d57]"}`}><RichText text={c} /></td>)}
+                  <tr key={i} className="border-t border-line odd:bg-card even:bg-surface">
+                    {r.map((c, j) => <td key={j} className={`px-5 py-3.5 ${j === 0 ? "font-semibold text-heading" : "text-body"}`}><RichText text={c} /></td>)}
                   </tr>
                 ))}
               </tbody>

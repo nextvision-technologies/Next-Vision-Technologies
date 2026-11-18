@@ -17,7 +17,7 @@ export const formatDate = (iso: string) => dateFmt.format(new Date(iso + "T00:00
 export function PostCard({ p }: { p: Post }) {
   return (
     <Link href={`/blog/${p.slug}`}
-      className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-white shadow-card transition hover:-translate-y-1 hover:shadow-lift">
+      className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-card shadow-card transition hover:-translate-y-1 hover:shadow-lift">
       <div className="bg-navy-radial relative flex aspect-[16/9] items-end overflow-hidden p-4">
         <Image src={postImage(p.slug)} alt="" fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="object-cover transition duration-500 group-hover:scale-105" />
@@ -25,7 +25,7 @@ export function PostCard({ p }: { p: Post }) {
       </div>
       <div className="flex flex-1 flex-col gap-3 p-6">
         <p className="text-xs text-muted">{formatDate(p.date)} · {p.readMinutes} min read</p>
-        <h3 className="text-lg font-bold leading-snug text-navy-900 group-hover:text-brand-600">{p.title}</h3>
+        <h3 className="text-lg font-bold leading-snug text-heading group-hover:text-brand-600">{p.title}</h3>
         <p className="line-clamp-3 text-sm leading-relaxed text-muted">{p.excerpt}</p>
       </div>
     </Link>
@@ -41,7 +41,7 @@ export function CtaBand({ title = "Ready to take your business to the next level
           <h2 className="text-3xl font-extrabold sm:text-4xl">{title}</h2>
           <p className="text-lg text-white/85">{text}</p>
           <div className="flex flex-wrap justify-center gap-3">
-            <Button href="/contact" variant="secondary" size="lg" className="border-white">Start your project <ArrowRight className="size-4" /></Button>
+            <Button href="/contact" variant="secondary" size="lg" className="border-card">Start your project <ArrowRight className="size-4" /></Button>
             <Button href={whatsappLink()} variant="light" size="lg"><SocialIcon name="whatsapp" className="size-5" /> Chat on WhatsApp</Button>
           </div>
         </div>
@@ -56,8 +56,8 @@ export function Faq({ items, title = "Frequently asked questions" }: { items: { 
       <SectionHeading eyebrow="FAQ" title={title} />
       <div className="flex flex-col gap-3">
         {items.map((f) => (
-          <details key={f.q} className="group rounded-2xl border border-line bg-white px-5 open:shadow-card">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-semibold text-navy-900">
+          <details key={f.q} className="group rounded-2xl border border-line bg-card px-5 open:shadow-card">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-semibold text-heading">
               {f.q}
               <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600 transition group-open:rotate-45" aria-hidden>+</span>
             </summary>
@@ -73,9 +73,9 @@ export function ProcessSteps({ steps }: { steps: { title: string; text: string }
   return (
     <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {steps.map((s, i) => (
-        <li key={s.title} className="relative flex flex-col gap-3 rounded-card border border-line bg-white p-6">
+        <li key={s.title} className="relative flex flex-col gap-3 rounded-card border border-line bg-card p-6">
           <span className="font-display text-sm font-bold text-brand-600">Step {i + 1}</span>
-          <h3 className="text-lg font-bold text-navy-900">{s.title}</h3>
+          <h3 className="text-lg font-bold text-heading">{s.title}</h3>
           <p className="text-sm leading-relaxed text-muted">{s.text}</p>
         </li>
       ))}
@@ -102,13 +102,13 @@ export function Testimonials() {
   return (
     <div className="grid gap-6 md:grid-cols-3">
       {testimonials.map((t, i) => (
-        <figure key={i} className="flex flex-col gap-5 rounded-card border border-line bg-white p-7 shadow-card">
+        <figure key={i} className="flex flex-col gap-5 rounded-card border border-line bg-card p-7 shadow-card">
           <Quote className="size-8 text-glow-400" aria-hidden />
           <blockquote className="flex-1 leading-relaxed text-ink">{t.text}</blockquote>
           <figcaption className="flex items-center gap-3">
             <span className="bg-brand-gradient inline-flex size-10 items-center justify-center rounded-full font-bold text-white">{t.name[0]}</span>
             <span>
-              <span className="block text-sm font-semibold text-navy-900">{t.name}</span>
+              <span className="block text-sm font-semibold text-heading">{t.name}</span>
               <span className="block text-xs text-muted">{t.role} · {t.project}</span>
             </span>
           </figcaption>

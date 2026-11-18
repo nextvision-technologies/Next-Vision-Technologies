@@ -32,9 +32,9 @@ function PromoArt({ art }: { art: NavPromo["art"] }) {
           <i className="ml-1.5 h-1.5 flex-1 rounded-full bg-[#ece5f4]" />
         </div>
         <div className="bg-brand-gradient mt-2 flex flex-col gap-1.5 rounded-md p-3">
-          <i className="h-1.5 w-3/4 rounded-full bg-white/80" /><i className="h-1.5 w-1/2 rounded-full bg-white/50" /><i className="mt-0.5 h-3 w-14 rounded-full bg-white" />
+          <i className="h-1.5 w-3/4 rounded-full bg-white/80" /><i className="h-1.5 w-1/2 rounded-full bg-white/50" /><i className="mt-0.5 h-3 w-14 rounded-full bg-card" />
         </div>
-        <span className="absolute -top-2.5 -right-2 rounded-full bg-white px-2 py-0.5 text-[10px] font-semibold text-brand-600 shadow-lg">SEO ready</span>
+        <span className="absolute -top-2.5 -right-2 rounded-full bg-card px-2 py-0.5 text-[10px] font-semibold text-brand-600 shadow-lg">SEO ready</span>
       </div>
     );
   }
@@ -76,11 +76,11 @@ function PromoCard({ promo }: { promo: NavPromo }) {
         <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
         {isBrowser ? (
           <>
-            <span className="relative m-3 mb-1.5 inline-flex w-fit items-center gap-1 rounded-full bg-white px-2 py-0.5 text-[10px] font-semibold text-navy-900">
+            <span className="relative m-3 mb-1.5 inline-flex w-fit items-center gap-1 rounded-full bg-card px-2 py-0.5 text-[10px] font-semibold text-heading">
               <i className="size-1.5 rounded-full bg-emerald-500" /> 100+ projects
             </span>
             <PromoArt art={promo.art} />
-            <div className="relative mt-auto flex items-center justify-between gap-3 bg-white p-3.5 text-navy-900">
+            <div className="relative mt-auto flex items-center justify-between gap-3 bg-card p-3.5 text-heading">
               <p className="font-display text-sm leading-snug font-bold">{promo.title}</p>
               <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-navy-900 text-white transition group-hover/promo:bg-brand-600">
                 <ArrowRight className="size-4" />
@@ -94,7 +94,7 @@ function PromoCard({ promo }: { promo: NavPromo }) {
               <PromoArt art={promo.art} />
             </div>
             {promo.text && <p className="text-xs leading-relaxed text-white/75">{promo.text}</p>}
-            <span className="mt-auto inline-flex size-9 items-center justify-center rounded-full bg-white text-navy-900 transition group-hover/promo:bg-glow-400 group-hover/promo:text-white">
+            <span className="mt-auto inline-flex size-9 items-center justify-center rounded-full bg-card text-heading transition group-hover/promo:bg-glow-400 group-hover/promo:text-white">
               <ArrowRight className="size-4" />
             </span>
           </div>
@@ -107,7 +107,7 @@ function PromoCard({ promo }: { promo: NavPromo }) {
 export function MegaMenuPanel({ group }: { group: NavGroup }) {
   const two = group.columns === 2;
   return (
-    <div data-lenis-prevent className="grid max-h-[calc(100dvh-9rem)] grid-cols-[1fr_15rem] gap-5 overflow-y-auto rounded-2xl border border-line bg-white p-5 shadow-[0_24px_60px_-20px_rgb(31_10_77/0.35)]">
+    <div data-lenis-prevent className="grid max-h-[calc(100dvh-9rem)] grid-cols-[1fr_15rem] gap-5 overflow-y-auto rounded-2xl border border-line bg-card p-5 shadow-[0_24px_60px_-20px_rgb(31_10_77/0.35)]">
       <div className="flex flex-col">
         {group.overview && <p className="mb-2 px-2 text-xs text-muted">{group.overview}</p>}
         <ul className={`grid gap-0.5 ${two ? "grid-cols-2" : "grid-cols-1"}`}>
@@ -116,7 +116,7 @@ export function MegaMenuPanel({ group }: { group: NavGroup }) {
               <Link href={c.href} className={`group/item flex gap-3 rounded-xl p-2 transition hover:bg-surface ${c.description ? "items-start" : "items-center"}`}>
                 <NavIcon name={c.icon} />
                 <span className="flex min-w-0 flex-col">
-                  <span className="text-sm font-semibold text-navy-900 transition group-hover/item:text-brand-600">{c.label}</span>
+                  <span className="text-sm font-semibold text-heading transition group-hover/item:text-brand-600">{c.label}</span>
                   {c.description && <span className="text-xs leading-snug text-muted">{c.description}</span>}
                 </span>
               </Link>
@@ -126,7 +126,7 @@ export function MegaMenuPanel({ group }: { group: NavGroup }) {
         {group.footer && (
           <div className="mt-auto flex flex-wrap items-center gap-5 border-t border-line px-2 pt-3">
             {group.footer.map((f, i) => (
-              <Link key={f.href} href={f.href} className={`inline-flex items-center gap-1.5 text-sm font-semibold ${i === 0 ? "text-brand-600" : "text-navy-900"} hover:text-brand-700`}>
+              <Link key={f.href} href={f.href} className={`inline-flex items-center gap-1.5 text-sm font-semibold ${i === 0 ? "text-brand-600" : "text-heading"} hover:text-brand-700`}>
                 {f.label} {i === 0 && <ArrowRight className="size-4" />}
               </Link>
             ))}

@@ -26,7 +26,7 @@ export function SectionHeading({ eyebrow, title, text, align = "center", tone = 
           {eyebrow}
         </span>
       )}
-      <H className={`text-3xl font-bold leading-tight sm:text-4xl ${dark ? "text-white" : "text-navy-900"}`}>{title}</H>
+      <H className={`text-3xl font-bold leading-tight sm:text-4xl ${dark ? "text-white" : "text-heading"}`}>{title}</H>
       {text && <p className={`text-base leading-relaxed sm:text-lg ${dark ? "text-white/70" : "text-muted"}`}>{text}</p>}
     </div>
   );

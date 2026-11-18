@@ -21,7 +21,7 @@ const monthLabel = (y: number, m: number) => new Date(Date.UTC(y, m, 1)).toLocal
 const longDate = (k: string) => new Date(k + "T00:00:00Z").toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" });
 const to12h = (t: string) => { const [h, m] = t.split(":").map(Number); return `${((h + 11) % 12) + 1}:${pad(m)} ${h < 12 ? "am" : "pm"}`; };
 
-const field = "h-12 w-full rounded-xl border border-line bg-white px-4 text-sm text-ink outline-none transition placeholder:text-muted/70 focus:border-brand-600 focus:ring-4 focus:ring-brand-100";
+const field = "h-12 w-full rounded-xl border border-line bg-card px-4 text-sm text-ink outline-none transition placeholder:text-muted/70 focus:border-brand-600 focus:ring-4 focus:ring-brand-100";
 
 export function DemoBooking() {
   const today = useSyncExternalStore(noopSubscribe, todayKey, () => null);
@@ -71,7 +71,7 @@ export function DemoBooking() {
   }
 
   return (
-    <div className="grid overflow-hidden rounded-[2rem] border border-line bg-white shadow-lift lg:grid-cols-[22rem_1fr]">
+    <div className="grid overflow-hidden rounded-[2rem] border border-line bg-card shadow-lift lg:grid-cols-[22rem_1fr]">
       {/* Left: meeting summary */}
       <aside className="flex flex-col border-b border-line lg:border-r lg:border-b-0">
         <div className="flex items-center justify-center bg-surface px-8 py-10">
@@ -79,7 +79,7 @@ export function DemoBooking() {
         </div>
         <div className="flex flex-col gap-4 p-8">
           <p className="text-sm text-muted">{site.name}</p>
-          <h2 className="text-2xl font-bold text-navy-900">Book a free demo</h2>
+          <h2 className="text-2xl font-bold text-heading">Book a free demo</h2>
           <ul className="flex flex-col gap-3 text-ink">
             <li className="flex gap-3"><Clock className="mt-0.5 size-5 shrink-0 text-brand-600" aria-hidden />30 minutes</li>
             <li className="flex gap-3"><Video className="mt-0.5 size-5 shrink-0 text-brand-600" aria-hidden />Video call or WhatsApp. We share the details when we confirm.</li>
@@ -98,27 +98,27 @@ export function DemoBooking() {
         {step === "done" ? (
           <div className="flex h-full flex-col items-center justify-center gap-4 py-16 text-center" role="status">
             <span className="bg-brand-gradient inline-flex size-16 items-center justify-center rounded-full text-white"><CalendarCheck className="size-8" /></span>
-            <h3 className="text-2xl font-bold text-navy-900">Request received</h3>
-            <p className="max-w-md text-muted">We&apos;ll confirm your demo for <strong className="text-navy-900">{date && longDate(date)}, {time && to12h(time)}</strong> by email or WhatsApp shortly.</p>
+            <h3 className="text-2xl font-bold text-heading">Request received</h3>
+            <p className="max-w-md text-muted">We&apos;ll confirm your demo for <strong className="text-heading">{date && longDate(date)}, {time && to12h(time)}</strong> by email or WhatsApp shortly.</p>
           </div>
         ) : step === "details" ? (
           <form onSubmit={submit} className="flex flex-col gap-5">
             <button type="button" onClick={() => setStep("pick")} className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-brand-600">
               <ArrowLeft className="size-4" /> Change date or time
             </button>
-            <h3 className="text-xl font-bold text-navy-900">Your details</h3>
+            <h3 className="text-xl font-bold text-heading">Your details</h3>
             <div className="grid gap-4 sm:grid-cols-2">
-              <label className="flex flex-col gap-1.5 text-sm font-medium text-navy-900">Your name *<input id="bd-name" name="name" required autoComplete="name" className={field} /></label>
-              <label className="flex flex-col gap-1.5 text-sm font-medium text-navy-900">WhatsApp / phone *<input id="bd-phone" name="phone" required type="tel" autoComplete="tel" className={field} /></label>
-              <label className="flex flex-col gap-1.5 text-sm font-medium text-navy-900">Email<input id="bd-email" name="email" type="email" autoComplete="email" className={field} /></label>
-              <label className="flex flex-col gap-1.5 text-sm font-medium text-navy-900">Interested in *
+              <label className="flex flex-col gap-1.5 text-sm font-medium text-heading">Your name *<input id="bd-name" name="name" required autoComplete="name" className={field} /></label>
+              <label className="flex flex-col gap-1.5 text-sm font-medium text-heading">WhatsApp / phone *<input id="bd-phone" name="phone" required type="tel" autoComplete="tel" className={field} /></label>
+              <label className="flex flex-col gap-1.5 text-sm font-medium text-heading">Email<input id="bd-email" name="email" type="email" autoComplete="email" className={field} /></label>
+              <label className="flex flex-col gap-1.5 text-sm font-medium text-heading">Interested in *
                 <select id="bd-service" name="service" required defaultValue="" className={field}>
                   <option value="" disabled>Select a service</option>
                   {services.map((s) => <option key={s.slug}>{s.title}</option>)}
                   <option>Other</option>
                 </select>
               </label>
-              <label className="flex flex-col gap-1.5 text-sm font-medium text-navy-900 sm:col-span-2">Anything we should know?
+              <label className="flex flex-col gap-1.5 text-sm font-medium text-heading sm:col-span-2">Anything we should know?
                 <textarea id="bd-details" name="details" rows={3} className={`${field} h-auto py-3`} />
               </label>
               <input type="text" name="company_website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
@@ -133,13 +133,13 @@ export function DemoBooking() {
         ) : (
           <div className="grid gap-8 xl:grid-cols-[1fr_13rem]">
             <div className="flex flex-col gap-6">
-              <h3 className="text-xl font-bold text-navy-900">Select a date &amp; time</h3>
+              <h3 className="text-xl font-bold text-heading">Select a date &amp; time</h3>
               <div className="flex items-center justify-center gap-6">
                 <button type="button" onClick={() => shift(-1)} disabled={!cur || atCurrentMonth} aria-label="Previous month"
                   className="inline-flex size-10 items-center justify-center rounded-full text-brand-600 transition hover:bg-brand-50 disabled:text-line">
                   <ChevronLeft className="size-5" />
                 </button>
-                <p className="w-44 text-center font-display text-lg font-bold text-navy-900">{cur ? monthLabel(cur.y, cur.m) : " "}</p>
+                <p className="w-44 text-center font-display text-lg font-bold text-heading">{cur ? monthLabel(cur.y, cur.m) : " "}</p>
                 <button type="button" onClick={() => shift(1)} disabled={!cur} aria-label="Next month"
                   className="inline-flex size-10 items-center justify-center rounded-full text-brand-600 transition hover:bg-brand-50">
                   <ChevronRight className="size-5" />
@@ -169,7 +169,7 @@ export function DemoBooking() {
               </div>
             </div>
             <div className="flex flex-col gap-3">
-              <p className="text-sm font-semibold text-navy-900">{date ? longDate(date) : "Pick a date to see times"}</p>
+              <p className="text-sm font-semibold text-heading">{date ? longDate(date) : "Pick a date to see times"}</p>
               {date && (
                 <div data-lenis-prevent className="flex max-h-80 flex-col gap-2 overflow-y-auto pr-1">
                   {SLOTS.map((s) => (

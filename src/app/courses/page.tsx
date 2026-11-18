@@ -14,9 +14,9 @@ export default function CoursesPage() {
         text="Hands-on training in the same skills our team uses on client projects every day." />
       <section className="container-page grid gap-6 py-20 md:grid-cols-2">
         {courses.map((c) => (
-          <article key={c.title} className="flex flex-col gap-4 rounded-card border border-line bg-white p-7 shadow-card">
+          <article key={c.title} className="flex flex-col gap-4 rounded-card border border-line bg-card p-7 shadow-card">
             <GraduationCap className="size-8 text-brand-600" aria-hidden strokeWidth={1.8} />
-            <h2 className="text-xl font-bold text-navy-900">{c.title}</h2>
+            <h2 className="text-xl font-bold text-heading">{c.title}</h2>
             <p className="flex-1 text-muted">{c.text}</p>
             <p className="flex gap-4 text-sm text-muted">
               <span className="rounded-full bg-brand-50 px-3 py-1 font-medium text-brand-700">{c.level}</span>
