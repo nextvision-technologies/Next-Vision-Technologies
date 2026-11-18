@@ -185,7 +185,7 @@ export function ChatBot() {
       {/* Panel */}
       {open && (
         <section role="dialog" aria-label="Next Vision chat assistant"
-          className="animate-rise fixed right-[max(1rem,env(safe-area-inset-right))] bottom-[calc(max(1.25rem,env(safe-area-inset-bottom))+5rem)] z-50 flex h-[min(36rem,calc(100dvh-8rem))] w-[min(24rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-[1.5rem] border border-line bg-card shadow-[0_30px_80px_-20px_rgb(31_10_77/0.45)] [animation-duration:.25s]">
+          className="animate-rise fixed right-[max(1rem,env(safe-area-inset-right))] bottom-[calc(max(1.25rem,env(safe-area-inset-bottom))+5rem)] z-50 flex h-[min(36rem,calc(100dvh-8rem))] w-[min(24rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-[1.5rem] border border-line bg-card shadow-[0_30px_80px_-20px_rgb(23_11_51/0.45)] [animation-duration:.25s]">
           {/* Header */}
           <header className="bg-navy-radial relative flex items-center gap-3 px-4 py-3.5 text-white">
             <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
@@ -212,7 +212,7 @@ export function ChatBot() {
                   <div className="flex flex-wrap gap-1.5">
                     {m.chips.map((c) => (
                       <button key={c} type="button" onClick={() => send(c)}
-                        className="rounded-full border border-brand-600/30 bg-card px-3 py-1.5 text-xs font-semibold text-brand-700 transition hover:bg-brand-600 hover:text-white">
+                        className="rounded-full border border-brand-600/30 bg-card px-3 py-1.5 text-xs font-semibold text-brand-700 transition hover:bg-brand-gradient">
                         {c}
                       </button>
                     ))}

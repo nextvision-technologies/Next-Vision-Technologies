@@ -80,7 +80,7 @@ export function ContactForm({ variant = "quote" }: { variant?: "quote" | "demo" 
           <Send className="size-4" aria-hidden />
           {status.kind === "sending" ? "Sending…" : variant === "demo" ? "Book my demo" : "Get free quote"}
         </button>
-        {status.kind === "error" && <p className="text-sm text-red-600" role="alert">{status.message}</p>}
+        {status.kind === "error" && <p className="text-sm text-error" role="alert">{status.message}</p>}
       </div>
     </form>
   );

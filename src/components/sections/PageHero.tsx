@@ -37,8 +37,8 @@ export function PixelCluster({ className = "" }: { className?: string }) {
     <svg viewBox="0 0 110 100" className={`w-40 opacity-80 ${className}`} aria-hidden>
       <defs>
         <linearGradient id="pxg" x1="0" y1="1" x2="1" y2="0">
-          <stop offset="0" stopColor="#C026D3" />
-          <stop offset="1" stopColor="#FF9A3C" />
+          <stop offset="0" stopColor="var(--color-glow-400)" />
+          <stop offset="1" stopColor="var(--color-glow-400)" />
         </linearGradient>
       </defs>
       {px.map(([x, y, s], i) => (

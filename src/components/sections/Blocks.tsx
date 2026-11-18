@@ -35,7 +35,7 @@ export function PostCard({ p }: { p: Post }) {
 export function CtaBand({ title = "Ready to take your business to the next level?", text = "Tell us about your project and get a free quote within 24 hours." }: { title?: string; text?: string }) {
   return (
     <section className="container-page py-16 sm:py-20">
-      <div className="bg-brand-gradient relative overflow-hidden rounded-[2rem] px-6 py-14 text-center text-white sm:px-12">
+      <div className="bg-navy-radial relative overflow-hidden rounded-[2rem] px-6 py-14 text-center text-white sm:px-12">
         <div className="bg-pixel-grid pointer-events-none absolute inset-0 opacity-70" aria-hidden />
         <div className="relative mx-auto flex max-w-2xl flex-col items-center gap-5">
           <h2 className="text-3xl font-extrabold sm:text-4xl">{title}</h2>

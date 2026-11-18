@@ -14,12 +14,12 @@ function PlanCard({ p }: { p: Package }) {
     <article
       className={`group relative flex flex-col rounded-[1.75rem] transition duration-300 hover:-translate-y-1.5 ${
         dark
-          ? "bg-navy-radial text-white shadow-[0_30px_70px_-25px_rgb(192_38_211/0.55)] ring-2 ring-brand-600/70 lg:-my-4"
+          ? "bg-navy-radial text-white shadow-lift ring-2 ring-brand-600 lg:-my-4"
           : "border border-line bg-card shadow-card hover:shadow-lift"
       }`}
     >
       {/* Top accent bar */}
-      <span className={`absolute inset-x-8 top-0 h-1 rounded-b-full ${dark ? "bg-brand-gradient" : "bg-gradient-to-r from-brand-700/60 to-[#F0437A]/60"}`} aria-hidden />
+      <span className={`absolute inset-x-8 top-0 h-1 rounded-b-full ${dark ? "bg-brand-gradient" : "bg-line"}`} aria-hidden />
       {dark && <div className="bg-pixel-grid pointer-events-none absolute inset-0 rounded-[1.75rem] opacity-70" aria-hidden />}
 
       <div className="relative flex flex-1 flex-col p-7 sm:p-8">
@@ -40,10 +40,10 @@ function PlanCard({ p }: { p: Package }) {
         {/* Price with struck-through regular price */}
         <div className="mt-6 flex flex-col gap-1">
           <div className="flex items-center gap-2.5">
-            <span className={`text-lg font-semibold line-through decoration-2 ${dark ? "text-white/45 decoration-[#F0437A]" : "text-muted/70 decoration-[#F25C54]"}`}>
+            <span className={`text-lg font-semibold line-through decoration-2 ${dark ? "text-white/45 decoration-current" : "text-muted/70 decoration-current"}`}>
               {p.currency}{fmt(p.was)}
             </span>
-            <span className="rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-xs font-bold text-emerald-500">Save {save}%</span>
+            <span className="rounded-full bg-success/15 px-2.5 py-0.5 text-xs font-bold text-success">Save {save}%</span>
           </div>
           <p className="flex items-start gap-1">
             <span className={`mt-2 text-xl font-bold ${dark ? "text-white/80" : "text-heading/70"}`}>{p.currency}</span>

@@ -37,7 +37,6 @@ export function LegalView({ slug }: { slug: string }) {
 
       {/* ---------- Hero ---------- */}
       <header className="relative overflow-hidden border-b border-line bg-gradient-to-b from-brand-50 via-card to-card">
-        <div className="pointer-events-none absolute -top-48 right-0 h-96 w-[48rem] rounded-full bg-[#F0437A]/10 blur-3xl" aria-hidden />
         <div className="container-page relative flex flex-col gap-5 py-12 sm:py-14">
           <nav aria-label="Breadcrumb">
             <ol className="flex flex-wrap items-center gap-1.5 text-sm text-muted">

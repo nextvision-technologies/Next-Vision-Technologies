@@ -32,7 +32,7 @@ export default function ContactPage() {
             </div>
           ))}
           <a href={whatsappLink()} target="_blank" rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 font-semibold text-white transition hover:brightness-105">
+            className="flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 font-semibold text-navy-950 transition hover:brightness-105">
             <SocialIcon name="whatsapp" className="size-5" /> Chat on WhatsApp
           </a>
         </div>

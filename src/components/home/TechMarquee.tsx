@@ -59,7 +59,7 @@ function Row({ items, reverse = false, tipBelow = false }: { items: Tech[]; reve
             {/* Tooltip: what we use it for */}
             <span role="tooltip"
               className={`pointer-events-none absolute left-1/2 z-20 w-60 -translate-x-1/2 rounded-xl ${tipBelow ? "top-[calc(100%+10px)] -translate-y-1" : "bottom-[calc(100%+10px)] translate-y-1"} bg-navy-900 px-3.5 py-2.5 text-left text-xs leading-relaxed text-white/90 opacity-0 shadow-lift transition duration-200 group-hover/item:translate-y-0 group-hover/item:opacity-100 group-focus-visible/item:translate-y-0 group-focus-visible/item:opacity-100`}>
-              <span className="mb-0.5 block font-semibold" style={{ color: `#${t.icon.hex === "000000" || t.icon.hex === "191919" ? "FFFFFF" : t.icon.hex}` }}>{name}</span>
+              <span className="mb-0.5 block font-semibold text-white">{name}</span>
               {t.use}
               <span className={`absolute left-1/2 -translate-x-1/2 border-6 border-transparent ${tipBelow ? "bottom-full border-b-navy-900" : "top-full border-t-navy-900"}`} />
             </span>

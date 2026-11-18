@@ -127,7 +127,7 @@ export function DemoBooking() {
               <button type="submit" disabled={sending} className={buttonClass("primary", "lg", "disabled:opacity-60")}>
                 {sending ? "Booking…" : "Confirm booking"}
               </button>
-              {error && <p className="text-sm text-red-600" role="alert">{error}</p>}
+              {error && <p className="text-sm text-error" role="alert">{error}</p>}
             </div>
           </form>
         ) : (
