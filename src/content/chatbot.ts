@@ -57,7 +57,7 @@ const general: Intent[] = [
   },
   {
     id: "website-cost",
-    keywords: ["website cost", "website price", "website kitne", "website kitna", "website ki qeemat", "site cost", "website charges", "website banwane", "website bnwani", "website banwani", "web price"],
+    keywords: ["website cost", "website price", "website kitne", "website kitna", "website ki qeemat", "site cost", "website charges", "website banwane", "website bnwani", "website banwani", "web price", "kitne ki", "kitne ka", "kitni ki", "website kitne ki", "how much", "website", "cost of website"],
     en: { text: "Website prices depend on pages, design and features. A business website usually takes **2–4 weeks**, an online store **3–6 weeks**. Our [Silver plan](/pricing) starts at $249/month including the website, or we can give you a **fixed one-time quote**. Read our guide: [How much does a website cost?](/blog/how-much-does-a-website-cost-in-pakistan)", chips: ["Get a quote", "Pricing"] },
     ur: { text: "Website ki qeemat pages, design aur features par depend karti hai. Business website aam taur par **2–4 hafton** mein, aur online store **3–6 hafton** mein banta hai. Hamara [Silver plan](/pricing) $249/month se shuru hota hai jis mein website shamil hai, ya hum **ek dafa ka fixed quote** de sakte hain. Guide parhein: [Website kitne ki banti hai?](/blog/how-much-does-a-website-cost-in-pakistan)", chips: ["Quote chahiye", "Pricing"] },
   },
@@ -111,7 +111,7 @@ const general: Intent[] = [
   },
   {
     id: "payment",
-    keywords: ["payment", "pay", "bank", "transfer", "jazzcash", "easypaisa", "card", "advance", "installment", "installments", "qist", "adaigi", "payment method", "deposit", "paypal", "wise"],
+    keywords: ["payment", "pay", "bank", "transfer", "jazzcash", "easypaisa", "card", "advance", "installment", "installments", "qist", "adaigi", "payment method", "deposit", "paypal", "wise", "payment kaise", "payment karni", "pay kaise", "how to pay"],
     en: { text: "Projects usually start with a **deposit**, then milestone payments as work is delivered. Monthly packages are billed at the start of each month. We accept bank transfer and common local and international methods. Details are in our [Terms](/terms).", chips: ["Refund policy", "Pricing"] },
     ur: { text: "Project aam taur par **advance deposit** se shuru hota hai, phir kaam ke milestones par payment hoti hai. Monthly packages har mahine ke shuru mein bill hote hain. Hum bank transfer aur local aur international payment methods lete hain. Detail [Terms](/terms) mein hai.", chips: ["Refund policy", "Pricing"] },
   },
@@ -123,7 +123,7 @@ const general: Intent[] = [
   },
   {
     id: "portfolio",
-    keywords: ["portfolio", "work", "projects", "previous work", "samples", "examples", "case study", "kaam dikhao", "pehle ka kaam", "clients", "reviews"],
+    keywords: ["portfolio", "your work", "projects", "previous work", "samples", "examples", "case study", "kaam dikhao", "pehle ka kaam", "clients", "reviews"],
     en: { text: "We've delivered **100+ projects** for 50+ clients: websites, online stores, AI chatbots, apps and campaigns. See highlights in our [portfolio](/portfolio), or [book a demo](/book-demo) to see live examples.", chips: ["Book a demo", "Services"] },
     ur: { text: "Hum **100+ projects** 50+ clients ke liye kar chuke hain: websites, online stores, AI chatbots, apps aur campaigns. [Portfolio](/portfolio) dekhein, ya live examples ke liye [demo book karein](/book-demo).", chips: ["Demo book karein", "Services"] },
   },
@@ -171,7 +171,7 @@ const general: Intent[] = [
   },
   {
     id: "international",
-    keywords: ["international", "abroad", "outside pakistan", "usa", "canada", "dubai", "uae", "saudi", "europe", "australia", "foreign", "worldwide", "bahar"],
+    keywords: ["international", "abroad", "outside pakistan", "usa", "canada", "dubai", "uae", "saudi", "europe", "australia", "foreign", "worldwide", "bahar", "clients in", "work with clients", "other countries"],
     en: { text: "Absolutely. We work with clients in the **UK, USA, Middle East and worldwide**, fully online with WhatsApp, email and video calls, and invoice in your currency.", chips: ["Get a quote", "Book a demo"] },
     ur: { text: "Bilkul. Hum **UK, USA, Middle East aur duniya bhar** ke clients ke saath online kaam karte hain, WhatsApp, email aur video call ke zariye.", chips: ["Quote chahiye", "Demo book karein"] },
   },
@@ -183,7 +183,7 @@ const general: Intent[] = [
   },
   {
     id: "seo-time",
-    keywords: ["google ranking", "rank", "first page", "top on google", "google pe", "google par", "ranking kab", "seo kitna time", "seo time"],
+    keywords: ["google ranking", "rank", "first page", "top on google", "google pe", "google par", "ranking kab", "seo kitna time", "seo time", "seo kab", "seo results", "seo"],
     en: { text: "SEO usually shows steady progress from **3 to 6 months**, depending on competition. We start with an audit and track rankings monthly. Read our [SEO guide](/blog/how-to-rank-website-on-google-in-pakistan) or see [SEO services](/services/seo).", chips: ["SEO", "Get a quote"] },
     ur: { text: "SEO mein aam taur par **3 se 6 mahine** mein wazeh results aate hain, competition par depend karta hai. Hum audit se shuru karte hain aur har mahine ranking report dete hain. [SEO guide](/blog/how-to-rank-website-on-google-in-pakistan) parhein ya [SEO services](/services/seo) dekhein.", chips: ["SEO", "Quote chahiye"] },
   },
@@ -230,13 +230,13 @@ const extraKeywords: Record<string, string[]> = {
   "ai-automation": ["automation", "automate", "ai agent", "workflow", "n8n", "zapier", "make.com", "automatic"],
   "ai-chatbot-development": ["chatbot", "chat bot", "bot", "whatsapp bot", "ai chatbot", "customer support bot"],
   "ai-lead-generation": ["lead generation", "leads", "lead", "prospects", "cold email", "clients chahiye", "customers chahiye"],
-  "web-development": ["website", "web", "site", "web development", "landing page", "web app", "website", "webiste", "wesite", "websit"],
+  "web-development": ["website", "web", "site", "web development", "landing page", "web app"],
   "wordpress-development": ["wordpress", "wp", "elementor", "woocommerce"],
-  "shopify-development": ["shopify", "shopify store", "dropshipping"],
+  "shopify-development": ["shopify", "shopify store", "dropshipping", "store"],
   "ecommerce-solutions": ["ecommerce", "e-commerce", "online store", "online shop", "store", "shop", "daraz"],
   "custom-software-development": ["software", "custom software", "saas", "erp", "pos", "system", "portal", "dashboard"],
   "crm-development": ["crm", "hubspot", "zoho", "customer management"],
-  "mobile-app-development": ["app", "mobile app", "android", "ios", "application", "iphone", "play store"],
+  "mobile-app-development": ["app", "apps", "mobile app", "mobile apps", "make apps", "android", "ios", "application", "iphone", "play store"],
   "digital-marketing": ["marketing", "digital marketing", "social media", "facebook page", "instagram", "tiktok", "content"],
   seo: ["seo", "search engine", "google ranking", "ranking", "keywords", "backlinks"],
   "meta-google-ads": ["ads", "advertising", "facebook ads", "meta ads", "google ads", "boost", "campaign", "ppc"],
@@ -275,9 +275,10 @@ export const welcome: Record<Lang, Reply> = {
 const ROMAN_URDU = new Set([
   "kya", "kia", "hai", "hain", "hy", "he", "ap", "aap", "apka", "aapka", "apki", "aapki", "mujhe", "muje", "mjhe", "mera", "meri", "mere", "chahiye", "chaiye", "chahye",
   "kitna", "kitne", "kitni", "kaise", "kese", "kaisay", "kesay", "karna", "krna", "karni", "krni", "karwana", "krwana", "banwana", "bnwana", "banwani", "bnwani",
-  "nahi", "nai", "haan", "han", "ji", "jee", "kab", "kahan", "kidhar", "kyun", "kyu", "kon", "kaun", "konsi", "kis", "ka", "ki", "ke", "ko", "se", "sy", "mein", "main", "mai",
-  "acha", "accha", "theek", "thik", "batao", "bataen", "btao", "dain", "dein", "do", "hum", "humein", "hamein", "tum", "yar", "yaar", "bhai", "salam", "shukriya", "wala", "wali",
-  "paise", "pese", "qeemat", "keemat", "kaam", "kam", "raha", "rahi", "rahe", "sakta", "sakte", "skta", "skte", "hoga", "hogi", "chahta", "chahti", "dikhao",
+  "nahi", "nai", "haan", "han", "ji", "jee", "kab", "kahan", "kidhar", "kyun", "kyu", "kon", "kaun", "konsi", "kis", "ka", "ki", "ke", "ko", "se", "sy", "mein", "mai",
+  "acha", "accha", "theek", "thik", "batao", "bataen", "btao", "dain", "dein", "hum", "humein", "hamein", "tum", "yar", "yaar", "bhai", "salam", "shukriya", "wala", "wali",
+  "paise", "pese", "qeemat", "keemat", "kaam", "raha", "rahi", "rahe", "sakta", "sakte", "skta", "skte", "hoga", "hogi", "chahta", "chahti", "dikhao",
+  "assalam", "alaikum", "aoa", "karoge", "karo", "kro", "milega", "milegi", "karein", "krein", "lagenge", "lagega", "dega", "deta", "dete", "banegi", "banega", "bnegi", "leta", "lete", "hu", "hoon", "ho", "tha", "thi", "kuch", "koi", "bhi", "aur", "lekin", "agar", "abhi",
 ]);
 
 export function detectLang(text: string): Lang {
@@ -292,12 +293,14 @@ function normalize(t: string) {
 
 function editDistance(a: string, b: string) {
   if (Math.abs(a.length - b.length) > 2) return 3;
-  const dp = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]);
-  for (let j = 1; j <= b.length; j++) dp[0][j] = j;
+  const d: number[][] = Array.from({ length: a.length + 1 }, (_, i) => Array.from({ length: b.length + 1 }, (_, j) => (i === 0 ? j : j === 0 ? i : 0)));
   for (let i = 1; i <= a.length; i++)
-    for (let j = 1; j <= b.length; j++)
-      dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
-  return dp[a.length][b.length];
+    for (let j = 1; j <= b.length; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + cost);
+      if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + 1); // swapped letters
+    }
+  return d[a.length][b.length];
 }
 
 /** Score every intent against the message and return the best reply. Never returns empty. */
@@ -309,15 +312,16 @@ export function getReply(message: string): { reply: Reply; lang: Lang; intent: s
 
   for (const intent of intents) {
     let score = 0;
-    for (const kw of intent.keywords) {
-      const k = normalize(kw);
+    const used = new Set<string>(); // each word of the message counts once per intent
+    for (const k of new Set(intent.keywords.map(normalize))) {
       if (!k) continue;
       if (k.includes(" ")) {
-        if (text.includes(` ${k} `) || text.includes(k)) score += 2 + k.split(" ").length * 0.5; // phrases weigh more
+        if (text.includes(` ${k} `)) score += 2 + k.split(" ").length * 0.5; // phrases weigh more
       } else if (words.includes(k)) {
-        score += k.length <= 2 ? 0.6 : 1;
-      } else if (k.length >= 5 && words.some((w) => w.length >= 4 && editDistance(w, k) <= 1)) {
-        score += 0.8; // typo tolerance, e.g. "webiste", "shopfy"
+        if (!used.has(k)) { used.add(k); score += k.length <= 2 ? 0.6 : 1; }
+      } else if (k.length >= 6) {
+        const w = words.find((x) => !used.has(x) && x.length >= 5 && editDistance(x, k) <= 1);
+        if (w) { used.add(w); score += 0.9; } // typo tolerance, e.g. "webiste", "shopfy"
       }
     }
     // Services and pricing beat small talk when both match

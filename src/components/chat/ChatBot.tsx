@@ -195,7 +195,7 @@ export function ChatBot() {
             </span>
             <div className="relative flex-1">
               <p className="font-display text-sm font-bold">Next Vision Assistant</p>
-              <p className="text-xs text-white/70">Online · replies instantly · English &amp; Roman Urdu</p>
+              <p className="text-xs text-white/70">Online · English &amp; Roman Urdu</p>
             </div>
             <button type="button" onClick={() => setOpen(false)} aria-label="Close chat" className="relative inline-flex size-8 items-center justify-center rounded-full hover:bg-white/10"><X className="size-5" /></button>
           </header>
