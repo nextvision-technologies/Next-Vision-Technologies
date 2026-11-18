@@ -8,8 +8,7 @@ import { CalendarDays, ChevronDown, Menu, X, Mail, Phone } from "lucide-react";
 import { mainNav } from "@/content/navigation";
 import { site } from "@/content/site";
 import { buttonClass } from "@/components/ui/Button";
-import { SocialIcon, SocialLinks } from "@/components/ui/SocialIcons";
-import { whatsappLink } from "@/content/site";
+import { SocialLinks } from "@/components/ui/SocialIcons";
 import { MegaMenuPanel } from "./MegaMenu";
 
 function TopBar() {
@@ -27,12 +26,7 @@ function TopBar() {
             </a>
           ))}
         </div>
-        <div className="flex items-center gap-1">
-          <SocialLinks className="[&_a]:size-8 [&_a]:border-0 [&_svg]:size-4" />
-          <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="inline-flex size-8 items-center justify-center rounded-full hover:opacity-80">
-            <SocialIcon name="whatsapp" className="size-4" />
-          </a>
-        </div>
+        <SocialLinks className="gap-1 [&_a]:size-8 [&_a]:border-0 [&_svg]:size-4" />
       </div>
     </div>
   );

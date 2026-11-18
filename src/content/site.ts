@@ -18,9 +18,9 @@ export const site = {
     { label: "UK Office", address: "United Kingdom" }, // TODO: add street address
   ],
   socials: {
-    facebook: "https://facebook.com/", // TODO
-    instagram: "https://instagram.com/", // TODO
-    linkedin: "https://linkedin.com/", // TODO
+    facebook: "https://www.facebook.com/nextvisiontechnologies",
+    instagram: "https://www.instagram.com/nextvisiontechnologies/",
+    linkedin: "", // add the LinkedIn page URL here to show the icon
   },
   stats: [
     { value: "100+", label: "Projects delivered" },

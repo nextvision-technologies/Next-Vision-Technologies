@@ -1,5 +1,5 @@
 // Brand icons drawn inline (lucide-react no longer ships brand logos).
-import { site } from "@/content/site";
+import { site, whatsappLink } from "@/content/site";
 
 const paths = {
   facebook: "M14 8.5V6.6c0-.8.2-1.3 1.4-1.3H17V2.2C16.7 2.1 15.7 2 14.6 2 12.2 2 10.6 3.5 10.6 6.1v2.4H8v3.4h2.6V22H14V11.9h2.7l.4-3.4H14Z",
@@ -23,10 +23,11 @@ export function SocialIcon({ name, className = "size-4" }: { name: SocialName; c
 
 export function SocialLinks({ className = "" }: { className?: string }) {
   const items = [
-    { name: "facebook" as const, href: site.socials.facebook, label: "Facebook" },
-    { name: "instagram" as const, href: site.socials.instagram, label: "Instagram" },
-    { name: "linkedin" as const, href: site.socials.linkedin, label: "LinkedIn" },
-  ];
+    { name: "facebook" as const, href: site.socials.facebook as string, label: "Facebook" },
+    { name: "instagram" as const, href: site.socials.instagram as string, label: "Instagram" },
+    { name: "linkedin" as const, href: site.socials.linkedin as string, label: "LinkedIn" },
+    { name: "whatsapp" as const, href: whatsappLink(), label: "WhatsApp" },
+  ].filter((i) => i.href); // links left empty in site.ts are hidden
   return (
     <div className={`flex items-center gap-2 ${className}`}>
       {items.map((i) => (
