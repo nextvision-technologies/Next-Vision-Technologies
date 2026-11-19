@@ -1,27 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Check, Link2 } from "lucide-react";
 import { SocialIcon } from "@/components/ui/SocialIcons";
+import { useScrollEffect } from "@/hooks/useScroll";
 
-/** Thin gradient bar at the top of the window showing how far the reader has scrolled */
+/** Thin bar at the top of the window showing how far the reader has scrolled */
 export function ReadingProgress() {
-  const [pct, setPct] = useState(0);
-  useEffect(() => {
-    const onScroll = () => {
-      const el = document.getElementById("article-body");
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const total = rect.height - window.innerHeight * 0.6;
-      setPct(Math.min(100, Math.max(0, (-rect.top / Math.max(total, 1)) * 100)));
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  // Writes straight to the bar's transform: no React re-render on every scroll frame
+  const barRef = useRef<HTMLDivElement>(null);
+  useScrollEffect(() => {
+    const el = document.getElementById("article-body");
+    if (!el || !barRef.current) return;
+    const rect = el.getBoundingClientRect();
+    const total = rect.height - window.innerHeight * 0.6;
+    const p = Math.min(1, Math.max(0, -rect.top / Math.max(total, 1)));
+    barRef.current.style.transform = `scaleX(${p})`;
+  });
   return (
     <div className="fixed inset-x-0 top-0 z-50 h-1 bg-transparent" aria-hidden>
-      <div className="bg-brand-gradient h-full transition-[width] duration-150" style={{ width: `${pct}%` }} />
+      <div ref={barRef} className="solid-primary h-full origin-left scale-x-0" />
     </div>
   );
 }
@@ -86,7 +84,7 @@ export function ShareButtons({ url, title }: { url: string; title: string }) {
           </a>
         ))}
         <button type="button" onClick={copy} aria-label="Copy link"
-          className="inline-flex size-10 items-center justify-center rounded-full bg-surface text-heading transition hover:bg-navy-900 hover:text-white">
+          className="inline-flex size-10 items-center justify-center rounded-full bg-surface text-heading transition hover:bg-charcoal-900 hover:text-white">
           {copied ? <Check className="size-4" /> : <Link2 className="size-4" />}
         </button>
       </div>

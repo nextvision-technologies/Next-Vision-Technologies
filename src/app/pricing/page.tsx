@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
-import { CtaBand, Faq, PricingCards } from "@/components/sections/Blocks";
+import { CtaBand, Faq } from "@/components/sections/Blocks";
+import { PricingCards } from "@/features/pricing/PricingCards";
 
 export const metadata: Metadata = { title: "Pricing", description: "Monthly growth packages and custom project pricing from Next Vision Technologies." };
 

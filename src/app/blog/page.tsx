@@ -4,7 +4,9 @@ import Link from "next/link";
 import { ArrowRight, CalendarDays, Clock } from "lucide-react";
 import { postImage, sortedPosts } from "@/content/blog";
 import { PageHero } from "@/components/sections/PageHero";
-import { CtaBand, PostCard, formatDate } from "@/components/sections/Blocks";
+import { CtaBand } from "@/components/sections/Blocks";
+import { PostCard } from "@/features/blog/PostCard";
+import { formatDate } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: "Blog",

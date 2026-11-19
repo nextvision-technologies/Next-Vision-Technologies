@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Bot, CodeXml, Megaphone, Palette, type LucideIcon } from "lucide-react";
-import { services, serviceCategories, type ServiceCategory } from "@/content/services";
+import { services, serviceCategories } from "@/content/services";
+import type { ServiceCategory } from "@/types/content";
 import { whatsappLink } from "@/content/site";
 import { PageHero } from "@/components/sections/PageHero";
-import { CtaBand, ServiceCard } from "@/components/sections/Blocks";
-import { categoryTheme } from "@/components/sections/ServiceCard";
+import { CtaBand } from "@/components/sections/Blocks";
+import { ServiceCard, categoryTheme } from "@/features/services/ServiceCard";
 import { Button } from "@/components/ui/Button";
 import { SocialIcon } from "@/components/ui/SocialIcons";
 
@@ -33,7 +34,7 @@ export default function ServicesPage() {
       </PageHero>
 
       {/* Category jump links */}
-      <nav aria-label="Service categories" className="sticky top-16 z-30 border-b border-line bg-card/90 backdrop-blur lg:top-[4.5rem]">
+      <nav aria-label="Service categories" className="sticky top-16 z-30 border-b border-line bg-card/90 md:backdrop-blur lg:top-[4.5rem]">
         <ul className="container-page flex gap-2 overflow-x-auto py-3">
           {serviceCategories.map((c) => {
             const info = categoryInfo[c];

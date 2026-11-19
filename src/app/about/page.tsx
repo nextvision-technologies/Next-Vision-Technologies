@@ -3,7 +3,7 @@ import { Eye, Rocket, ShieldCheck } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
 import { CtaBand, StatsStrip } from "@/components/sections/Blocks";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { TeamGrid } from "@/components/sections/TeamGrid";
+import { TeamGrid } from "@/features/team/TeamGrid";
 
 export const metadata: Metadata = { title: "About Us", description: "Who we are, what we believe and how Next Vision Technologies works." };
 
@@ -26,7 +26,7 @@ export default function AboutPage() {
           <p>Today one team plans, builds and grows your digital presence, with AI and automation built in from day one.</p>
         </div>
       </section>
-      <section className="bg-navy-radial py-16"><div className="container-page"><StatsStrip tone="dark" /></div></section>
+      <section className="section-dark py-16"><div className="container-page"><StatsStrip tone="dark" /></div></section>
       <section className="container-page flex flex-col gap-12 py-20">
         <SectionHeading eyebrow="Our values" title="How we work" />
         <div className="grid gap-6 md:grid-cols-3">

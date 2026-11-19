@@ -9,12 +9,13 @@ import { mainNav } from "@/content/navigation";
 import { site } from "@/content/site";
 import { buttonClass } from "@/components/ui/Button";
 import { SocialIcon, SocialLinks } from "@/components/ui/SocialIcons";
+import { useScrolledPast } from "@/hooks/useScroll";
 import { MegaMenuPanel } from "./MegaMenu";
 import { ThemeToggle } from "./ThemeToggle";
 
 function TopBar() {
   return (
-    <div className="bg-navy-radial hidden text-white md:block">
+    <div className="section-dark hidden text-white md:block">
       <div className="container-page flex h-9 items-center justify-between text-[13px]">
         <div className="flex items-center gap-7">
           <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 font-medium hover:opacity-80">
@@ -38,7 +39,7 @@ export function Header() {
   const pathname = usePathname();
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobile, setMobile] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const scrolled = useScrolledPast(8);
   const navRef = useRef<HTMLElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -61,17 +62,13 @@ export function Header() {
   };
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
     const onClick = (e: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(e.target as Node)) setOpenMenu(null);
     };
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && (setOpenMenu(null), setMobile(false));
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("click", onClick);
     document.addEventListener("keydown", onKey);
     return () => {
-      window.removeEventListener("scroll", onScroll);
       document.removeEventListener("click", onClick);
       document.removeEventListener("keydown", onKey);
     };
@@ -82,7 +79,7 @@ export function Header() {
   return (
     <>
       <TopBar />
-      <header className={`sticky top-0 z-40 bg-card/95 backdrop-blur transition-shadow ${scrolled || active ? "shadow-card" : ""}`}>
+      <header className={`sticky top-0 z-40 bg-card/95 transition-shadow md:backdrop-blur ${scrolled || active ? "shadow-card" : ""}`}>
         <nav ref={navRef} className="container-page relative flex h-16 items-center justify-between gap-6 lg:h-[4.5rem]" aria-label="Main"
           onMouseLeave={scheduleClose}>
           <Link href="/" className="shrink-0" aria-label={`${site.name} home`}>
@@ -135,7 +132,7 @@ export function Header() {
 
       {mobile && (
         <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label="Menu">
-          <div className="absolute inset-0 bg-navy-950/50" onClick={() => setMobile(false)} />
+          <div className="absolute inset-0 bg-charcoal-950/50" onClick={() => setMobile(false)} />
           <div data-lenis-prevent className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col overflow-y-auto bg-card p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
             <div className="flex items-center justify-between">
               <Image src="/brand/logo-tagline.svg" alt={site.name} width={462} height={108} className="h-12 w-auto dark:hidden" />

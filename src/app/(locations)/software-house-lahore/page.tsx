@@ -1,4 +1,4 @@
-import { LocationView, locationMetadata } from "@/components/sections/LocationView";
+import { LocationView, locationMetadata } from "@/features/locations/LocationView";
 
 export const metadata = locationMetadata("software-house-lahore");
 

@@ -26,17 +26,17 @@ function buildEmail(d: Lead) {
     ...(d.preferredTime ? ([["Preferred time", d.preferredTime]] as [string, string][]) : []),
     ["Details", d.details || "—"],
   ];
-  const html = `<div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;border:1px solid #ddd7e3;border-radius:12px;overflow:hidden">
-  <div style="background:#5b21b6;padding:18px 22px;color:#fff">
+  const html = `<div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;border:1px solid #e2dbd0;border-radius:12px;overflow:hidden">
+  <div style="background:#1c1c1e;padding:18px 22px;color:#fff">
     <div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.85">${esc(site.name)}</div>
     <div style="font-size:20px;font-weight:bold;margin-top:4px">New ${esc(kind.toLowerCase())}</div>
   </div>
   <table style="width:100%;border-collapse:collapse;font-size:14px">
-    ${rows.map(([k, v], i) => `<tr style="background:${i % 2 ? "#f4f1ec" : "#fff"}"><td style="padding:10px 22px;color:#5e5670;width:150px;vertical-align:top">${esc(k)}</td><td style="padding:10px 22px;color:#170b33;white-space:pre-wrap">${esc(v)}</td></tr>`).join("")}
+    ${rows.map(([k, v], i) => `<tr style="background:${i % 2 ? "#f5f0e8" : "#fff"}"><td style="padding:10px 22px;color:#5f5e63;width:150px;vertical-align:top">${esc(k)}</td><td style="padding:10px 22px;color:#1c1c1e;white-space:pre-wrap">${esc(v)}</td></tr>`).join("")}
   </table>
   <div style="padding:16px 22px">
     ${digits.length >= 7 ? `<a href="https://wa.me/${digits}" style="display:inline-block;background:#25D366;color:#fff;text-decoration:none;padding:10px 16px;border-radius:999px;font-weight:bold;margin-right:8px">Reply on WhatsApp</a>` : ""}
-    ${d.email ? `<a href="mailto:${esc(d.email)}" style="display:inline-block;background:#170b33;color:#fff;text-decoration:none;padding:10px 16px;border-radius:999px;font-weight:bold">Reply by email</a>` : ""}
+    ${d.email ? `<a href="mailto:${esc(d.email)}" style="display:inline-block;background:#1c1c1e;color:#fff;text-decoration:none;padding:10px 16px;border-radius:999px;font-weight:bold">Reply by email</a>` : ""}
   </div>
 </div>`;
   const text = rows.map(([k, v]) => `${k}: ${v}`).join("\n");

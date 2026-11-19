@@ -32,7 +32,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     <button type="button" onClick={toggle} role="switch" aria-checked={dark}
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} title={dark ? "Light mode" : "Dark mode"}
       className={`relative inline-flex h-10 w-[4.25rem] shrink-0 items-center rounded-full border border-line bg-surface p-1 transition hover:border-brand-600/40 ${className}`}>
-      <span className={`bg-brand-gradient absolute top-1 left-1 inline-flex size-8 items-center justify-center rounded-full text-white shadow-lift transition-transform duration-300 ${dark ? "translate-x-[1.75rem]" : ""}`}>
+      <span className={`solid-primary absolute top-1 left-1 inline-flex size-8 items-center justify-center rounded-full text-white shadow-lift transition-transform duration-300 ${dark ? "translate-x-[1.75rem]" : ""}`}>
         {dark ? <Moon className="size-4" aria-hidden /> : <Sun className="size-4" aria-hidden />}
       </span>
       <Sun className={`ml-1.5 size-4 transition ${dark ? "text-muted" : "opacity-0"}`} aria-hidden />

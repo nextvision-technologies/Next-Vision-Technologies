@@ -1,9 +1,6 @@
-// Legal pages. Inline links use [text](/path) and **bold** (rendered by components/content/ArticleBlocks).
+// Legal pages. Inline links use [text](/path) and **bold** (rendered by features/blog/ArticleBlocks).
 // Written for Next Vision Technologies' own services. Have a qualified lawyer review before relying on them.
-import type { Block } from "./blog";
-
-export type LegalSection = { heading: string; body: Block[] };
-export type LegalPage = { slug: string; title: string; summary: string; sections: LegalSection[] };
+import type { LegalPage } from "@/types/content";
 
 export const legalUpdated = "18 November 2026";
 const CONTACT = "[info@nextvision-technologies.com](mailto:info@nextvision-technologies.com)";

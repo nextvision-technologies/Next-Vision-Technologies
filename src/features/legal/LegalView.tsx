@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CalendarDays, ChevronRight, Clock, Cookie, FileText, Globe, Lock, Mail, RotateCcw, ShieldCheck, type LucideIcon } from "lucide-react";
 import { getLegal, legalPages, legalUpdated } from "@/content/legal";
-import { headingId } from "@/content/blog";
+import { headingId } from "@/lib/format";
 import { site, whatsappLink } from "@/content/site";
-import { ArticleBlock, RichText } from "@/components/content/ArticleBlocks";
-import { ReadingProgress, TableOfContents } from "@/components/blog/ArticleChrome";
+import { ArticleBlock } from "@/features/blog/ArticleBlocks";
+import { RichText } from "@/components/ui/RichText";
+import { ReadingProgress, TableOfContents } from "@/features/blog/ArticleChrome";
 import { buttonClass } from "@/components/ui/Button";
 import { SocialIcon } from "@/components/ui/SocialIcons";
 
@@ -48,7 +49,7 @@ export function LegalView({ slug }: { slug: string }) {
             </ol>
           </nav>
           <div className="flex items-center gap-4">
-            <span className="bg-brand-gradient inline-flex size-14 shrink-0 items-center justify-center rounded-2xl text-white shadow-lift">
+            <span className="solid-primary inline-flex size-14 shrink-0 items-center justify-center rounded-2xl text-white shadow-lift">
               <Icon className="size-7" strokeWidth={1.8} aria-hidden />
             </span>
             <h1 className="text-3xl leading-tight font-extrabold text-heading sm:text-5xl">{page.title}</h1>
@@ -98,7 +99,7 @@ export function LegalView({ slug }: { slug: string }) {
             {page.sections.map((s, i) => (
               <section key={s.heading}>
                 <h2 id={headingId(s.heading)} className="flex items-baseline gap-3">
-                  <span className="text-brand-gradient font-display text-lg font-extrabold">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="text-brand-600 font-display text-lg font-extrabold">{String(i + 1).padStart(2, "0")}</span>
                   {s.heading}
                 </h2>
                 {s.body.map((b, j) => <ArticleBlock key={j} block={b} />)}
@@ -107,10 +108,9 @@ export function LegalView({ slug }: { slug: string }) {
           </div>
 
           {/* Contact card */}
-          <section className="bg-navy-radial relative mt-14 overflow-hidden rounded-[1.5rem] p-7 text-white sm:p-9">
-            <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
+          <section className="section-dark relative mt-14 overflow-hidden rounded-[1.5rem] p-7 text-white sm:p-9">
             <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center">
-              <span className="bg-brand-gradient inline-flex size-14 shrink-0 items-center justify-center rounded-2xl"><Mail className="size-7" /></span>
+              <span className="solid-primary inline-flex size-14 shrink-0 items-center justify-center rounded-2xl"><Mail className="size-7" /></span>
               <div className="flex-1">
                 <p className="font-display text-xl font-bold">Questions about this policy?</p>
                 <p className="mt-1 text-white/70">Email <RichText text={`[${site.email}](mailto:${site.email})`} /> and we&apos;ll reply within 2 working days.</p>
@@ -132,7 +132,7 @@ export function LegalView({ slug }: { slug: string }) {
                 const I = icons[p.slug] ?? FileText;
                 return (
                   <Link key={p.slug} href={`/${p.slug}`} className="group flex gap-4 rounded-2xl border border-line p-5 transition hover:-translate-y-0.5 hover:border-brand-600/30 hover:shadow-card">
-                    <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition group-hover:bg-brand-gradient group-hover:text-white"><I className="size-5" /></span>
+                    <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition group-hover:solid-primary group-hover:text-white"><I className="size-5" /></span>
                     <span>
                       <span className="block font-semibold text-heading group-hover:text-brand-600">{p.title}</span>
                       <span className="mt-0.5 line-clamp-2 block text-sm text-muted">{p.summary}</span>

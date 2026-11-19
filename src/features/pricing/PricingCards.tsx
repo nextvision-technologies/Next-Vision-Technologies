@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { ArrowRight, Check, Crown, Gem, Headset, Medal, Rocket, ShieldCheck, X } from "lucide-react";
-import { packages, type Package } from "@/content/misc";
+import { ArrowRight, Check, Crown, Gem, Headset, Medal, Rocket, ShieldCheck, Star, X } from "lucide-react";
+import { packages } from "@/content/misc";
+import type { Package } from "@/types/content";
 
 const icons = { medal: Medal, crown: Crown, gem: Gem } as const;
 
@@ -14,23 +15,22 @@ function PlanCard({ p }: { p: Package }) {
     <article
       className={`group relative flex flex-col rounded-[1.75rem] transition duration-300 hover:-translate-y-1.5 ${
         dark
-          ? "bg-navy-radial text-white shadow-lift ring-2 ring-brand-600 lg:-my-4"
+          ? "section-dark text-white shadow-lift ring-2 ring-brand-600 lg:-my-4"
           : "border border-line bg-card shadow-card hover:shadow-lift"
       }`}
     >
       {/* Top accent bar */}
-      <span className={`absolute inset-x-8 top-0 h-1 rounded-b-full ${dark ? "bg-brand-gradient" : "bg-line"}`} aria-hidden />
-      {dark && <div className="bg-pixel-grid pointer-events-none absolute inset-0 rounded-[1.75rem] opacity-70" aria-hidden />}
+      <span className={`absolute inset-x-8 top-0 h-1 rounded-b-full ${dark ? "solid-primary" : "bg-line"}`} aria-hidden />
 
       <div className="relative flex flex-1 flex-col p-7 sm:p-8">
         {/* Icon + tag */}
         <div className="flex items-start justify-between gap-3">
-          <span className={`inline-flex size-12 items-center justify-center rounded-2xl shadow-lift ${dark ? "bg-brand-gradient text-white" : "bg-brand-50 text-brand-600"}`}>
+          <span className={`inline-flex size-12 items-center justify-center rounded-2xl shadow-lift ${dark ? "solid-primary text-white" : "bg-brand-50 text-brand-600"}`}>
             <Icon className="size-6" strokeWidth={1.8} aria-hidden />
           </span>
-          <span className={`rounded-full px-3 py-1 text-[11px] font-bold tracking-[0.12em] uppercase ${
-            dark ? "bg-brand-gradient text-white" : "border border-line bg-surface text-muted"}`}>
-            {dark && "★ "}{p.tag}
+          <span className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-[11px] font-bold tracking-[0.12em] uppercase ${
+            dark ? "solid-primary text-white" : "border border-line bg-surface text-muted"}`}>
+            {dark && <Star className="size-3 fill-current" aria-hidden />}{p.tag}
           </span>
         </div>
 
@@ -80,8 +80,8 @@ function PlanCard({ p }: { p: Package }) {
 
         <Link href="/contact"
           className={`mt-8 inline-flex h-13 items-center justify-center gap-2 rounded-full font-semibold transition ${
-            dark ? "bg-brand-gradient text-white shadow-lift hover:brightness-110"
-              : "bg-navy-900 text-white hover:bg-brand-gradient"}`}>
+            dark ? "solid-primary text-white shadow-lift hover:brightness-110"
+              : "bg-charcoal-900 text-white hover:solid-primary"}`}>
           Get Started <ArrowRight className="size-4 transition group-hover:translate-x-1" aria-hidden />
         </Link>
       </div>

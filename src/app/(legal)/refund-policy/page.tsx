@@ -1,4 +1,4 @@
-import { LegalView, legalMetadata } from "@/components/sections/LegalView";
+import { LegalView, legalMetadata } from "@/features/legal/LegalView";
 
 export const metadata = legalMetadata("refund-policy");
 

@@ -1,32 +1,6 @@
 // Blog posts. Each body is a list of blocks so posts can later move to a CMS or MDX without changing the page.
 // Set `draft: true` to hide a post: it disappears from the blog, footer and sitemap, and its URL redirects to /blog.
-export type Block =
-  | { type: "h2"; text: string }
-  | { type: "h3"; text: string }
-  | { type: "p"; text: string }
-  | { type: "ul"; items: string[] }
-  | { type: "ol"; items: string[] }
-  | { type: "tip"; title: string; text: string }
-  | { type: "quote"; text: string }
-  | { type: "table"; head: string[]; rows: string[][]; note?: string };
-
-export type BlogCategory =
-  | "AI & Automation" | "Web Development" | "SEO" | "E-Commerce"
-  | "Digital Marketing" | "Mobile Apps" | "Business Tips" | "Security";
-
-export type Post = {
-  slug: string;
-  title: string;
-  excerpt: string;
-  category: BlogCategory;
-  date: string; // ISO
-  readMinutes: number;
-  draft?: boolean;
-  service?: string; // related service slug, used for the in-article call to action
-  takeaways?: string[];
-  faqs?: { q: string; a: string }[];
-  body: Block[];
-};
+import type { Post } from "@/types/content";
 
 const allPosts: Post[] = [
   // ------------------------------------------------------------------ Published
@@ -228,6 +202,3 @@ export const postImage = (slug: string) => `/blog/${slug}.webp`;
 
 export const sortedPosts = () => [...posts].sort((a, b) => b.date.localeCompare(a.date));
 export const getPost = (slug: string) => posts.find((p) => p.slug === slug);
-
-/** URL-safe id for headings, used by the table of contents */
-export const headingId = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");

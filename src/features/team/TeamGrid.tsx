@@ -16,14 +16,14 @@ export function TeamGrid() {
         return (
           <li key={m.name} className="group flex flex-col items-center text-center">
             <div className="relative">
-              <div className="bg-brand-gradient absolute -inset-1.5 rounded-full opacity-0 blur-md transition duration-300 group-hover:opacity-60" aria-hidden />
-              <div className="bg-brand-gradient relative rounded-full p-1">
+              <div className="solid-primary absolute -inset-1.5 rounded-full opacity-0 blur-md transition duration-300 group-hover:opacity-60" aria-hidden />
+              <div className="solid-primary relative rounded-full p-1">
                 <Image src={m.photo} alt={`${m.name}, ${m.role}`} width={242} height={242}
                   className="size-52 rounded-full border-4 border-card object-cover transition duration-300 group-hover:scale-[1.02]" />
               </div>
             </div>
             <h3 className="mt-6 text-xl font-bold text-heading">{m.name}</h3>
-            <span className="bg-brand-gradient mt-3 h-1 w-12 rounded-full" aria-hidden />
+            <span className="solid-primary mt-3 h-1 w-12 rounded-full" aria-hidden />
             <p className="mt-3 text-muted">{m.role}</p>
             {links.length > 0 && (
               <div className="mt-5 flex gap-3">

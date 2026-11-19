@@ -2,13 +2,14 @@
 
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import Lenis from "lenis";
+import type Lenis from "lenis";
 import "lenis/dist/lenis.css";
 
 /**
- * Site-wide smooth scrolling (Lenis).
- * - In-page anchor links (#section) glide to their target, offset below the sticky header.
+ * Smooth wheel scrolling (Lenis), for desktop mouse and trackpad users only.
+ * - Phones and tablets keep native touch scrolling, and never download Lenis at all.
  * - Turned off for visitors who prefer reduced motion.
+ * - In-page anchor links (#section) glide to their target, offset below the sticky header.
  * - Elements with `data-lenis-prevent` (menus, scrollable lists) keep their own native scrolling.
  */
 export function SmoothScroll() {
@@ -16,17 +17,23 @@ export function SmoothScroll() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const lenis = new Lenis({
-      lerp: 0.09,
-      wheelMultiplier: 1,
-      smoothWheel: true,
-      anchors: { offset: -140 },
-      autoRaf: true,
+    const wanted = window.matchMedia("(pointer: fine) and (hover: hover) and (prefers-reduced-motion: no-preference)");
+    if (!wanted.matches) return;
+
+    let cancelled = false;
+    import("lenis").then(({ default: LenisClass }) => {
+      if (cancelled) return;
+      lenisRef.current = new LenisClass({
+        lerp: 0.09,
+        wheelMultiplier: 1,
+        smoothWheel: true,
+        anchors: { offset: -140 },
+        autoRaf: true,
+      });
     });
-    lenisRef.current = lenis;
     return () => {
-      lenis.destroy();
+      cancelled = true;
+      lenisRef.current?.destroy();
       lenisRef.current = null;
     };
   }, []);

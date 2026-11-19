@@ -1,20 +1,4 @@
-export type ServiceCategory = "AI & Automation" | "Development" | "Marketing" | "Design & Consulting";
-
-export type Service = {
-  slug: string;
-  title: string;
-  short: string; // one-line summary for cards
-  category: ServiceCategory;
-  icon: string; // key into components/ui/ServiceIcon
-  tagline: string;
-  intro: string;
-  benefits: string[];
-  tags: string[];
-  offerings: { title: string; text: string }[];
-  tools: string[];
-  faqs: { q: string; a: string }[];
-  related: string[]; // slugs
-};
+import type { Service, ServiceCategory } from "@/types/content";
 
 const process = [
   { title: "Discovery", text: "We learn your goals, audience and constraints, and agree on what success looks like." },

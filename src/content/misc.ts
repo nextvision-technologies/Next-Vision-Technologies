@@ -3,12 +3,7 @@
 
 // Monthly growth packages. `was` is the regular price shown struck through.
 // TODO: confirm the regular (`was`) prices; only show a discount you actually offer.
-export type PackageFeature = { text: string; included?: boolean }; // included defaults to true
-export type Package = {
-  name: string; icon: "medal" | "crown" | "gem"; tag: string; featured?: boolean;
-  summary: string; price: number; was: number; currency: string;
-  groups: { title: string; items: PackageFeature[] }[];
-};
+import type { Job, Package, TeamMember } from "@/types/content";
 
 export const packages: Package[] = [
   {
@@ -46,7 +41,6 @@ export const packages: Package[] = [
   },
 ];
 
-export type Job = { slug: string; title: string; type: string; location: string; summary: string; responsibilities: string[]; requirements: string[] };
 export const jobs: Job[] = [
   {
     slug: "senior-sales-closer", title: "Senior Sales Closer", type: "Full-time", location: "Lahore / Remote",
@@ -80,7 +74,6 @@ export const portfolio = [
 ]; // TODO: replace with real case studies and images
 
 // Leadership team. Photos live in /public/team. Add profile URLs to show social icons (empty = hidden).
-export type TeamMember = { name: string; role: string; photo: string; socials: { facebook?: string; instagram?: string; linkedin?: string } };
 export const team: TeamMember[] = [
   { name: "Muhammad Ahsan Khan", role: "Director & Owner", photo: "/team/muhammad-ahsan-khan.webp", socials: {} },
   { name: "Ali Raza", role: "CEO & Founder", photo: "/team/ali-raza.webp", socials: {} },

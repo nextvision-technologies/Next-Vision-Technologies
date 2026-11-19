@@ -6,7 +6,9 @@ import { ArrowRight, ArrowUpRight, BadgeCheck, CalendarDays, Check, ChevronRight
 import { defaultProcess, getService, services } from "@/content/services";
 import { postImage, sortedPosts } from "@/content/blog";
 import { site, whatsappLink } from "@/content/site";
-import { CtaBand, Faq, ServiceCard, formatDate } from "@/components/sections/Blocks";
+import { CtaBand, Faq } from "@/components/sections/Blocks";
+import { ServiceCard } from "@/features/services/ServiceCard";
+import { formatDate } from "@/lib/format";
 import { PixelCluster } from "@/components/sections/PageHero";
 import { Button, buttonClass } from "@/components/ui/Button";
 import { IconTile, ServiceIcon } from "@/components/ui/ServiceIcon";
@@ -59,8 +61,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
 
       {/* ---------- Hero ---------- */}
-      <section className="bg-navy-radial relative overflow-hidden text-white">
-        <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
+      <section className="section-dark relative overflow-hidden text-white">
         <div className="container-page relative grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-[1.25fr_1fr]">
           <div className="flex flex-col gap-5">
             <nav aria-label="Breadcrumb">
@@ -73,7 +74,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
               </ol>
             </nav>
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] py-1 pr-3.5 pl-1 text-sm text-white/80">
-              <span className="bg-brand-gradient inline-flex size-6 items-center justify-center rounded-full"><ServiceIcon name={s.icon} className="size-3.5" /></span>
+              <span className="solid-primary inline-flex size-6 items-center justify-center rounded-full"><ServiceIcon name={s.icon} className="size-3.5" /></span>
               {s.category}
             </span>
             <h1 className="text-4xl leading-[1.08] font-extrabold sm:text-5xl lg:text-[3.4rem]">{s.title}</h1>
@@ -94,7 +95,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
           {/* At a glance card */}
           <div className="relative">
             <PixelCluster className="absolute -top-10 -right-4 w-28" />
-            <div className="relative rounded-[1.75rem] border border-white/12 bg-white/[0.07] p-6 shadow-2xl backdrop-blur-xl sm:p-7">
+            <div className="relative rounded-[1.75rem] border border-white/12 bg-white/[0.07] p-6 shadow-2xl md:backdrop-blur-xl sm:p-7">
               <div className="flex items-center gap-4">
                 <IconTile name={s.icon} size="lg" />
                 <div>
@@ -128,7 +129,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
       </section>
 
       {/* ---------- Sticky section menu ---------- */}
-      <nav aria-label="On this page" className="sticky top-16 z-30 border-b border-line bg-card/90 backdrop-blur lg:top-[4.5rem]">
+      <nav aria-label="On this page" className="sticky top-16 z-30 border-b border-line bg-card/90 md:backdrop-blur lg:top-[4.5rem]">
         <ul className="container-page flex gap-1 overflow-x-auto py-2.5 text-sm font-semibold">
           {sections.map((x) => (
             <li key={x.id}>
@@ -136,7 +137,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
             </li>
           ))}
           <li className="ml-auto hidden sm:block">
-            <Link href="/contact" className="block rounded-full bg-brand-50 px-4 py-2 whitespace-nowrap text-brand-600 hover:bg-brand-100">Get a quote →</Link>
+            <Link href="/contact" className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-4 py-2 whitespace-nowrap text-brand-600 hover:bg-brand-100">Get a quote <ArrowRight className="size-4" aria-hidden /></Link>
           </li>
         </ul>
       </nav>
@@ -166,7 +167,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               {s.benefits.map((b) => (
                 <div key={b} className="flex items-center gap-3 rounded-2xl border border-line bg-surface p-4">
-                  <span className="bg-brand-gradient inline-flex size-8 shrink-0 items-center justify-center rounded-full text-white"><Check className="size-4" strokeWidth={3} /></span>
+                  <span className="solid-primary inline-flex size-8 shrink-0 items-center justify-center rounded-full text-white"><Check className="size-4" strokeWidth={3} /></span>
                   <span className="font-medium text-heading">{b}</span>
                 </div>
               ))}
@@ -180,8 +181,8 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
             <div className="mt-8 grid gap-5 sm:grid-cols-2">
               {s.offerings.map((o) => (
                 <article key={o.title} className="group relative overflow-hidden rounded-2xl border border-line bg-card p-6 transition hover:-translate-y-1 hover:border-brand-600/30 hover:shadow-lift">
-                  <span className="bg-brand-gradient absolute inset-x-0 top-0 h-1 origin-left scale-x-0 transition duration-300 group-hover:scale-x-100" aria-hidden />
-                  <span className="inline-flex size-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition group-hover:bg-brand-gradient group-hover:text-white">
+                  <span className="solid-primary absolute inset-x-0 top-0 h-1 origin-left scale-x-0 transition duration-300 group-hover:scale-x-100" aria-hidden />
+                  <span className="inline-flex size-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition group-hover:solid-primary group-hover:text-white">
                     <ServiceIcon name={s.icon} className="size-5" />
                   </span>
                   <h3 className="mt-4 text-lg font-bold text-heading">{o.title}</h3>
@@ -198,7 +199,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
             <ol className="relative mt-8 flex flex-col gap-6 before:absolute before:top-2 before:bottom-2 before:left-[1.4rem] before:w-0.5 before:bg-gradient-to-b before:from-brand-700 before:to-glow-400">
               {defaultProcess.map((p, i) => (
                 <li key={p.title} className="relative flex gap-5">
-                  <span className="bg-brand-gradient relative z-10 inline-flex size-11 shrink-0 items-center justify-center rounded-full font-display font-extrabold text-white ring-4 ring-card">{i + 1}</span>
+                  <span className="solid-primary relative z-10 inline-flex size-11 shrink-0 items-center justify-center rounded-full font-display font-extrabold text-white ring-4 ring-card">{i + 1}</span>
                   <div className="flex-1 rounded-2xl border border-line bg-card p-5">
                     <h3 className="font-bold text-heading">{p.title}</h3>
                     <p className="mt-1 text-sm leading-relaxed text-muted">{p.text}</p>
@@ -209,8 +210,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
           </section>
 
           {/* Tools */}
-          <section id="tools" className="bg-navy-radial relative scroll-mt-40 overflow-hidden rounded-[1.75rem] p-8 text-white sm:p-10">
-            <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
+          <section id="tools" className="section-dark relative scroll-mt-40 overflow-hidden rounded-[1.75rem] p-8 text-white sm:p-10">
             <div className="relative">
               <span className="flex items-center gap-2 text-xs font-semibold tracking-[0.16em] text-glow-400 uppercase"><Wrench className="size-4" /> Tools &amp; technologies</span>
               <h2 className="mt-3 text-2xl font-extrabold sm:text-3xl">What we build with</h2>
@@ -227,8 +227,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
         {/* Sidebar */}
         <aside className="lg:block">
           <div className="flex flex-col gap-6 lg:sticky lg:top-40">
-            <div className="rounded-2xl bg-navy-radial relative overflow-hidden p-6 text-white">
-              <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
+            <div className="rounded-2xl section-dark relative overflow-hidden p-6 text-white">
               <div className="relative flex flex-col gap-3">
                 <p className="font-display text-lg font-bold">Start your {s.title} project</p>
                 <p className="text-sm text-white/70">Free consultation and a fixed quote within 24 hours.</p>
@@ -252,7 +251,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
                     </li>
                   ))}
                 </ul>
-                <Link href="/services" className="mt-2 block px-2 text-sm font-semibold text-brand-600">View all {services.length} services →</Link>
+                <Link href="/services" className="mt-2 inline-flex items-center gap-1.5 px-2 text-sm font-semibold text-brand-600">View all {services.length} services <ArrowRight className="size-4" aria-hidden /></Link>
               </nav>
             )}
 

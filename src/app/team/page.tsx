@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
 import { CtaBand } from "@/components/sections/Blocks";
-import { TeamGrid } from "@/components/sections/TeamGrid";
+import { TeamGrid } from "@/features/team/TeamGrid";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export const metadata: Metadata = {

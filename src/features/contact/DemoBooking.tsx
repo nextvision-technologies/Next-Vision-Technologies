@@ -97,7 +97,7 @@ export function DemoBooking() {
       <div className="p-6 sm:p-10">
         {step === "done" ? (
           <div className="flex h-full flex-col items-center justify-center gap-4 py-16 text-center" role="status">
-            <span className="bg-brand-gradient inline-flex size-16 items-center justify-center rounded-full text-white"><CalendarCheck className="size-8" /></span>
+            <span className="solid-primary inline-flex size-16 items-center justify-center rounded-full text-white"><CalendarCheck className="size-8" /></span>
             <h3 className="text-2xl font-bold text-heading">Request received</h3>
             <p className="max-w-md text-muted">We&apos;ll confirm your demo for <strong className="text-heading">{date && longDate(date)}, {time && to12h(time)}</strong> by email or WhatsApp shortly.</p>
           </div>
@@ -158,7 +158,7 @@ export function DemoBooking() {
                       <button type="button" disabled={disabled} onClick={() => { setDate(k); setTime(null); }}
                         aria-pressed={selected} aria-label={longDate(k)}
                         className={`inline-flex size-11 items-center justify-center rounded-full text-sm font-semibold transition ${
-                          selected ? "bg-brand-gradient text-white shadow-lift"
+                          selected ? "solid-primary text-white shadow-lift"
                             : disabled ? "cursor-default text-muted/40"
                             : "bg-brand-50 text-brand-700 hover:bg-brand-100"}`}>
                         {d}
@@ -175,7 +175,7 @@ export function DemoBooking() {
                   {SLOTS.map((s) => (
                     <div key={s} className="flex gap-2">
                       <button type="button" onClick={() => setTime(s)} aria-pressed={time === s}
-                        className={`h-11 flex-1 rounded-xl border text-sm font-semibold transition ${time === s ? "border-navy-900 bg-navy-900 text-white" : "border-brand-600/40 text-brand-700 hover:border-brand-600"}`}>
+                        className={`h-11 flex-1 rounded-xl border text-sm font-semibold transition ${time === s ? "border-charcoal-900 bg-charcoal-900 text-white" : "border-brand-600/40 text-brand-700 hover:border-brand-600"}`}>
                         {to12h(s)}
                       </button>
                       {time === s && (

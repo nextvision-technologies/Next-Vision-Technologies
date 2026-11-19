@@ -15,8 +15,7 @@ export default function PortfolioPage() {
           {portfolio.map((p) => (
             <article key={p.title} className="flex flex-col overflow-hidden rounded-card border border-line bg-card shadow-card">
               {/* TODO: replace with project screenshots in /public/portfolio */}
-              <div className="bg-navy-radial relative aspect-[4/3]">
-                <div className="bg-pixel-grid absolute inset-0" aria-hidden />
+              <div className="section-dark relative aspect-[4/3]">
                 <PixelCluster className="absolute right-6 bottom-6 w-24" />
               </div>
               <div className="flex flex-col gap-2 p-6">

@@ -1,8 +1,8 @@
 import { Check, Lightbulb, Quote } from "lucide-react";
-import { headingId, type Block } from "@/content/blog";
-import { RichText } from "./RichText";
+import { headingId } from "@/lib/format";
+import type { Block } from "@/types/content";
+import { RichText } from "@/components/ui/RichText";
 
-export { RichText };
 
 /** One content block (shared by blog posts and legal pages) */
 export function ArticleBlock({ block, h2Prefix }: { block: Block; h2Prefix?: string }) {
@@ -27,7 +27,7 @@ export function ArticleBlock({ block, h2Prefix }: { block: Block; h2Prefix?: str
         <ol className="my-6 flex flex-col gap-3">
           {block.items.map((i, n) => (
             <li key={i} className="flex gap-4 rounded-2xl border border-line bg-card p-4">
-              <span className="bg-brand-gradient inline-flex size-8 shrink-0 items-center justify-center rounded-full font-display text-sm font-bold text-white">{n + 1}</span>
+              <span className="solid-primary inline-flex size-8 shrink-0 items-center justify-center rounded-full font-display text-sm font-bold text-white">{n + 1}</span>
               <span className="pt-0.5 text-body"><RichText text={i} /></span>
             </li>
           ))}
@@ -45,7 +45,7 @@ export function ArticleBlock({ block, h2Prefix }: { block: Block; h2Prefix?: str
       );
     case "quote":
       return (
-        <blockquote className="relative my-10 overflow-hidden rounded-2xl bg-navy-radial p-7 pl-16 text-white sm:p-9 sm:pl-20">
+        <blockquote className="relative my-10 overflow-hidden rounded-2xl section-dark p-7 pl-16 text-white sm:p-9 sm:pl-20">
           <Quote className="absolute top-7 left-6 size-8 text-glow-400 sm:left-8" aria-hidden />
           <p className="!mb-0 font-display text-xl leading-snug font-semibold !text-white sm:text-2xl">{block.text}</p>
         </blockquote>
@@ -55,7 +55,7 @@ export function ArticleBlock({ block, h2Prefix }: { block: Block; h2Prefix?: str
         <figure className="my-8">
           <div className="overflow-x-auto rounded-2xl border border-line">
             <table className="w-full min-w-[32rem] text-left text-sm">
-              <thead className="bg-navy-900 text-white">
+              <thead className="bg-charcoal-900 text-white">
                 <tr>{block.head.map((h) => <th key={h} className="px-5 py-3.5 font-semibold">{h}</th>)}</tr>
               </thead>
               <tbody>

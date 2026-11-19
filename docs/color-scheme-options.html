@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Color Scheme Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  /* ---------- Page chrome (neutral, so the options stand out) ---------- */
+  :root { --chrome-bg: #ece9e4; --chrome-ink: #222; --chrome-muted: #666; --chrome-line: #d6d1c8; }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--chrome-bg); color: var(--chrome-ink); font-family: "Cormorant Garamond", Georgia, serif; font-size: 18px; line-height: 1.5; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 32px 16px 64px; }
+  .intro h1 { font-size: clamp(30px, 5vw, 44px); font-weight: 700; line-height: 1.1; }
+  .intro p { color: var(--chrome-muted); margin-top: 6px; max-width: 60ch; }
+
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 20px; }
+  .tab { font: inherit; font-size: 17px; font-weight: 600; padding: 10px 18px; border-radius: 999px; border: 1px solid var(--chrome-line); background: #fff; color: var(--chrome-ink); cursor: pointer; }
+  .tab[aria-selected="true"] { background: #222; color: #fff; border-color: #222; }
+  .tab small { font-weight: 500; opacity: .7; }
+
+  .option { display: none; }
+  .option.active { display: block; }
+  .option-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; margin-bottom: 16px; }
+  .option-head h2 { font-size: 30px; font-weight: 700; }
+  .option-head p { color: var(--chrome-muted); max-width: 70ch; }
+
+  /* Swatches */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .sw { background: #fff; border: 1px solid var(--chrome-line); border-radius: 12px; overflow: hidden; }
+  .sw i { display: block; height: 56px; border-bottom: 1px solid rgba(0,0,0,.06); }
+  .sw div { padding: 8px 10px; font-size: 15px; line-height: 1.3; }
+  .sw b { display: block; font-weight: 700; }
+  .sw code { font-family: ui-monospace, Consolas, monospace; font-size: 12.5px; color: var(--chrome-muted); }
+
+  .previews { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 900px) { .previews { grid-template-columns: 1fr; } }
+  .label { font-size: 14px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--chrome-muted); margin-bottom: 8px; }
+
+  /* ---------- Mock website (driven by tokens) ---------- */
+  .site { background: var(--page); color: var(--body); border-radius: 16px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 10px 30px -18px rgba(0,0,0,.35); }
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 20px; background: var(--card); border-bottom: 1px solid var(--line); }
+  .logo { font-weight: 700; font-size: 20px; color: var(--heading); }
+  .logo span { color: var(--accent); font-style: italic; }
+  .links { display: flex; gap: 16px; font-size: 16px; color: var(--muted); }
+  @media (max-width: 520px) { .links { display: none; } }
+
+  .hero { padding: 36px 20px 30px; background: var(--hero); color: var(--hero-ink); }
+  .eyebrow { display: inline-block; font-size: 12.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--hero-line); color: var(--hero-muted); }
+  .hero h3 { font-size: clamp(30px, 4.2vw, 42px); line-height: 1.08; font-weight: 600; margin: 14px 0 10px; color: var(--hero-ink); }
+  .hero h3 em { color: var(--hero-accent); font-weight: 600; }
+  .hero p { color: var(--hero-muted); max-width: 46ch; }
+  .btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .btn { font: inherit; font-size: 17px; font-weight: 700; padding: 10px 20px; border-radius: 999px; border: 1px solid transparent; }
+  .btn-primary { background: var(--btn); color: var(--btn-ink); }
+  .btn-ghost { background: transparent; color: var(--hero-ink); border-color: var(--hero-line); }
+
+  .body { padding: 26px 20px 28px; }
+  .body h4 { font-size: 26px; font-weight: 700; color: var(--heading); line-height: 1.15; }
+  .body h4 em { color: var(--accent); }
+  .body > p { color: var(--muted); margin-top: 4px; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
+  @media (max-width: 520px) { .cards { grid-template-columns: 1fr; } }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+  .card .ic { width: 34px; height: 34px; border-radius: 9px; background: var(--chip); color: var(--accent); display: grid; place-items: center; font-weight: 700; font-size: 18px; }
+  .card b { display: block; margin-top: 10px; font-size: 19px; color: var(--heading); }
+  .card span { font-size: 15.5px; color: var(--muted); line-height: 1.35; display: block; margin-top: 2px; }
+  .card a { display: inline-block; margin-top: 8px; font-size: 15.5px; font-weight: 700; color: var(--accent); text-decoration: none; }
+
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); text-align: center; }
+  .stats strong { display: block; font-size: 32px; font-weight: 700; color: var(--accent); line-height: 1; }
+  .stats span { font-size: 15px; color: var(--muted); }
+
+  .price { margin-top: 18px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+  .price b { font-size: 19px; color: var(--heading); }
+  .price .amt { font-size: 30px; font-weight: 700; color: var(--heading); }
+  .price .amt small { font-size: 15px; color: var(--muted); font-weight: 500; }
+  .tag { font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--chip); color: var(--accent); margin-left: 6px; }
+
+  .note { margin-top: 28px; padding: 14px 16px; border-radius: 12px; background: #fff; border: 1px solid var(--chrome-line); color: var(--chrome-muted); font-size: 16.5px; }
+
+  /* ---------- Option 1: Navy & Gold ---------- */
+  .o1.light { --page:#FAF7F2; --card:#FFFFFF; --line:#E6E0D6; --heading:#0F1B2D; --body:#3A4150; --muted:#5E6573; --accent:#8A6420; --chip:#F3EBDC;
+              --hero:#0F1B2D; --hero-ink:#F4EFE6; --hero-muted:#C2C8D3; --hero-line:rgba(244,239,230,.22); --hero-accent:#D4AF6A; --btn:#D4AF6A; --btn-ink:#0F1B2D; }
+  .o1.dark  { --page:#0B1422; --card:#13203A; --line:#24324D; --heading:#F4EFE6; --body:#C9CED8; --muted:#9AA3B2; --accent:#D4AF6A; --chip:#1E2C47;
+              --hero:#13203A; --hero-ink:#F4EFE6; --hero-muted:#AEB6C4; --hero-line:rgba(244,239,230,.18); --hero-accent:#D4AF6A; --btn:#D4AF6A; --btn-ink:#0F1B2D; }
+
+  /* ---------- Option 2: Forest Green & Terracotta ---------- */
+  .o2.light { --page:#F7F3EA; --card:#FFFFFF; --line:#E3DCCB; --heading:#1F3A2E; --body:#3E4A43; --muted:#5F6A63; --accent:#A14A26; --chip:#F4E6DC;
+              --hero:#1F3A2E; --hero-ink:#F2EDE1; --hero-muted:#C3CEC6; --hero-line:rgba(242,237,225,.22); --hero-accent:#E09A70; --btn:#D98A5F; --btn-ink:#1A2B22; }
+  .o2.dark  { --page:#0F1C16; --card:#172A21; --line:#2A4034; --heading:#F2EDE1; --body:#C8CFC9; --muted:#97A39B; --accent:#E09A70; --chip:#22392D;
+              --hero:#172A21; --hero-ink:#F2EDE1; --hero-muted:#A9B5AD; --hero-line:rgba(242,237,225,.18); --hero-accent:#E09A70; --btn:#D98A5F; --btn-ink:#1A2B22; }
+
+  /* ---------- Option 3: Charcoal & Oxblood ---------- */
+  .o3.light { --page:#F5F0E8; --card:#FFFFFF; --line:#E2DBD0; --heading:#1C1C1E; --body:#3B3B3F; --muted:#5F5E63; --accent:#9E3B2B; --chip:#F3E3DE;
+              --hero:#1C1C1E; --hero-ink:#F3EEE6; --hero-muted:#C4C0BA; --hero-line:rgba(243,238,230,.22); --hero-accent:#E0907E; --btn:#F3EEE6; --btn-ink:#1C1C1E; }
+  .o3.dark  { --page:#121214; --card:#1D1D20; --line:#2E2E33; --heading:#F3EEE6; --body:#CFCAC2; --muted:#9C9890; --accent:#E0907E; --chip:#2A2224;
+              --hero:#1D1D20; --hero-ink:#F3EEE6; --hero-muted:#B0ABA4; --hero-line:rgba(243,238,230,.18); --hero-accent:#E0907E; --btn:#D9826F; --btn-ink:#1C1C1E; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="intro">
+    <h1>Next Vision: color scheme options</h1>
+    <p>Teen options, har ek light aur dark mode mein. Font: Cormorant Garamond. Koi purple, neon ya gradient nahi.</p>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-opt="o1">1 · Navy &amp; Gold <small>(salah)</small></button>
+    <button class="tab" role="tab" aria-selected="false" data-opt="o2">2 · Forest &amp; Terracotta</button>
+    <button class="tab" role="tab" aria-selected="false" data-opt="o3">3 · Charcoal &amp; Oxblood</button>
+  </nav>
+
+  <main id="options"></main>
+
+  <p class="note">Ye sirf preview hai. Jo option aap chunenge, wohi rang <code>src/app/globals.css</code> ke tokens mein lagaye jayenge. Kisi bhi rang ko badalna ho to us ka naam bata dein.</p>
+</div>
+
+<template id="mock">
+  <div class="site">
+    <div class="nav">
+      <div class="logo">Next <span>Vision</span></div>
+      <div class="links"><span>Services</span><span>Pricing</span><span>Blog</span><span>Contact</span></div>
+    </div>
+    <section class="hero">
+      <span class="eyebrow">Software house · Lahore &amp; UK</span>
+      <h3>Tech that <em>grows</em> your business</h3>
+      <p>Websites, apps, AI chatbots and marketing, built by one team that answers on WhatsApp.</p>
+      <div class="btns">
+        <button class="btn btn-primary">Get a free quote</button>
+        <button class="btn btn-ghost">Book a demo</button>
+      </div>
+    </section>
+    <section class="body">
+      <h4>What we <em>build</em></h4>
+      <p>Custom software and affordable packages.</p>
+      <div class="cards">
+        <div class="card"><div class="ic">W</div><b>Websites</b><span>Fast, SEO-ready sites.</span><a href="#">Learn more →</a></div>
+        <div class="card"><div class="ic">A</div><b>Mobile apps</b><span>iOS and Android.</span><a href="#">Learn more →</a></div>
+        <div class="card"><div class="ic">M</div><b>Marketing</b><span>Ads, SEO and social.</span><a href="#">Learn more →</a></div>
+      </div>
+      <div class="stats">
+        <div><strong>120+</strong><span>Projects</span></div>
+        <div><strong>8 yrs</strong><span>Experience</span></div>
+        <div><strong>4.9</strong><span>Rating</span></div>
+      </div>
+      <div class="price">
+        <div><b>Business Website</b><span class="tag">Popular</span></div>
+        <div class="amt">PKR 85,000 <small>/ one-time</small></div>
+      </div>
+    </section>
+  </div>
+</template>
+
+<script>
+  const options = {
+    o1: {
+      name: "Option 1 · Navy & Gold",
+      desc: "Classic aur premium. Cormorant font ke saath sab se achha jachta hai. Banks aur law firms jaisa bharosa.",
+      swatches: [["Deep navy", "#0F1B2D"], ["Ivory page", "#FAF7F2"], ["Gold accent", "#D4AF6A"], ["Dark gold (text)", "#8A6420"], ["Body text", "#3A4150"], ["Border", "#E6E0D6"], ["Dark page", "#0B1422"]],
+    },
+    o2: {
+      name: "Option 2 · Forest Green & Terracotta",
+      desc: "Natural, garam aur dostana. Modern agency jaisa, lekin AI wali look se door.",
+      swatches: [["Forest green", "#1F3A2E"], ["Cream page", "#F7F3EA"], ["Terracotta", "#D98A5F"], ["Terracotta (text)", "#A14A26"], ["Body text", "#3E4A43"], ["Border", "#E3DCCB"], ["Dark page", "#0F1C16"]],
+    },
+    o3: {
+      name: "Option 3 · Charcoal & Oxblood",
+      desc: "Bold aur editorial, magazine ya architecture firm jaisa. Sab se zyada serious look.",
+      swatches: [["Charcoal", "#1C1C1E"], ["Sand page", "#F5F0E8"], ["Oxblood", "#9E3B2B"], ["Rose (dark mode)", "#E0907E"], ["Body text", "#3B3B3F"], ["Border", "#E2DBD0"], ["Dark page", "#121214"]],
+    },
+  };
+
+  const root = document.getElementById("options");
+  const mock = document.getElementById("mock");
+
+  for (const [key, o] of Object.entries(options)) {
+    const sec = document.createElement("section");
+    sec.className = "option" + (key === "o1" ? " active" : "");
+    sec.id = key;
+    sec.innerHTML = `
+      <div class="option-head"><h2>${o.name}</h2><p>${o.desc}</p></div>
+      <div class="swatches">${o.swatches.map(([n, h]) => `<div class="sw"><i style="background:${h}"></i><div><b>${n}</b><code>${h}</code></div></div>`).join("")}</div>
+      <div class="previews">
+        <div><div class="label">Light mode</div><div class="slot ${key} light"></div></div>
+        <div><div class="label">Dark mode</div><div class="slot ${key} dark"></div></div>
+      </div>`;
+    sec.querySelectorAll(".slot").forEach((slot) => slot.appendChild(mock.content.cloneNode(true)));
+    root.appendChild(sec);
+  }
+
+  document.querySelectorAll(".tab").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".tab").forEach((t) => t.setAttribute("aria-selected", t === tab));
+      document.querySelectorAll(".option").forEach((s) => s.classList.toggle("active", s.id === tab.dataset.opt));
+    });
+  });
+</script>
+</body>
+</html>

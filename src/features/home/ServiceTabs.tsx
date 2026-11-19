@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import { ArrowRight, Check } from "lucide-react";
-import { services, serviceCategories, type ServiceCategory } from "@/content/services";
+import { services, serviceCategories } from "@/content/services";
+import type { ServiceCategory } from "@/types/content";
 import { IconTile, ServiceIcon } from "@/components/ui/ServiceIcon";
 import { buttonClass } from "@/components/ui/Button";
 
@@ -20,7 +21,7 @@ export function ServiceTabs() {
         {serviceCategories.map((c) => (
           <button key={c} role="tab" type="button" aria-selected={c === cat}
             onClick={() => { setCat(c); setActiveSlug(services.find((s) => s.category === c)!.slug); }}
-            className={`shrink-0 rounded-full px-4 py-2.5 text-sm font-semibold transition sm:px-5 ${c === cat ? "bg-brand-gradient text-white shadow-lift" : "text-muted hover:text-heading"}`}>
+            className={`shrink-0 rounded-full px-4 py-2.5 text-sm font-semibold transition sm:px-5 ${c === cat ? "solid-primary text-white shadow-lift" : "text-muted hover:text-heading"}`}>
             {c}
           </button>
         ))}
@@ -34,7 +35,7 @@ export function ServiceTabs() {
               <li key={s.slug}>
                 <button type="button" onClick={() => setActiveSlug(s.slug)} onMouseEnter={() => setActiveSlug(s.slug)} aria-pressed={on}
                   className={`flex w-full items-center gap-4 rounded-2xl border p-4 text-left transition ${on ? "border-brand-600/40 bg-card shadow-lift" : "border-transparent hover:bg-card/70"}`}>
-                  <span className={`inline-flex size-11 shrink-0 items-center justify-center rounded-xl transition ${on ? "bg-brand-gradient text-white" : "bg-brand-50 text-brand-600"}`}>
+                  <span className={`inline-flex size-11 shrink-0 items-center justify-center rounded-xl transition ${on ? "solid-primary text-white" : "bg-brand-50 text-brand-600"}`}>
                     <ServiceIcon name={s.icon} className="size-5" />
                   </span>
                   <span className="min-w-0 flex-1">
@@ -48,8 +49,7 @@ export function ServiceTabs() {
           })}
         </ul>
 
-        <div className="bg-navy-radial relative flex min-w-0 flex-col gap-6 overflow-hidden rounded-[1.75rem] p-6 text-white sm:p-10">
-          <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
+        <div className="section-dark relative flex min-w-0 flex-col gap-6 overflow-hidden rounded-[1.75rem] p-6 text-white sm:p-10">
           <div className="relative flex flex-col gap-5">
             <IconTile name={active.icon} size="lg" />
             <h3 className="text-2xl font-bold sm:text-3xl">{active.title}</h3>

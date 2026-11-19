@@ -7,8 +7,7 @@ type Crumb = { label: string; href?: string };
 /** Navy page header with breadcrumb, used on every inner page */
 export function PageHero({ title, text, crumbs, eyebrow, children }: { title: ReactNode; text?: ReactNode; crumbs: Crumb[]; eyebrow?: string; children?: ReactNode }) {
   return (
-    <section className="bg-navy-radial relative overflow-hidden text-white">
-      <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
+    <section className="section-dark relative overflow-hidden text-white">
       <PixelCluster className="absolute top-6 right-[6%] hidden w-28 md:block" />
       <div className="container-page relative flex flex-col gap-3.5 py-10 sm:py-14">
         <nav aria-label="Breadcrumb">

@@ -3,12 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, CalendarDays, Check, ChevronRight, Clock, Sparkles } from "lucide-react";
-import { getPost, headingId, postImage, posts, sortedPosts } from "@/content/blog";
-import { ArticleBlock, RichText } from "@/components/content/ArticleBlocks";
+import { getPost, postImage, posts, sortedPosts } from "@/content/blog";
+import { formatDate, headingId } from "@/lib/format";
+import { ArticleBlock } from "@/features/blog/ArticleBlocks";
+import { RichText } from "@/components/ui/RichText";
 import { getService } from "@/content/services";
 import { site } from "@/content/site";
-import { CtaBand, Faq, PostCard, formatDate } from "@/components/sections/Blocks";
-import { ReadingProgress, ShareButtons, TableOfContents } from "@/components/blog/ArticleChrome";
+import { CtaBand, Faq } from "@/components/sections/Blocks";
+import { PostCard } from "@/features/blog/PostCard";
+import { ReadingProgress, ShareButtons, TableOfContents } from "@/features/blog/ArticleChrome";
 import { IconTile } from "@/components/ui/ServiceIcon";
 import { buttonClass } from "@/components/ui/Button";
 
@@ -74,7 +77,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
               <li aria-current="page" className="text-heading">{post.category}</li>
             </ol>
           </nav>
-          <span className="bg-brand-gradient rounded-full px-3.5 py-1 text-xs font-bold tracking-wide text-white">{post.category}</span>
+          <span className="solid-primary rounded-full px-3.5 py-1 text-xs font-bold tracking-wide text-white">{post.category}</span>
           <h1 className="max-w-4xl text-3xl leading-[1.15] font-extrabold text-heading sm:text-5xl">{post.title}</h1>
           <p className="max-w-2xl text-lg leading-relaxed text-muted">{post.excerpt}</p>
           <div className="mt-1 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-muted">
@@ -89,7 +92,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
           </div>
         </div>
         <div className="container-page relative">
-          <div className="relative mx-auto aspect-[16/9] max-w-5xl overflow-hidden rounded-[1.75rem] shadow-[0_30px_80px_-30px_rgb(23_11_51/0.5)] ring-1 ring-black/5">
+          <div className="relative mx-auto aspect-[16/9] max-w-5xl overflow-hidden rounded-[1.75rem] shadow-[0_30px_80px_-30px_rgb(28_28_30/0.5)] ring-1 ring-black/5">
             <Image src={postImage(post.slug)} alt={post.title} fill priority sizes="(min-width: 1024px) 64rem, 100vw" className="object-cover" />
           </div>
         </div>
@@ -119,8 +122,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
 
           {/* Mid-article service CTA (mobile shows it here; desktop also has it in the sidebar) */}
           {service && (
-            <aside className="bg-navy-radial relative mt-12 flex flex-col gap-5 overflow-hidden rounded-[1.5rem] p-7 text-white sm:flex-row sm:items-center sm:p-9">
-              <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
+            <aside className="section-dark relative mt-12 flex flex-col gap-5 overflow-hidden rounded-[1.5rem] p-7 text-white sm:flex-row sm:items-center sm:p-9">
               <IconTile name={service.icon} size="lg" />
               <div className="relative flex-1">
                 <p className="font-display text-xl font-bold">Need help with {service.title}?</p>

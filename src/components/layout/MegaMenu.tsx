@@ -3,7 +3,7 @@ import {
   ArrowRight, BookOpen, Building, BriefcaseBusiness, Cookie, FileText, Globe, GraduationCap, Lock,
   MessagesSquare, Newspaper, RotateCcw, ShieldCheck, Tags, UserPlus, Users, type LucideIcon,
 } from "lucide-react";
-import type { NavGroup, NavPromo } from "@/content/navigation";
+import type { NavGroup, NavPromo } from "@/types/content";
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
 
 const navIcons: Record<string, LucideIcon> = {
@@ -16,7 +16,7 @@ function NavIcon({ name }: { name?: string }) {
   if (!name) return null;
   const Icon = navIcons[name];
   return (
-    <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600 transition group-hover/item:bg-brand-gradient group-hover/item:text-white">
+    <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600 transition group-hover/item:solid-primary group-hover/item:text-white">
       {Icon ? <Icon className="size-4" strokeWidth={1.9} aria-hidden /> : <ServiceIcon name={name} className="size-4" />}
     </span>
   );
@@ -31,7 +31,7 @@ function PromoArt({ art }: { art: NavPromo["art"] }) {
           <i className="size-2 rounded-full bg-brand-600" /><i className="size-2 rounded-full bg-glow-400" /><i className="size-2 rounded-full bg-emerald-400" />
           <i className="ml-1.5 h-1.5 flex-1 rounded-full bg-line" />
         </div>
-        <div className="bg-navy-radial mt-2 flex flex-col gap-1.5 rounded-md p-3">
+        <div className="section-dark mt-2 flex flex-col gap-1.5 rounded-md p-3">
           <i className="h-1.5 w-3/4 rounded-full bg-white/80" /><i className="h-1.5 w-1/2 rounded-full bg-white/50" /><i className="mt-0.5 h-3 w-14 rounded-full bg-card" />
         </div>
         <span className="absolute -top-2.5 -right-2 rounded-full bg-card px-2 py-0.5 text-[10px] font-semibold text-brand-600 shadow-lg">SEO ready</span>
@@ -56,7 +56,7 @@ function PromoArt({ art }: { art: NavPromo["art"] }) {
   const Small = art === "book" ? GraduationCap : Lock;
   return (
     <div className="relative size-20 shrink-0" aria-hidden>
-      <div className="bg-brand-gradient absolute top-0 right-0 flex size-16 rotate-6 items-center justify-center rounded-2xl shadow-2xl">
+      <div className="solid-primary absolute top-0 right-0 flex size-16 rotate-6 items-center justify-center rounded-2xl shadow-2xl">
         <Icon className="size-8 text-white" strokeWidth={1.6} />
       </div>
       <div className="absolute bottom-0 left-0 flex size-9 -rotate-6 items-center justify-center rounded-xl border border-white/20 bg-white/10 backdrop-blur">
@@ -72,8 +72,7 @@ function PromoCard({ promo }: { promo: NavPromo }) {
     <div className="flex flex-col gap-2">
       <p className="text-xs text-muted">{promo.eyebrow}</p>
       <Link href={promo.href}
-        className="group/promo bg-navy-radial relative flex flex-1 flex-col overflow-hidden rounded-xl text-white ring-1 ring-black/5">
-        <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
+        className="group/promo section-dark relative flex flex-1 flex-col overflow-hidden rounded-xl text-white ring-1 ring-black/5">
         {isBrowser ? (
           <>
             <span className="relative m-3 mb-1.5 inline-flex w-fit items-center gap-1 rounded-full bg-card px-2 py-0.5 text-[10px] font-semibold text-heading">
@@ -82,7 +81,7 @@ function PromoCard({ promo }: { promo: NavPromo }) {
             <PromoArt art={promo.art} />
             <div className="relative mt-auto flex items-center justify-between gap-3 bg-card p-3.5 text-heading">
               <p className="font-display text-sm leading-snug font-bold">{promo.title}</p>
-              <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-navy-900 text-white transition group-hover/promo:bg-brand-gradient">
+              <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-charcoal-900 text-white transition group-hover/promo:solid-primary">
                 <ArrowRight className="size-4" />
               </span>
             </div>
@@ -107,7 +106,7 @@ function PromoCard({ promo }: { promo: NavPromo }) {
 export function MegaMenuPanel({ group }: { group: NavGroup }) {
   const two = group.columns === 2;
   return (
-    <div data-lenis-prevent className="grid max-h-[calc(100dvh-9rem)] grid-cols-[1fr_15rem] gap-5 overflow-y-auto rounded-2xl border border-line bg-card p-5 shadow-[0_24px_60px_-20px_rgb(23_11_51/0.35)]">
+    <div data-lenis-prevent className="grid max-h-[calc(100dvh-9rem)] grid-cols-[1fr_15rem] gap-5 overflow-y-auto rounded-2xl border border-line bg-card p-5 shadow-[0_24px_60px_-20px_rgb(28_28_30/0.35)]">
       <div className="flex flex-col">
         {group.overview && <p className="mb-2 px-2 text-xs text-muted">{group.overview}</p>}
         <ul className={`grid gap-0.5 ${two ? "grid-cols-2" : "grid-cols-1"}`}>

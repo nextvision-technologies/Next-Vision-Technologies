@@ -1,9 +1,6 @@
 import { services } from "./services";
 import { legalPages } from "./legal";
-
-export type NavLink = { label: string; href: string; description?: string; icon?: string };
-export type NavPromo = { eyebrow: string; title: string; text?: string; href: string; art: "browser" | "growth" | "book" | "shield" };
-export type NavGroup = { label: string; href?: string; overview?: string; columns: 1 | 2; children: NavLink[]; footer?: NavLink[]; promo: NavPromo };
+import type { NavGroup } from "@/types/content";
 
 const featuredServices = [
   "ai-automation", "ai-chatbot-development", "web-development", "shopify-development",

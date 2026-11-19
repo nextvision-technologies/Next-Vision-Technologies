@@ -3,68 +3,73 @@
 /* Dark mode is toggled by the .dark class on <html> (see ThemeToggle) */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Design tokens. Brand hues come from the logo; every text pair meets WCAG AA in both themes. */
+/*
+ * Design tokens: "Charcoal & Oxblood".
+ * Charcoal for structure, oxblood for accents, warm sand for the page. No purple, neon or gradients.
+ * Every text/background pair meets WCAG AA (4.5:1) in both themes.
+ */
 @theme {
-  --color-navy-950: #170b33;
-  --color-navy-900: #251647;
-  --color-navy-800: #3d2e61;
-  --color-navy-700: #4c1d95;
+  --color-charcoal-950: #121214;
+  --color-charcoal-900: #1c1c1e;
+  --color-charcoal-800: #2e2e33;
+  --color-charcoal-700: #3b3b3f;
 
-  --color-brand-700: #5b21b6; /* primary */
-  --color-brand-600: #a21caf; /* accent */
-  --color-brand-400: #f0abfc;
-  --color-brand-100: #efe4f7;
-  --color-brand-50: #f7f2fb;
+  --color-brand-700: #7f2f22; /* oxblood, hover / pressed */
+  --color-brand-600: #9e3b2b; /* oxblood accent (links, icons, italic words) */
+  --color-brand-400: #e0907e; /* light oxblood, for dark backgrounds */
+  --color-brand-100: #f0dcd6;
+  --color-brand-50: #f8eeea;
 
-  --color-glow-400: #b45309; /* warm accent */
-  --color-glow-100: #fdebd8;
+  --color-glow-400: #8c5a1a; /* warm ochre, secondary accent */
+  --color-glow-100: #f5e9d6;
 
-  --color-page: #fcfbf8;
+  --color-page: #f5f0e8; /* sand */
   --color-card: #ffffff;
-  --color-surface: #f4f1ec;
-  --color-panel: #170b33; /* solid dark sections */
-  --color-heading: #170b33;
-  --color-ink: #33294a;
-  --color-body: #33294a;
-  --color-muted: #5e5670;
-  --color-line: #ddd7e3;
+  --color-surface: #ede6da;
+  --color-panel: #1c1c1e; /* solid dark sections */
+  --color-heading: #1c1c1e;
+  --color-ink: #3b3b3f;
+  --color-body: #3b3b3f;
+  --color-muted: #5f5e63;
+  --color-line: #e2dbd0;
 
-  --color-primary: #5b21b6;
+  --color-primary: #9e3b2b; /* buttons */
   --color-on-primary: #ffffff;
   --color-on-warm: #ffffff;
-  --color-success: #15803d;
-  --color-error: #b91c1c;
+  --color-success: #2f6b3a;
+  --color-error: #b3261e;
 
-  --font-display: var(--font-montserrat), "Segoe UI", system-ui, sans-serif;
-  --font-sans: var(--font-inter), "Segoe UI", system-ui, sans-serif;
+  --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-serif: var(--font-cormorant), Georgia, "Times New Roman", serif;
 
   --radius-card: 1rem;
-  --shadow-card: 0 1px 2px rgb(23 11 51 / 0.04), 0 8px 24px -12px rgb(23 11 51 / 0.12);
-  --shadow-lift: 0 2px 4px rgb(23 11 51 / 0.05), 0 18px 40px -16px rgb(23 11 51 / 0.24);
+  --shadow-card: 0 1px 2px rgb(28 28 30 / 0.05), 0 8px 24px -12px rgb(28 28 30 / 0.14);
+  --shadow-lift: 0 2px 4px rgb(28 28 30 / 0.06), 0 18px 40px -16px rgb(28 28 30 / 0.26);
 }
 
 .dark {
   color-scheme: dark;
-  --color-page: #110726;
-  --color-card: #221543;
-  --color-surface: #1a0f35;
-  --color-panel: #221543;
-  --color-line: #3d2e61;
-  --color-heading: #f6f2ff;
-  --color-ink: #dcd4ec;
-  --color-body: #dcd4ec;
-  --color-muted: #afa3c8;
-  --color-brand-50: #2c1d52;
-  --color-brand-100: #3d2e61;
-  --color-brand-600: #f0abfc;
-  --color-brand-700: #c4b5fd;
-  --color-glow-400: #ffb26b;
-  --color-glow-100: #3a2416;
-  --color-primary: #c4b5fd;
-  --color-on-primary: #170b33;
-  --color-on-warm: #170b33;
-  --color-success: #4ade80;
-  --color-error: #f87171;
+  --color-page: #121214;
+  --color-card: #1d1d20;
+  --color-surface: #18181b;
+  --color-panel: #1d1d20;
+  --color-line: #2e2e33;
+  --color-heading: #f3eee6;
+  --color-ink: #cfcac2;
+  --color-body: #cfcac2;
+  --color-muted: #a29e96;
+  --color-brand-50: #2a2224;
+  --color-brand-100: #3a2c2d;
+  --color-brand-600: #e0907e;
+  --color-brand-700: #ebb3a6;
+  --color-glow-400: #e0b070;
+  --color-glow-100: #2e2418;
+  --color-primary: #d9826f;
+  --color-on-primary: #1c1c1e;
+  --color-on-warm: #1c1c1e;
+  --color-success: #6fbf7e;
+  --color-error: #f08a80;
   --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.6);
 }
 
@@ -77,39 +82,32 @@
   @media (width >= 64rem) { padding-inline: 2rem; }
 }
 
-/* Accent text */
-@utility text-brand-gradient {
-  color: var(--color-brand-600);
-}
-/* Solid primary fill. Text colour is forced so it always passes contrast. */
-@utility bg-brand-gradient {
+/* Solid primary fill (buttons, badges). Text colour is forced so it always passes contrast. */
+@utility solid-primary {
   background: var(--color-primary);
   color: var(--color-on-primary) !important;
 }
 /* Solid dark section. Tokens are re-scoped so everything inside stays readable. */
-@utility bg-navy-radial {
+@utility section-dark {
   background: var(--color-panel);
-  --color-card: #2c1d52;
-  --color-surface: #2c1d52;
-  --color-line: #46366b;
-  --color-heading: #f6f2ff;
-  --color-ink: #f6f2ff;
-  --color-body: #f6f2ff;
-  --color-muted: #c4bbd8;
-  --color-brand-50: #2c1d52;
-  --color-brand-100: #46366b;
-  --color-brand-600: #f0abfc;
-  --color-brand-700: #c4b5fd;
-  --color-glow-400: #ffb26b;
-  --color-glow-100: #3a2416;
-  --color-primary: #c4b5fd;
-  --color-on-primary: #170b33;
-  --color-on-warm: #170b33;
-  --color-success: #4ade80;
-  --color-error: #f87171;
-}
-@utility bg-pixel-grid {
-  background-image: none;
+  --color-card: #26262a;
+  --color-surface: #26262a;
+  --color-line: #3a3a40;
+  --color-heading: #f3eee6;
+  --color-ink: #f3eee6;
+  --color-body: #f3eee6;
+  --color-muted: #b4afa8;
+  --color-brand-50: #2a2224;
+  --color-brand-100: #3a3a40;
+  --color-brand-600: #e0907e;
+  --color-brand-700: #ebb3a6;
+  --color-glow-400: #e0b070;
+  --color-glow-100: #2e2418;
+  --color-primary: #d9826f;
+  --color-on-primary: #1c1c1e;
+  --color-on-warm: #1c1c1e;
+  --color-success: #6fbf7e;
+  --color-error: #f08a80;
 }
 
 /* Motion: page-load entrances start visible-safe (only transform/opacity from 0.001 at load) */
@@ -144,9 +142,13 @@
     transition: background-color .3s ease;
     color: var(--color-ink);
     font-family: var(--font-sans);
+    /* Cormorant has a small x-height. This scales body text up to a comfortable reading size
+       (about 15%) without changing any spacing; headings keep their designed size. */
+    font-size-adjust: 0.46;
     -webkit-font-smoothing: antialiased;
+    overflow-x: clip; /* clip, not hidden: hidden would break position: sticky (pinned hero) */
   }
-  h1, h2, h3, h4 { font-family: var(--font-display); text-wrap: balance; letter-spacing: -0.01em; }
+  h1, h2, h3, h4 { font-family: var(--font-serif); font-size-adjust: none; text-wrap: balance; letter-spacing: -0.005em; }
   :focus-visible { outline: 2px solid var(--color-brand-600); outline-offset: 2px; border-radius: 4px; }
   /* Tailwind 4 resets buttons to the default arrow; show a pointer on everything clickable */
   button:not(:disabled), [role="button"], [role="tab"], summary, select, label:has(> input[type="checkbox"]), label:has(> input[type="radio"]) { cursor: pointer; }
@@ -161,7 +163,7 @@
 @layer components {
   .prose-nv { color: var(--color-ink); line-height: 1.8; font-size: 1.0625rem; max-width: 68ch; }
   .prose-nv h2 {
-    font-size: clamp(1.4rem, 1.2rem + 0.8vw, 1.75rem); font-weight: 800; line-height: 1.25; color: var(--color-heading);
+    font-size: clamp(1.5rem, 1.3rem + 0.8vw, 1.9rem); font-weight: 700; line-height: 1.25; color: var(--color-heading);
     margin: 3rem 0 1rem; padding-top: 2rem; border-top: 1px solid var(--color-line);
   }
   .prose-nv > h2:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
@@ -171,3 +173,170 @@
   .prose-nv li { margin: 0.35rem 0; }
   .prose-nv li::marker { color: var(--color-brand-600); }
 }
+
+/* ---------- Pinned expanding hero (home page, see components/home/PinnedHero.tsx) ---------- */
+/* JS writes --pc (clip), --intro, --fade, --shade on the section and --c on each caption item. */
+@layer components {
+  .pinned-hero {
+    --header-h: 4rem;
+    --pc: 0; --intro: 0; --fade: 0; --shade: 0;
+    position: relative;
+    height: 240vh;
+  }
+  @media (width >= 64rem) { .pinned-hero { --header-h: 4.5rem; } }
+
+  .pinned-hero__stick {
+    position: sticky;
+    top: var(--header-h);
+    height: calc(100svh - var(--header-h));
+    overflow: hidden;
+  }
+
+  /* 1. Media card: rounded card in the right half at --pc 0, full area at --pc 1 */
+  .pinned-hero__clip {
+    --t: 96px; --r: 32px; --b: 40px; --l: 52%; --rad: 40px;
+    position: absolute; inset: 0; z-index: 1;
+    clip-path: inset(
+      calc(var(--t) * (1 - var(--pc))) calc(var(--r) * (1 - var(--pc)))
+      calc(var(--b) * (1 - var(--pc))) calc(var(--l) * (1 - var(--pc)))
+      round calc(var(--rad) * (1 - var(--pc)))
+    );
+    will-change: clip-path;
+  }
+  .pinned-hero__media {
+    position: absolute; inset: 0;
+    transform: scale(calc(1.12 - 0.12 * var(--pc)));
+    will-change: transform;
+  }
+  .pinned-hero__media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  /* 2. Shade */
+  .pinned-hero__shade {
+    position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    background: linear-gradient(to top, rgb(18 18 20 / 0.94) 0%, rgb(18 18 20 / 0.6) 45%, rgb(18 18 20 / 0.1) 80%);
+    opacity: var(--shade);
+  }
+
+  /* 3. Intro copy */
+  .pinned-hero__intro {
+    position: absolute; inset: 0; z-index: 3;
+    opacity: calc(1 - var(--intro));
+    transform: translateY(calc(-18% * var(--intro)));
+    will-change: transform, opacity;
+  }
+  .pinned-hero__fade { opacity: calc(1 - var(--fade)); will-change: opacity; }
+  .pinned-hero__chip {
+    position: absolute; z-index: 3; left: 52%; bottom: 72px;
+    transform: translateX(-50%);
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.6rem 1.1rem 0.6rem 0.6rem;
+    border-radius: 999px;
+    background: rgb(28 28 30 / 0.92);
+    border: 1px solid rgb(255 255 255 / 0.14);
+    box-shadow: 0 18px 40px -16px rgb(0 0 0 / 0.6);
+  }
+
+  /* 4. Caption: each [data-cap] child rises in */
+  .pinned-hero__caption { position: absolute; inset: 0; z-index: 4; }
+  .pinned-hero__caption [data-cap] {
+    --c: 0;
+    opacity: var(--c);
+    transform: translateY(calc(50px * (1 - var(--c))));
+    will-change: transform, opacity;
+  }
+
+  /* 5. Scroll hint */
+  .pinned-hero__hint {
+    position: absolute; z-index: 5; bottom: 1.5rem; left: 26%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase;
+    color: rgb(255 255 255 / 0.6);
+  }
+
+  @media (width < 820px) {
+    .pinned-hero__clip { clip-path: inset(0); }
+    .pinned-hero__media { transform: none; }
+    .pinned-hero__shade { opacity: max(0.7, var(--shade)); }
+    .pinned-hero__chip { display: none; }
+    .pinned-hero__hint { left: 50%; }
+  }
+
+  /* Reduced motion: no scroll distance, final state is set once by JS */
+  @media (prefers-reduced-motion: reduce) {
+    .pinned-hero { height: auto; }
+    .pinned-hero__stick { position: relative; top: 0; }
+  }
+
+  /* ---------- Animated brand scene (shown when there is no hero video) ---------- */
+  .nv-anim {
+    position: absolute; inset: 0; overflow: hidden;
+    background: #1c1c1e;
+  }
+
+  .nv-anim__grid {
+    position: absolute; left: -50%; right: -50%; bottom: -12%; height: 60%;
+    overflow: hidden;
+    transform: perspective(700px) rotateX(62deg);
+    transform-origin: bottom;
+    mask-image: linear-gradient(to top, #000 10%, transparent 90%);
+  }
+  .nv-anim__grid::before {
+    content: ""; position: absolute; inset: -60px 0 0;
+    background-image:
+      linear-gradient(rgb(243 238 230 / 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(243 238 230 / 0.08) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: nv-grid 3s linear infinite;
+  }
+
+  .nv-anim__spark {
+    position: absolute; width: 3px; height: 3px; border-radius: 999px;
+    background: #e8dccb;
+    animation: nv-pulse 2.8s ease-in-out infinite;
+  }
+
+  .nv-anim__core {
+    position: absolute; left: 76%; top: 46%;
+    width: clamp(220px, 32vmin, 380px); aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+  }
+  .nv-anim__ring {
+    position: absolute; inset: var(--i); border-radius: 50%;
+    border: 1px solid rgb(243 238 230 / 0.14);
+    animation: nv-spin var(--s) linear infinite;
+  }
+  .nv-anim__ring--rev { animation-direction: reverse; border-style: dashed; }
+  .nv-anim__ring::after {
+    content: ""; position: absolute; top: -4px; left: 50%;
+    width: 8px; height: 8px; margin-left: -4px; border-radius: 50%;
+    background: var(--dot);
+  }
+  .nv-anim__logo {
+    position: absolute; inset: 34%;
+    display: grid; place-items: center;
+    border-radius: 28%;
+    background: #26262a;
+    border: 1px solid rgb(243 238 230 / 0.16);
+    box-shadow: 0 24px 60px -20px rgb(0 0 0 / 0.7), inset 0 1px 0 rgb(243 238 230 / 0.1);
+  }
+  .nv-anim__logo img { width: 62%; height: auto; }
+  .nv-anim__tag {
+    position: absolute;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    white-space: nowrap; padding: 0.45rem 0.85rem; border-radius: 999px;
+    font-size: 0.8rem; font-weight: 600; color: #f3eee6;
+    background: #26262a;
+    border: 1px solid rgb(243 238 230 / 0.16);
+    animation: nv-float 6s ease-in-out infinite;
+  }
+  .nv-anim__tag svg { width: 14px; height: 14px; color: #e0907e; }
+
+  @media (width < 820px) {
+    .nv-anim__core { left: 50%; top: 32%; }
+    .nv-anim__tag { display: none; }
+  }
+}
+
+@keyframes nv-grid { to { transform: translateY(60px); } }
+@keyframes nv-spin { to { transform: rotate(360deg); } }

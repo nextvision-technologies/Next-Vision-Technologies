@@ -18,7 +18,7 @@ export function ServiceIcon({ name, className = "size-6" }: { name: string; clas
 export function IconTile({ name, size = "md" }: { name: string; size?: "md" | "lg" }) {
   const box = size === "lg" ? "size-14 rounded-2xl" : "size-12 rounded-xl";
   return (
-    <span className={`bg-brand-gradient inline-flex ${box} shrink-0 items-center justify-center text-white shadow-lift`}>
+    <span className={`solid-primary inline-flex ${box} shrink-0 items-center justify-center text-white shadow-lift`}>
       <ServiceIcon name={name} className={size === "lg" ? "size-7" : "size-6"} />
     </span>
   );

@@ -1,42 +1,16 @@
-// Shared page sections: cards, CTA, FAQ, process, pricing, stats, testimonials.
-import Image from "next/image";
+// Shared page sections used on many pages: CTA band, FAQ, process steps, stats, testimonials.
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Quote } from "lucide-react";
-import { postImage, type Post } from "@/content/blog";
 import { testimonials } from "@/content/misc";
 import { site, whatsappLink } from "@/content/site";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SocialIcon } from "@/components/ui/SocialIcons";
 
-export { ServiceCard } from "./ServiceCard";
-
-const dateFmt = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" });
-export const formatDate = (iso: string) => dateFmt.format(new Date(iso + "T00:00:00Z"));
-
-export function PostCard({ p }: { p: Post }) {
-  return (
-    <Link href={`/blog/${p.slug}`}
-      className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-card shadow-card transition hover:-translate-y-1 hover:shadow-lift">
-      <div className="bg-navy-radial relative flex aspect-[16/9] items-end overflow-hidden p-4">
-        <Image src={postImage(p.slug)} alt="" fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover transition duration-500 group-hover:scale-105" />
-        <span className="relative rounded-full bg-navy-950/70 px-3 py-1 text-xs font-semibold text-white backdrop-blur">{p.category}</span>
-      </div>
-      <div className="flex flex-1 flex-col gap-3 p-6">
-        <p className="text-xs text-muted">{formatDate(p.date)} · {p.readMinutes} min read</p>
-        <h3 className="text-lg font-bold leading-snug text-heading group-hover:text-brand-600">{p.title}</h3>
-        <p className="line-clamp-3 text-sm leading-relaxed text-muted">{p.excerpt}</p>
-      </div>
-    </Link>
-  );
-}
-
 export function CtaBand({ title = "Ready to take your business to the next level?", text = "Tell us about your project and get a free quote within 24 hours." }: { title?: string; text?: string }) {
   return (
     <section className="container-page py-16 sm:py-20">
-      <div className="bg-navy-radial relative overflow-hidden rounded-[2rem] px-6 py-14 text-center text-white sm:px-12">
-        <div className="bg-pixel-grid pointer-events-none absolute inset-0 opacity-70" aria-hidden />
+      <div className="section-dark relative overflow-hidden rounded-[2rem] px-6 py-14 text-center text-white sm:px-12">
         <div className="relative mx-auto flex max-w-2xl flex-col items-center gap-5">
           <h2 className="text-3xl font-extrabold sm:text-4xl">{title}</h2>
           <p className="text-lg text-white/85">{text}</p>
@@ -83,15 +57,13 @@ export function ProcessSteps({ steps }: { steps: { title: string; text: string }
   );
 }
 
-export { PricingCards } from "./PricingCards";
-
 export function StatsStrip({ tone = "light" }: { tone?: "light" | "dark" }) {
   return (
     <dl className="grid grid-cols-2 gap-6 lg:grid-cols-4">
       {site.stats.map((s) => (
         <div key={s.label} className="flex flex-col gap-1">
           <dt className={`order-2 text-sm ${tone === "dark" ? "text-white/65" : "text-muted"}`}>{s.label}</dt>
-          <dd className={`font-display text-4xl font-extrabold ${tone === "dark" ? "text-white" : "text-brand-gradient"}`}>{s.value}</dd>
+          <dd className={`font-display text-4xl font-extrabold ${tone === "dark" ? "text-white" : "text-brand-600"}`}>{s.value}</dd>
         </div>
       ))}
     </dl>
@@ -106,7 +78,7 @@ export function Testimonials() {
           <Quote className="size-8 text-glow-400" aria-hidden />
           <blockquote className="flex-1 leading-relaxed text-ink">{t.text}</blockquote>
           <figcaption className="flex items-center gap-3">
-            <span className="bg-brand-gradient inline-flex size-10 items-center justify-center rounded-full font-bold text-white">{t.name[0]}</span>
+            <span className="solid-primary inline-flex size-10 items-center justify-center rounded-full font-bold text-white">{t.name[0]}</span>
             <span>
               <span className="block text-sm font-semibold text-heading">{t.name}</span>
               <span className="block text-xs text-muted">{t.role} · {t.project}</span>

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { locations } from "@/content/misc";
 import { services } from "@/content/services";
-import { PageHero } from "./PageHero";
-import { CtaBand, ServiceCard, StatsStrip } from "./Blocks";
+import { PageHero } from "@/components/sections/PageHero";
+import { CtaBand, StatsStrip } from "@/components/sections/Blocks";
+import { ServiceCard } from "@/features/services/ServiceCard";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 

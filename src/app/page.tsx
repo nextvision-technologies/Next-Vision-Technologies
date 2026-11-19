@@ -1,20 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, Check, Headset, Mail, Rocket, Zap } from "lucide-react";
+import { ArrowRight, BadgeCheck, Headset, Mail, Rocket, Zap } from "lucide-react";
 import { services } from "@/content/services";
 import { testimonials } from "@/content/misc";
 import { site, whatsappLink } from "@/content/site";
+import { publicFile } from "@/lib/files";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SocialIcon } from "@/components/ui/SocialIcons";
 import { PixelCluster } from "@/components/sections/PageHero";
-import { CtaBand, Faq, PricingCards, Testimonials } from "@/components/sections/Blocks";
-import { ContactForm } from "@/components/sections/ContactForm";
-import { HeroVisual } from "@/components/home/HeroVisual";
-import { Typewriter } from "@/components/home/Typewriter";
+import { CtaBand, Faq, Testimonials } from "@/components/sections/Blocks";
+import { PricingCards } from "@/features/pricing/PricingCards";
+import { ContactForm } from "@/features/contact/ContactForm";
+import { PinnedHero } from "@/features/home/PinnedHero";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { TechMarquee } from "@/components/home/TechMarquee";
-import { ServiceTabs } from "@/components/home/ServiceTabs";
+import { TechMarquee } from "@/features/home/TechMarquee";
+import { ServiceTabs } from "@/features/home/ServiceTabs";
 
 const reasons = [
   { icon: Rocket, title: "Built around growth", text: "Every project starts from a business goal: more leads, more sales or fewer manual hours." },
@@ -37,52 +38,26 @@ const faqs = [
   { q: "Will I own my website and code?", a: "Yes. Once the project is paid, the code, domain and content belong to you." },
 ];
 
+// Hero media: drop public/video/hero.mp4 (+ optional hero-poster.webp) in place and the
+// animated brand scene is swapped for the video on the next build.
+const heroVideo = publicFile("video", "hero.mp4")
+  ? { src: "/video/hero.mp4", poster: publicFile("video", "hero-poster.webp") ? "/video/hero-poster.webp" : undefined }
+  : undefined;
+
 const hasRealReviews = testimonials.every((t) => !t.text.startsWith("Placeholder"));
 
 export default function Home() {
   return (
     <>
-      {/* ---------- Hero ---------- */}
-      <section className="bg-navy-radial relative overflow-hidden text-white">
-        <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
-        <div className="container-page relative grid items-center gap-12 pt-12 pb-28 sm:pt-16 lg:grid-cols-[1.15fr_1fr] lg:gap-12 lg:pb-32">
-          <div className="animate-rise flex flex-col gap-6">
-            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] py-1 pr-3.5 pl-1 text-xs text-white/80 sm:text-sm">
-              <span className="bg-brand-gradient rounded-full px-2.5 py-0.5 text-xs font-bold text-white">New</span>
-              AI chatbots &amp; automation for your business
-            </span>
-            <h1 className="text-[2.3rem] leading-[1.12] font-extrabold tracking-tight sm:text-5xl xl:text-[3.6rem]">
-              <span className="sr-only">We build AI chatbots, AI automation, SaaS products, websites, mobile apps and ad campaigns for your business.</span>
-              <span aria-hidden className="block">We build</span>
-              <Typewriter
-                words={["AI Chatbots", "AI Automation", "SaaS Products", "Websites", "Mobile Apps", "Ad Campaigns"]}
-                className="text-brand-gradient block min-h-[1.15em] whitespace-nowrap"
-              />
-              <span aria-hidden className="block text-[0.8em] text-white/90">for your business</span>
-            </h1>
-            <p className="max-w-lg text-base leading-relaxed text-white/65 sm:text-lg">
-              One team in Pakistan and the UK that plans, builds and grows your digital business.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Button href="/contact" size="lg">Get a free quote <ArrowRight className="size-4" /></Button>
-              <Button href={whatsappLink()} variant="light" size="lg"><SocialIcon name="whatsapp" className="size-5" /> WhatsApp us</Button>
-            </div>
-            <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/65">
-              {["Free consultation", "Fixed-price quotes", "You own the code"].map((t) => (
-                <li key={t} className="flex items-center gap-2"><Check className="size-4 text-glow-400" aria-hidden />{t}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="animate-rise [animation-delay:.15s] lg:self-start"><HeroVisual /></div>
-        </div>
-      </section>
+      {/* ---------- Pinned expanding hero ---------- */}
+      <PinnedHero video={heroVideo} />
 
       {/* ---------- Stats card overlapping hero ---------- */}
       <section className="container-page relative z-10 -mt-16 lg:-mt-20">
         <dl data-reveal="zoom" className="grid grid-cols-2 divide-line overflow-hidden rounded-[1.5rem] border border-line bg-card shadow-lift lg:grid-cols-4 lg:divide-x">
           {site.stats.map((s) => (
             <div key={s.label} className="flex flex-col gap-1 p-6 text-center sm:p-8">
-              <dd className="text-brand-gradient font-display text-4xl font-extrabold sm:text-5xl">{s.value}</dd>
+              <dd className="text-brand-600 font-display text-4xl font-extrabold sm:text-5xl">{s.value}</dd>
               <dt className="text-sm font-medium text-muted">{s.label}</dt>
             </div>
           ))}
@@ -94,7 +69,7 @@ export default function Home() {
       {/* ---------- Services ---------- */}
       <section className="bg-surface py-20 sm:py-24">
         <div className="container-page flex flex-col gap-12">
-          <div data-reveal><SectionHeading eyebrow="What we do" title={<>{services.length} services. <span className="text-brand-gradient">One team.</span></>}
+          <div data-reveal><SectionHeading eyebrow="What we do" title={<>{services.length} services. <span className="text-brand-600">One team.</span></>}
             text="Choose a category to see how we can help, from AI agents to Google rankings." /></div>
           <div data-reveal><ServiceTabs /></div>
           <Button href="/services" variant="secondary" className="mx-auto">View all services <ArrowRight className="size-4" /></Button>
@@ -104,8 +79,7 @@ export default function Home() {
       {/* ---------- Why us (bento) ---------- */}
       <section className="container-page py-20 sm:py-24">
         <div data-reveal-stagger className="grid gap-5 lg:grid-cols-3">
-          <div className="bg-navy-radial relative flex flex-col justify-between gap-10 overflow-hidden rounded-[1.75rem] p-8 text-white sm:p-10 lg:row-span-2">
-            <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
+          <div className="section-dark relative flex flex-col justify-between gap-10 overflow-hidden rounded-[1.75rem] p-8 text-white sm:p-10 lg:row-span-2">
             <div className="relative flex flex-col gap-5">
               <span className="text-xs font-semibold tracking-[0.16em] text-glow-400 uppercase">Why Next Vision</span>
               <h2 className="text-3xl leading-tight font-extrabold sm:text-4xl">One partner for AI, software and growth</h2>
@@ -118,7 +92,7 @@ export default function Home() {
           </div>
           {reasons.map((r) => (
             <div key={r.title} className="group flex flex-col gap-4 rounded-[1.5rem] border border-line bg-card p-7 transition hover:-translate-y-1 hover:shadow-lift">
-              <span className="inline-flex size-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition group-hover:bg-brand-gradient">
+              <span className="inline-flex size-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition group-hover:solid-primary">
                 <r.icon className="size-6" aria-hidden strokeWidth={1.8} />
               </span>
               <h3 className="text-xl font-bold text-heading">{r.title}</h3>
@@ -129,16 +103,15 @@ export default function Home() {
       </section>
 
       {/* ---------- Process ---------- */}
-      <section className="bg-navy-radial relative overflow-hidden py-20 text-white sm:py-24">
-        <div className="bg-pixel-grid pointer-events-none absolute inset-0" aria-hidden />
+      <section className="section-dark relative overflow-hidden py-20 text-white sm:py-24">
         <PixelCluster className="absolute top-10 right-8 hidden w-32 lg:block" />
         <div className="container-page relative flex flex-col gap-14">
           <div data-reveal><SectionHeading tone="dark" eyebrow="How we work" title="From first call to launch in four steps" /></div>
           <ol data-reveal-stagger className="relative grid gap-10 md:grid-cols-4 md:gap-6">
-            <span className="bg-brand-gradient absolute top-6 right-[12%] left-[12%] hidden h-0.5 md:block" aria-hidden />
+            <span className="solid-primary absolute top-6 right-[12%] left-[12%] hidden h-0.5 md:block" aria-hidden />
             {steps.map((s, i) => (
               <li key={s.title} className="relative flex flex-col items-center gap-4 text-center">
-                <span className="bg-brand-gradient relative inline-flex size-12 items-center justify-center rounded-full font-display text-lg font-extrabold text-white ring-8 ring-navy-950">
+                <span className="solid-primary relative inline-flex size-12 items-center justify-center rounded-full font-display text-lg font-extrabold text-white ring-8 ring-charcoal-950">
                   {i + 1}
                 </span>
                 <h3 className="text-xl font-bold">{s.title}</h3>
