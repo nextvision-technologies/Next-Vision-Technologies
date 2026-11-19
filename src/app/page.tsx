@@ -69,7 +69,7 @@ export default function Home() {
       {/* ---------- Services ---------- */}
       <section className="bg-surface py-20 sm:py-24">
         <div className="container-page flex flex-col gap-12">
-          <div data-reveal><SectionHeading eyebrow="What we do" title={<>{services.length} services. <span className="text-brand-600">One team.</span></>}
+          <div data-reveal><SectionHeading eyebrow="What we do" title={<>{services.length} services. <span className="text-gradient">One team.</span></>}
             text="Choose a category to see how we can help, from AI agents to Google rankings." /></div>
           <div data-reveal><ServiceTabs /></div>
           <Button href="/services" variant="secondary" className="mx-auto">View all services <ArrowRight className="size-4" /></Button>
@@ -111,7 +111,7 @@ export default function Home() {
             <span className="solid-primary absolute top-6 right-[12%] left-[12%] hidden h-0.5 md:block" aria-hidden />
             {steps.map((s, i) => (
               <li key={s.title} className="relative flex flex-col items-center gap-4 text-center">
-                <span className="solid-primary relative inline-flex size-12 items-center justify-center rounded-full font-display text-lg font-extrabold text-white ring-8 ring-charcoal-950">
+                <span className="solid-primary relative inline-flex size-12 items-center justify-center rounded-full font-display text-lg font-extrabold text-white ring-8 ring-night-950">
                   {i + 1}
                 </span>
                 <h3 className="text-xl font-bold">{s.title}</h3>

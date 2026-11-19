@@ -55,7 +55,7 @@ export function ArticleBlock({ block, h2Prefix }: { block: Block; h2Prefix?: str
         <figure className="my-8">
           <div className="overflow-x-auto rounded-2xl border border-line">
             <table className="w-full min-w-[32rem] text-left text-sm">
-              <thead className="bg-charcoal-900 text-white">
+              <thead className="bg-night-900 text-white">
                 <tr>{block.head.map((h) => <th key={h} className="px-5 py-3.5 font-semibold">{h}</th>)}</tr>
               </thead>
               <tbody>

@@ -28,7 +28,7 @@ export function HeroVisual() {
       {/* Backdrop */}
       <div className="rounded-[1.75rem] bg-surface p-4 pb-20 shadow-2xl sm:p-7 sm:pb-20">
         {/* Editor window */}
-        <div className="overflow-hidden rounded-2xl border border-white/15 bg-charcoal-900 shadow-[0_18px_40px_-12px_rgb(28_28_30/0.6)]">
+        <div className="overflow-hidden rounded-2xl border border-white/15 bg-night-900 shadow-[0_18px_40px_-12px_rgb(31_10_77/0.6)]">
           <div className="relative flex h-11 items-center gap-2 px-4">
             <span className="size-3 rounded-full bg-white/25" />
             <span className="size-3 rounded-full bg-white/25" />
@@ -44,7 +44,7 @@ export function HeroVisual() {
       </div>
 
       {/* Floating AI chat bubble */}
-      <div className="animate-float absolute bottom-0 -left-2 w-56 rounded-2xl border border-white/12 bg-charcoal-900 p-3.5 shadow-xl sm:-left-8">
+      <div className="animate-float absolute bottom-0 -left-2 w-56 rounded-2xl border border-white/12 bg-night-900 p-3.5 shadow-xl sm:-left-8">
         <div className="flex items-center gap-2">
           <span className="solid-primary inline-flex size-7 items-center justify-center rounded-full"><Bot className="size-4" /></span>
           <p className="text-xs font-semibold text-white">AI assistant</p>

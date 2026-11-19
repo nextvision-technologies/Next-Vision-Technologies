@@ -6,11 +6,16 @@ import { site } from "@/content/site";
 import { Button } from "@/components/ui/Button";
 import { subscribeScroll } from "@/hooks/useScroll";
 import { HeroAnimation } from "./HeroAnimation";
+import { CodeTerminal } from "./CodeTerminal";
+import { Typewriter } from "./Typewriter";
+
+const typedWords = ["AI Chatbots", "AI Automation", "SaaS Products", "Websites", "Mobile Apps", "Ad Campaigns"];
 
 /**
- * Scroll-driven pinned hero: a rounded media card on the right expands to fill the screen
- * as the visitor scrolls, then a caption rises in over it.
- * Media = `video` when provided, otherwise the animated brand scene (HeroAnimation).
+ * Scroll-driven pinned hero: a rounded media card on the left (with a live coding terminal)
+ * expands to fill the screen as the visitor scrolls, then a caption rises in over it.
+ * The heading on the right types out what we build (Typewriter).
+ * Media = `video` when provided, otherwise the animated brand backdrop (HeroAnimation).
  * All motion is driven by CSS custom properties written from the shared rAF-throttled scroll handler
  * (styles live in globals.css under "Pinned expanding hero").
  */
@@ -87,7 +92,7 @@ export function PinnedHero({ video }: Props) {
   return (
     <section ref={sectionRef} className="pinned-hero section-dark text-white" aria-label="Introduction">
       <div ref={stickRef} className="pinned-hero__stick">
-        {/* 1. Media card that expands */}
+        {/* 1. Media card on the left that expands, with the live coding terminal on top */}
         <div className="pinned-hero__clip" aria-hidden>
           <div className="pinned-hero__media">
             {video ? (
@@ -96,24 +101,30 @@ export function PinnedHero({ video }: Props) {
               <HeroAnimation />
             )}
           </div>
+          <div className="pinned-hero__terminal">
+            <CodeTerminal />
+          </div>
         </div>
 
         {/* 2. Shade for caption contrast */}
         <div className="pinned-hero__shade" aria-hidden />
 
-        {/* 3. Intro copy */}
+        {/* 3. Intro copy (right side on desktop) */}
         <div ref={introRef} className="pinned-hero__intro">
-          <div className="container-page flex h-full flex-col justify-center pb-8">
-            <div className="flex max-w-xl flex-col gap-6 min-[820px]:w-[46%]">
+          <div className="container-page flex h-full flex-col justify-end pb-24 min-[820px]:justify-center min-[820px]:pb-8">
+            <div className="flex max-w-xl flex-col gap-5 sm:gap-6 min-[820px]:ml-auto min-[820px]:w-[46%]">
               <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.18em] text-white/80 uppercase md:backdrop-blur sm:text-xs">
                 <span className="size-1.5 rounded-full bg-emerald-400" aria-hidden />
                 Pakistan · United Kingdom
               </span>
-              <h1 className="text-[2.6rem] leading-[1.05] font-extrabold tracking-tight sm:text-6xl xl:text-7xl">
-                Tech that <em className="text-brand-600 font-serif font-normal italic">grows</em> your business
+              <h1 className="text-[2.5rem] leading-[1.05] font-bold tracking-tight sm:text-6xl xl:text-7xl">
+                <span className="sr-only">We build AI chatbots, AI automation, SaaS products, websites, mobile apps and ad campaigns for your business.</span>
+                <span aria-hidden className="block">We build</span>
+                <Typewriter words={typedWords} className="text-gradient block min-h-[1.1em] font-semibold whitespace-nowrap italic" />
+                <span aria-hidden className="block text-[0.72em] text-white/90">for your business</span>
               </h1>
-              <p className="max-w-md text-base leading-relaxed text-white/70 sm:text-lg">
-                AI chatbots, automation, SaaS, websites and marketing, built by one team in Pakistan and the UK.
+              <p className="max-w-md text-lg leading-relaxed text-white/75">
+                One team in Pakistan and the UK that plans, builds and grows your digital business.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Button href="/contact" size="lg">Get a free quote <ArrowRight className="size-4" aria-hidden /></Button>
@@ -140,7 +151,7 @@ export function PinnedHero({ video }: Props) {
               Free consultation
             </span>
             <h2 data-cap className="max-w-3xl text-4xl leading-[1.08] font-extrabold tracking-tight sm:text-6xl">
-              Custom software and <em className="text-brand-600 font-serif font-normal italic">affordable</em> packages
+              Custom software and <em className="text-gradient font-serif font-semibold italic">affordable</em> packages
             </h2>
             <div data-cap>
               <Button href="/book-demo" size="lg">Book a free demo <ArrowRight className="size-4" aria-hidden /></Button>

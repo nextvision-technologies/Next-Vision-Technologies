@@ -81,7 +81,7 @@ function PlanCard({ p }: { p: Package }) {
         <Link href="/contact"
           className={`mt-8 inline-flex h-13 items-center justify-center gap-2 rounded-full font-semibold transition ${
             dark ? "solid-primary text-white shadow-lift hover:brightness-110"
-              : "bg-charcoal-900 text-white hover:solid-primary"}`}>
+              : "bg-night-900 text-white hover:solid-primary"}`}>
           Get Started <ArrowRight className="size-4 transition group-hover:translate-x-1" aria-hidden />
         </Link>
       </div>

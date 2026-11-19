@@ -92,7 +92,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
           </div>
         </div>
         <div className="container-page relative">
-          <div className="relative mx-auto aspect-[16/9] max-w-5xl overflow-hidden rounded-[1.75rem] shadow-[0_30px_80px_-30px_rgb(28_28_30/0.5)] ring-1 ring-black/5">
+          <div className="relative mx-auto aspect-[16/9] max-w-5xl overflow-hidden rounded-[1.75rem] shadow-[0_30px_80px_-30px_rgb(31_10_77/0.5)] ring-1 ring-black/5">
             <Image src={postImage(post.slug)} alt={post.title} fill priority sizes="(min-width: 1024px) 64rem, 100vw" className="object-cover" />
           </div>
         </div>
