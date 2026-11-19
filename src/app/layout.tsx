@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
@@ -58,7 +59,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <SiteJsonLd />
       </head>
+      {/* Google Tag Manager: loads after hydration so it never slows the first paint */}
+      <GoogleTagManager gtmId={site.gtmId} />
       <body className="flex min-h-dvh flex-col">
+        {/* GTM fallback for visitors with JavaScript turned off */}
+        <noscript>
+          <iframe src={`https://www.googletagmanager.com/ns.html?id=${site.gtmId}`} height="0" width="0" style={{ display: "none", visibility: "hidden" }} title="Google Tag Manager" />
+        </noscript>
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

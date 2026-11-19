@@ -7,6 +7,7 @@ export const site = {
   description:
     "Next Vision Technologies builds AI automation, SaaS products, websites and digital marketing campaigns that help businesses grow.",
   url: "https://www.nextvision-technologies.com", // primary domain (the bare domain redirects here)
+  gtmId: "GTM-PM9BTDMZ", // Google Tag Manager container (analytics and marketing tags are managed inside GTM)
   email: "info@nextvision-technologies.com",
   phones: [
     { label: "Pakistan", value: "+92 300 3209005", href: "tel:+923003209005", whatsapp: false },
