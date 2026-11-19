@@ -14,6 +14,8 @@ import { PostCard } from "@/features/blog/PostCard";
 import { ReadingProgress, ShareButtons, TableOfContents } from "@/features/blog/ArticleChrome";
 import { IconTile } from "@/components/ui/ServiceIcon";
 import { buttonClass } from "@/components/ui/Button";
+import { pageMetadata } from "@/lib/seo";
+import { BreadcrumbJsonLd } from "@/components/seo/SiteJsonLd";
 
 export function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
@@ -22,12 +24,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): Promise<Metadata> {
   const p = getPost((await params).slug);
   if (!p) return {};
-  return {
-    title: p.title,
-    description: p.excerpt,
-    alternates: { canonical: `/blog/${p.slug}` },
-    openGraph: { type: "article", title: p.title, description: p.excerpt, publishedTime: p.date, images: [postImage(p.slug)] },
-  };
+  return pageMetadata(`/blog/${p.slug}`, { type: "article", publishedTime: p.date });
 }
 
 export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
@@ -63,6 +60,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
+      <BreadcrumbJsonLd items={[{ label: "Home", href: "/" }, { label: "Blog", href: "/blog" }, { label: post.title }]} />
       <ReadingProgress />
 
       {/* ---------- Hero ---------- */}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { ChevronRight } from "lucide-react";
+import { BreadcrumbJsonLd } from "@/components/seo/SiteJsonLd";
 
 type Crumb = { label: string; href?: string };
 
@@ -8,6 +9,7 @@ type Crumb = { label: string; href?: string };
 export function PageHero({ title, text, crumbs, eyebrow, children }: { title: ReactNode; text?: ReactNode; crumbs: Crumb[]; eyebrow?: string; children?: ReactNode }) {
   return (
     <section className="section-dark relative overflow-hidden text-white">
+      <BreadcrumbJsonLd items={[{ label: "Home", href: "/" }, ...crumbs]} />
       <PixelCluster className="absolute top-6 right-[6%] hidden w-28 md:block" />
       <div className="container-page relative flex flex-col gap-3.5 py-10 sm:py-14">
         <nav aria-label="Breadcrumb">

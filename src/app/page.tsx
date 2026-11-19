@@ -16,6 +16,9 @@ import { PinnedHero } from "@/features/home/PinnedHero";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { TechMarquee } from "@/features/home/TechMarquee";
 import { ServiceTabs } from "@/features/home/ServiceTabs";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata("/");
 
 const reasons = [
   { icon: Rocket, title: "Built around growth", text: "Every project starts from a business goal: more leads, more sales or fewer manual hours." },

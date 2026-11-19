@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
 import { CtaBand, Faq } from "@/components/sections/Blocks";
 import { PricingCards } from "@/features/pricing/PricingCards";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Pricing", description: "Monthly growth packages and custom project pricing from Next Vision Technologies." };
+export const metadata = pageMetadata("/pricing");
 
 const faqs = [
   { q: "Is there a minimum contract?", a: "Monthly packages run month to month after the first three months. Cancel with 30 days' notice." },

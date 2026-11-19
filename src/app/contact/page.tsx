@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { site, whatsappLink } from "@/content/site";
 import { PageHero } from "@/components/sections/PageHero";
 import { ContactForm } from "@/features/contact/ContactForm";
 import { SocialIcon } from "@/components/ui/SocialIcons";
+import { pageMetadata } from "@/lib/seo";
 
 const WhatsAppIcon = ({ className }: { className?: string }) => <SocialIcon name="whatsapp" className={className} />;
 
-export const metadata: Metadata = { title: "Contact Us", description: "Get a free quote from Next Vision Technologies within 24 hours." };
+export const metadata = pageMetadata("/contact");
 
 export default function ContactPage() {
   const items = [
