@@ -1,5 +1,5 @@
 import { CalendarDays, GraduationCap } from "lucide-react";
-import { courses } from "@/content/misc";
+import { courses } from "@/content/courses";
 import { whatsappLink } from "@/content/site";
 import { PageHero } from "@/components/sections/PageHero";
 import { Button } from "@/components/ui/Button";

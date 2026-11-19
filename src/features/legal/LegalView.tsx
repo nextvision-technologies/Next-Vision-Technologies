@@ -4,9 +4,9 @@ import { ArrowRight, CalendarDays, ChevronRight, Clock, Cookie, FileText, Globe,
 import { getLegal, legalPages, legalUpdated } from "@/content/legal";
 import { headingId } from "@/lib/format";
 import { site, whatsappLink } from "@/content/site";
-import { ArticleBlock } from "@/features/blog/ArticleBlocks";
+import { ArticleBlock } from "@/components/article/ArticleBlocks";
 import { RichText } from "@/components/ui/RichText";
-import { ReadingProgress, TableOfContents } from "@/features/blog/ArticleChrome";
+import { ReadingProgress, TableOfContents } from "@/components/article/ArticleChrome";
 import { buttonClass } from "@/components/ui/Button";
 import { SocialIcon } from "@/components/ui/SocialIcons";
 import { pageMetadata } from "@/lib/seo";

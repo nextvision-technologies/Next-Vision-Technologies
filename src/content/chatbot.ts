@@ -1,7 +1,7 @@
 // Rule-based website assistant. No AI service is called: every reply comes from this file.
 // Answers support [text](/link) and **bold**. Each intent has an English and a Roman Urdu reply.
 import { services } from "./services";
-import { packages } from "./misc";
+import { packages } from "./pricing";
 import { site } from "./site";
 import type { Intent, Lang, Reply } from "@/types/content";
 
@@ -121,8 +121,8 @@ const general: Intent[] = [
   {
     id: "portfolio",
     keywords: ["portfolio", "your work", "projects", "previous work", "samples", "examples", "case study", "kaam dikhao", "pehle ka kaam", "clients", "reviews"],
-    en: { text: "We've delivered **100+ projects** for 50+ clients: websites, online stores, AI chatbots, apps and campaigns. See highlights in our [portfolio](/portfolio), or [book a demo](/book-demo) to see live examples.", chips: ["Book a demo", "Services"] },
-    ur: { text: "Hum **100+ projects** 50+ clients ke liye kar chuke hain: websites, online stores, AI chatbots, apps aur campaigns. [Portfolio](/portfolio) dekhein, ya live examples ke liye [demo book karein](/book-demo).", chips: ["Demo book karein", "Services"] },
+    en: { text: "We've delivered **100+ projects** for 50+ clients: websites, online stores, AI chatbots, apps and campaigns. See live examples in our [Projects Gallery](/projects), or [book a demo](/book-demo) to see live examples.", chips: ["Book a demo", "Services"] },
+    ur: { text: "Hum **100+ projects** 50+ clients ke liye kar chuke hain: websites, online stores, AI chatbots, apps aur campaigns. [Projects Gallery](/projects) dekhein, ya live examples ke liye [demo book karein](/book-demo).", chips: ["Demo book karein", "Services"] },
   },
   {
     id: "team",

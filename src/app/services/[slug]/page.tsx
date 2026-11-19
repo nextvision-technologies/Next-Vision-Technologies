@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -7,7 +8,7 @@ import { defaultProcess, getService, services } from "@/content/services";
 import { postImage, sortedPosts } from "@/content/blog";
 import { site, whatsappLink } from "@/content/site";
 import { CtaBand, Faq } from "@/components/sections/Blocks";
-import { ServiceCard } from "@/features/services/ServiceCard";
+import { ServiceCard } from "@/components/cards/ServiceCard";
 import { formatDate } from "@/lib/format";
 import { PixelCluster } from "@/components/sections/PageHero";
 import { Button, buttonClass } from "@/components/ui/Button";
@@ -15,6 +16,7 @@ import { IconTile, ServiceIcon } from "@/components/ui/ServiceIcon";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SocialIcon } from "@/components/ui/SocialIcons";
 import { pageMetadata } from "@/lib/seo";
+import { PageSkeleton } from "@/components/sections/PageSkeleton";
 import { BreadcrumbJsonLd } from "@/components/seo/SiteJsonLd";
 
 export function generateStaticParams() {
@@ -35,7 +37,17 @@ const sections = [
   { id: "faq", label: "FAQ" },
 ];
 
-export default async function ServicePage({ params }: PageProps<"/services/[slug]">) {
+// `params` is read inside <Suspense> so navigations stay instant under Cache Components.
+// Every slug comes from generateStaticParams, so each page is still fully prerendered at build time.
+export default function ServicePage({ params }: PageProps<"/services/[slug]">) {
+  return (
+    <Suspense fallback={<PageSkeleton />}>
+      <ServiceContent params={params} />
+    </Suspense>
+  );
+}
+
+async function ServiceContent({ params }: { params: PageProps<"/services/[slug]">["params"] }) {
   const s = getService((await params).slug);
   if (!s) notFound();
   const related = s.related.map(getService).filter((r) => r !== undefined);

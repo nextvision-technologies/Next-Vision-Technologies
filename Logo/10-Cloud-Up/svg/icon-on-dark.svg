@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-8 -8 144.00 136.00" width="144" height="136">
-<title>Next Vision Technologies</title>
-<defs><linearGradient id="10idg" gradientUnits="userSpaceOnUse" x1="10" y1="110" x2="118" y2="10"><stop offset="0" stop-color="#0EA5E9"/><stop offset="1" stop-color="#6366F1"/></linearGradient></defs><defs><mask id="10idk" maskUnits="userSpaceOnUse" x="0" y="0" width="128" height="120"><rect width="128" height="120" fill="#fff"/>
-<path d="M66 86V56M53 69 66 56 79 69" fill="none" stroke="#000" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></mask></defs>
-<g mask="url(#10idk)" fill="url(#10idg)"><circle cx="38" cy="70" r="26"/><circle cx="66" cy="50" r="33"/><circle cx="96" cy="72" r="24"/><rect x="38" y="70" width="58" height="26"/></g>
-</svg>

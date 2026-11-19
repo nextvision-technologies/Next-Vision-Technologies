@@ -34,13 +34,30 @@ export type BlogCategory =
   | "AI & Automation" | "Web Development" | "SEO" | "E-Commerce"
   | "Digital Marketing" | "Mobile Apps" | "Business Tips" | "Security";
 
+/** A person credited on articles (writer or expert reviewer). Listed in src/content/people.ts */
+export type Person = { id: string; name: string; role: string; photo: string; bio: string };
+
 export type Post = {
-  slug: string;
-  title: string;
+  slug: string; // the URL: keep the focus keyword in it
+  title: string; // the on-page H1: should contain the focus keyword
   excerpt: string;
   category: BlogCategory;
   date: string; // ISO
+  updated?: string; // ISO, last meaningful update (shown as "Updated" and used as dateModified)
   readMinutes: number;
+  /** SEO: the one search phrase this article targets */
+  focusKeyword?: string;
+  /** SEO: <title> tag, about 50 to 60 characters. Defaults to `title` */
+  seoTitle?: string;
+  /** SEO: meta description, about 140 to 160 characters. Defaults to `excerpt` */
+  metaDescription?: string;
+  /** Cover image path. Defaults to /blog/<slug>.webp. Give a replaced image a NEW file name so browser and CDN caches pick it up */
+  cover?: string;
+  /** Alt text for the cover image. Defaults to `title` */
+  coverAlt?: string;
+  /** Person ids from src/content/people.ts. The reviewer defaults to the expert for the post's category */
+  author?: string;
+  reviewer?: string;
   draft?: boolean;
   service?: string; // related service slug, used for the in-article call to action
   takeaways?: string[];
@@ -67,7 +84,20 @@ export type Package = {
 
 export type Job = { slug: string; title: string; type: string; location: string; summary: string; responsibilities: string[]; requirements: string[] };
 
-export type TeamMember = { name: string; role: string; photo: string; socials: { facebook?: string; instagram?: string; linkedin?: string } };
+export type TeamMember = {
+  name: string;
+  role: string;
+  photo: string;
+  /** Area of expertise, e.g. "SEO Expert" */
+  specialty?: string;
+  /** Degree and university */
+  education?: string;
+  /** Years of hands-on experience, e.g. "3+ years in SEO" */
+  experience?: string;
+  /** Short professional bio shown under the role */
+  bio?: string;
+  socials: { facebook?: string; instagram?: string; linkedin?: string };
+};
 
 // ---------- Chatbot ----------
 export type Lang = "en" | "ur";

@@ -1,7 +1,7 @@
 // Shared page sections used on many pages: CTA band, FAQ, process steps, stats, testimonials.
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Quote } from "lucide-react";
-import { testimonials } from "@/content/misc";
+import { testimonials } from "@/content/testimonials";
 import { site, whatsappLink } from "@/content/site";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";

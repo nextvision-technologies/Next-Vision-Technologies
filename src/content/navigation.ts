@@ -34,11 +34,11 @@ export const mainNav: NavGroup[] = [
     columns: 1,
     children: [
       { label: "About Us", href: "/about", icon: "building", description: "Who we are and how we work" },
-      { label: "Portfolio", href: "/portfolio", icon: "briefcase", description: "Websites, apps and automations we've delivered" },
+      { label: "Projects Gallery", href: "/projects", icon: "briefcase", description: "Live websites, software and AI we've delivered" },
       { label: "Our Team", href: "/team", icon: "users", description: "The people behind your project" },
       { label: "Contact Us", href: "/contact", icon: "chat", description: "Offices in Pakistan and the UK" },
     ],
-    promo: { eyebrow: "Our work", title: "100+ projects delivered", text: "See the websites, stores, apps and AI tools we've built for businesses in Pakistan, the UK and beyond.", href: "/portfolio", art: "growth" },
+    promo: { eyebrow: "Our work", title: "100+ projects delivered", text: "See the websites, stores, apps and AI tools we've built for businesses in Pakistan, the UK and beyond.", href: "/projects", art: "growth" },
   },
   {
     label: "Resources",
@@ -64,7 +64,7 @@ export const footerNav = {
     { label: "Home", href: "/" },
     { label: "Services", href: "/services" },
     { label: "Pricing", href: "/pricing" },
-    { label: "Portfolio", href: "/portfolio" },
+    { label: "Projects Gallery", href: "/projects" },
     { label: "Courses", href: "/courses" },
     { label: "About Us", href: "/about" },
     { label: "Our Team", href: "/team" },

@@ -43,9 +43,9 @@
   --color-success: #15803d;
   --color-error: #b91c1c;
 
-  --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-cormorant), Georgia, "Times New Roman", serif;
-  --font-serif: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-jakarta), ui-sans-serif, system-ui, "Segoe UI", Arial, sans-serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, "Segoe UI", Arial, sans-serif;
+  --font-serif: var(--font-jakarta), ui-sans-serif, system-ui, "Segoe UI", Arial, sans-serif; /* headings; same family as body since the switch from Cormorant */
   --font-mono: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
 
   --radius-card: 1rem;
@@ -167,13 +167,10 @@
     transition: background-color .3s ease;
     color: var(--color-ink);
     font-family: var(--font-sans);
-    /* Cormorant has a small x-height. This scales body text up to a comfortable reading size
-       (about 15%) without changing any spacing; headings keep their designed size. */
-    font-size-adjust: 0.46;
     -webkit-font-smoothing: antialiased;
     overflow-x: clip; /* clip, not hidden: hidden would break position: sticky (pinned hero) */
   }
-  h1, h2, h3, h4 { font-family: var(--font-serif); font-size-adjust: none; text-wrap: balance; letter-spacing: -0.005em; }
+  h1, h2, h3, h4 { font-family: var(--font-serif); text-wrap: balance; letter-spacing: -0.02em; }
   :focus-visible { outline: 2px solid var(--color-brand-600); outline-offset: 2px; border-radius: 4px; }
   /* Tailwind 4 resets buttons to the default arrow; show a pointer on everything clickable */
   button:not(:disabled), [role="button"], [role="tab"], summary, select, label:has(> input[type="checkbox"]), label:has(> input[type="radio"]) { cursor: pointer; }
@@ -323,6 +320,25 @@
     vertical-align: text-bottom; background: #ff9a3c; border-radius: 1px;
     animation: nv-blink 1.05s steps(1) infinite;
   }
+
+  /* Hacker terminal (hero): green phosphor glow, CRT scanlines, big typed welcome */
+  .nv-terminal--hack {
+    box-shadow: 0 0 0 1px rgb(57 255 136 / 0.06), 0 0 40px -8px rgb(57 255 136 / 0.25), 0 30px 80px -24px rgb(0 0 0 / 0.8);
+    text-shadow: 0 0 6px rgb(57 255 136 / 0.25);
+  }
+  .nv-scanlines {
+    background: repeating-linear-gradient(to bottom, rgb(255 255 255 / 0.035) 0 1px, transparent 1px 3px);
+    mix-blend-mode: overlay;
+  }
+  .nv-caret--hack { background: #39ff88; box-shadow: 0 0 8px rgb(57 255 136 / 0.8); }
+  .nv-hack-welcome { font-size: clamp(1.15rem, 0.7rem + 1.4vw, 1.7rem); line-height: 1.25; }
+  .nv-hack-grad {
+    background-image: linear-gradient(100deg, #c084fc 0%, #f0437a 50%, #ff9a3c 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgb(240 67 122 / 0.35));
+    text-shadow: none;
+  }
+  @media (width < 820px) { .nv-hack-welcome { font-size: 1rem; margin-block: 0.35rem; } }
 
   /* ---------- Animated brand backdrop (shown when there is no hero video) ---------- */
   .nv-anim {

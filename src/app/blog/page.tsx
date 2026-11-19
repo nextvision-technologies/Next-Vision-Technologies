@@ -22,7 +22,7 @@ export default function BlogPage() {
           <Link href={`/blog/${featured.slug}`}
             className="group grid overflow-hidden rounded-[1.75rem] border border-line bg-card shadow-card transition hover:shadow-lift lg:grid-cols-[1.15fr_1fr]">
             <div className="relative aspect-[16/9] overflow-hidden lg:aspect-auto lg:min-h-[22rem]">
-              <Image src={postImage(featured.slug)} alt="" fill priority sizes="(min-width: 1024px) 55vw, 100vw"
+              <Image src={postImage(featured.slug)} alt={featured.coverAlt ?? featured.title} fill priority sizes="(min-width: 1024px) 55vw, 100vw"
                 className="object-cover transition duration-500 group-hover:scale-105" />
               <span className="absolute top-5 left-5 rounded-full bg-card px-3 py-1 text-xs font-bold text-brand-600 shadow">Latest article</span>
             </div>
@@ -41,7 +41,7 @@ export default function BlogPage() {
           </Link>
         )}
         {rest.length > 0 && (
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {rest.map((p) => <PostCard key={p.slug} p={p} />)}
           </div>
         )}

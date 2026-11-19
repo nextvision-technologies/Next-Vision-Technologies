@@ -5,7 +5,7 @@ import type { ServiceCategory } from "@/types/content";
 import { whatsappLink } from "@/content/site";
 import { PageHero } from "@/components/sections/PageHero";
 import { CtaBand } from "@/components/sections/Blocks";
-import { ServiceCard, categoryTheme } from "@/features/services/ServiceCard";
+import { ServiceCard, categoryTheme } from "@/components/cards/ServiceCard";
 import { Button } from "@/components/ui/Button";
 import { SocialIcon } from "@/components/ui/SocialIcons";
 import { pageMetadata } from "@/lib/seo";

@@ -3,7 +3,8 @@
 // so a page added to this file is automatically listed everywhere.
 import { services } from "./services";
 import { posts, postImage } from "./blog";
-import { jobs, locations } from "./misc";
+import { jobs } from "./jobs";
+import { locations } from "./locations";
 import { legalPages } from "./legal";
 import { site } from "./site";
 
@@ -47,9 +48,10 @@ const staticPages: SeoEntry[] = [
     description: "Clear pricing for websites, SEO, marketing and AI automation. Compare Silver, Gold and Platinum packages or get a fixed project quote in 24 hours.",
   },
   {
-    path: "/portfolio", group: "Main pages", priority: 0.8, changeFrequency: "monthly",
-    title: "Portfolio: Websites, Apps & AI Projects",
-    description: "Websites, online stores, AI chatbots, mobile apps and campaigns delivered by Next Vision Technologies for businesses in Pakistan, the UK and beyond.",
+    path: "/projects", group: "Main pages", priority: 0.8, changeFrequency: "monthly",
+    title: "Projects Gallery: Websites, Software & AI Projects",
+    description: "Explore live websites, custom software and AI solutions built by Next Vision Technologies for hotels, clinics, couriers, retailers and more.",
+    image: "/projects/pak-heritage-hotel.webp",
   },
   {
     path: "/about", group: "Main pages", priority: 0.8, changeFrequency: "monthly",
@@ -114,7 +116,7 @@ export function allSeoEntries(): SeoEntry[] {
     })),
     ...posts.map<SeoEntry>((p) => ({
       path: `/blog/${p.slug}`, group: "Blog", priority: 0.7, changeFrequency: "monthly",
-      title: p.title, description: clip(p.excerpt), lastModified: p.date, image: postImage(p.slug),
+      title: p.seoTitle ?? p.title, description: p.metaDescription ?? clip(p.excerpt), lastModified: p.updated ?? p.date, image: postImage(p.slug),
     })),
     ...jobs.map<SeoEntry>((j) => ({
       path: `/jobs/${j.slug}`, group: "Careers", priority: 0.5, changeFrequency: "weekly",

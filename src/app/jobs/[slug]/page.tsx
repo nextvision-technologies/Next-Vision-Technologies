@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { Check } from "lucide-react";
-import { getJob, jobs } from "@/content/misc";
+import { getJob, jobs } from "@/content/jobs";
 import { site, whatsappLink } from "@/content/site";
 import { PageHero } from "@/components/sections/PageHero";
 import { Button } from "@/components/ui/Button";
 import { pageMetadata } from "@/lib/seo";
+import { PageSkeleton } from "@/components/sections/PageSkeleton";
 
 export function generateStaticParams() {
   return jobs.map((j) => ({ slug: j.slug }));
@@ -27,7 +29,17 @@ function List({ title, items }: { title: string; items: string[] }) {
   );
 }
 
-export default async function JobPage({ params }: PageProps<"/jobs/[slug]">) {
+// `params` is read inside <Suspense> so navigations stay instant under Cache Components.
+// Every slug comes from generateStaticParams, so each page is still fully prerendered at build time.
+export default function JobPage({ params }: PageProps<"/jobs/[slug]">) {
+  return (
+    <Suspense fallback={<PageSkeleton />}>
+      <JobContent params={params} />
+    </Suspense>
+  );
+}
+
+async function JobContent({ params }: { params: PageProps<"/jobs/[slug]">["params"] }) {
   const job = getJob((await params).slug);
   if (!job) notFound();
   return (

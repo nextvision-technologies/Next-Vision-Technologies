@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Check, Crown, Gem, Headset, Medal, Rocket, ShieldCheck, Star, X } from "lucide-react";
-import { packages } from "@/content/misc";
+import { packages } from "@/content/pricing";
 import type { Package } from "@/types/content";
 
 const icons = { medal: Medal, crown: Crown, gem: Gem } as const;

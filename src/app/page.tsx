@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, Headset, Mail, Rocket, Zap } from "lucide-react";
 import { services } from "@/content/services";
-import { testimonials } from "@/content/misc";
+import { testimonials } from "@/content/testimonials";
 import { site, whatsappLink } from "@/content/site";
 import { publicFile } from "@/lib/files";
 import { Button } from "@/components/ui/Button";
@@ -137,7 +137,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------- Reviews (shown once real reviews are added in content/misc.ts) ---------- */}
+      {/* ---------- Reviews (shown once real reviews are added in content/testimonials.ts) ---------- */}
       {hasRealReviews && (
         <section className="bg-surface py-20">
           <div className="container-page flex flex-col gap-12">

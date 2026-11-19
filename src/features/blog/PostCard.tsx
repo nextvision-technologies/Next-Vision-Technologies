@@ -9,7 +9,7 @@ export function PostCard({ p }: { p: Post }) {
     <Link href={`/blog/${p.slug}`}
       className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-card shadow-card transition hover:-translate-y-1 hover:shadow-lift">
       <div className="section-dark relative flex aspect-[16/9] items-end overflow-hidden p-4">
-        <Image src={postImage(p.slug)} alt="" fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+        <Image src={postImage(p.slug)} alt={p.coverAlt ?? p.title} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="object-cover transition duration-500 group-hover:scale-105" />
         <span className="relative rounded-full bg-night-950/80 px-3 py-1 text-xs font-semibold text-white md:backdrop-blur">{p.category}</span>
       </div>

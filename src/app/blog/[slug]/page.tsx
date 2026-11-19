@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, CalendarDays, Check, ChevronRight, Clock, Sparkles } from "lucide-react";
-import { getPost, postImage, posts, sortedPosts } from "@/content/blog";
+import { ArrowRight, BadgeCheck, CalendarDays, Check, ChevronRight, Clock, Sparkles } from "lucide-react";
+import { getPost, postAuthor, postImage, postReviewer, posts, sortedPosts } from "@/content/blog";
+import type { Person } from "@/types/content";
 import { formatDate, headingId } from "@/lib/format";
-import { ArticleBlock } from "@/features/blog/ArticleBlocks";
+import { ArticleBlock } from "@/components/article/ArticleBlocks";
 import { RichText } from "@/components/ui/RichText";
 import { getService } from "@/content/services";
 import { site } from "@/content/site";
 import { CtaBand, Faq } from "@/components/sections/Blocks";
 import { PostCard } from "@/features/blog/PostCard";
-import { ReadingProgress, ShareButtons, TableOfContents } from "@/features/blog/ArticleChrome";
+import { ReadingProgress, ShareButtons, TableOfContents } from "@/components/article/ArticleChrome";
 import { IconTile } from "@/components/ui/ServiceIcon";
 import { buttonClass } from "@/components/ui/Button";
 import { pageMetadata } from "@/lib/seo";
+import { PageSkeleton } from "@/components/sections/PageSkeleton";
 import { BreadcrumbJsonLd } from "@/components/seo/SiteJsonLd";
 
 export function generateStaticParams() {
@@ -27,7 +30,17 @@ export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): P
   return pageMetadata(`/blog/${p.slug}`, { type: "article", publishedTime: p.date });
 }
 
-export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
+// `params` is read inside <Suspense> so navigations stay instant under Cache Components.
+// Every slug comes from generateStaticParams, so each page is still fully prerendered at build time.
+export default function PostPage({ params }: PageProps<"/blog/[slug]">) {
+  return (
+    <Suspense fallback={<PageSkeleton />}>
+      <PostContent params={params} />
+    </Suspense>
+  );
+}
+
+async function PostContent({ params }: { params: PageProps<"/blog/[slug]">["params"] }) {
   const post = getPost((await params).slug);
   if (!post) notFound();
   const more = sortedPosts().filter((p) => p.slug !== post.slug).slice(0, 3);
@@ -35,18 +48,25 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
   const toc = post.body.filter((b) => b.type === "h2").map((b) => ({ id: headingId(b.text), text: b.text }));
   if (post.faqs?.length) toc.push({ id: "faq", text: "Frequently asked questions" });
   const url = `${site.url}/blog/${post.slug}`;
+  const author = postAuthor(post);
+  const reviewer = postReviewer(post);
+  const cover = post.coverAlt ?? post.title;
+  const person = (p: Person) => ({ "@type": "Person", name: p.name, jobTitle: p.role, image: `${site.url}${p.photo}`, worksFor: { "@type": "Organization", name: site.name, url: site.url } });
 
   const jsonLd = [
     {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       headline: post.title,
-      description: post.excerpt,
-      image: `${site.url}${postImage(post.slug)}`,
+      description: post.metaDescription ?? post.excerpt,
+      image: { "@type": "ImageObject", url: `${site.url}${postImage(post.slug)}`, width: 3840, height: 2160, caption: cover },
       datePublished: post.date,
-      author: { "@type": "Organization", name: site.name },
-      publisher: { "@type": "Organization", name: site.name, logo: { "@type": "ImageObject", url: `${site.url}/brand/logo.svg` } },
-      mainEntityOfPage: url,
+      dateModified: post.updated ?? post.date,
+      ...(post.focusKeyword ? { keywords: post.focusKeyword } : {}),
+      articleSection: post.category,
+      author: person(author),
+      publisher: { "@type": "Organization", name: site.name, logo: { "@type": "ImageObject", url: `${site.url}/brand/logo-square.png` } },
+      mainEntityOfPage: { "@type": "WebPage", "@id": url, ...(reviewer ? { reviewedBy: person(reviewer) } : {}) },
     },
     ...(post.faqs?.length
       ? [{
@@ -80,18 +100,22 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
           <p className="max-w-2xl text-lg leading-relaxed text-muted">{post.excerpt}</p>
           <div className="mt-1 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-muted">
             <span className="flex items-center gap-2.5">
-              <span className="inline-flex size-9 items-center justify-center rounded-full border border-line bg-white">
-                <Image src="/brand/mark.svg" alt="" width={24} height={24} className="size-6" />
-              </span>
-              <span className="font-semibold text-heading">Next Vision Team</span>
+              <Image src={author.photo} alt="" width={36} height={36} className="size-9 rounded-full object-cover ring-2 ring-card" />
+              <span>By <span className="font-semibold text-heading">{author.name}</span></span>
             </span>
+            {reviewer && (
+              <span className="flex items-center gap-1.5">
+                <BadgeCheck className="size-4 text-brand-600" aria-hidden />
+                Reviewed by <span className="font-semibold text-heading">{reviewer.name}</span>
+              </span>
+            )}
             <span className="flex items-center gap-1.5"><CalendarDays className="size-4" aria-hidden />{formatDate(post.date)}</span>
             <span className="flex items-center gap-1.5"><Clock className="size-4" aria-hidden />{post.readMinutes} min read</span>
           </div>
         </div>
         <div className="container-page relative">
           <div className="relative mx-auto aspect-[16/9] max-w-5xl overflow-hidden rounded-[1.75rem] shadow-[0_30px_80px_-30px_rgb(31_10_77/0.5)] ring-1 ring-black/5">
-            <Image src={postImage(post.slug)} alt={post.title} fill priority sizes="(min-width: 1024px) 64rem, 100vw" className="object-cover" />
+            <Image src={postImage(post.slug)} alt={cover} fill priority sizes="(min-width: 1024px) 64rem, 100vw" className="object-cover" />
           </div>
         </div>
       </header>
@@ -138,16 +162,23 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
             </section>
           )}
 
-          {/* Author box */}
-          <section className="mt-14 flex flex-col gap-5 rounded-2xl border border-line p-6 sm:flex-row sm:items-center">
-            <span className="inline-flex size-16 shrink-0 items-center justify-center rounded-2xl bg-surface dark:bg-white">
-              <Image src="/brand/mark.svg" alt="" width={44} height={44} className="size-11" />
-            </span>
-            <div className="flex-1">
-              <p className="text-xs font-semibold tracking-[0.14em] text-muted uppercase">Written by</p>
-              <p className="font-display text-lg font-bold text-heading">The Next Vision Team</p>
-              <p className="mt-1 text-sm leading-relaxed text-muted">Developers, AI engineers and marketers sharing what we learn building websites, automations and campaigns for businesses in Pakistan and the UK.</p>
-            </div>
+          {/* Writer and expert reviewer */}
+          <section className="mt-14 grid gap-4 sm:grid-cols-2" aria-label="About the authors">
+            {[{ label: "Written by", p: author }, ...(reviewer ? [{ label: "Reviewed by", p: reviewer }] : [])].map(({ label, p }) => (
+              <div key={label} className="flex flex-col gap-4 rounded-2xl border border-line bg-card p-6">
+                <div className="flex items-center gap-4">
+                  <Image src={p.photo} alt={p.name} width={64} height={64} className="size-16 shrink-0 rounded-2xl object-cover" />
+                  <div>
+                    <p className="flex items-center gap-1.5 text-xs font-semibold tracking-[0.14em] text-muted uppercase">
+                      {label === "Reviewed by" && <BadgeCheck className="size-3.5 text-brand-600" aria-hidden />}{label}
+                    </p>
+                    <p className="font-display text-lg font-bold text-heading">{p.name}</p>
+                    <p className="text-sm font-medium text-brand-600">{p.role}</p>
+                  </div>
+                </div>
+                <p className="text-sm leading-relaxed text-muted">{p.bio}</p>
+              </div>
+            ))}
           </section>
 
           <div className="mt-8 lg:hidden"><ShareButtons url={url} title={post.title} /></div>

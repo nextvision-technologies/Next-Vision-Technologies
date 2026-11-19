@@ -83,13 +83,20 @@ export function Header() {
         <nav ref={navRef} className="container-page relative flex h-16 items-center justify-between gap-6 lg:h-[4.5rem]" aria-label="Main"
           onMouseLeave={scheduleClose}>
           <Link href="/" className="shrink-0" aria-label={`${site.name} home`}>
-            <Image src="/brand/logo-tagline.svg" alt={`${site.name}: ${site.tagline}`} width={462} height={108} priority
-              className="h-11 w-auto lg:h-12 dark:hidden" />
-            <Image src="/brand/logo-tagline-white.svg" alt={`${site.name}: ${site.tagline}`} width={462} height={108} priority
-              className="hidden h-11 w-auto lg:h-12 dark:block" />
+            <Image src="/brand/logo-header.webp" alt={`${site.name}: ${site.tagline}`} width={933} height={195} priority
+              className="h-9 w-auto sm:h-10 lg:h-11 dark:hidden" />
+            <Image src="/brand/logo-header-white.webp" alt={`${site.name}: ${site.tagline}`} width={933} height={195} priority
+              className="hidden h-9 w-auto sm:h-10 lg:h-11 dark:block" />
           </Link>
 
           <ul className="hidden items-center gap-1 lg:flex">
+            {/* Plain link (no dropdown): hovering it closes any open mega menu */}
+            <li onMouseEnter={() => { if (closeTimer.current) clearTimeout(closeTimer.current); setOpenMenu(null); }}>
+              <Link href="/" aria-current={pathname === "/" ? "page" : undefined}
+                className={`inline-flex h-10 items-center rounded-full px-3.5 text-sm font-semibold transition ${pathname === "/" ? "text-brand-600" : "text-heading hover:text-brand-600"}`}>
+                Home
+              </Link>
+            </li>
             {mainNav.map((g) => {
               const isOpen = openMenu === g.label;
               return (
@@ -135,8 +142,8 @@ export function Header() {
           <div className="absolute inset-0 bg-night-950/50" onClick={() => setMobile(false)} />
           <div data-lenis-prevent className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col overflow-y-auto bg-card p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
             <div className="flex items-center justify-between">
-              <Image src="/brand/logo-tagline.svg" alt={site.name} width={462} height={108} className="h-12 w-auto dark:hidden" />
-              <Image src="/brand/logo-tagline-white.svg" alt={site.name} width={462} height={108} className="hidden h-12 w-auto dark:block" />
+              <Image src="/brand/logo-header.webp" alt={site.name} width={933} height={195} className="h-10 w-auto dark:hidden" />
+              <Image src="/brand/logo-header-white.webp" alt={site.name} width={933} height={195} className="hidden h-10 w-auto dark:block" />
               <button type="button" onClick={() => setMobile(false)} aria-label="Close menu"
                 className="inline-flex size-11 items-center justify-center rounded-full border border-line">
                 <X className="size-5" />

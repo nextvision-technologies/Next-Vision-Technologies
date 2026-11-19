@@ -1,4 +1,4 @@
-// Legal pages. Inline links use [text](/path) and **bold** (rendered by features/blog/ArticleBlocks).
+// Legal pages. Inline links use [text](/path) and **bold** (rendered by components/article/ArticleBlocks).
 // Written for Next Vision Technologies' own services. Have a qualified lawyer review before relying on them.
 import type { LegalPage } from "@/types/content";
 
@@ -53,7 +53,7 @@ export const legalPages: LegalPage[] = [
           "Once your project is paid in full, you own the final designs, code and content we created specifically for you.",
           "Third-party items (fonts, themes, plugins, stock images, AI models, platforms) remain under their own licences, which we will pass on where possible.",
           "We keep ownership of our general tools, code libraries, methods and know-how, and you receive a permanent licence to use any of them included in your project.",
-          "Unless you ask us not to, we may show completed work in our [portfolio](/portfolio) and marketing.",
+          "Unless you ask us not to, we may show completed work in our [Projects Gallery](/projects) and marketing.",
         ] },
       ] },
       { heading: "Confidentiality", body: [

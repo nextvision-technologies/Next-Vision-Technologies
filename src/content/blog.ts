@@ -1,6 +1,7 @@
 // Blog posts. Each body is a list of blocks so posts can later move to a CMS or MDX without changing the page.
 // Set `draft: true` to hide a post: it disappears from the blog, footer and sitemap, and its URL redirects to /blog.
 import type { Post } from "@/types/content";
+import { DEFAULT_AUTHOR, getPerson, reviewerByCategory } from "./people";
 
 const allPosts: Post[] = [
   // ------------------------------------------------------------------ Published
@@ -12,6 +13,12 @@ const allPosts: Post[] = [
     date: "2026-11-12",
     readMinutes: 7,
     service: "ai-chatbot-development",
+    focusKeyword: "AI chatbots for business",
+    seoTitle: "AI Chatbots for Business: Automate Customer Support 24/7",
+    metaDescription: "AI chatbots for business answer customers instantly on your website and WhatsApp, capture leads and book appointments. See how they work and how to start.",
+    cover: "/blog/ai-chatbots-for-business.webp",
+    coverAlt: "AI chatbots for business: a customer service robot holding a tablet",
+    reviewer: "ehtisham-iftikhar",
     takeaways: [
       "AI chatbots answer common questions instantly, 24 hours a day, on your website, WhatsApp, Facebook and Instagram.",
       "A good bot is trained on your own business information and hands the chat to a person when it should.",
@@ -66,6 +73,12 @@ const allPosts: Post[] = [
     date: "2026-11-05",
     readMinutes: 8,
     service: "web-development",
+    focusKeyword: "website cost",
+    seoTitle: "How Much Does a Website Cost? 2026 Pricing Guide",
+    metaDescription: "What does a website cost? Typical budgets for business sites, online stores and custom builds, what drives the price, and the running costs most people forget.",
+    cover: "/blog/website-cost-guide.webp",
+    coverAlt: "Laptop with website code on a desk: what a website costs to build",
+    reviewer: "ali-raza",
     takeaways: [
       "The biggest cost drivers are custom design, number of pages, features like e-commerce or booking, and content.",
       "A professional business website is a one-time build cost plus yearly domain, hosting and maintenance.",
@@ -130,6 +143,12 @@ const allPosts: Post[] = [
     date: "2026-10-28",
     readMinutes: 9,
     service: "seo",
+    focusKeyword: "rank your website on Google",
+    seoTitle: "How to Rank Your Website on Google: Complete SEO Guide",
+    metaDescription: "Learn how to rank your website on Google step by step: technical SEO, keyword research, on-page content, local SEO and links that actually move rankings.",
+    cover: "/blog/rank-your-website-on-google.webp",
+    coverAlt: "SEO letter tiles on a desk: how to rank your website on Google",
+    reviewer: "muhammad-ahsan-khan",
     takeaways: [
       "Google ranks pages that load fast, work on mobile and clearly answer what people search for.",
       "Keyword research tells you which searches bring buyers, not just visitors.",
@@ -182,6 +201,157 @@ const allPosts: Post[] = [
     ],
   },
 
+  {
+    slug: "hr-automation-software",
+    title: "HR Automation Software: A Complete Guide for Growing Businesses",
+    excerpt: "Attendance sheets, payroll mistakes, piles of CVs and leave requests lost in WhatsApp chats slow every growing team down. Here is how HR automation software handles the routine work, including AI CV screening, what it costs and how to choose the right system.",
+    category: "AI & Automation",
+    date: "2026-11-19",
+    readMinutes: 13,
+    service: "ai-automation",
+    focusKeyword: "HR automation software",
+    seoTitle: "HR Automation Software: Features, Benefits & Cost Guide",
+    metaDescription: "HR automation software handles attendance, payroll, leave and AI CV screening for you. See key features, benefits, costs and how to pick the right system.",
+    coverAlt: "Team using HR automation software on office computers",
+    reviewer: "ehtisham-iftikhar",
+    takeaways: [
+      "HR automation software takes over repeat HR tasks such as attendance, payroll, leave approvals and onboarding, so your HR team spends time on people instead of paperwork.",
+      "The fastest wins usually come from automating payroll and attendance first, because they cause the most errors and take the most hours each month.",
+      "An AI CV screening pipeline reads every application, scores it against your job requirements and shortlists the best-matched candidates, while your recruiters make the final call.",
+      "A good system connects to the tools you already use: biometric devices, WhatsApp, email and your accounting software.",
+      "Choose between a ready-made HR tool and custom HR software based on your team size, your processes and how much you need to change.",
+    ],
+    body: [
+      { type: "p", text: "Ask any HR manager where their week goes and you will hear the same list: chasing attendance records, fixing payroll errors, answering \"how many leaves do I have left?\" and copying the same employee details into five different spreadsheets. None of this work is difficult. It is simply repetitive, and it grows every time you hire." },
+      { type: "p", text: "**HR automation software** solves this by handling the routine steps for you. Attendance flows in from your biometric device, salaries calculate themselves, leave requests go to the right manager and new employees receive their documents without anyone sending them by hand. In this guide we explain what HR automation software does, which tasks to automate first, what it costs and how to choose a system that fits your business." },
+
+      { type: "h2", text: "What is HR automation software?" },
+      { type: "p", text: "HR automation software is a system that performs repeat human resources tasks automatically, following rules you set once. Instead of a person moving information between sheets, emails and chats, the software collects the data, applies your policies and notifies the right people at each step." },
+      { type: "p", text: "Modern systems also use AI. An [AI assistant](/services/ai-chatbot-development) can answer employee questions about leave balances or payslips on WhatsApp, read uploaded CVs to shortlist candidates and flag unusual attendance patterns before they become payroll problems." },
+      { type: "h3", text: "HR automation vs. a traditional HRMS" },
+      { type: "p", text: "A traditional HR management system (HRMS) is mostly a digital filing cabinet: it stores employee records but people still do the work. HR automation software goes further by acting on that data. It does not just store a leave request, it routes it, approves it within your policy, updates the balance and adjusts payroll." },
+
+      { type: "h2", text: "Which HR tasks can you automate?" },
+      { type: "p", text: "Almost any HR process with clear steps and rules can be automated. These are the areas where businesses see the biggest time savings:" },
+      { type: "h3", text: "1. Attendance and time tracking" },
+      { type: "p", text: "The software pulls check-in and check-out times from biometric devices, a mobile app or a web portal, then applies your rules for late arrivals, half days, overtime and shifts. No more copying fingerprint reports into Excel at the end of the month." },
+      { type: "h3", text: "2. Payroll processing" },
+      { type: "p", text: "Salaries are calculated from attendance, allowances, deductions, loans and tax in one run. Payslips are generated and sent to each employee automatically, and a bank transfer file is ready for your accounts team." },
+      { type: "h3", text: "3. Leave management" },
+      { type: "p", text: "Employees apply for leave from their phone, managers approve with one tap and balances update instantly. Your leave policy, including carry-forward rules and public holidays, is applied the same way for everyone." },
+      { type: "h3", text: "4. Recruitment and onboarding" },
+      { type: "p", text: "Job applications are collected in one place, every CV is screened and scored by AI against your requirements, and interviews are scheduled automatically. Once you hire, the system sends the offer letter, collects documents and creates the employee's profile, email and payroll record. We explain the full CV screening pipeline in the next section." },
+      { type: "h3", text: "5. Performance reviews and employee self-service" },
+      { type: "p", text: "Review cycles start on time with reminders for managers, and employees can download payslips, update details and check policies without emailing HR." },
+
+      { type: "h2", text: "AI CV screening: how our pipeline shortlists the right candidates" },
+      { type: "p", text: "Recruitment is where HR teams lose the most hours. A single job post can bring in hundreds of CVs, and reading each one by hand takes days. Strong candidates get missed in a crowded inbox, and two recruiters can judge the same CV in two different ways." },
+      { type: "p", text: "That is why we built a complete **AI CV screening pipeline** into our HR automation software. It reads every CV the moment it arrives, compares it with your job requirements, scores each candidate and automatically shortlists the best matches, so your team starts with a ranked list instead of a pile of PDFs." },
+      { type: "h3", text: "How the CV screening pipeline works" },
+      { type: "ol", items: [
+        "**Collect CVs from every channel.** Applications from your careers page, email inbox, LinkedIn, job portals such as Rozee.pk and Indeed, and WhatsApp land in one place. PDF and Word files are supported, and scanned CVs are read with OCR.",
+        "**Extract the key details.** The AI turns each CV into a clean candidate profile: contact details, education, work history, total experience, skills, certifications, notice period and expected salary. Duplicate applications are merged automatically.",
+        "**Match against your job requirements.** You set must-have criteria (for example \"3+ years in sales\" or \"Lahore-based\") and nice-to-have skills. The AI understands related terms, so a candidate who lists \"React\" is recognised for a frontend developer role even if the exact words differ.",
+        "**Score and rank every candidate.** Each applicant receives a match score from 0 to 100, weighted by what matters most for the role, with a short explanation of why they scored that way.",
+        "**Shortlist automatically.** Candidates above your score threshold move straight to the shortlist. Applicants who miss a must-have requirement are flagged rather than silently lost.",
+        "**Review, interview and reply.** Recruiters review the shortlist with all the reasons in front of them, book interviews in one click and send automatic email or WhatsApp updates, including interview invites and polite regret messages.",
+      ] },
+      { type: "h3", text: "What your recruiters see for each candidate" },
+      { type: "table", head: ["Field", "Example"], rows: [
+        ["Match score", "87 / 100"],
+        ["Matched requirements", "4 years in B2B sales, CRM experience, based in Lahore"],
+        ["Missing requirements", "No Salesforce certification (nice to have)"],
+        ["Experience summary", "Sales Executive at two software companies, consistent growth in targets"],
+        ["Recommended action", "Shortlist for first interview"],
+      ], note: "Every score comes with its reasons, so recruiters can check the AI's judgement in seconds." },
+      { type: "h3", text: "Fair, transparent and privacy-safe screening" },
+      { type: "p", text: "Automated hiring is only useful if candidates are treated fairly. We built the pipeline around these safeguards:" },
+      { type: "ul", items: [
+        "**Job-related criteria only.** Scores are based on skills, experience and qualifications. Name, photo, gender, age, religion and marital status are kept out of the scoring.",
+        "**Every decision is explained.** Recruiters see exactly which requirements a candidate met or missed, so nothing is a black box.",
+        "**People make the final decision.** The AI recommends and ranks, but a recruiter approves every shortlist and rejection. This also keeps you in line with rules on automated decisions such as UK GDPR.",
+        "**Candidate data stays protected.** CVs are stored encrypted with role-based access, and are deleted automatically after the retention period you choose.",
+        "**Regular checks.** Shortlist results can be reviewed over time to make sure the criteria are not unfairly filtering out any group.",
+      ] },
+      { type: "h3", text: "What changes for your hiring team" },
+      { type: "p", text: "Instead of spending days reading CVs, your recruiters open a ranked shortlist within minutes of a job closing. Every applicant is judged against the same criteria, no strong CV is lost in an inbox, and candidates hear back quickly, which protects your employer brand." },
+      { type: "tip", title: "Get the job criteria right first", text: "The pipeline is only as good as the requirements you give it. Separate true must-haves from nice-to-haves, keep the list short and job-related, and review the first few shortlists with your hiring manager before you rely on them fully." },
+
+      { type: "h2", text: "Benefits of HR automation software" },
+      { type: "ul", items: [
+        "**Hours saved every month.** Work that took days at month end, such as payroll and attendance reports, finishes in minutes.",
+        "**Fewer costly mistakes.** Calculations follow the same rules every time, so you avoid overpayments, missed deductions and unhappy employees.",
+        "**Faster answers for employees.** Staff see their leave balance, payslips and policies instantly, which reduces questions to HR.",
+        "**Faster, fairer hiring.** AI CV screening ranks every applicant against the same criteria and hands recruiters a shortlist in minutes.",
+        "**Consistent, fair policies.** Every request is handled by the same rules, which builds trust and makes audits easier.",
+        "**Better decisions.** Live dashboards show headcount, overtime, absenteeism and payroll costs, so management can plan with real numbers.",
+        "**Easy to scale.** Hiring ten more people does not mean hiring another HR assistant.",
+      ] },
+      { type: "quote", text: "The goal of HR automation is not to replace your HR team. It is to give them back the hours they spend on data entry, so they can focus on hiring, training and keeping good people." },
+
+      { type: "h2", text: "Key features to look for" },
+      { type: "p", text: "Not every system is a good fit. Before you commit, check that the HR automation software you are considering includes the features your team will actually use:" },
+      { type: "table", head: ["Feature", "Why it matters"], rows: [
+        ["Biometric and mobile attendance", "Removes manual entry and supports field staff and multiple branches"],
+        ["Rule-based payroll", "Handles your allowances, deductions, loans, overtime and tax correctly"],
+        ["Leave workflows", "Routes requests to the right manager and keeps balances accurate"],
+        ["AI CV screening", "Reads, scores and shortlists applicants automatically, with reasons for every score"],
+        ["Employee self-service", "Lets staff view payslips and apply for leave from their phone"],
+        ["WhatsApp and email notifications", "Reaches employees where they already are"],
+        ["Role-based access", "Keeps salary and personal data visible only to the right people"],
+        ["Reports and dashboards", "Gives management live numbers instead of month-end spreadsheets"],
+        ["Integrations", "Connects to your accounting, [CRM](/services/crm-development) and banking tools"],
+      ], note: "Tip: ask for a live demo using your own policies, not a generic sample company." },
+
+      { type: "h2", text: "Ready-made tool or custom HR software?" },
+      { type: "p", text: "There are two main routes. A ready-made (off-the-shelf) tool is quick to start and has a monthly fee per employee. [Custom HR software](/services/custom-software-development) is built around your exact processes and you own it, which suits businesses with unusual shifts, multiple branches or specific approval chains." },
+      { type: "table", head: ["", "Ready-made tool", "Custom HR software"], rows: [
+        ["Setup time", "Days to a few weeks", "Usually 4 to 10 weeks"],
+        ["Cost model", "Monthly fee per employee", "One-time build plus optional support"],
+        ["Fits your process", "You adapt to the software", "The software adapts to you"],
+        ["Local payroll and tax rules", "Sometimes limited", "Built exactly to your rules"],
+        ["Ownership of data", "Stored with the vendor", "Fully yours, on your own server or cloud"],
+      ] },
+      { type: "tip", title: "Not sure which route fits?", text: "If your team is under 25 people and your policies are simple, a ready-made tool is often enough. If you have several branches, shift-based staff or approval steps no tool supports, custom software usually costs less over three years." },
+
+      { type: "h2", text: "How much does HR automation software cost?" },
+      { type: "p", text: "Cost depends on the number of employees, the modules you need and whether you choose a ready-made or custom system. Ready-made tools charge a monthly fee per employee, which adds up as you grow. A custom system has a higher upfront cost but no per-user fees, so it often becomes the cheaper option for larger teams." },
+      { type: "p", text: "Whichever route you take, budget for setup, importing your existing employee data, staff training and ongoing support. For a fixed quote based on your team and processes, see our [pricing](/pricing) or [contact us](/contact)." },
+
+      { type: "h2", text: "How to implement HR automation in 6 steps" },
+      { type: "ol", items: [
+        "**Map your current process.** Write down how attendance, payroll, leave and onboarding work today, including every approval step.",
+        "**Pick your first module.** Start where the pain is biggest, usually payroll or attendance, instead of automating everything at once.",
+        "**Clean your employee data.** Correct names, joining dates, salary details and leave balances before you import them.",
+        "**Configure your policies.** Set up shifts, leave types, allowances, deductions and approval chains in the system.",
+        "**Run a parallel month.** Process one payroll in both the old and new way, compare the results and fix any differences.",
+        "**Train your team and go live.** Show managers and employees how to use the app, then switch fully and review reports every month.",
+      ] },
+      { type: "tip", title: "Start with payroll", text: "Payroll is usually the task with the most errors and the highest time cost, so automating it first shows clear results within the first month and builds support for the next module." },
+
+      { type: "h2", text: "Common mistakes to avoid" },
+      { type: "ul", items: [
+        "Automating a broken process. Fix unclear policies first, or the software will simply repeat the confusion faster.",
+        "Skipping employee training, which leads to people falling back on WhatsApp messages and paper forms.",
+        "Choosing software that cannot connect to your biometric devices or accounting system.",
+        "Ignoring data security. Salary and personal records need role-based access, backups and encryption.",
+      ] },
+
+      { type: "h2", text: "Is HR automation software right for your business?" },
+      { type: "p", text: "If your HR team spends days on payroll every month, if leave records live in spreadsheets, or if you are planning to grow, HR automation software will almost certainly pay for itself. Even a team of 15 to 20 people can save several working days each month." },
+      { type: "p", text: "At Next Vision Technologies we build [AI automation](/services/ai-automation) and custom HR systems that fit how your business already works, from biometric attendance to WhatsApp leave requests and one-click payroll. [Book a free demo](/book-demo) and we will show you what your HR process could look like when the routine work runs on its own." },
+    ],
+    faqs: [
+      { q: "What is HR automation software?", a: "HR automation software is a system that handles repeat human resources tasks such as attendance, payroll, leave approvals and onboarding automatically, using rules you set once." },
+      { q: "Which HR process should I automate first?", a: "Most businesses start with payroll or attendance, because these take the most time each month and cause the most errors. Leave management is usually the next step." },
+      { q: "Can HR automation software connect to my biometric attendance device?", a: "Yes. Most modern systems, and all custom systems we build, can pull data directly from common biometric devices as well as mobile and web check-ins." },
+      { q: "How does AI CV screening work?", a: "The system collects CVs from your careers page, email and job portals, extracts each candidate's experience and skills, scores them against your job requirements and automatically shortlists the best matches with a reason for every score." },
+      { q: "Does the AI reject candidates on its own?", a: "No. The AI ranks and recommends, but a recruiter reviews and approves every shortlist and rejection. Personal details such as name, photo, gender and age are kept out of the scoring." },
+      { q: "Is HR automation only for large companies?", a: "No. Teams of 15 to 20 people already save several working days a month. Smaller teams can start with a single module, such as leave or payroll, and add more later." },
+      { q: "Is employee data safe in HR software?", a: "It should be. Look for role-based access, encrypted storage, regular backups and audit logs. With custom software, the data stays on servers you control." },
+    ],
+  },
+
   // ------------------------------------------------------------------ Drafts (hidden for now)
   { slug: "off-page-seo-backlinks-guide-pakistan", title: "Off-Page SEO in 2026: Every Type of Backlink Explained", excerpt: "Which backlinks still move rankings, which ones put your site at risk, and how to build them safely.", category: "SEO", date: "2026-10-10", readMinutes: 9, draft: true, body: [{ type: "p", text: "Draft." }] },
   { slug: "how-to-build-shopify-store-in-pakistan-2025", title: "How to Build a Shopify Store in Pakistan", excerpt: "A step-by-step guide from choosing a plan to taking your first order with local payments and couriers.", category: "E-Commerce", date: "2026-07-10", readMinutes: 8, draft: true, body: [{ type: "p", text: "Draft." }] },
@@ -197,8 +367,12 @@ const allPosts: Post[] = [
 export const posts = allPosts.filter((p) => !p.draft);
 export const draftSlugs = allPosts.filter((p) => p.draft).map((p) => p.slug);
 
-/** Cover image for a post: /public/blog/<slug>.webp (AI-generated, 16:9) */
-export const postImage = (slug: string) => `/blog/${slug}.webp`;
+/** Cover image for a post (16:9, 3840x2160): the post's `cover`, otherwise /public/blog/<slug>.webp */
+export const postImage = (slug: string) => allPosts.find((p) => p.slug === slug)?.cover ?? `/blog/${slug}.webp`;
 
 export const sortedPosts = () => [...posts].sort((a, b) => b.date.localeCompare(a.date));
 export const getPost = (slug: string) => posts.find((p) => p.slug === slug);
+
+/** The writer and the subject expert who reviewed the post */
+export const postAuthor = (p: Post) => getPerson(p.author ?? DEFAULT_AUTHOR)!;
+export const postReviewer = (p: Post) => getPerson(p.reviewer ?? reviewerByCategory[p.category]);

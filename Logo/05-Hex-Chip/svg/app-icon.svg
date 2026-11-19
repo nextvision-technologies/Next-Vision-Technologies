@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
-<title>Next Vision Technologies</title>
-<defs><linearGradient id="05appbg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1024" y2="1024"><stop offset="0" stop-color="#1B1F2A"/><stop offset="1" stop-color="#05070D"/></linearGradient>
-<radialGradient id="05appgl" cx=".8" cy=".18" r=".65"><stop offset="0" stop-color="#FFB347" stop-opacity=".22"/><stop offset="1" stop-color="#FFB347" stop-opacity="0"/></radialGradient></defs>
-<rect width="1024" height="1024" rx="228" fill="url(#05appbg)"/><rect width="1024" height="1024" rx="228" fill="url(#05appgl)"/>
-<g transform="translate(134.4 158.0) scale(5.9)"><defs><linearGradient id="05appmg" gradientUnits="userSpaceOnUse" x1="10" y1="110" x2="118" y2="10"><stop offset="0" stop-color="#FF7A1A"/><stop offset="1" stop-color="#FFB347"/></linearGradient></defs><path d="M108 60 86 98.1H42L20 60 42 21.9H86Z" fill="none" stroke="url(#05appmg)" stroke-width="7" stroke-linejoin="round"/>
-<path d="M53 21.9V11M64 21.9V8M75 21.9V11M53 98.1V109M64 98.1V112M75 98.1V109" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
-<path d="M53.20 78L46 78L46 42L53.65 42L74.70 67.10L74.70 42L82 42L82 78L74.35 78L53.20 52.80L53.20 78Z" fill="#FFFFFF"/></g>
-</svg>

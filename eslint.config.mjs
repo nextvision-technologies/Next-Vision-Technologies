@@ -12,8 +12,6 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
-    // Logo build scripts (Node CommonJS), not part of the website
-    "Logo/**",
   ]),
 ]);
 

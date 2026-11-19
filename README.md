@@ -4,6 +4,8 @@ Company website for Next Vision Technologies, a software house in Lahore and the
 
 Built with **Next.js 16** (App Router, Cache Components), **React 19**, **TypeScript** and **Tailwind CSS 4**. Every page is prerendered at build time.
 
+> AI assistants: start with `CLAUDE.md` and `AI_working/PROJECT_OVERVIEW.md`.
+
 ## Getting started
 
 Requires Node.js 20 or newer.
@@ -29,22 +31,25 @@ src/
 │   └── globals.css       Design tokens (colours, fonts) and global styles
 │
 ├── components/           Shared building blocks used across many pages
+│   ├── article/          Article blocks, reading progress, table of contents (blog + legal)
+│   ├── cards/            Cards reused across areas (service card)
 │   ├── layout/           Header, Footer, MegaMenu, ThemeToggle, SmoothScroll, WhatsAppButton
-│   ├── sections/         Page-level sections: PageHero, CtaBand, Faq, StatsStrip, Testimonials
+│   ├── sections/         Page-level sections: PageHero, CtaBand, Faq, StatsStrip, PageSkeleton
+│   ├── seo/              JSON-LD structured data
 │   └── ui/               Small primitives: Button, SectionHeading, icons, RichText, ScrollReveal
 │
-├── features/             Code that belongs to one area of the site
-│   ├── home/             Pinned hero, coding terminal, typewriter, service tabs, tech marquee
+├── features/             Code that belongs to one area of the site (never imports another feature)
+│   ├── home/             Pinned hero, hacker terminal, typewriter, service tabs, tech marquee
+│   ├── projects/         Projects Gallery filters and cards
 │   ├── chat/             Chat launcher, lazily loaded chat panel, reply engine
-│   ├── blog/             Post card, article blocks, reading progress, table of contents
-│   ├── services/         Service card and category themes
+│   ├── blog/             Post card
 │   ├── pricing/          Pricing cards
 │   ├── contact/          Contact form, demo booking
 │   ├── legal/            Legal page layout
 │   ├── locations/        Location page layout
 │   └── team/             Team grid
 │
-├── content/              All website text and data (edit these to change the site)
+├── content/              All website text and data, one file per topic (edit these to change the site)
 ├── hooks/                Reusable React hooks (shared scroll listener)
 ├── lib/                  Plain helper functions (date formatting, heading ids, file checks)
 └── types/                TypeScript types for the content data
@@ -53,7 +58,7 @@ src/
 **Where does new code go?**
 
 - Used by one area of the site only → `features/<area>/`
-- Used on several pages → `components/`
+- Used on several pages or by two features → `components/`
 - No React, just a function → `lib/`
 - A data shape → `types/content.ts`
 
@@ -63,8 +68,15 @@ src/
 |---|---|
 | Company details (email, phones, WhatsApp, offices, socials, stats) | `src/content/site.ts` |
 | Services (page content, FAQs, related services) | `src/content/services.ts` |
-| Blog posts | `src/content/blog.ts` (cover images in `public/blog/<slug>.webp`) |
-| Pricing, jobs, courses, portfolio, team, testimonials, locations | `src/content/misc.ts` |
+| Blog posts | `src/content/blog.ts` (cover images in `public/blog/`, writers and reviewers in `src/content/people.ts`) |
+| Projects Gallery | `src/content/projects.ts` (screenshots in `public/projects/<slug>.webp`) |
+| Pricing packages | `src/content/pricing.ts` |
+| Jobs | `src/content/jobs.ts` |
+| Courses | `src/content/courses.ts` |
+| Team | `src/content/team.ts` |
+| Testimonials | `src/content/testimonials.ts` |
+| Location pages | `src/content/locations.ts` |
+| Page titles, meta descriptions, sitemap | `src/content/seo.ts` |
 | Legal pages | `src/content/legal.ts` |
 | Header and footer menus | `src/content/navigation.ts` |
 | Chatbot replies (English and Roman Urdu) | `src/content/chatbot.ts` |
@@ -119,7 +131,7 @@ Useful classes defined in `globals.css`:
 ## Before launch (search the code for `TODO`)
 
 - Real email, phone, WhatsApp number, office addresses, social links and domain (`site.ts`)
-- Real testimonials, portfolio projects and screenshots (`misc.ts`)
+- Real testimonials (`testimonials.ts`)
 - Expand the blog drafts (`blog.ts`)
 - Have the legal pages reviewed (`legal.ts`)
 - Connect the contact form to email or a CRM (`api/contact/route.ts`)

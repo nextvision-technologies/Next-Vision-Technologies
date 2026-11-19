@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Briefcase, MapPin } from "lucide-react";
-import { jobs } from "@/content/misc";
+import { jobs } from "@/content/jobs";
 import { PageHero } from "@/components/sections/PageHero";
 import { pageMetadata } from "@/lib/seo";
 

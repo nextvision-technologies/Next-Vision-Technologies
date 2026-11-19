@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Font Style Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  /* ---------- Page chrome (neutral, so the options stand out) ---------- */
+  :root {
+    --chrome-bg: #ece9e4; --chrome-ink: #222; --chrome-muted: #666; --chrome-line: #d6d1c8;
+
+    /* Site tokens copied from src/app/globals.css */
+    --page: #faf8fd; --card: #ffffff; --surface: #f2eef9; --line: #e4ddf0;
+    --heading: #1f0a4d; --body: #352b4d; --muted: #5e5670;
+    --primary: #5b21b6; --accent: #a21caf; --brand-50: #f6f1fd; --brand-100: #ede4fb;
+    --night: #170b33;
+    --text-gradient: linear-gradient(120deg, #6d28d9 0%, #c026d3 50%, #db2777 100%);
+
+    /* Active option (set by the tabs) */
+    --f-head: "Plus Jakarta Sans", system-ui, sans-serif;
+    --f-body: "Plus Jakarta Sans", system-ui, sans-serif;
+    --f-h1: var(--f-head);
+    --w-head: 700; --ls-head: -0.02em; --body-size: 16px; --lh-body: 1.7;
+  }
+  .site.dark {
+    --page: #0e0820; --card: #1b1236; --surface: #150d2c; --line: #33285a;
+    --heading: #f6f2ff; --body: #dcd4ec; --muted: #ada3c6;
+    --primary: #7c3aed; --accent: #f0abfc; --brand-50: #261a4a; --brand-100: #33285a;
+    --text-gradient: linear-gradient(120deg, #c084fc 0%, #f0437a 55%, #ff9a3c 100%);
+  }
+
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--chrome-bg); color: var(--chrome-ink); font-family: system-ui, "Segoe UI", sans-serif; font-size: 15px; line-height: 1.5; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 28px 16px 64px; }
+  .intro h1 { font-size: clamp(24px, 4vw, 34px); font-weight: 700; line-height: 1.15; }
+  .intro p { color: var(--chrome-muted); margin-top: 6px; max-width: 75ch; }
+
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 22px 0 8px; }
+  .tab { font: inherit; font-weight: 600; padding: 9px 16px; border-radius: 999px; border: 1px solid var(--chrome-line); background: #fff; color: var(--chrome-ink); cursor: pointer; }
+  .tab[aria-selected="true"] { background: #222; color: #fff; border-color: #222; }
+  .tab .rec { font-size: 11px; background: #15803d; color: #fff; padding: 1px 7px; border-radius: 999px; margin-left: 6px; vertical-align: 1px; }
+  .spacer { flex: 1; }
+  .mode { font: inherit; font-weight: 600; padding: 9px 14px; border-radius: 10px; border: 1px solid var(--chrome-line); background: #fff; cursor: pointer; }
+  .note { background: #fff; border: 1px solid var(--chrome-line); border-radius: 12px; padding: 14px 16px; margin: 12px 0 18px; }
+  .note b { font-size: 16px; }
+  .note p { color: var(--chrome-muted); margin-top: 4px; }
+
+  /* ---------- Quick compare strip ---------- */
+  .compare { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); margin-bottom: 26px; }
+  .cmp { background: #fff; border: 1px solid var(--chrome-line); border-radius: 12px; padding: 16px; cursor: pointer; transition: border-color .15s; }
+  .cmp:hover, .cmp.on { border-color: #222; }
+  .cmp small { color: var(--chrome-muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+  .cmp .h { color: #1f0a4d; font-size: 22px; line-height: 1.2; margin: 8px 0 6px; }
+  .cmp .b { color: #352b4d; font-size: 14px; line-height: 1.6; }
+
+  /* ---------- Site preview (uses the active option) ---------- */
+  .site { background: var(--page); color: var(--body); font-family: var(--f-body); font-size: var(--body-size); line-height: var(--lh-body); border-radius: 16px; overflow: hidden; border: 1px solid var(--chrome-line); transition: background .2s; }
+  .site h1, .site h2, .site h3, .site h4, .site .t { font-family: var(--f-head); color: var(--heading); font-weight: var(--w-head); letter-spacing: var(--ls-head); }
+  .site h1 { font-family: var(--f-h1); }
+  .grad { background: var(--text-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  .nav { display: flex; align-items: center; gap: 22px; padding: 14px 24px; background: var(--card); border-bottom: 1px solid var(--line); }
+  .logo { display: flex; align-items: center; gap: 8px; font-family: var(--f-head); font-weight: 800; color: var(--heading); letter-spacing: -0.01em; }
+  .logo i { width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(120deg,#8b2be2,#f0437a 55%,#ff9a3c); display: inline-block; }
+  .nav a { color: var(--body); text-decoration: none; font-size: 14.5px; font-weight: 500; }
+  .nav .links { display: flex; gap: 20px; flex: 1; justify-content: center; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--f-body); font-weight: 600; font-size: 14.5px; padding: 10px 18px; border-radius: 999px; background: var(--primary); color: #fff; border: 0; text-decoration: none; }
+  .btn.ghost { background: transparent; color: var(--heading); border: 1px solid var(--line); }
+
+  .hero { padding: 64px 24px 56px; text-align: center; background: radial-gradient(ellipse at top, var(--brand-100), transparent 70%); }
+  .eyebrow { display: inline-block; font-size: 12.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); background: var(--brand-50); border: 1px solid var(--line); padding: 5px 12px; border-radius: 999px; }
+  .hero h1 { font-size: clamp(32px, 5.4vw, 56px); line-height: 1.08; margin: 18px auto 16px; max-width: 18ch; }
+  .hero p { max-width: 60ch; margin: 0 auto; color: var(--muted); font-size: 1.08em; }
+  .hero .cta { display: flex; gap: 10px; justify-content: center; margin-top: 26px; flex-wrap: wrap; }
+
+  .sec { padding: 44px 24px; }
+  .sec-h { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
+  .sec-h h2 { font-size: clamp(24px, 3.2vw, 34px); line-height: 1.15; }
+  .sec-h p { color: var(--muted); max-width: 46ch; }
+
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+  .chip { font-size: 13.5px; font-weight: 600; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--body); }
+  .chip.on { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+  .grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgb(31 10 77 / .05), 0 8px 24px -12px rgb(31 10 77 / .14); }
+  .shot { aspect-ratio: 16/10; background: linear-gradient(135deg,#2a0e6b,#5b21b6 60%,#a21caf); position: relative; display: grid; place-items: center; }
+  .shot .frame { width: 76%; height: 70%; background: #fff; border-radius: 8px; box-shadow: 0 18px 40px -12px rgb(0 0 0 / .5); overflow: hidden; }
+  .shot .frame::before { content: ""; display: block; height: 14px; background: #ece6f7; }
+  .shot .frame span { display: block; height: 8px; margin: 10px 12px 0; border-radius: 4px; background: #e4ddf0; }
+  .shot .frame span:nth-child(1) { width: 55%; background: #c4b5fd; }
+  .badge { position: absolute; left: 12px; top: 12px; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: rgb(255 255 255 / .92); color: #1f0a4d; }
+  .card .in { padding: 18px; }
+  .card .cat { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--accent); }
+  .card h3 { font-size: 19px; line-height: 1.3; margin: 6px 0 6px; }
+  .card p { font-size: .93em; color: var(--muted); }
+  .card .row { display: flex; gap: 10px; margin-top: 14px; }
+  .card .row a { font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; }
+
+  /* Article */
+  .article { max-width: 760px; margin: 0 auto; padding: 50px 24px 60px; }
+  .meta { display: flex; gap: 16px; flex-wrap: wrap; font-size: 14px; color: var(--muted); margin-top: 12px; }
+  .article h1 { font-size: clamp(30px, 4.4vw, 46px); line-height: 1.12; margin-top: 14px; }
+  .article .lead { font-size: 1.15em; color: var(--muted); margin-top: 14px; }
+  .byline { display: flex; gap: 22px; flex-wrap: wrap; margin: 24px 0 30px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--card); }
+  .person { display: flex; gap: 10px; align-items: center; }
+  .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(120deg,#8b2be2,#f0437a 55%,#ff9a3c); flex: none; }
+  .avatar.b { background: #5b21b6; }
+  .person small { display: block; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+  .person b { display: block; color: var(--heading); font-size: 15px; font-family: var(--f-head); }
+  .person span { font-size: 13px; color: var(--muted); }
+  .article h2 { font-size: clamp(23px, 3vw, 30px); line-height: 1.2; margin: 34px 0 12px; }
+  .article h3 { font-size: 20px; line-height: 1.3; margin: 24px 0 8px; }
+  .article p + p { margin-top: 14px; }
+  .article ul { margin: 12px 0 0 20px; }
+  .article li { margin: 6px 0; }
+  .tip { margin-top: 22px; padding: 16px 18px; border-left: 4px solid var(--accent); background: var(--brand-50); border-radius: 0 12px 12px 0; }
+  .tip b { color: var(--heading); font-family: var(--f-head); }
+
+  .dark-band { background: var(--night); color: #dcd4ec; padding: 44px 24px; text-align: center; }
+  .dark-band h2 { color: #fff !important; font-size: clamp(24px, 3.4vw, 36px); line-height: 1.15; }
+  .dark-band p { margin: 10px auto 22px; max-width: 52ch; color: #ada3c6; }
+
+  @media (max-width: 720px) { .nav .links { display: none; } .nav { gap: 12px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="intro">
+    <h1>Font style options for Next Vision Technologies</h1>
+    <p>Har option neeche apni asli website ke elements par dikh raha hai: header, hero, projects card, blog card aur blog article (H1, H2, H3). Brand colors wahi hain jo site par hain. Tab badal kar compare karein, aur light/dark mode bhi check karein.</p>
+  </header>
+
+  <div class="compare" id="compare"></div>
+
+  <div class="controls" role="tablist" id="tabs"></div>
+  <div class="controls">
+    <div class="note" id="note" style="flex:1;margin:0"></div>
+  </div>
+  <div class="controls" style="margin-bottom:14px">
+    <span class="spacer"></span>
+    <button class="mode" id="mode" type="button">🌙 Dark mode</button>
+  </div>
+
+  <!-- ================= SITE PREVIEW ================= -->
+  <div class="site" id="site">
+    <nav class="nav">
+      <div class="logo"><i></i>Next Vision</div>
+      <div class="links"><a href="#">Services</a><a href="#">Projects Gallery</a><a href="#">Company</a><a href="#">Resources</a><a href="#">Pricing</a></div>
+      <a class="btn" href="#">Book a Demo</a>
+    </nav>
+
+    <section class="hero">
+      <span class="eyebrow">AI · SaaS · Websites · Marketing</span>
+      <h1>We build software that <span class="grad">grows your business</span></h1>
+      <p>Websites, custom software, AI chatbots and HR automation for businesses in Pakistan, the UK and the USA. Built fast, built properly, and supported after launch.</p>
+      <div class="cta"><a class="btn" href="#">Book a free demo →</a><a class="btn ghost" href="#">View our projects</a></div>
+    </section>
+
+    <section class="sec">
+      <div class="sec-h">
+        <div><span class="eyebrow">Projects Gallery</span><h2 style="margin-top:10px">Work we have delivered</h2></div>
+        <p>Live websites, management portals and AI tools running for real clients today.</p>
+      </div>
+      <div class="filters"><span class="chip on">All</span><span class="chip">Websites</span><span class="chip">Software &amp; Portals</span><span class="chip">AI</span></div>
+      <div class="grid">
+        <article class="card">
+          <div class="shot"><span class="badge">Website</span><div class="frame"><span></span><span></span><span></span></div></div>
+          <div class="in"><span class="cat">Healthcare</span><h3 class="t">SmileCare Dental</h3><p>Clinic website with services, doctor profiles and online appointment booking.</p><div class="row"><a href="#">Visit live site ↗</a></div></div>
+        </article>
+        <article class="card">
+          <div class="shot"><span class="badge">Software</span><div class="frame"><span></span><span></span><span></span></div></div>
+          <div class="in"><span class="cat">Logistics</span><h3 class="t">Inex Courier Management System</h3><p>Booking, tracking, riders and COD accounts in one admin portal.</p><div class="row"><a href="#">Request a demo →</a></div></div>
+        </article>
+        <article class="card">
+          <div class="shot"><span class="badge">AI</span><div class="frame"><span></span><span></span><span></span></div></div>
+          <div class="in"><span class="cat">AI &amp; Automation</span><h3 class="t">Raza GPT Chat Bot</h3><p>A custom AI assistant trained on the client's own business knowledge.</p><div class="row"><a href="#">Request a demo →</a></div></div>
+        </article>
+      </div>
+    </section>
+
+    <article class="article">
+      <span class="eyebrow">AI &amp; Automation</span>
+      <h1>HR Automation Software: Save 20+ Hours a Week on HR Work</h1>
+      <div class="meta"><span>📅 19 Nov 2026</span><span>⏱ 8 min read</span></div>
+      <p class="lead">HR automation software takes attendance, payroll, leave and onboarding off your team's desk, so they spend their time on people instead of paperwork.</p>
+
+      <div class="byline">
+        <div class="person"><div class="avatar"></div><div><small>Written by</small><b>Babar Ali</b><span>SEO Expert</span></div></div>
+        <div class="person"><div class="avatar b"></div><div><small>Reviewed by</small><b>Ehtisham Iftikhar</b><span>AI Engineer</span></div></div>
+      </div>
+
+      <h2>What is HR automation software?</h2>
+      <p>HR automation software is a system that handles repeat HR tasks for you: marking attendance, calculating salaries, approving leave and sending offer letters. Instead of spreadsheets and WhatsApp messages, every request follows the same clear steps.</p>
+      <p>For a company with 20 to 500 employees, this usually saves one full working day every week.</p>
+
+      <h3>Tasks you can automate first</h3>
+      <ul>
+        <li>Attendance from biometric devices or a mobile app</li>
+        <li>Monthly payroll with tax and deductions</li>
+        <li>Leave requests and manager approvals</li>
+      </ul>
+
+      <div class="tip"><b>Tip: start with payroll.</b> It is the task with the most mistakes and the biggest time cost, so it shows results in the first month.</div>
+    </article>
+
+    <section class="dark-band">
+      <h2>Ready to automate your HR?</h2>
+      <p>Tell us how your team works today and we'll show you what can run on its own.</p>
+      <a class="btn" href="#">Book a free demo →</a>
+    </section>
+  </div>
+</div>
+
+<script>
+  const options = [
+    { id: "jakarta", name: "Plus Jakarta Sans", rec: true, tag: "Modern agency",
+      head: '"Plus Jakarta Sans", system-ui, sans-serif', body: '"Plus Jakarta Sans", system-ui, sans-serif',
+      w: 700, ls: "-0.02em", size: "16px", lh: 1.7,
+      why: "Modern, saaf aur friendly. Tech agencies aur SaaS companies mein bohot use hota hai. Headings strong lagti hain aur body text chhote size par bhi aasani se parha jata hai. Meri recommendation yahi hai." },
+    { id: "inter", name: "Inter", tag: "Clean corporate",
+      head: '"Inter", system-ui, sans-serif', body: '"Inter", system-ui, sans-serif',
+      w: 700, ls: "-0.025em", size: "16px", lh: 1.7,
+      why: "Sab se zyada neutral aur professional. Stripe, Vercel aur Linear jaisi companies ka style. Software aur portals ke liye perfect, magar thora 'plain' lag sakta hai." },
+    { id: "manrope", name: "Manrope + Inter", tag: "Tech with character",
+      head: '"Manrope", system-ui, sans-serif', body: '"Inter", system-ui, sans-serif',
+      w: 800, ls: "-0.02em", size: "16px", lh: 1.7,
+      why: "Headings Manrope mein (geometric, thori personality), body Inter mein (parhne mein easy). Tech feel aata hai bina over hue." },
+    { id: "dm", name: "DM Serif + DM Sans", tag: "Premium editorial",
+      head: '"DM Sans", system-ui, sans-serif', body: '"DM Sans", system-ui, sans-serif', h1: '"DM Serif Display", Georgia, serif',
+      w: 700, ls: "-0.015em", size: "16.5px", lh: 1.7,
+      why: "Sirf bari H1 headings serif mein, baqi sab clean DM Sans mein. Current elegant look ka thora hissa bach jata hai, magar body text ab parhne mein easy hai." },
+    { id: "current", name: "Current: Cormorant", tag: "Abhi site par",
+      head: '"Cormorant Garamond", Georgia, serif', body: '"Cormorant Garamond", Georgia, serif',
+      w: 600, ls: "-0.005em", size: "18px", lh: 1.6,
+      why: "Ye abhi poori site par laga hai, body text samet. Isi wajah se site 'over' lagti hai: chhote size par serif parhne mein mushkil hai aur buttons aur cards par formal lagta hai. Sirf comparison ke liye." },
+  ];
+
+  const root = document.documentElement, site = document.getElementById("site");
+  const tabs = document.getElementById("tabs"), note = document.getElementById("note"), compare = document.getElementById("compare");
+
+  function apply(id) {
+    const o = options.find(x => x.id === id) || options[0];
+    root.style.setProperty("--f-head", o.head);
+    root.style.setProperty("--f-body", o.body);
+    root.style.setProperty("--f-h1", o.h1 || o.head);
+    root.style.setProperty("--w-head", o.w);
+    root.style.setProperty("--ls-head", o.ls);
+    root.style.setProperty("--body-size", o.size);
+    root.style.setProperty("--lh-body", o.lh);
+    tabs.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-selected", t.dataset.id === o.id));
+    compare.querySelectorAll(".cmp").forEach(c => c.classList.toggle("on", c.dataset.id === o.id));
+    note.innerHTML = `<b>${o.name}</b> · <span style="color:#666">${o.tag}</span><p>${o.why}</p>`;
+    try { localStorage.setItem("nv-font-option", o.id); } catch (e) {}
+  }
+
+  options.forEach((o, i) => {
+    const b = document.createElement("button");
+    b.className = "tab"; b.type = "button"; b.setAttribute("role", "tab"); b.dataset.id = o.id;
+    b.innerHTML = `${i < 4 ? "Option " + (i + 1) + ": " : ""}${o.name}${o.rec ? '<span class="rec">Recommended</span>' : ""}`;
+    b.onclick = () => apply(o.id);
+    tabs.appendChild(b);
+
+    const c = document.createElement("div");
+    c.className = "cmp"; c.dataset.id = o.id;
+    c.innerHTML = `<small>${i < 4 ? "Option " + (i + 1) : "Current"} · ${o.name}</small>
+      <div class="h" style="font-family:${o.h1 || o.head};font-weight:${o.h1 ? 400 : o.w};letter-spacing:${o.ls}">HR Automation Software for Growing Teams</div>
+      <div class="b" style="font-family:${o.body}">Websites, custom software and AI chatbots, built properly and supported after launch.</div>`;
+    c.onclick = () => { apply(o.id); site.scrollIntoView({ behavior: "smooth" }); };
+    compare.appendChild(c);
+  });
+
+  document.getElementById("mode").onclick = (e) => {
+    const dark = site.classList.toggle("dark");
+    e.currentTarget.textContent = dark ? "☀️ Light mode" : "🌙 Dark mode";
+  };
+
+  let saved = null;
+  try { saved = localStorage.getItem("nv-font-option"); } catch (e) {}
+  apply(saved || "jakarta");
+</script>
+</body>
+</html>

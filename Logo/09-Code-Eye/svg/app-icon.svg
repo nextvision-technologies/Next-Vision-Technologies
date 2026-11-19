@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
-<title>Next Vision Technologies</title>
-<defs><linearGradient id="09appbg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1024" y2="1024"><stop offset="0" stop-color="#111827"/><stop offset="1" stop-color="#05070D"/></linearGradient>
-<radialGradient id="09appgl" cx=".8" cy=".18" r=".65"><stop offset="0" stop-color="#F97316" stop-opacity=".22"/><stop offset="1" stop-color="#F97316" stop-opacity="0"/></radialGradient></defs>
-<rect width="1024" height="1024" rx="228" fill="url(#09appbg)"/><rect width="1024" height="1024" rx="228" fill="url(#09appgl)"/>
-<g transform="translate(134.4 158.0) scale(5.9)"><defs><linearGradient id="09appmg" gradientUnits="userSpaceOnUse" x1="10" y1="110" x2="118" y2="10"><stop offset="0" stop-color="#F59E0B"/><stop offset="1" stop-color="#F97316"/></linearGradient></defs><path d="M40 30 13 60 40 90M88 30 115 60 88 90" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="64" cy="60" r="17" fill="url(#09appmg)"/><circle cx="69.5" cy="54.5" r="5.5" fill="#111827"/></g>
-</svg>
