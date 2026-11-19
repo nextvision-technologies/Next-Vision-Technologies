@@ -4,72 +4,84 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * Design tokens: "Charcoal & Oxblood".
- * Charcoal for structure, oxblood for accents, warm sand for the page. No purple, neon or gradients.
+ * Design tokens, taken from the logo:
+ *   deep indigo #1F0A4D / #2A0E6B  ->  structure, headings, dark sections
+ *   violet      #5B21B6 / #7C3AED  ->  primary buttons and UI
+ *   magenta     #A21CAF / #C026D3  ->  links, icons, accents
+ *   pink-orange #F0437A -> #FF9A3C ->  the logo gradient, used only for highlight words and thin details
+ * Buttons and surfaces stay solid; the gradient is an accent, never a background behind body text.
  * Every text/background pair meets WCAG AA (4.5:1) in both themes.
  */
 @theme {
-  --color-charcoal-950: #121214;
-  --color-charcoal-900: #1c1c1e;
-  --color-charcoal-800: #2e2e33;
-  --color-charcoal-700: #3b3b3f;
+  --color-night-950: #170b33;
+  --color-night-900: #1f0a4d;
+  --color-night-800: #2a0e6b;
+  --color-night-700: #3b1d7a;
 
-  --color-brand-700: #7f2f22; /* oxblood, hover / pressed */
-  --color-brand-600: #9e3b2b; /* oxblood accent (links, icons, italic words) */
-  --color-brand-400: #e0907e; /* light oxblood, for dark backgrounds */
-  --color-brand-100: #f0dcd6;
-  --color-brand-50: #f8eeea;
+  --color-brand-700: #5b21b6; /* violet: primary, hover states */
+  --color-brand-600: #a21caf; /* magenta: links, icons, accents */
+  --color-brand-400: #f0abfc; /* light magenta, for dark backgrounds */
+  --color-brand-100: #ede4fb;
+  --color-brand-50: #f6f1fd;
 
-  --color-glow-400: #8c5a1a; /* warm ochre, secondary accent */
-  --color-glow-100: #f5e9d6;
+  --color-glow-400: #a3480a; /* logo orange, darkened for text contrast */
+  --color-glow-100: #fdebd8;
 
-  --color-page: #f5f0e8; /* sand */
+  --color-page: #faf8fd;
   --color-card: #ffffff;
-  --color-surface: #ede6da;
-  --color-panel: #1c1c1e; /* solid dark sections */
-  --color-heading: #1c1c1e;
-  --color-ink: #3b3b3f;
-  --color-body: #3b3b3f;
-  --color-muted: #5f5e63;
-  --color-line: #e2dbd0;
+  --color-surface: #f2eef9;
+  --color-panel: #170b33; /* solid dark sections */
+  --color-heading: #1f0a4d;
+  --color-ink: #352b4d;
+  --color-body: #352b4d;
+  --color-muted: #5e5670;
+  --color-line: #e4ddf0;
 
-  --color-primary: #9e3b2b; /* buttons */
+  --color-primary: #5b21b6; /* buttons */
   --color-on-primary: #ffffff;
   --color-on-warm: #ffffff;
-  --color-success: #2f6b3a;
-  --color-error: #b3261e;
+  --color-success: #15803d;
+  --color-error: #b91c1c;
 
   --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-cormorant), Georgia, "Times New Roman", serif;
   --font-serif: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
 
   --radius-card: 1rem;
-  --shadow-card: 0 1px 2px rgb(28 28 30 / 0.05), 0 8px 24px -12px rgb(28 28 30 / 0.14);
-  --shadow-lift: 0 2px 4px rgb(28 28 30 / 0.06), 0 18px 40px -16px rgb(28 28 30 / 0.26);
+  --shadow-card: 0 1px 2px rgb(31 10 77 / 0.05), 0 8px 24px -12px rgb(31 10 77 / 0.14);
+  --shadow-lift: 0 2px 4px rgb(31 10 77 / 0.06), 0 18px 40px -16px rgb(31 10 77 / 0.28);
+}
+
+/* The logo gradient. Light version stays readable on white; bright version is for dark backgrounds. */
+:root {
+  --logo-gradient: linear-gradient(120deg, #8b2be2 0%, #f0437a 55%, #ff9a3c 100%);
+  --text-gradient: linear-gradient(120deg, #6d28d9 0%, #c026d3 50%, #db2777 100%);
 }
 
 .dark {
   color-scheme: dark;
-  --color-page: #121214;
-  --color-card: #1d1d20;
-  --color-surface: #18181b;
-  --color-panel: #1d1d20;
-  --color-line: #2e2e33;
-  --color-heading: #f3eee6;
-  --color-ink: #cfcac2;
-  --color-body: #cfcac2;
-  --color-muted: #a29e96;
-  --color-brand-50: #2a2224;
-  --color-brand-100: #3a2c2d;
-  --color-brand-600: #e0907e;
-  --color-brand-700: #ebb3a6;
-  --color-glow-400: #e0b070;
-  --color-glow-100: #2e2418;
-  --color-primary: #d9826f;
-  --color-on-primary: #1c1c1e;
-  --color-on-warm: #1c1c1e;
-  --color-success: #6fbf7e;
-  --color-error: #f08a80;
+  --text-gradient: linear-gradient(120deg, #c084fc 0%, #f0437a 55%, #ff9a3c 100%);
+  --color-page: #0e0820;
+  --color-card: #1b1236;
+  --color-surface: #150d2c;
+  --color-panel: #170b33;
+  --color-line: #33285a;
+  --color-heading: #f6f2ff;
+  --color-ink: #dcd4ec;
+  --color-body: #dcd4ec;
+  --color-muted: #ada3c6;
+  --color-brand-50: #261a4a;
+  --color-brand-100: #33285a;
+  --color-brand-600: #f0abfc;
+  --color-brand-700: #c4b5fd;
+  --color-glow-400: #ffb26b;
+  --color-glow-100: #3a2416;
+  --color-primary: #7c3aed;
+  --color-on-primary: #ffffff;
+  --color-on-warm: #170b33;
+  --color-success: #4ade80;
+  --color-error: #f87171;
   --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.6);
 }
 
@@ -87,27 +99,40 @@
   background: var(--color-primary);
   color: var(--color-on-primary) !important;
 }
-/* Solid dark section. Tokens are re-scoped so everything inside stays readable. */
+/* Highlight words in the logo gradient (headings and large text only) */
+@utility text-gradient {
+  color: var(--color-brand-600); /* fallback */
+  background-image: var(--text-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/* Thin decorative strip in the logo gradient (bars, rules). Never put text on it. */
+@utility bg-logo-gradient {
+  background-image: var(--logo-gradient);
+}
+/* Solid dark section in logo indigo. Tokens are re-scoped so everything inside stays readable. */
 @utility section-dark {
   background: var(--color-panel);
-  --color-card: #26262a;
-  --color-surface: #26262a;
-  --color-line: #3a3a40;
-  --color-heading: #f3eee6;
-  --color-ink: #f3eee6;
-  --color-body: #f3eee6;
-  --color-muted: #b4afa8;
-  --color-brand-50: #2a2224;
-  --color-brand-100: #3a3a40;
-  --color-brand-600: #e0907e;
-  --color-brand-700: #ebb3a6;
-  --color-glow-400: #e0b070;
-  --color-glow-100: #2e2418;
-  --color-primary: #d9826f;
-  --color-on-primary: #1c1c1e;
-  --color-on-warm: #1c1c1e;
-  --color-success: #6fbf7e;
-  --color-error: #f08a80;
+  --text-gradient: linear-gradient(120deg, #c084fc 0%, #f0437a 55%, #ff9a3c 100%);
+  --color-card: #241547;
+  --color-surface: #241547;
+  --color-line: #3a2a66;
+  --color-heading: #f6f2ff;
+  --color-ink: #f6f2ff;
+  --color-body: #f6f2ff;
+  --color-muted: #c4bbd8;
+  --color-brand-50: #2c1d52;
+  --color-brand-100: #3a2a66;
+  --color-brand-600: #f0abfc;
+  --color-brand-700: #c4b5fd;
+  --color-glow-400: #ffb26b;
+  --color-glow-100: #3a2416;
+  --color-primary: #7c3aed;
+  --color-on-primary: #ffffff;
+  --color-on-warm: #170b33;
+  --color-success: #4ade80;
+  --color-error: #f87171;
 }
 
 /* Motion: page-load entrances start visible-safe (only transform/opacity from 0.001 at load) */
@@ -192,9 +217,9 @@
     overflow: hidden;
   }
 
-  /* 1. Media card: rounded card in the right half at --pc 0, full area at --pc 1 */
+  /* 1. Media card: rounded card in the LEFT half at --pc 0, full area at --pc 1 */
   .pinned-hero__clip {
-    --t: 96px; --r: 32px; --b: 40px; --l: 52%; --rad: 40px;
+    --t: 96px; --r: 52%; --b: 40px; --l: 32px; --rad: 40px;
     position: absolute; inset: 0; z-index: 1;
     clip-path: inset(
       calc(var(--t) * (1 - var(--pc))) calc(var(--r) * (1 - var(--pc)))
@@ -210,10 +235,24 @@
   }
   .pinned-hero__media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
+  /* Coding terminal: centred in the card, glides to the centre of the screen as the card expands */
+  .pinned-hero__terminal {
+    position: absolute;
+    left: calc((24% + 16px) * (1 - var(--pc)) + 50% * var(--pc));
+    top: calc(50% + 28px * (1 - var(--pc)));
+    width: min(36rem, calc(48% - 104px));
+    transform: translate(-50%, -50%);
+    will-change: left, top;
+  }
+  .nv-terminal__code { height: calc(14 * 1.7em + 2rem); }
+  @media (height < 720px) and (width >= 820px) {
+    .nv-terminal__code { font-size: 11px; }
+  }
+
   /* 2. Shade */
   .pinned-hero__shade {
     position: absolute; inset: 0; z-index: 2; pointer-events: none;
-    background: linear-gradient(to top, rgb(18 18 20 / 0.94) 0%, rgb(18 18 20 / 0.6) 45%, rgb(18 18 20 / 0.1) 80%);
+    background: linear-gradient(to top, rgb(23 11 51 / 0.95) 0%, rgb(23 11 51 / 0.62) 45%, rgb(23 11 51 / 0.1) 80%);
     opacity: var(--shade);
   }
 
@@ -226,12 +265,12 @@
   }
   .pinned-hero__fade { opacity: calc(1 - var(--fade)); will-change: opacity; }
   .pinned-hero__chip {
-    position: absolute; z-index: 3; left: 52%; bottom: 72px;
+    position: absolute; z-index: 3; left: 48%; bottom: 72px;
     transform: translateX(-50%);
     display: flex; align-items: center; gap: 0.75rem;
     padding: 0.6rem 1.1rem 0.6rem 0.6rem;
     border-radius: 999px;
-    background: rgb(28 28 30 / 0.92);
+    background: rgb(23 11 51 / 0.94);
     border: 1px solid rgb(255 255 255 / 0.14);
     box-shadow: 0 18px 40px -16px rgb(0 0 0 / 0.6);
   }
@@ -245,21 +284,30 @@
     will-change: transform, opacity;
   }
 
-  /* 5. Scroll hint */
+  /* 5. Scroll hint (under the text column) */
   .pinned-hero__hint {
-    position: absolute; z-index: 5; bottom: 1.5rem; left: 26%;
+    position: absolute; z-index: 5; bottom: 1.5rem; left: 76%;
     transform: translateX(-50%);
     display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
     font-size: 0.7rem; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase;
     color: rgb(255 255 255 / 0.6);
   }
 
+  /* Phones and small tablets: full-bleed media, terminal at the top, text at the bottom */
   @media (width < 820px) {
     .pinned-hero__clip { clip-path: inset(0); }
     .pinned-hero__media { transform: none; }
     .pinned-hero__shade { opacity: max(0.7, var(--shade)); }
     .pinned-hero__chip { display: none; }
     .pinned-hero__hint { left: 50%; }
+    .pinned-hero__terminal { left: 50%; top: 1rem; width: calc(100% - 2rem); max-width: 34rem; transform: translateX(-50%); }
+    .nv-terminal__code {
+      height: calc(7 * 1.7em + 1rem); padding-block: 0.5rem; font-size: 10.5px;
+      display: flex; flex-direction: column; justify-content: flex-end; /* keep the line being typed in view */
+    }
+  }
+  @media (width < 820px) and (height < 720px) {
+    .pinned-hero__terminal { display: none; } /* not enough room next to the heading */
   }
 
   /* Reduced motion: no scroll distance, final state is set once by JS */
@@ -268,10 +316,28 @@
     .pinned-hero__stick { position: relative; top: 0; }
   }
 
-  /* ---------- Animated brand scene (shown when there is no hero video) ---------- */
+  /* Blinking caret for the terminal */
+  .nv-caret {
+    display: inline-block; width: 0.55em; height: 1.15em; margin-left: 1px;
+    vertical-align: text-bottom; background: #ff9a3c; border-radius: 1px;
+    animation: nv-blink 1.05s steps(1) infinite;
+  }
+
+  /* ---------- Animated brand backdrop (shown when there is no hero video) ---------- */
   .nv-anim {
     position: absolute; inset: 0; overflow: hidden;
-    background: #1c1c1e;
+    background: #170b33;
+  }
+  /* Static soft light behind the terminal: plain gradients, no blur filter, so it costs nothing to scroll */
+  .nv-anim__light {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(55% 60% at 24% 48%, rgb(124 58 237 / 0.42), transparent 70%),
+      radial-gradient(35% 40% at 36% 78%, rgb(240 67 122 / 0.18), transparent 70%),
+      radial-gradient(30% 35% at 14% 20%, rgb(255 154 60 / 0.10), transparent 70%);
+  }
+  @media (width < 820px) {
+    .nv-anim__light { background: radial-gradient(90% 50% at 50% 22%, rgb(124 58 237 / 0.42), transparent 70%); }
   }
 
   .nv-anim__grid {
@@ -284,59 +350,18 @@
   .nv-anim__grid::before {
     content: ""; position: absolute; inset: -60px 0 0;
     background-image:
-      linear-gradient(rgb(243 238 230 / 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgb(243 238 230 / 0.08) 1px, transparent 1px);
+      linear-gradient(rgb(196 181 253 / 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(196 181 253 / 0.12) 1px, transparent 1px);
     background-size: 60px 60px;
     animation: nv-grid 3s linear infinite;
   }
 
+  /* Square "pixels", the motif from the logo */
   .nv-anim__spark {
-    position: absolute; width: 3px; height: 3px; border-radius: 999px;
-    background: #e8dccb;
+    position: absolute; width: 5px; height: 5px; border-radius: 1px;
     animation: nv-pulse 2.8s ease-in-out infinite;
-  }
-
-  .nv-anim__core {
-    position: absolute; left: 76%; top: 46%;
-    width: clamp(220px, 32vmin, 380px); aspect-ratio: 1;
-    transform: translate(-50%, -50%);
-  }
-  .nv-anim__ring {
-    position: absolute; inset: var(--i); border-radius: 50%;
-    border: 1px solid rgb(243 238 230 / 0.14);
-    animation: nv-spin var(--s) linear infinite;
-  }
-  .nv-anim__ring--rev { animation-direction: reverse; border-style: dashed; }
-  .nv-anim__ring::after {
-    content: ""; position: absolute; top: -4px; left: 50%;
-    width: 8px; height: 8px; margin-left: -4px; border-radius: 50%;
-    background: var(--dot);
-  }
-  .nv-anim__logo {
-    position: absolute; inset: 34%;
-    display: grid; place-items: center;
-    border-radius: 28%;
-    background: #26262a;
-    border: 1px solid rgb(243 238 230 / 0.16);
-    box-shadow: 0 24px 60px -20px rgb(0 0 0 / 0.7), inset 0 1px 0 rgb(243 238 230 / 0.1);
-  }
-  .nv-anim__logo img { width: 62%; height: auto; }
-  .nv-anim__tag {
-    position: absolute;
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    white-space: nowrap; padding: 0.45rem 0.85rem; border-radius: 999px;
-    font-size: 0.8rem; font-weight: 600; color: #f3eee6;
-    background: #26262a;
-    border: 1px solid rgb(243 238 230 / 0.16);
-    animation: nv-float 6s ease-in-out infinite;
-  }
-  .nv-anim__tag svg { width: 14px; height: 14px; color: #e0907e; }
-
-  @media (width < 820px) {
-    .nv-anim__core { left: 50%; top: 32%; }
-    .nv-anim__tag { display: none; }
   }
 }
 
 @keyframes nv-grid { to { transform: translateY(60px); } }
-@keyframes nv-spin { to { transform: rotate(360deg); } }
+@keyframes nv-blink { 50% { opacity: 0; } }

@@ -175,7 +175,7 @@ export function DemoBooking() {
                   {SLOTS.map((s) => (
                     <div key={s} className="flex gap-2">
                       <button type="button" onClick={() => setTime(s)} aria-pressed={time === s}
-                        className={`h-11 flex-1 rounded-xl border text-sm font-semibold transition ${time === s ? "border-charcoal-900 bg-charcoal-900 text-white" : "border-brand-600/40 text-brand-700 hover:border-brand-600"}`}>
+                        className={`h-11 flex-1 rounded-xl border text-sm font-semibold transition ${time === s ? "border-night-900 bg-night-900 text-white" : "border-brand-600/40 text-brand-700 hover:border-brand-600"}`}>
                         {to12h(s)}
                       </button>
                       {time === s && (

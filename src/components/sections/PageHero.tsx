@@ -5,12 +5,13 @@ import { BreadcrumbJsonLd } from "@/components/seo/SiteJsonLd";
 
 type Crumb = { label: string; href?: string };
 
-/** Navy page header with breadcrumb, used on every inner page */
+/** Indigo page header with breadcrumb, used on every inner page. A thin logo-gradient rule marks its bottom edge. */
 export function PageHero({ title, text, crumbs, eyebrow, children }: { title: ReactNode; text?: ReactNode; crumbs: Crumb[]; eyebrow?: string; children?: ReactNode }) {
   return (
     <section className="section-dark relative overflow-hidden text-white">
       <BreadcrumbJsonLd items={[{ label: "Home", href: "/" }, ...crumbs]} />
       <PixelCluster className="absolute top-6 right-[6%] hidden w-28 md:block" />
+      <span className="bg-logo-gradient absolute inset-x-0 bottom-0 h-1" aria-hidden />
       <div className="container-page relative flex flex-col gap-3.5 py-10 sm:py-14">
         <nav aria-label="Breadcrumb">
           <ol className="flex flex-wrap items-center gap-1.5 text-sm text-white/60">
@@ -38,8 +39,9 @@ export function PixelCluster({ className = "" }: { className?: string }) {
     <svg viewBox="0 0 110 100" className={`w-40 opacity-80 ${className}`} aria-hidden>
       <defs>
         <linearGradient id="pxg" x1="0" y1="1" x2="1" y2="0">
-          <stop offset="0" stopColor="var(--color-glow-400)" />
-          <stop offset="1" stopColor="var(--color-glow-400)" />
+          <stop offset="0" stopColor="#8b2be2" />
+          <stop offset="0.5" stopColor="#f0437a" />
+          <stop offset="1" stopColor="#ff9a3c" />
         </linearGradient>
       </defs>
       {px.map(([x, y, s], i) => (

@@ -132,7 +132,7 @@ export function Header() {
 
       {mobile && (
         <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label="Menu">
-          <div className="absolute inset-0 bg-charcoal-950/50" onClick={() => setMobile(false)} />
+          <div className="absolute inset-0 bg-night-950/50" onClick={() => setMobile(false)} />
           <div data-lenis-prevent className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col overflow-y-auto bg-card p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
             <div className="flex items-center justify-between">
               <Image src="/brand/logo-tagline.svg" alt={site.name} width={462} height={108} className="h-12 w-auto dark:hidden" />

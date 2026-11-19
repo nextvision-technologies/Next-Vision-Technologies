@@ -23,6 +23,7 @@ function Column({ title, links }: { title: string; links: { label: string; href:
 export function Footer() {
   return (
     <footer className="section-dark relative overflow-hidden text-white">
+      <span className="bg-logo-gradient absolute inset-x-0 top-0 h-1" aria-hidden />
       <div className="container-page relative grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-16">
         <div className="flex flex-col gap-5">
           <Image src="/brand/logo-tagline-white.svg" alt={site.name} width={462} height={108} className="h-16 w-auto self-start" />

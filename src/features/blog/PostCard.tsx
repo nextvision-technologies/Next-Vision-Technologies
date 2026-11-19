@@ -11,7 +11,7 @@ export function PostCard({ p }: { p: Post }) {
       <div className="section-dark relative flex aspect-[16/9] items-end overflow-hidden p-4">
         <Image src={postImage(p.slug)} alt="" fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="object-cover transition duration-500 group-hover:scale-105" />
-        <span className="relative rounded-full bg-charcoal-950/80 px-3 py-1 text-xs font-semibold text-white md:backdrop-blur">{p.category}</span>
+        <span className="relative rounded-full bg-night-950/80 px-3 py-1 text-xs font-semibold text-white md:backdrop-blur">{p.category}</span>
       </div>
       <div className="flex flex-1 flex-col gap-3 p-6">
         <p className="text-xs text-muted">{formatDate(p.date)} · {p.readMinutes} min read</p>

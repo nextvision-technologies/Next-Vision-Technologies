@@ -81,7 +81,7 @@ function PromoCard({ promo }: { promo: NavPromo }) {
             <PromoArt art={promo.art} />
             <div className="relative mt-auto flex items-center justify-between gap-3 bg-card p-3.5 text-heading">
               <p className="font-display text-sm leading-snug font-bold">{promo.title}</p>
-              <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-charcoal-900 text-white transition group-hover/promo:solid-primary">
+              <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-night-900 text-white transition group-hover/promo:solid-primary">
                 <ArrowRight className="size-4" />
               </span>
             </div>
@@ -106,7 +106,7 @@ function PromoCard({ promo }: { promo: NavPromo }) {
 export function MegaMenuPanel({ group }: { group: NavGroup }) {
   const two = group.columns === 2;
   return (
-    <div data-lenis-prevent className="grid max-h-[calc(100dvh-9rem)] grid-cols-[1fr_15rem] gap-5 overflow-y-auto rounded-2xl border border-line bg-card p-5 shadow-[0_24px_60px_-20px_rgb(28_28_30/0.35)]">
+    <div data-lenis-prevent className="grid max-h-[calc(100dvh-9rem)] grid-cols-[1fr_15rem] gap-5 overflow-y-auto rounded-2xl border border-line bg-card p-5 shadow-[0_24px_60px_-20px_rgb(31_10_77/0.35)]">
       <div className="flex flex-col">
         {group.overview && <p className="mb-2 px-2 text-xs text-muted">{group.overview}</p>}
         <ul className={`grid gap-0.5 ${two ? "grid-cols-2" : "grid-cols-1"}`}>

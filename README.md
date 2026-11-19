@@ -34,7 +34,7 @@ src/
 │   └── ui/               Small primitives: Button, SectionHeading, icons, RichText, ScrollReveal
 │
 ├── features/             Code that belongs to one area of the site
-│   ├── home/             Pinned hero, hero animation, service tabs, tech marquee
+│   ├── home/             Pinned hero, coding terminal, typewriter, service tabs, tech marquee
 │   ├── chat/             Chat launcher, lazily loaded chat panel, reply engine
 │   ├── blog/             Post card, article blocks, reading progress, table of contents
 │   ├── services/         Service card and category themes
@@ -78,25 +78,32 @@ To use a video in the home page hero, add `public/video/hero.mp4` (and optionall
 
 Colours and fonts are defined once as tokens in `src/app/globals.css` and used through Tailwind classes such as `bg-page`, `text-heading` and `text-brand-600`. Change a token there and the whole site follows. Every text and background pair meets WCAG AA contrast in light and dark mode.
 
-**Colour scheme: Charcoal & Oxblood**
+**Colour scheme: taken from the logo**
+
+The logo runs from deep indigo through violet and magenta to pink and orange. The UI uses those colours in fixed roles: indigo for structure, violet for buttons, magenta for accents. The full pink-to-orange gradient appears only as a highlight (key heading words, thin rules, the reading-progress bar), never as a background behind body text.
 
 | Token | Light | Dark | Used for |
 |---|---|---|---|
-| `page` | `#F5F0E8` sand | `#121214` | Page background |
-| `card` | `#FFFFFF` | `#1D1D20` | Cards, header |
-| `heading` | `#1C1C1E` charcoal | `#F3EEE6` | Headings |
-| `ink` / `body` | `#3B3B3F` | `#CFCAC2` | Body text |
-| `muted` | `#5F5E63` | `#A29E96` | Secondary text |
-| `brand-600` | `#9E3B2B` oxblood | `#E0907E` | Links, icons, accent words |
-| `primary` | `#9E3B2B` | `#D9826F` | Buttons |
-| `glow-400` | `#8C5A1A` ochre | `#E0B070` | Secondary accent |
-| `line` | `#E2DBD0` | `#2E2E33` | Borders |
+| `page` | `#FAF8FD` | `#0E0820` | Page background |
+| `card` | `#FFFFFF` | `#1B1236` | Cards, header |
+| `heading` | `#1F0A4D` deep indigo | `#F6F2FF` | Headings |
+| `ink` / `body` | `#352B4D` | `#DCD4EC` | Body text |
+| `muted` | `#5E5670` | `#ADA3C6` | Secondary text |
+| `primary` | `#5B21B6` violet | `#7C3AED` | Buttons |
+| `brand-600` | `#A21CAF` magenta | `#F0ABFC` | Links, icons, accents |
+| `glow-400` | `#A3480A` orange | `#FFB26B` | Secondary accent |
+| `panel` | `#170B33` | `#170B33` | Dark sections, hero, footer |
+| `line` | `#E4DDF0` | `#33285A` | Borders |
 
 Useful classes defined in `globals.css`:
 
-- `section-dark`: a solid charcoal section. It re-scopes the colour tokens so everything inside stays readable.
+- `section-dark`: a solid indigo section. It re-scopes the colour tokens so everything inside stays readable.
 - `solid-primary`: the primary button fill, with matching text colour.
+- `text-gradient`: highlight words in the logo gradient (headings and large text only).
+- `bg-logo-gradient`: thin decorative strips in the logo gradient. Never put text on it.
 - `container-page`: the standard page width and side padding.
+
+**Home hero:** a pinned, scroll-driven hero (`features/home/PinnedHero.tsx`). On the left, a live coding terminal (`CodeTerminal.tsx`) types real code and "deploys" it. On the right, the heading types out what we build (`Typewriter.tsx`). Both pause when off screen and respect reduced motion.
 
 **Font:** Cormorant Garamond (Google Fonts, loaded through `next/font` in `src/app/layout.tsx`) for the whole site. Body text uses `font-size-adjust` so the small x-height still reads comfortably.
 

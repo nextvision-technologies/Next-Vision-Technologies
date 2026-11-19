@@ -153,12 +153,12 @@ export default function ChatPanel({ open, onClose }: { open: boolean; onClose: (
 
   return (
     <section role="dialog" aria-label="Next Vision chat assistant"
-      className="animate-rise fixed right-[max(1rem,env(safe-area-inset-right))] bottom-[calc(max(1.25rem,env(safe-area-inset-bottom))+5rem)] z-50 flex h-[min(36rem,calc(100dvh-8rem))] w-[min(24rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-[1.5rem] border border-line bg-card shadow-[0_30px_80px_-20px_rgb(28_28_30/0.45)] [animation-duration:.25s]">
+      className="animate-rise fixed right-[max(1rem,env(safe-area-inset-right))] bottom-[calc(max(1.25rem,env(safe-area-inset-bottom))+5rem)] z-50 flex h-[min(36rem,calc(100dvh-8rem))] w-[min(24rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-[1.5rem] border border-line bg-card shadow-[0_30px_80px_-20px_rgb(31_10_77/0.45)] [animation-duration:.25s]">
       {/* Header */}
       <header className="section-dark relative flex items-center gap-3 px-4 py-3.5 text-white">
         <span className="relative inline-flex size-10 items-center justify-center rounded-full bg-white">
           <Image src="/brand/mark.svg" alt="" width={28} height={28} className="size-7" />
-          <span className="absolute -right-0.5 -bottom-0.5 size-3 rounded-full border-2 border-charcoal-950 bg-emerald-400" />
+          <span className="absolute -right-0.5 -bottom-0.5 size-3 rounded-full border-2 border-night-950 bg-emerald-400" />
         </span>
         <div className="relative flex-1">
           <p className="font-display text-base font-bold">Next Vision Assistant</p>

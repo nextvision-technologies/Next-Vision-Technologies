@@ -19,7 +19,7 @@ export function ReadingProgress() {
   });
   return (
     <div className="fixed inset-x-0 top-0 z-50 h-1 bg-transparent" aria-hidden>
-      <div ref={barRef} className="solid-primary h-full origin-left scale-x-0" />
+      <div ref={barRef} className="bg-logo-gradient h-full origin-left scale-x-0" />
     </div>
   );
 }
@@ -84,7 +84,7 @@ export function ShareButtons({ url, title }: { url: string; title: string }) {
           </a>
         ))}
         <button type="button" onClick={copy} aria-label="Copy link"
-          className="inline-flex size-10 items-center justify-center rounded-full bg-surface text-heading transition hover:bg-charcoal-900 hover:text-white">
+          className="inline-flex size-10 items-center justify-center rounded-full bg-surface text-heading transition hover:bg-night-900 hover:text-white">
           {copied ? <Check className="size-4" /> : <Link2 className="size-4" />}
         </button>
       </div>

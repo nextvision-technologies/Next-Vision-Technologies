@@ -16,7 +16,7 @@ export function ServiceCard({ s, showCategory = false }: { s: Service; showCateg
   const t = categoryTheme[s.category];
   return (
     <article
-      className={`group relative flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-line ${t.card} p-7 transition duration-300 hover:-translate-y-1.5 hover:border-transparent hover:shadow-[0_24px_60px_-24px_rgb(28_28_30/0.35)]`}
+      className={`group relative flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-line ${t.card} p-7 transition duration-300 hover:-translate-y-1.5 hover:border-transparent hover:shadow-[0_24px_60px_-24px_rgb(31_10_77/0.35)]`}
     >
       {/* gradient border on hover */}
       <span className="solid-primary pointer-events-none absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 transition duration-300 group-hover:scale-x-100" aria-hidden />
@@ -49,7 +49,7 @@ export function ServiceCard({ s, showCategory = false }: { s: Service; showCateg
           Learn more <ArrowRight className="size-4 transition group-hover:translate-x-1" aria-hidden />
         </Link>
         <Link href="/contact" aria-label={`Get a quote for ${s.title}`}
-          className="inline-flex items-center gap-1.5 rounded-full border border-charcoal-900/15 bg-card px-4 py-2 text-sm font-semibold text-heading transition hover:border-transparent hover:bg-charcoal-900 hover:text-white">
+          className="inline-flex items-center gap-1.5 rounded-full border border-night-900/15 bg-card px-4 py-2 text-sm font-semibold text-heading transition hover:border-transparent hover:bg-night-900 hover:text-white">
           <MessageSquareQuote className="size-4" aria-hidden /> Get a quote
         </Link>
       </div>
