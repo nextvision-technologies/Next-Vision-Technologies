@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
 import { CalendarDays, GraduationCap } from "lucide-react";
 import { courses } from "@/content/misc";
 import { whatsappLink } from "@/content/site";
 import { PageHero } from "@/components/sections/PageHero";
 import { Button } from "@/components/ui/Button";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Courses", description: "Practical courses in AI automation, web development, SEO and digital marketing." };
+export const metadata = pageMetadata("/courses");
 
 export default function CoursesPage() {
   return (

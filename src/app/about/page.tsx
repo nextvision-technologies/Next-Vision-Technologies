@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
 import { Eye, Rocket, ShieldCheck } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
 import { CtaBand, StatsStrip } from "@/components/sections/Blocks";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TeamGrid } from "@/features/team/TeamGrid";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "About Us", description: "Who we are, what we believe and how Next Vision Technologies works." };
+export const metadata = pageMetadata("/about");
 
 const values = [
   { icon: Eye, title: "Vision first", text: "We start from where your business needs to be, then choose the technology to get there." },

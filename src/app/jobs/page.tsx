@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Briefcase, MapPin } from "lucide-react";
 import { jobs } from "@/content/misc";
 import { PageHero } from "@/components/sections/PageHero";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Careers", description: "Open roles at Next Vision Technologies." };
+export const metadata = pageMetadata("/jobs");
 
 export default function JobsPage() {
   return (

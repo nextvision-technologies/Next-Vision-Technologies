@@ -14,6 +14,8 @@ import { Button, buttonClass } from "@/components/ui/Button";
 import { IconTile, ServiceIcon } from "@/components/ui/ServiceIcon";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SocialIcon } from "@/components/ui/SocialIcons";
+import { pageMetadata } from "@/lib/seo";
+import { BreadcrumbJsonLd } from "@/components/seo/SiteJsonLd";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -22,12 +24,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/services/[slug]">): Promise<Metadata> {
   const s = getService((await params).slug);
   if (!s) return {};
-  return {
-    title: s.title,
-    description: `${s.tagline} ${s.short}`,
-    alternates: { canonical: `/services/${s.slug}` },
-    openGraph: { title: `${s.title} | ${site.name}`, description: s.short },
-  };
+  return pageMetadata(`/services/${s.slug}`);
 }
 
 const sections = [
@@ -58,6 +55,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
 
   return (
     <>
+      <BreadcrumbJsonLd items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: s.title }]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
 
       {/* ---------- Hero ---------- */}

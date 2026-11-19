@@ -5,6 +5,7 @@ import { getJob, jobs } from "@/content/misc";
 import { site, whatsappLink } from "@/content/site";
 import { PageHero } from "@/components/sections/PageHero";
 import { Button } from "@/components/ui/Button";
+import { pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return jobs.map((j) => ({ slug: j.slug }));
@@ -12,7 +13,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps<"/jobs/[slug]">): Promise<Metadata> {
   const j = getJob((await params).slug);
-  return j ? { title: `${j.title} (${j.location})`, description: j.summary } : {};
+  return j ? pageMetadata(`/jobs/${j.slug}`) : {};
 }
 
 function List({ title, items }: { title: string; items: string[] }) {

@@ -108,14 +108,14 @@ const lineLength = (l: Line) => l.parts.reduce((n, [t]) => n + t.length, 0);
 
 /** Renders the first `chars` characters of a line, keeping each token's colour */
 function PartialLine({ line, chars }: { line: Line; chars: number }) {
-  let left = chars;
+  // Character offset where each token starts
+  const starts = line.parts.reduce<number[]>((acc, _part, i) => [...acc, i === 0 ? 0 : acc[i - 1] + line.parts[i - 1][0].length], []);
   return (
     <>
       {line.parts.map(([text, tone], i) => {
+        const left = chars - starts[i];
         if (left <= 0) return null;
-        const shown = text.slice(0, left);
-        left -= text.length;
-        return <span key={i} className={toneClass[tone]}>{shown}</span>;
+        return <span key={i} className={toneClass[tone]}>{text.slice(0, left)}</span>;
       })}
     </>
   );

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CalendarDays, Clock } from "lucide-react";
@@ -7,11 +6,9 @@ import { PageHero } from "@/components/sections/PageHero";
 import { CtaBand } from "@/components/sections/Blocks";
 import { PostCard } from "@/features/blog/PostCard";
 import { formatDate } from "@/lib/format";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description: "Guides on AI automation, web development, SEO and digital marketing from the Next Vision team.",
-};
+export const metadata = pageMetadata("/blog");
 
 export default function BlogPage() {
   const [featured, ...rest] = sortedPosts();

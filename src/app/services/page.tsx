@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Bot, CodeXml, Megaphone, Palette, type LucideIcon } from "lucide-react";
 import { services, serviceCategories } from "@/content/services";
@@ -9,11 +8,9 @@ import { CtaBand } from "@/components/sections/Blocks";
 import { ServiceCard, categoryTheme } from "@/features/services/ServiceCard";
 import { Button } from "@/components/ui/Button";
 import { SocialIcon } from "@/components/ui/SocialIcons";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Services",
-  description: "AI automation, chatbots, web and app development, SaaS, SEO, digital marketing and design services from Next Vision Technologies.",
-};
+export const metadata = pageMetadata("/services");
 
 const categoryInfo: Record<ServiceCategory, { id: string; icon: LucideIcon; text: string }> = {
   "AI & Automation": { id: "ai-automation", icon: Bot, text: "AI agents, chatbots and automated workflows that save hours every week and answer customers instantly." },

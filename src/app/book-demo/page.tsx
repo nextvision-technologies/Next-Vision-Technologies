@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
 import { DemoBooking } from "@/features/contact/DemoBooking";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Book a Demo", description: "Book a free 30-minute demo of our AI automation, chatbot and software solutions." };
+export const metadata = pageMetadata("/book-demo");
 
 export default function BookDemoPage() {
   return (

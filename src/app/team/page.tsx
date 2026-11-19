@@ -1,13 +1,10 @@
-import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
 import { CtaBand } from "@/components/sections/Blocks";
 import { TeamGrid } from "@/features/team/TeamGrid";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Our Team",
-  description: "Meet the leadership team behind Next Vision Technologies: Muhammad Ahsan Khan, Ali Raza, Babar Ali and Ehtisham Malik.",
-};
+export const metadata = pageMetadata("/team");
 
 export default function TeamPage() {
   return (

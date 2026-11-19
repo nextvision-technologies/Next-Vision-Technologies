@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
 import { portfolio } from "@/content/misc";
 import { PageHero, PixelCluster } from "@/components/sections/PageHero";
 import { CtaBand } from "@/components/sections/Blocks";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Portfolio", description: "Selected projects by Next Vision Technologies across AI, web, e-commerce and marketing." };
+export const metadata = pageMetadata("/portfolio");
 
 export default function PortfolioPage() {
   return (

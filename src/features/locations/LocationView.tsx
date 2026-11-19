@@ -6,10 +6,11 @@ import { CtaBand, StatsStrip } from "@/components/sections/Blocks";
 import { ServiceCard } from "@/features/services/ServiceCard";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { pageMetadata } from "@/lib/seo";
 
 type Slug = keyof typeof locations;
 
-export const locationMetadata = (slug: Slug): Metadata => ({ title: locations[slug].title, description: locations[slug].intro });
+export const locationMetadata = (slug: Slug): Metadata => pageMetadata(`/${slug}`);
 
 export function LocationView({ slug }: { slug: Slug }) {
   const l = locations[slug];

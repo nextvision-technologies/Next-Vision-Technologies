@@ -9,15 +9,14 @@ import { RichText } from "@/components/ui/RichText";
 import { ReadingProgress, TableOfContents } from "@/features/blog/ArticleChrome";
 import { buttonClass } from "@/components/ui/Button";
 import { SocialIcon } from "@/components/ui/SocialIcons";
+import { pageMetadata } from "@/lib/seo";
+import { BreadcrumbJsonLd } from "@/components/seo/SiteJsonLd";
 
 const icons: Record<string, LucideIcon> = {
   terms: FileText, "privacy-policy": Lock, "refund-policy": RotateCcw, gdpr: Globe, security: ShieldCheck, "cookie-policy": Cookie,
 };
 
-export const legalMetadata = (slug: string): Metadata => {
-  const p = getLegal(slug);
-  return { title: p.title, description: p.summary, alternates: { canonical: `/${slug}` } };
-};
+export const legalMetadata = (slug: string): Metadata => pageMetadata(`/${slug}`);
 
 /** Rough reading time from the page's text */
 function readMinutes(slug: string) {
@@ -34,6 +33,7 @@ export function LegalView({ slug }: { slug: string }) {
 
   return (
     <>
+      <BreadcrumbJsonLd items={[{ label: "Home", href: "/" }, { label: page.title }]} />
       <ReadingProgress />
 
       {/* ---------- Hero ---------- */}

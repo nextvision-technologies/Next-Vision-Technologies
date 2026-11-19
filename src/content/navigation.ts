@@ -78,5 +78,6 @@ export const footerNav = {
     { label: "Contact Us", href: "/contact" },
     { label: "Book a Demo", href: "/book-demo" },
     ...legalPages.map((p) => ({ label: p.title, href: `/${p.slug}` })),
+    { label: "Sitemap", href: "/site-map" },
   ],
 };

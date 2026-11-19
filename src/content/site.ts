@@ -6,7 +6,7 @@ export const site = {
   copyrightYear: 2026, // static so pages stay fully prerendered; bump each January
   description:
     "Next Vision Technologies builds AI automation, SaaS products, websites and digital marketing campaigns that help businesses grow.",
-  url: "https://nextvision-technologies.com", // domain taken from the company email; confirm before launch
+  url: "https://www.nextvision-technologies.com", // primary domain (the bare domain redirects here)
   email: "info@nextvision-technologies.com",
   phones: [
     { label: "Pakistan", value: "+92 300 3209005", href: "tel:+923003209005", whatsapp: false },
