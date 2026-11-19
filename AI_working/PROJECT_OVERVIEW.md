@@ -26,6 +26,7 @@ It sells AI automation, AI chatbots, SaaS/custom software, websites, e-commerce 
 | Smooth scroll | `lenis` (desktop only) |
 | Email | Resend REST API from `src/app/api/contact/route.ts` (env vars below) |
 | Images | WebP in `/public`, served through `next/image` |
+| Analytics | **Google Tag Manager** `GTM-PM9BTDMZ` via `@next/third-parties/google` (`GoogleTagManager` in `layout.tsx`, ID in `site.ts`). Add GA4, Meta Pixel etc. inside GTM, not in code |
 
 Commands: `npm run dev` (localhost:3000) · `npm run build` · `npm run start` · `npm run lint`.
 
@@ -76,7 +77,7 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 ### 4.1 Routes: `src/app/`
 | File | Purpose |
 |---|---|
-| `layout.tsx` | Root layout: Plus Jakarta Sans font, global metadata, theme-init script, Header, Footer, WhatsApp button, ChatBot, SmoothScroll, site JSON-LD |
+| `layout.tsx` | Root layout: Plus Jakarta Sans font, global metadata (incl. Google Search Console verification), theme-init script, Google Tag Manager (+ `<noscript>` iframe), Header, Footer, WhatsApp button, ChatBot, SmoothScroll, site JSON-LD |
 | `globals.css` | Tailwind 4 `@theme` design tokens (colours, fonts, radius, shadows), dark mode overrides, utilities (`text-gradient`, `bg-logo-gradient`, `section-dark`), pinned-hero and hacker-terminal CSS, `prose-nv` article styles |
 | `page.tsx` | Home: pinned hero, stats, services tabs, why-us bento, process, pricing, reviews (hidden until real), quote form, FAQ |
 | `about/page.tsx` | About page |
@@ -136,7 +137,7 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 ### 4.4 Content: `src/content/` (one topic per file)
 | File | Holds |
 |---|---|
-| `site.ts` | Company name, URL, email, phones, offices, socials, stats, `whatsappLink()` |
+| `site.ts` | Company name, URL, GTM container ID (`gtmId`), email, phones, offices, socials, stats, `whatsappLink()` |
 | `navigation.ts` | `mainNav` (mega menu groups) and `footerNav` |
 | `services.ts` | 16 services, `getService()`, `serviceCategories` |
 | `projects.ts` | 19 Projects Gallery entries (`type`: Website / Software / AI, `publicSite: false` hides the live link for login-only software) |
@@ -203,3 +204,4 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 - The rank-on-Google cover source is 2566 px wide (upscaled to 4K).
 - Footer still uses the older SVG logo (`logo-tagline-white.svg`).
 - Suggested: a dedicated "AI CV Screening" service page to rank for that keyword.
+- GTM loads on every visit. For UK/EU visitors a cookie consent banner (GTM Consent Mode) is still needed before analytics/marketing tags fire.

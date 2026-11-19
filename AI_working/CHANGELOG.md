@@ -5,6 +5,12 @@ Format: `## YYYY-MM-DD: short title`, then bullets.
 
 ---
 
+## 2026-11-19: Google Tag Manager
+- Installed `@next/third-parties@16.4.6` (exact, matches Next 16.4.6) and added `<GoogleTagManager gtmId={site.gtmId} />` plus the `<noscript>` iframe to `src/app/layout.tsx`.
+- Container ID `GTM-PM9BTDMZ` stored in `src/content/site.ts` (`gtmId`).
+- Used the official component instead of the pasted snippet, which was missing GTM's `gtm.start` event.
+- Open: cookie consent banner for UK/EU visitors.
+
 ## 2026-11-19: Project architecture cleanup and AI docs
 - Split `src/content/misc.ts` into `pricing.ts`, `jobs.ts`, `courses.ts`, `team.ts`, `testimonials.ts`, `locations.ts` (content copied verbatim) and updated all imports.
 - Moved shared code out of features so no feature imports another feature:
