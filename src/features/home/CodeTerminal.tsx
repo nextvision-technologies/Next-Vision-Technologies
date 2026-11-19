@@ -21,6 +21,22 @@ const OUT = (...parts: Part[]): Line => ({ parts, out: true });
 
 const snippets: Snippet[] = [
   {
+    file: "welcome.ts",
+    lang: "TypeScript",
+    lines: [
+      L(["// Hello, visitor!", "com"]),
+      L(["const", "kw"], [" company ", "plain"], ["= ", "punc"], ["\"Next Vision Technologies\"", "str"], [";", "punc"]),
+      L(),
+      L(["function", "kw"], [" ", "plain"], ["welcome", "fn"], ["(visitor: ", "punc"], ["string", "kw"], [") {", "punc"]),
+      L(["  return", "kw"], [" `Welcome to ", "str"], ["${", "punc"], ["company", "plain"], ["}", "punc"], ["`", "str"], [";", "punc"]),
+      L(["}", "punc"]),
+      L(),
+      L(["console", "plain"], [".", "punc"], ["log", "fn"], ["(", "punc"], ["welcome", "fn"], ["(", "punc"], ["\"you\"", "str"], ["));", "punc"]),
+      OUT(["$ ", "prompt"], ["npx ts-node welcome.ts", "plain"]),
+      OUT(["› ", "ok"], ["Welcome to Next Vision Technologies", "str"]),
+    ],
+  },
+  {
     file: "ai-agent.ts",
     lang: "TypeScript",
     lines: [
@@ -145,11 +161,10 @@ export function CodeTerminal({ className = "" }: { className?: string }) {
     } else {
       const line = snip.lines[pos.line];
       const len = lineLength(line);
-      if (line.out) {
-        t = next({ ...pos, line: pos.line + 1, ch: 0 }, 420); // command output appears whole
-      } else if (pos.ch < len) {
-        const ch = line.parts.flatMap(([text]) => text.split(""))[pos.ch];
-        const delay = ch === " " ? 18 : 26 + Math.random() * 38; // human-ish rhythm
+      if (pos.ch < len) {
+        const ch = line.parts.map(([text]) => text).join("")[pos.ch];
+        // Code types at a human-ish rhythm; terminal output types faster and evenly
+        const delay = line.out ? (pos.ch === 0 ? 380 : 22) : ch === " " ? 18 : 26 + Math.random() * 38;
         t = next({ ...pos, ch: pos.ch + 1 }, delay);
       } else {
         t = next({ ...pos, line: pos.line + 1, ch: 0 }, len === 0 ? 60 : 140);
@@ -168,7 +183,7 @@ export function CodeTerminal({ className = "" }: { className?: string }) {
       <div className="bg-logo-gradient h-0.5" />
 
       {/* Title bar with tabs */}
-      <div className="flex items-center gap-3 border-b border-white/10 bg-white/[0.03] px-4">
+      <div className="flex items-center gap-3 border-b border-white/10 bg-white/[0.06] px-4">
         <div className="flex gap-1.5 py-3">
           <span className="size-3 rounded-full bg-[#f0437a]" />
           <span className="size-3 rounded-full bg-[#ff9a3c]" />
@@ -177,7 +192,7 @@ export function CodeTerminal({ className = "" }: { className?: string }) {
         <div className="flex min-w-0 gap-1 overflow-hidden">
           {snippets.map((s, i) => (
             <span key={s.file}
-              className={`truncate rounded-t-md px-3 py-2.5 font-mono text-[11px] sm:text-xs ${i === pos.s ? "bg-[#12092a] text-white" : "text-white/45"}`}>
+              className={`truncate rounded-t-md px-3 py-2.5 font-mono text-[11px] sm:text-xs ${i === pos.s ? "bg-[#12092a] text-white" : "text-white/60"}`}>
               {s.file}
             </span>
           ))}
@@ -185,7 +200,7 @@ export function CodeTerminal({ className = "" }: { className?: string }) {
       </div>
 
       {/* Code */}
-      <pre className="nv-terminal__code overflow-hidden px-0 py-4 font-mono text-[11.5px] leading-[1.7] sm:text-[13px]">
+      <pre className="nv-terminal__code overflow-hidden px-0 py-4 font-mono text-[11px] leading-[1.7] sm:text-[12.5px]">
         <code className="block">
           {shownLines.map((line, i) => {
             const isCurrent = i === pos.line && !pos.done;
@@ -194,8 +209,8 @@ export function CodeTerminal({ className = "" }: { className?: string }) {
               <span key={`${pos.s}-${i}`} className={`flex whitespace-pre ${line.out ? "bg-white/[0.03]" : ""}`}>
                 <span className="w-10 shrink-0 pr-3 text-right text-white/25 select-none">{line.out ? "" : n}</span>
                 <span className="min-w-0 pr-4">
-                  {line.out || !isCurrent ? <PartialLine line={line} chars={Infinity} /> : <PartialLine line={line} chars={pos.ch} />}
-                  {isCurrent && !line.out && <span className="nv-caret" />}
+                  {isCurrent ? <PartialLine line={line} chars={pos.ch} /> : <PartialLine line={line} chars={Infinity} />}
+                  {isCurrent && <span className="nv-caret" />}
                 </span>
               </span>
             );

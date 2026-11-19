@@ -12,9 +12,9 @@ import { Typewriter } from "./Typewriter";
 const typedWords = ["AI Chatbots", "AI Automation", "SaaS Products", "Websites", "Mobile Apps", "Ad Campaigns"];
 
 /**
- * Scroll-driven pinned hero: a rounded media card on the left (with a live coding terminal)
- * expands to fill the screen as the visitor scrolls, then a caption rises in over it.
- * The heading on the right types out what we build (Typewriter).
+ * Scroll-driven pinned hero: the heading and calls to action sit on the left; a rounded media card
+ * on the right (with a live coding terminal) expands to fill the screen as the visitor scrolls,
+ * then a caption rises in over it. The heading types out what we build (Typewriter).
  * Media = `video` when provided, otherwise the animated brand backdrop (HeroAnimation).
  * All motion is driven by CSS custom properties written from the shared rAF-throttled scroll handler
  * (styles live in globals.css under "Pinned expanding hero").
@@ -92,7 +92,7 @@ export function PinnedHero({ video }: Props) {
   return (
     <section ref={sectionRef} className="pinned-hero section-dark text-white" aria-label="Introduction">
       <div ref={stickRef} className="pinned-hero__stick">
-        {/* 1. Media card on the left that expands, with the live coding terminal on top */}
+        {/* 1. Media card on the right that expands, with the live coding terminal on top */}
         <div className="pinned-hero__clip" aria-hidden>
           <div className="pinned-hero__media">
             {video ? (
@@ -109,15 +109,15 @@ export function PinnedHero({ video }: Props) {
         {/* 2. Shade for caption contrast */}
         <div className="pinned-hero__shade" aria-hidden />
 
-        {/* 3. Intro copy (right side on desktop) */}
+        {/* 3. Intro copy (left side on desktop) */}
         <div ref={introRef} className="pinned-hero__intro">
-          <div className="container-page flex h-full flex-col justify-end pb-24 min-[820px]:justify-center min-[820px]:pb-8">
-            <div className="flex max-w-xl flex-col gap-5 sm:gap-6 min-[820px]:ml-auto min-[820px]:w-[46%]">
+          <div className="container-page flex h-full flex-col justify-end pb-24 min-[820px]:justify-center min-[820px]:pb-16">
+            <div className="flex max-w-xl flex-col gap-5 sm:gap-6 min-[820px]:w-[46%]">
               <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.18em] text-white/80 uppercase md:backdrop-blur sm:text-xs">
                 <span className="size-1.5 rounded-full bg-emerald-400" aria-hidden />
                 Pakistan · United Kingdom
               </span>
-              <h1 className="text-[2.5rem] leading-[1.05] font-bold tracking-tight sm:text-6xl xl:text-7xl">
+              <h1 className="text-[2.4rem] leading-[1.05] font-bold tracking-tight sm:text-5xl xl:text-[4rem]">
                 <span className="sr-only">We build AI chatbots, AI automation, SaaS products, websites, mobile apps and ad campaigns for your business.</span>
                 <span aria-hidden className="block">We build</span>
                 <Typewriter words={typedWords} className="text-gradient block min-h-[1.1em] font-semibold whitespace-nowrap italic" />
