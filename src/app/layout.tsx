@@ -23,7 +23,7 @@ const jakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: `${site.name} | AI Automation, SaaS, Websites & Digital Marketing`, template: `%s | ${site.name}` },
+  title: { default: `${site.name} | Software House in Lahore & UK`, template: `%s | ${site.name}` },
   description: site.description,
   applicationName: site.name,
   keywords,

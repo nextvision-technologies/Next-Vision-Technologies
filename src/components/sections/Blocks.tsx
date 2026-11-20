@@ -6,6 +6,7 @@ import { site, whatsappLink } from "@/content/site";
 import { Button } from "@/components/ui/Button";
 import { CountUp } from "@/components/ui/CountUp";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { RichText } from "@/components/ui/RichText";
 import { SocialIcon } from "@/components/ui/SocialIcons";
 
 export function CtaBand({ title = "Ready to take your business to the next level?", text = "Tell us about your project and get a free quote within 24 hours." }: { title?: string; text?: string }) {
@@ -36,7 +37,7 @@ export function Faq({ items, title = "Frequently asked questions" }: { items: { 
               {f.q}
               <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600 transition group-open:rotate-45" aria-hidden>+</span>
             </summary>
-            <p className="pb-5 leading-relaxed text-muted">{f.a}</p>
+            <p className="pb-5 leading-relaxed text-muted"><RichText text={f.a} /></p>
           </details>
         ))}
       </div>

@@ -8,6 +8,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { Button } from "@/components/ui/Button";
 import { pageMetadata } from "@/lib/seo";
 import { PageSkeleton } from "@/components/sections/PageSkeleton";
+import { JobPostingJsonLd } from "@/components/seo/SiteJsonLd";
 
 export function generateStaticParams() {
   return jobs.map((j) => ({ slug: j.slug }));
@@ -44,6 +45,7 @@ async function JobContent({ params }: { params: PageProps<"/jobs/[slug]">["param
   if (!job) notFound();
   return (
     <>
+      <JobPostingJsonLd job={job} />
       <PageHero crumbs={[{ label: "Careers", href: "/jobs" }, { label: job.title }]} eyebrow={`${job.type} · ${job.location}`} title={job.title} text={job.summary} />
       <section className="container-page grid gap-12 py-20 lg:grid-cols-[1.4fr_1fr]">
         <div className="flex flex-col gap-12">

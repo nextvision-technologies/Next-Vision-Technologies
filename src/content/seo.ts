@@ -67,6 +67,18 @@ const serviceSeo: Record<string, { title: string; description: string }> = {
     title: "Digital Marketing Agency for Startups & SMEs",
     description: "Digital marketing for startups and growing businesses in Pakistan and the UK: strategy, social media, content, email and ads with monthly reports.",
   },
+  "web-development": {
+    title: "Web Development Company UK & Pakistan",
+    description: "Web development for UK and Pakistani businesses: fast, mobile-first websites and web apps with on-page SEO built in to turn visitors into customers.",
+  },
+  "ai-lead-generation": {
+    title: "AI Lead Generation Services UK & Pakistan",
+    description: "AI lead generation for UK and Pakistani businesses: find, qualify and contact the right prospects automatically, so your sales team talks to real buyers.",
+  },
+  "it-consulting": {
+    title: "IT Consulting Services UK & Pakistan",
+    description: "Vendor-neutral IT consulting for UK and Pakistani businesses: software, cloud, security and AI adoption advice with a practical roadmap your team can follow.",
+  },
   "care-agency-recruitment-compliance-system": {
     title: "Care Agency Recruitment & Compliance Software",
     description: "Recruitment and compliance system for UK care agencies: applicant tracking, DBS and document expiry alerts, training records and audit-ready reports.",
@@ -92,8 +104,8 @@ const staticPages: SeoEntry[] = [
   },
   {
     path: "/", group: "Main pages", priority: 1, changeFrequency: "weekly",
-    title: "AI Automation, SaaS, Websites & Digital Marketing",
-    description: "Next Vision Technologies is a software house in Lahore and the UK building AI chatbots, automation, SaaS products, websites and marketing campaigns that grow your business.",
+    title: "Software House in Lahore & UK",
+    description: "Software house in Lahore and the UK building AI chatbots, automation, SaaS products, websites and marketing campaigns that grow your business.",
   },
   {
     path: "/services", group: "Main pages", priority: 0.9, changeFrequency: "monthly",
@@ -164,8 +176,17 @@ const clip = (text: string, max = 158) => {
   return out.length >= 90 ? out : text.slice(0, text.lastIndexOf(" ", max - 1)).replace(/[,;:]$/, "") + ".";
 };
 
+/**
+ * Hand-written meta descriptions for generated pages whose source text is too short
+ * for a good snippet (aim for 120 to 160 characters).
+ */
+const descriptionOverrides: Record<string, string> = {
+  "/cookie-policy": "Which cookies the Next Vision Technologies website uses, why we use them, and how you can control or delete them in your browser settings at any time.",
+  "/team/ehtisham-malik": "Ehtisham Malik leads technology at Next Vision Technologies, building AI chatbots, workflow automations, LLM integrations and the secure backends behind them.",
+};
+
 export function allSeoEntries(): SeoEntry[] {
-  return [
+  return withOverrides([
     ...staticPages,
     ...services.map<SeoEntry>((s) => ({
       path: `/services/${s.slug}`, group: "Services", priority: 0.9, changeFrequency: "monthly",
@@ -194,8 +215,11 @@ export function allSeoEntries(): SeoEntry[] {
       path: `/${l.slug}`, group: "Legal", priority: 0.3, changeFrequency: "yearly",
       title: l.title, description: clip(l.summary),
     })),
-  ];
+  ]);
 }
+
+const withOverrides = (entries: SeoEntry[]) =>
+  entries.map((e) => (descriptionOverrides[e.path] ? { ...e, description: descriptionOverrides[e.path] } : e));
 
 export const getSeo = (path: string) => {
   const e = allSeoEntries().find((x) => x.path === path);

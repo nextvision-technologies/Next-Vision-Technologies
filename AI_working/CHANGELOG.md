@@ -5,6 +5,21 @@ Format: `## YYYY-MM-DD: short title`, then bullets.
 
 ---
 
+## 2026-11-20: SEO content: location pages, two new blog posts, off-page kit
+- Location pages rewritten from ~430 to ~1,100 words: `content/locations.ts` now has sections, reasons, industries, process and FAQs per page; `features/locations/LocationView.tsx` renders them with an industries sidebar, process steps, FAQ and FAQPage JSON-LD. Claims follow the Terms (code/designs owned once paid in full) and avoid a UK office address.
+- `components/sections/Blocks.tsx`: `Faq` answers now render [text](link) and **bold** via `RichText`.
+- Two drafts published in `content/blog.ts` (about 1,900 words each, covers already in `public/blog/`): "WordPress vs Shopify: Which Is Better for Your Online Store?" (`wordpress-vs-shopify-which-is-better-for-pakistan`) and "Off-Page SEO in 2026: Every Type of Backlink Explained" (`off-page-seo-backlinks-guide-pakistan`), both dated 2026-11-20 with takeaways, tables, tips and FAQs. Blog now has 6 posts.
+- New `AI_working/seo-off-page-kit.md` for the owner: exact business details (NAP), short/long descriptions, Google Business Profile checklist, review request messages (English + Roman Urdu), directory list and a monthly routine.
+- Checked on a local production build: 49 pages, all 200, titles ≤ 60, descriptions 115-160, one H1 each, no duplicate titles.
+- Open (owner): confirm the two draft covers are licensed (Unsplash/Pexels like the others); the Shopify article says Shopify Payments is not available in Pakistan and that local gateways offer WooCommerce plugins (correct as of writing; re-check yearly). Work through the off-page kit; send the Google review link and opening hours.
+
+## 2026-11-20: SEO audit + on-page and local schema fixes
+- Audit of all 47 live pages: all 200, indexable, canonical correct, one H1 each. Weak areas: titles over 60 characters (26 pages), a few short descriptions, thin content (4 blog posts, 2 location pages), unclaimed Google Business Profile, no reviews.
+- `lib/seo.ts`: " | Next Vision Technologies" is only added when the title stays within 60 characters (titles now render as absolute). Home title → "Next Vision Technologies | Software House in Lahore & UK" (`content/seo.ts`, `app/layout.tsx` default).
+- `content/seo.ts`: keyword titles/descriptions for `web-development`, `ai-lead-generation`, `it-consulting`; new `descriptionOverrides` for `/cookie-policy` and `/team/ehtisham-malik`. All pages now have titles ≤ 60 and descriptions 115-160 characters (checked on a local production build).
+- `components/seo/SiteJsonLd.tsx`: new ProfessionalService entity for the Lahore office (address with Garhi Shahu, 54000, linked to the Google Business Profile) and `JobPostingJsonLd`, used on `app/jobs/[slug]/page.tsx`. `Job` type has `posted` and optional `remote` (`types/content.ts`, `content/jobs.ts`; both jobs dated 2026-11-19, the date they were added).
+- Open (owner): claim/verify the Google Business Profile, add the website link and ask clients for reviews; real testimonials in `testimonials.ts`; opening hours (to add to the schema); UK street address; confirm the job posting dates. Content plan still needed (more blog posts and location pages). After deploy, test a job page in Google's Rich Results Test.
+
 ## 2026-11-20: More prominent pricing
 - `features/pricing/PricingCards.tsx`: the price now sits in its own panel with a soft gradient, shadow and glow. Regular price is larger with a thick red strike-through and a "Regular" label; "SAVE X%" is a solid green badge (dark-green text on dark surfaces for contrast); the offer price is bigger (up to 7xl) with gradient text (light cards) or a pink glow (Gold card); new "You save $X every month" line. Screen readers hear "Regular price" / "Offer price".
 

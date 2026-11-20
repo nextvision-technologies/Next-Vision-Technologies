@@ -82,7 +82,13 @@ export type Package = {
   groups: { title: string; items: PackageFeature[] }[];
 };
 
-export type Job = { slug: string; title: string; type: string; location: string; summary: string; responsibilities: string[]; requirements: string[] };
+export type Job = {
+  slug: string; title: string; type: string; location: string; summary: string; responsibilities: string[]; requirements: string[];
+  /** ISO date the job was first published (JobPosting `datePosted`). Update it only for a genuinely new opening */
+  posted: string;
+  /** true when the role can be done from home in Pakistan (adds TELECOMMUTE to the job schema) */
+  remote?: boolean;
+};
 
 export type TeamMember = {
   name: string;

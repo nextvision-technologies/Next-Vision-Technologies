@@ -353,9 +353,496 @@ const allPosts: Post[] = [
   },
 
   // ------------------------------------------------------------------ Drafts (hidden for now)
-  { slug: "off-page-seo-backlinks-guide-pakistan", title: "Off-Page SEO in 2026: Every Type of Backlink Explained", excerpt: "Which backlinks still move rankings, which ones put your site at risk, and how to build them safely.", category: "SEO", date: "2026-10-10", readMinutes: 9, draft: true, body: [{ type: "p", text: "Draft." }] },
+  {
+    "slug": "off-page-seo-backlinks-guide-pakistan",
+    "title": "Off-Page SEO in 2026: Every Type of Backlink Explained",
+    "excerpt": "Which backlinks still move rankings, which ones put your site at risk, and how to build them safely with guest posts, digital PR, citations and partnerships.",
+    "category": "SEO",
+    "date": "2026-11-20",
+    "readMinutes": 10,
+    "service": "seo",
+    "focusKeyword": "off-page SEO",
+    "seoTitle": "Off-Page SEO: Every Type of Backlink Explained (2026)",
+    "metaDescription": "Off-page SEO explained: which backlinks still move Google rankings, which put your site at risk, and how to build safe links with guest posts, PR and citations.",
+    "cover": "/blog/off-page-seo-backlinks-guide-pakistan.webp",
+    "coverAlt": "Off-page SEO: website pages connected by chains, representing backlinks between sites",
+    "takeaways": [
+      "Off-page SEO is everything outside your website that builds trust with Google: mainly backlinks, but also reviews, mentions and business listings.",
+      "One relevant link from a respected site is worth more than hundreds of links from low-quality directories.",
+      "Buying links or swapping them in bulk breaks Google's spam policies and can cost you your rankings.",
+      "The safest links come from being worth linking to: useful content, real partnerships, local listings and digital PR."
+    ],
+    "body": [
+      {
+        "type": "p",
+        "text": "You can have a fast website with perfect on-page SEO and still sit on page three of Google. Very often the missing piece is **off-page SEO**: the signals from other websites that tell Google your business is real, relevant and trusted."
+      },
+      {
+        "type": "p",
+        "text": "This guide explains what off-page SEO is, every common type of backlink, which ones still help in 2026, which ones can get your site penalised, and a safe plan you can follow."
+      },
+      {
+        "type": "h2",
+        "text": "What is off-page SEO?"
+      },
+      {
+        "type": "p",
+        "text": "On-page SEO is what you control on your own site: content, titles, speed and structure. Off-page SEO covers everything that happens elsewhere on the web and affects how Google sees you:"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "**Backlinks:** links from other websites to yours. These are still one of the strongest ranking signals.",
+          "**Brand mentions:** your business name mentioned on news sites, blogs or forums, even without a link.",
+          "**Local signals:** your Google Business Profile, reviews and consistent listings in business directories.",
+          "**Social and community presence:** active profiles that send real visitors and support your brand."
+        ]
+      },
+      {
+        "type": "p",
+        "text": "Think of each good backlink as a recommendation. A recommendation from a respected, relevant source carries weight; hundreds from unknown sources carry almost none."
+      },
+      {
+        "type": "h2",
+        "text": "What makes a backlink valuable?"
+      },
+      {
+        "type": "ol",
+        "items": [
+          "**Relevance:** a link from a site in your industry or area means more than a link from an unrelated one.",
+          "**Authority and trust:** links from well-known, well-maintained sites count for more.",
+          "**Placement:** a link inside the main content of an article beats one hidden in a footer or sidebar.",
+          "**Real traffic:** if people actually click the link, it is a strong sign it is genuine.",
+          "**Natural anchor text:** the clickable words should read naturally, often your brand name, not the same keyword every time."
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Every type of backlink, and whether it still works"
+      },
+      {
+        "type": "table",
+        "head": [
+          "Type of link",
+          "Value",
+          "Risk"
+        ],
+        "rows": [
+          [
+            "Editorial links (sites citing your content)",
+            "Very high",
+            "None"
+          ],
+          [
+            "Digital PR and news coverage",
+            "Very high",
+            "None"
+          ],
+          [
+            "Guest posts on relevant, real sites",
+            "High",
+            "Low if genuine, high if paid or spammy"
+          ],
+          [
+            "Local citations and business directories",
+            "Medium (high for local SEO)",
+            "Low with trusted directories"
+          ],
+          [
+            "Partner, supplier and client links",
+            "Medium to high",
+            "Low"
+          ],
+          [
+            "Resource pages and broken link building",
+            "Medium",
+            "Low"
+          ],
+          [
+            "Social profiles and community sites",
+            "Low for rankings, good for brand",
+            "None"
+          ],
+          [
+            "Forum and blog comment links",
+            "Very low",
+            "Medium if spammy"
+          ],
+          [
+            "Paid links, link farms and private blog networks",
+            "Short-lived at best",
+            "Very high"
+          ]
+        ]
+      },
+      {
+        "type": "h3",
+        "text": "1. Editorial links"
+      },
+      {
+        "type": "p",
+        "text": "These are the gold standard: another site links to you because your page is genuinely useful. Original guides, data, calculators and clear explanations attract them over time. Every useful article on your blog is a chance to earn one."
+      },
+      {
+        "type": "h3",
+        "text": "2. Digital PR"
+      },
+      {
+        "type": "p",
+        "text": "Digital PR means giving journalists and bloggers a reason to write about you: a new product, a local success story, an expert comment or survey results. Coverage on news sites brings strong links, referral traffic and brand searches. Reply to journalist requests in your field and build relationships with local publications."
+      },
+      {
+        "type": "h3",
+        "text": "3. Guest posting"
+      },
+      {
+        "type": "p",
+        "text": "Writing an article for another relevant website, with a link back to yours, still works when it is done for readers rather than for links. Choose sites with a real audience in your industry, write something genuinely helpful, and keep the link natural. Avoid sites that openly sell \"guest posts\" to anyone, as these are often flagged as link schemes."
+      },
+      {
+        "type": "h3",
+        "text": "4. Local citations and business directories"
+      },
+      {
+        "type": "p",
+        "text": "For local businesses, listings on trusted directories, chambers of commerce and industry sites are essential. Make sure your business name, address and phone number are written exactly the same way everywhere, matching your Google Business Profile. A small number of trusted listings beats hundreds of automated submissions."
+      },
+      {
+        "type": "h3",
+        "text": "5. Partners, suppliers and clients"
+      },
+      {
+        "type": "p",
+        "text": "The businesses you already work with are an easy source of relevant links. Suppliers often list stockists, software vendors list partners, and clients may add a \"website by\" credit or a case study. These links are natural because the relationship is real."
+      },
+      {
+        "type": "h3",
+        "text": "6. Resource pages and broken link building"
+      },
+      {
+        "type": "p",
+        "text": "Many sites keep resource pages that link to helpful tools and guides. If you have a page that fits, ask to be included. Broken link building works the same way: find a dead link on a relevant page, then suggest your similar page as a replacement."
+      },
+      {
+        "type": "h3",
+        "text": "7. Social profiles, forums and comments"
+      },
+      {
+        "type": "p",
+        "text": "Links from social media, forums and blog comments usually carry a nofollow or ugc tag, so they pass little ranking value. They are still worth having for brand presence and real visitors, but they are not a link building strategy on their own."
+      },
+      {
+        "type": "h2",
+        "text": "Links that can hurt your rankings"
+      },
+      {
+        "type": "p",
+        "text": "Google's spam policies treat links made mainly to manipulate rankings as \"link schemes\". Sites caught using them can lose rankings, either through algorithm updates or a manual action in Search Console. Stay away from:"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Buying links that pass ranking value, or selling them on your own site.",
+          "Private blog networks (PBNs) and link farms built only to link out.",
+          "Large-scale link exchanges (\"link to me and I'll link to you\").",
+          "Automated directory and profile submissions in bulk.",
+          "Keyword-stuffed anchor text across many links."
+        ]
+      },
+      {
+        "type": "tip",
+        "title": "Paid placements must be labelled",
+        "text": "Sponsored posts and ads are fine, but their links should carry rel=\"sponsored\" or rel=\"nofollow\" so they don't pass ranking value. Links in user-generated content should use rel=\"ugc\"."
+      },
+      {
+        "type": "p",
+        "text": "If your site already has many spammy links from past work, don't panic: Google ignores most of them. Use the disavow tool in Search Console only if you have received a manual action or know of a large paid-link campaign pointing at your site."
+      },
+      {
+        "type": "h2",
+        "text": "A safe off-page SEO plan for the next 90 days"
+      },
+      {
+        "type": "ol",
+        "items": [
+          "**Claim and complete your Google Business Profile.** Add your website, services, photos and opening hours, and post updates regularly.",
+          "**Ask happy clients for Google reviews.** A short, polite message with a direct review link works best.",
+          "**Fix your citations.** List your business on a handful of trusted directories with the exact same name, address and phone number.",
+          "**Publish one genuinely useful article a month** that answers questions your customers ask. This is what earns editorial links.",
+          "**Reach out to partners and suppliers** for links and case studies.",
+          "**Pitch one guest post or expert comment a month** to a relevant site with a real audience.",
+          "**Track progress** in Google Search Console: links, impressions and the queries you start to rank for."
+        ]
+      },
+      {
+        "type": "p",
+        "text": "Off-page SEO works best on top of strong foundations, so start with our [guide to ranking on Google](/blog/how-to-rank-website-on-google-in-pakistan). If you would rather have experts do it, our [SEO services](/services/seo) include safe, white-hat link building and monthly reports."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "What is the difference between on-page and off-page SEO?",
+        "a": "On-page SEO is what you change on your own website, such as content, titles and speed. Off-page SEO is what happens on other websites, mainly backlinks, reviews, brand mentions and business listings."
+      },
+      {
+        "q": "How many backlinks do I need to rank?",
+        "a": "There is no fixed number. A few relevant links from trusted sites often beat hundreds of weak ones. Compare yourself with the pages that rank above you and focus on quality."
+      },
+      {
+        "q": "Is guest posting still safe?",
+        "a": "Yes, when you write genuinely useful articles for relevant sites with a real audience. Paying for guest posts on sites that publish anything for money is risky and can count as a link scheme."
+      },
+      {
+        "q": "How long does off-page SEO take to work?",
+        "a": "Usually a few months. New links and reviews build trust gradually, so most businesses see steady improvement over three to six months of consistent work."
+      }
+    ]
+  },
   { slug: "how-to-build-shopify-store-in-pakistan-2025", title: "How to Build a Shopify Store in Pakistan", excerpt: "A step-by-step guide from choosing a plan to taking your first order with local payments and couriers.", category: "E-Commerce", date: "2026-07-10", readMinutes: 8, draft: true, body: [{ type: "p", text: "Draft." }] },
-  { slug: "wordpress-vs-shopify-which-is-better-for-pakistan", title: "WordPress vs Shopify: Which Is Better for Your Business?", excerpt: "Costs, flexibility and ease of use compared, so you can pick the right platform first time.", category: "Web Development", date: "2026-07-08", readMinutes: 7, draft: true, body: [{ type: "p", text: "Draft." }] },
+  {
+    "slug": "wordpress-vs-shopify-which-is-better-for-pakistan",
+    "title": "WordPress vs Shopify: Which Is Better for Your Online Store?",
+    "excerpt": "Shopify is quicker to launch and easier to run; WordPress with WooCommerce is more flexible and cheaper to scale. Here's how they compare on cost, payments, SEO and growth.",
+    "category": "E-Commerce",
+    "date": "2026-11-20",
+    "readMinutes": 9,
+    "service": "shopify-development",
+    "focusKeyword": "WordPress vs Shopify",
+    "seoTitle": "WordPress vs Shopify: Which Is Better for Your Store?",
+    "metaDescription": "WordPress vs Shopify compared on cost, ease of use, payments, SEO and growth, with clear advice on which platform suits your online store and budget.",
+    "cover": "/blog/wordpress-vs-shopify-which-is-better-for-pakistan.webp",
+    "coverAlt": "WordPress vs Shopify: a balance scale weighing a website layout against an online shopping cart",
+    "reviewer": "ali-raza",
+    "takeaways": [
+      "Shopify is a hosted platform: quick to launch, easy to manage and paid for with a monthly subscription.",
+      "WordPress with WooCommerce is free software you host yourself: more flexible and cheaper to scale, but it needs more maintenance.",
+      "Payment options matter: check that your preferred gateways and cash on delivery work smoothly on the platform you choose.",
+      "Both can rank well on Google. Speed, content and structure matter far more than the platform itself."
+    ],
+    "body": [
+      {
+        "type": "p",
+        "text": "If you are planning an online store, one of the first decisions is the platform. Two names come up in almost every conversation: [Shopify](/services/shopify-development) and [WordPress](/services/wordpress-development) with its e-commerce plugin, WooCommerce. Together they power a large share of the world's online stores, and both can work very well."
+      },
+      {
+        "type": "p",
+        "text": "The right choice depends less on which one is \"better\" and more on your products, your budget, how much control you want and who will run the store day to day. This guide compares WordPress vs Shopify on the points that actually affect your business."
+      },
+      {
+        "type": "h2",
+        "text": "WordPress vs Shopify at a glance"
+      },
+      {
+        "type": "table",
+        "head": [
+          "",
+          "Shopify",
+          "WordPress + WooCommerce"
+        ],
+        "rows": [
+          [
+            "What it is",
+            "Hosted e-commerce platform (software as a service)",
+            "Free, open-source software you install on your own hosting"
+          ],
+          [
+            "Getting started",
+            "Sign up, choose a theme, add products",
+            "Buy hosting and a domain, install WordPress and WooCommerce"
+          ],
+          [
+            "Running costs",
+            "Monthly plan, plus paid apps and theme",
+            "Hosting, domain, premium plugins and maintenance"
+          ],
+          [
+            "Ease of use",
+            "Very easy, everything in one dashboard",
+            "Easy once set up, more settings to learn"
+          ],
+          [
+            "Flexibility",
+            "High within Shopify's rules",
+            "Almost unlimited: you control the code and data"
+          ],
+          [
+            "Maintenance",
+            "Shopify handles hosting, security and updates",
+            "You (or your developer) keep plugins, themes and backups up to date"
+          ],
+          [
+            "Best for",
+            "Product-focused stores that want to launch fast",
+            "Content-rich sites, custom features and tighter budgets at scale"
+          ]
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "What is Shopify?"
+      },
+      {
+        "type": "p",
+        "text": "Shopify is an all-in-one, hosted e-commerce platform. You pay a monthly subscription and Shopify provides the hosting, security, checkout and store dashboard. You pick a theme, add your products, connect payments and shipping, and you can be selling within days."
+      },
+      {
+        "type": "p",
+        "text": "The trade-off is control. You work inside Shopify's system: some features need paid apps, deep changes to the checkout are limited on lower plans, and moving away later takes more effort than moving a WordPress site."
+      },
+      {
+        "type": "h2",
+        "text": "What is WordPress with WooCommerce?"
+      },
+      {
+        "type": "p",
+        "text": "WordPress is the world's most popular website software. On its own it is a content management system for pages and blogs. Add the free WooCommerce plugin and it becomes a full online store with products, cart, checkout, coupons and order management."
+      },
+      {
+        "type": "p",
+        "text": "Because you host it yourself, you own everything and can customise anything. The flip side is responsibility: you choose the hosting, keep WordPress, plugins and themes updated, and take care of backups and security, or you hand that work to a developer on a maintenance plan."
+      },
+      {
+        "type": "h2",
+        "text": "Cost: what you really pay"
+      },
+      {
+        "type": "p",
+        "text": "Shopify looks simple on price because most costs are bundled into one monthly plan. Remember to add paid apps, a premium theme and any transaction fees that apply when you use third-party payment gateways instead of Shopify's own payments service."
+      },
+      {
+        "type": "p",
+        "text": "WordPress itself is free, but a professional store still has costs: good hosting, a domain, an SSL certificate, premium plugins for features such as advanced shipping or subscriptions, and regular maintenance. For a small store the yearly total is often similar to Shopify. As a store grows, WordPress usually becomes cheaper, because there is no platform subscription that rises with your plan."
+      },
+      {
+        "type": "ul",
+        "items": [
+          "**Shopify running costs:** monthly plan, paid apps, theme, possible transaction fees.",
+          "**WordPress running costs:** hosting, domain, premium plugins and theme, maintenance and security.",
+          "**Both:** design and setup, product photography and content, marketing."
+        ]
+      },
+      {
+        "type": "p",
+        "text": "Our guide on [how much a website costs](/blog/how-much-does-a-website-cost-in-pakistan) explains the build costs in more detail."
+      },
+      {
+        "type": "h2",
+        "text": "Payments and cash on delivery"
+      },
+      {
+        "type": "p",
+        "text": "Payments are where location matters most. In the UK, both platforms work smoothly with major card processors such as Stripe and PayPal, and Shopify's own payments service is available. In Pakistan, Shopify's own payments service is not available, so stores rely on cash on delivery, bank transfer and local gateways connected through apps or manual payment methods."
+      },
+      {
+        "type": "p",
+        "text": "WooCommerce has long been popular in Pakistan because many local banks and payment providers, including mobile wallets, offer WooCommerce plugins. Whichever platform you choose, confirm three things before you build: that your preferred gateway supports it, what fees apply, and how cash on delivery orders will be confirmed and tracked."
+      },
+      {
+        "type": "tip",
+        "title": "Check your courier too",
+        "text": "If you ship within Pakistan, ask whether your courier offers an app or plugin for your platform. Automatic booking and tracking numbers save hours every week once orders grow."
+      },
+      {
+        "type": "h2",
+        "text": "Ease of use and day-to-day running"
+      },
+      {
+        "type": "p",
+        "text": "Shopify wins on simplicity. Adding products, processing orders and checking reports all happen in one clean dashboard, and there is nothing to update or back up. If you want to focus purely on selling and don't have technical help, that matters."
+      },
+      {
+        "type": "p",
+        "text": "WordPress is not difficult once it is set up well, and the editor is familiar to anyone who has used a blog. It does have more settings and moving parts. With a good developer looking after updates and backups, most store owners find it just as manageable."
+      },
+      {
+        "type": "h2",
+        "text": "SEO: which ranks better on Google?"
+      },
+      {
+        "type": "p",
+        "text": "Both platforms can rank well. Google does not prefer one over the other; it ranks pages that load fast, answer the searcher's question and are well structured. In practice:"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "**WordPress** gives you full control over URLs, page structure and content, and it is excellent for blogging, which helps you rank for informational searches.",
+          "**Shopify** handles the technical basics well, but URL structures are fixed (for example /products/ and /collections/) and some SEO features need apps.",
+          "On both, too many plugins or apps and heavy images slow the site down, which hurts rankings and sales."
+        ]
+      },
+      {
+        "type": "p",
+        "text": "Read our [guide to ranking your website on Google](/blog/how-to-rank-website-on-google-in-pakistan) for the steps that matter on any platform, or ask us about [SEO services](/services/seo)."
+      },
+      {
+        "type": "h2",
+        "text": "Flexibility and growth"
+      },
+      {
+        "type": "p",
+        "text": "If your business needs something unusual, such as custom product builders, wholesale and retail pricing in one store, complex delivery rules or integration with your own ERP or POS, WordPress gives you more freedom because you control the code. Shopify can do a lot through its app store and, on higher plans, custom development, but you always work within its rules."
+      },
+      {
+        "type": "p",
+        "text": "For a store that mainly sells a clear product range and wants a fast, reliable checkout, Shopify's structure is a strength rather than a limit."
+      },
+      {
+        "type": "h2",
+        "text": "Which should you choose?"
+      },
+      {
+        "type": "h3",
+        "text": "Choose Shopify if"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "You want to launch quickly and avoid dealing with hosting and updates.",
+          "You sell physical products and your payment and shipping options are supported.",
+          "You prefer a predictable monthly cost and a simple dashboard for your team."
+        ]
+      },
+      {
+        "type": "h3",
+        "text": "Choose WordPress with WooCommerce if"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "You need custom features, local payment gateways or integrations with your own systems.",
+          "Content and blogging are a big part of how you plan to attract customers.",
+          "You want full ownership of your site and data and lower costs as you grow."
+        ]
+      },
+      {
+        "type": "tip",
+        "title": "Not sure yet?",
+        "text": "Write down your must-have features, payment methods and monthly budget, then compare both platforms against that list. We are happy to do this with you for free and recommend the option that fits."
+      },
+      {
+        "type": "p",
+        "text": "At Next Vision Technologies we build stores on both platforms, so our advice is based on your needs rather than a favourite tool. See our [e-commerce solutions](/services/ecommerce-solutions) or [ask for a free quote](/contact)."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Is Shopify or WordPress cheaper?",
+        "a": "For a small store the yearly cost is often similar. Shopify bundles hosting into a monthly plan, while WordPress is free software with separate hosting, plugin and maintenance costs. As a store grows, WordPress usually works out cheaper."
+      },
+      {
+        "q": "Can I move from Shopify to WordPress later?",
+        "a": "Yes. Products, customers and orders can be exported and imported, but the design and some features need to be rebuilt, and old URLs must be redirected to keep your Google rankings."
+      },
+      {
+        "q": "Which platform is better for SEO?",
+        "a": "Both can rank well. WordPress gives more control over URLs and content, and is stronger for blogging. On either platform, speed, helpful content and good structure matter most."
+      },
+      {
+        "q": "Does Shopify work in Pakistan?",
+        "a": "Yes. You can run a Shopify store from Pakistan using cash on delivery, bank transfer and local payment gateways connected through apps. Shopify's own payments service is not available there, so check the fees for the gateway you choose."
+      }
+    ]
+  },
   { slug: "best-digital-marketing-strategies-for-pakistani-businesses", title: "Digital Marketing Strategies That Work for Local Businesses", excerpt: "The channels and tactics that bring real customers, not just likes.", category: "Digital Marketing", date: "2026-07-03", readMinutes: 7, draft: true, body: [{ type: "p", text: "Draft." }] },
   { slug: "mobile-app-development-pakistan-native-vs-cross-platform", title: "Native vs Cross-Platform Mobile Apps: Which Should You Build?", excerpt: "Cost, speed and performance compared to help you choose the right approach.", category: "Mobile Apps", date: "2026-06-28", readMinutes: 7, draft: true, body: [{ type: "p", text: "Draft." }] },
   { slug: "how-to-choose-web-development-agency-in-pakistan", title: "How to Choose the Right Web Development Agency", excerpt: "A checklist of questions to ask before you sign with any agency.", category: "Business Tips", date: "2026-06-20", readMinutes: 6, draft: true, body: [{ type: "p", text: "Draft." }] },

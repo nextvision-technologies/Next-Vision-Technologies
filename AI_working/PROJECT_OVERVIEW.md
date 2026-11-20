@@ -36,7 +36,7 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 
 ```
 /
-├── AI_working/            Docs for AI assistants (this file, changelog, design previews)
+├── AI_working/            Docs for AI assistants (this file, changelog, design previews, seo-off-page-kit.md for the owner)
 │   └── design-previews/   Standalone HTML mock-ups shown to the owner for approval
 ├── Logo/00-Final/webp/    Master brand logo (source file, not served)
 ├── public/                Static files served at the site root
@@ -114,12 +114,12 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 | `layout/SmoothScroll.tsx` | Lenis smooth scrolling for desktop |
 | `layout/WhatsAppButton.tsx` | Floating WhatsApp button |
 | `sections/PageHero.tsx` | Dark page header with breadcrumb (+ `PixelCluster` motif) |
-| `sections/Blocks.tsx` | CtaBand, Faq, process steps, stats, testimonials |
+| `sections/Blocks.tsx` | CtaBand, Faq (answers support [text](link) and **bold**), process steps, stats, testimonials |
 | `sections/PageSkeleton.tsx` | Suspense fallback for `[slug]` pages |
 | `article/ArticleBlocks.tsx` | Renders content `Block`s (h2, h3, p, ul, ol, tip, quote, table) for blog and legal pages |
 | `article/ArticleChrome.tsx` | Reading progress bar, table of contents, share buttons |
 | `cards/ServiceCard.tsx` | Service card with per-category tint (services pages + location pages) |
-| `seo/SiteJsonLd.tsx` | Organization/WebSite JSON-LD + `BreadcrumbJsonLd` |
+| `seo/SiteJsonLd.tsx` | Organization, ProfessionalService (Lahore office), WebSite JSON-LD + `BreadcrumbJsonLd` + `JobPostingJsonLd` (jobs pages) |
 | `ui/Button.tsx` | `Button` + `buttonClass()` variants |
 | `ui/CountUp.tsx` | Number that counts up from 0 when scrolled into view (real value in HTML + screen-reader text; reduced motion shows the final value) |
 | `ui/RichText.tsx` | Renders `[text](href)` links and `**bold**` inside content strings |
@@ -135,7 +135,7 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 | `chat/` | `ChatBot` (launcher), `ChatPanel` (lazy chat window), `engine.ts` (rule-based matching; no AI API is called) |
 | `contact/` | `ContactForm`, `DemoBooking` |
 | `legal/` | `LegalView` (policy pages), `CompanyRegistrationView` (/company-registration), `DocumentGallery` (client: document cards + native `<dialog>` popup with Previous/Next and arrow keys; the document is fitted with `object-contain` so the whole page shows without scrolling, popup width follows the A4 ratio of the screen height) |
-| `locations/` | `LocationView` |
+| `locations/` | `LocationView`: hero, stats, long-form sections, industries, reasons, services, process, FAQ + FAQPage JSON-LD |
 | `pricing/` | `PricingCards` |
 | `team/` | `TeamGrid` (simple cards, whole card links to the profile), `MemberProfile` (profile page body), `MemberSocials` (shows only links filled in `team.ts`) |
 
@@ -149,13 +149,13 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 | `projects.ts` | `projectStats` (company totals: 100+ projects, 50+ websites, 30+ software & AI, 20+ industries) and 19 Projects Gallery entries (`type`: Website / Software / AI, `publicSite: false` hides the live link for login-only software) |
 | `blog.ts` | Blog posts (published + drafts), `postImage()`, `postAuthor()`, `postReviewer()`, `draftSlugs` |
 | `people.ts` | Blog writer/reviewers and `reviewerByCategory` |
-| `seo.ts` | Title + meta description + sitemap settings for EVERY page. A page without an entry throws at build |
+| `seo.ts` | Title + meta description + sitemap settings for EVERY page. A page without an entry throws at build. `serviceSeo` = keyword titles for services, `descriptionOverrides` = hand-written descriptions for generated pages |
 | `pricing.ts` | Silver/Gold/Platinum packages |
 | `team.ts` | Leadership team (with specialty, education, experience, bio, socials), `memberSlug()`, `getMember()` |
-| `jobs.ts` | Open roles + `getJob()` |
+| `jobs.ts` | Open roles + `getJob()`. Each job needs `posted` (ISO date) for the JobPosting schema; `remote: true` adds work-from-home |
 | `courses.ts` | Courses |
 | `testimonials.ts` | Client reviews (placeholders, hidden until real) |
-| `locations.ts` | Location landing page copy |
+| `locations.ts` | Location landing page copy (`LocationPage` type): title, heading, intro, sections, reasons, industries, process, faqs. Only true claims: no UK office address exists yet |
 | `legal.ts` | Legal pages content + `legalUpdated` date |
 | `chatbot.ts` | Chatbot intents and replies (EN + Roman Urdu) |
 
@@ -163,7 +163,7 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 | File | Purpose |
 |---|---|
 | `types/content.ts` | All content types: Service, Block, **Post** (with `focusKeyword`, `seoTitle`, `metaDescription`, `cover`, `coverAlt`, `author`, `reviewer`), Person, LegalPage, NavGroup, Package, Job, TeamMember, chatbot types |
-| `lib/seo.ts` | `pageMetadata(path)`: title, description, canonical, Open Graph, Twitter from `content/seo.ts` |
+| `lib/seo.ts` | `pageMetadata(path)`: title, description, canonical, Open Graph, Twitter from `content/seo.ts`. Adds " \| Next Vision Technologies" only when the title stays within 60 characters |
 | `lib/format.ts` | `formatDate()`, `headingId()` |
 | `lib/files.ts` | `publicFile()` (server only) |
 | `hooks/useScroll.ts` | One shared rAF-throttled scroll listener |
@@ -212,6 +212,7 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 10. **Don't enable `experimental.inlineCss`.** Measured 2026-11-20: home HTML grew from 58 KB to 110 KB gzipped (CSS duplicated in the RSC payload) versus a 16.5 KB cacheable CSS file.
 11. PageSpeed baseline (mobile, 2026-11-20): Performance 97, Accessibility/Best Practices/SEO 100. Remaining items are GTM's unused JS (third party), Next's built-in polyfills (not configurable) and Speed Index from the animated hero terminal (intentional).
 12. **Google Maps embed:** a name-only `q=` also pins the nearby "Nextech Vision" listing. Use `q=<listing name>&kgmid=/g/11_1lpfmmp&output=embed` (no API key) to show only our listing with its info card. Don't automate Google Search; it returns a CAPTCHA.
+13. **SEO title length:** Google shows about 60 characters. `pageMetadata` drops the brand suffix when it would push a title past 60, so write titles in `seo.ts` with the keyword first and keep them under 60 on their own. Meta descriptions: 120 to 160 characters (re-crawl and check after changes). Don't rename indexed blog slugs to fix wording; it loses rankings unless a 301 redirect is added.
 
 ## 8. Open items and owner decisions
 - Team page still lists **"Ehtisham Malik, CTO"**; on blogs the same person is credited as **"Ehtisham Iftikhar, AI Engineer"** (owner's instruction). Confirm whether the team page should change too.
