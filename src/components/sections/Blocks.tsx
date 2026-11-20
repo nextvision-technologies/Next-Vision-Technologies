@@ -1,9 +1,10 @@
 // Shared page sections used on many pages: CTA band, FAQ, process steps, stats, testimonials.
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Quote } from "lucide-react";
+import { ArrowRight, ArrowUpRight, CalendarCheck, FolderCheck, HeartHandshake, Quote, Timer } from "lucide-react";
 import { testimonials } from "@/content/testimonials";
 import { site, whatsappLink } from "@/content/site";
 import { Button } from "@/components/ui/Button";
+import { CountUp } from "@/components/ui/CountUp";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SocialIcon } from "@/components/ui/SocialIcons";
 
@@ -57,15 +58,41 @@ export function ProcessSteps({ steps }: { steps: { title: string; text: string }
   );
 }
 
+const statIcons = [FolderCheck, HeartHandshake, CalendarCheck, Timer];
+
+/** Splits "100+" / "24h" into a number to count up to and its suffix */
+const parseStat = (v: string) => {
+  const m = v.match(/^(\d+)(.*)$/);
+  return m ? { n: Number(m[1]), suffix: m[2] } : null;
+};
+
+/** Company numbers with icons; each number counts up when it scrolls into view */
 export function StatsStrip({ tone = "light" }: { tone?: "light" | "dark" }) {
+  const dark = tone === "dark";
   return (
-    <dl className="grid grid-cols-2 gap-6 lg:grid-cols-4">
-      {site.stats.map((s) => (
-        <div key={s.label} className="flex flex-col gap-1">
-          <dt className={`order-2 text-sm ${tone === "dark" ? "text-white/65" : "text-muted"}`}>{s.label}</dt>
-          <dd className={`font-display text-4xl font-extrabold ${tone === "dark" ? "text-white" : "text-brand-600"}`}>{s.value}</dd>
-        </div>
-      ))}
+    <dl className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+      {site.stats.map((s, i) => {
+        const Icon = statIcons[i % statIcons.length];
+        const num = parseStat(s.value);
+        return (
+          <div key={s.label}
+            className={`group relative flex flex-col gap-3 overflow-hidden rounded-2xl p-5 transition duration-300 hover:-translate-y-1 sm:p-7 ${
+              dark ? "border border-white/10 bg-white/[0.05] hover:border-white/25 hover:bg-white/[0.08]" : "border border-line bg-card shadow-card hover:shadow-lift"}`}>
+            <span className="bg-logo-gradient absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 transition duration-500 group-hover:scale-x-100" aria-hidden />
+            <span className={`order-1 inline-flex size-11 items-center justify-center rounded-xl ${dark ? "bg-white/10 text-brand-400" : "bg-brand-50 text-brand-600"}`}>
+              <Icon className="size-5" aria-hidden strokeWidth={1.9} />
+            </span>
+            {/* dt before dd for valid markup; flex order shows the number first */}
+            <dt className="order-3 flex flex-col gap-1">
+              <span className={`text-base font-semibold ${dark ? "text-white" : "text-heading"}`}>{s.label}</span>
+              {"detail" in s && <span className={`text-sm leading-snug ${dark ? "text-white/60" : "text-muted"}`}>{s.detail}</span>}
+            </dt>
+            <dd className={`order-2 font-display text-4xl leading-none font-extrabold tracking-tight sm:text-5xl ${dark ? "text-white" : "text-heading"}`}>
+              {num ? <CountUp value={num.n} suffix={num.suffix} /> : s.value}
+            </dd>
+          </div>
+        );
+      })}
     </dl>
   );
 }

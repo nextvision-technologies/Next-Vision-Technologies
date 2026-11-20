@@ -5,6 +5,26 @@ Format: `## YYYY-MM-DD: short title`, then bullets.
 
 ---
 
+## 2026-11-20: More prominent pricing
+- `features/pricing/PricingCards.tsx`: the price now sits in its own panel with a soft gradient, shadow and glow. Regular price is larger with a thick red strike-through and a "Regular" label; "SAVE X%" is a solid green badge (dark-green text on dark surfaces for contrast); the offer price is bigger (up to 7xl) with gradient text (light cards) or a pink glow (Gold card); new "You save $X every month" line. Screen readers hear "Regular price" / "Offer price".
+
+## 2026-11-20: About stats with counters + SEO for Search Console queries
+- `StatsStrip` (`components/sections/Blocks.tsx`) redesigned: icon, number counting up (`CountUp`), label and a short detail line per stat (`detail` added to `site.stats` in `content/site.ts`). Used on /about (new "By the numbers" heading) and location pages.
+- `content/seo.ts`: new `serviceSeo` map with keyword-targeted titles and descriptions for 10 service pages, based on the Search Console queries of the old selectionstechnologies.com site (bespoke CRM development UK, Shopify developers UK, custom WordPress UK, WhatsApp/AI chatbot development, chatbot automation, PPC, digital marketing for startups). Global `keywords` extended.
+- Open: the old site ranked for Croydon searches (SEO/Google Ads/IT company Croydon). Add a UK office address only if the company really has one there; a UK location page could then target Croydon. Blog ideas from the queries: digital marketing for startups in Pakistan, off-page SEO / guest posting (draft exists), marketing growth OKRs.
+
+## 2026-11-20: Responsive hero code terminal
+- The terminal had a fixed 14-line height and was clipped at the top on laptops and short screens. `globals.css` (Pinned expanding hero): `.pinned-hero__terminal` is now a size container; the code font scales with the card width (`clamp(9px, (100cqi - 2.5rem)/29, 12.5px)`), the welcome text too (`/15`), and the screen height is capped by `--term-max` so it always fits inside the card.
+- Hero mobile layout (terminal on top, text below) now applies below **1024px** instead of 820px (`PinnedHero.tsx` uses `lg:`), so tablets get a full-width terminal. Phones under 860px tall show 5 lines; under 700px tall the terminal is hidden.
+- "Pakistan · United Kingdom" badge hidden below 1024px (it overlapped the terminal on phones).
+- `Header.tsx`: nav item padding `px-2.5 xl:px-3.5`, so "Book a Demo" is no longer cut off at 1024px.
+- Checked at 1920×900, 1366×650, 1280×720, 1024×600, 820×1100, 412×915, 390×750 and 360×640.
+
+## 2026-11-20: Favicon for Google search results
+- Google showed a grey globe instead of the logo: `/favicon.ico` returned 404 and `icon.png` was 512x512 (Google needs a square multiple of 48px).
+- Added `src/app/favicon.ico` (16/32/48 PNG entries) and resized `src/app/icon.png` to 192x192. Next.js now outputs both `<link rel="icon">` tags.
+- Owner: after deploy, request indexing of the home page in Search Console. Google can take days to a few weeks to refresh the favicon.
+
 ## 2026-11-20: Ali Raza LinkedIn + YouTube
 - `team.ts`: Ali Raza's LinkedIn added, plus the company YouTube channel (`site.socials.youtube`). `TeamMember.socials` now supports `youtube` (`types/content.ts`, red style in `MemberSocials.tsx`).
 

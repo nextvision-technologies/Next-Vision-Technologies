@@ -38,19 +38,41 @@ function PlanCard({ p }: { p: Package }) {
         <p className={`mt-2 min-h-[3rem] text-sm leading-relaxed ${dark ? "text-white/70" : "text-muted"}`}>{p.summary}</p>
 
         {/* Price with struck-through regular price */}
-        <div className="mt-6 flex flex-col gap-1">
-          <div className="flex items-center gap-2.5">
-            <span className={`text-lg font-semibold line-through decoration-2 ${dark ? "text-white/45 decoration-current" : "text-muted/70 decoration-current"}`}>
-              {p.currency}{fmt(p.was)}
+        <div className={`relative mt-6 overflow-hidden rounded-2xl p-5 ${
+          dark
+            ? "border border-white/15 bg-white/[0.07] shadow-[0_18px_40px_-18px_rgb(240_67_122/0.55),inset_0_1px_0_rgb(255_255_255/0.08)]"
+            : "border border-brand-600/15 bg-gradient-to-br from-brand-50 via-card to-card shadow-[0_16px_36px_-20px_rgb(109_40_217/0.45),inset_0_1px_0_rgb(255_255_255/0.9)]"}`}>
+          {/* soft glow behind the price */}
+          <span className={`pointer-events-none absolute -top-10 -right-10 size-32 rounded-full blur-2xl ${dark ? "bg-[#f0437a]/30" : "bg-brand-600/15"}`} aria-hidden />
+
+          {/* Regular price, struck through, and the discount */}
+          <div className="relative flex flex-wrap items-center justify-between gap-2">
+            <span className="flex items-baseline gap-1.5">
+              <span className={`text-[11px] font-semibold tracking-[0.12em] uppercase ${dark ? "text-white/50" : "text-muted"}`}>Regular</span>
+              <span className={`text-xl font-bold line-through decoration-[#ef4444] decoration-[3px] ${dark ? "text-white/60" : "text-heading/55"}`}>
+                <span className="sr-only">Regular price </span>{p.currency}{fmt(p.was)}
+              </span>
             </span>
-            <span className="rounded-full bg-success/15 px-2.5 py-0.5 text-xs font-bold text-success">Save {save}%</span>
+            {/* On dark surfaces the success colour is a light green, so the text switches to dark green for contrast */}
+            <span className={`inline-flex items-center rounded-full bg-success px-3 py-1 text-xs font-extrabold tracking-wide shadow-[0_6px_16px_-4px_rgb(21_128_61/0.6)] ${dark ? "text-[#052e16]" : "text-white dark:text-[#052e16]"}`}>
+              SAVE {save}%
+            </span>
           </div>
-          <p className="flex items-start gap-1">
-            <span className={`mt-2 text-xl font-bold ${dark ? "text-white/80" : "text-heading/70"}`}>{p.currency}</span>
-            <span className={`font-display text-6xl leading-none font-extrabold tracking-tight ${dark ? "text-white" : "text-heading"}`}>{fmt(p.price)}</span>
-            <span className={`mt-auto mb-1.5 text-sm ${dark ? "text-white/60" : "text-muted"}`}>/month</span>
+
+          {/* Offer price */}
+          <p className="relative mt-3 flex items-start gap-1">
+            <span className={`mt-2 text-2xl font-bold ${dark ? "text-white/85" : "text-brand-600"}`}>{p.currency}</span>
+            <span className={`font-display text-6xl leading-none font-extrabold tracking-tight sm:text-7xl ${
+              dark ? "text-white [text-shadow:0_0_28px_rgb(240_67_122/0.55)]" : "text-gradient drop-shadow-[0_6px_14px_rgb(109_40_217/0.25)]"}`}>
+              <span className="sr-only">Offer price </span>{fmt(p.price)}
+            </span>
+            <span className={`mt-auto mb-2 text-sm font-medium ${dark ? "text-white/70" : "text-muted"}`}>/month</span>
           </p>
-          <p className={`text-xs ${dark ? "text-white/50" : "text-muted"}`}>Billed monthly · Cancel anytime</p>
+
+          <div className={`relative mt-3 flex flex-wrap items-center justify-between gap-2 border-t pt-3 text-xs ${dark ? "border-white/10" : "border-line"}`}>
+            <span className="font-semibold text-success">You save {p.currency}{fmt(p.was - p.price)} every month</span>
+            <span className={dark ? "text-white/55" : "text-muted"}>Billed monthly · Cancel anytime</span>
+          </div>
         </div>
 
         <hr className={`my-6 ${dark ? "border-white/10" : "border-line"}`} />

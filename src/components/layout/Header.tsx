@@ -104,7 +104,7 @@ export function Header() {
                 <li key={g.label} onMouseEnter={() => open(g.label)}>
                   <button type="button" aria-expanded={isOpen} aria-haspopup="true"
                     onClick={() => (isOpen ? setOpenMenu(null) : open(g.label))}
-                    className={`inline-flex h-10 items-center gap-1 rounded-full px-3.5 text-sm font-semibold transition ${isOpen ? "text-brand-600" : "text-heading hover:text-brand-600"}`}>
+                    className={`inline-flex h-10 items-center gap-1 rounded-full px-2.5 text-sm xl:px-3.5 font-semibold transition ${isOpen ? "text-brand-600" : "text-heading hover:text-brand-600"}`}>
                     {g.label}
                     <ChevronDown className={`size-4 transition duration-200 ${isOpen ? "rotate-180" : ""}`} aria-hidden />
                   </button>

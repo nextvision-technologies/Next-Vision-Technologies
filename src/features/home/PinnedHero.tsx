@@ -111,9 +111,9 @@ export function PinnedHero({ video }: Props) {
 
         {/* 3. Intro copy (left side on desktop) */}
         <div ref={introRef} className="pinned-hero__intro">
-          <div className="container-page flex h-full flex-col justify-end pb-24 min-[820px]:justify-center min-[820px]:pb-16">
-            <div className="flex max-w-xl flex-col gap-5 sm:gap-6 min-[820px]:w-[46%]">
-              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.18em] text-white/80 uppercase md:backdrop-blur sm:text-xs">
+          <div className="container-page flex h-full flex-col justify-end pb-24 lg:justify-center lg:pb-16">
+            <div className="flex max-w-xl flex-col gap-5 sm:gap-6 lg:w-[46%]">
+              <span className="hidden w-fit items-center gap-2 rounded-full border border-white/15 lg:inline-flex bg-white/[0.06] px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.18em] text-white/80 uppercase md:backdrop-blur sm:text-xs">
                 <span className="size-1.5 rounded-full bg-emerald-400" aria-hidden />
                 Pakistan · United Kingdom
               </span>

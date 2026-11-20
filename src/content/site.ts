@@ -34,10 +34,10 @@ export const site = {
     youtube: "https://www.youtube.com/@nextvision-technologies",
   },
   stats: [
-    { value: "100+", label: "Projects delivered" },
-    { value: "50+", label: "Happy clients" },
-    { value: "5+", label: "Years of experience" },
-    { value: "24h", label: "Quote turnaround" },
+    { value: "100+", label: "Projects delivered", detail: "Websites, apps, AI tools and campaigns" },
+    { value: "50+", label: "Happy clients", detail: "In Pakistan, the UK and beyond" },
+    { value: "5+", label: "Years of experience", detail: "Building and growing digital products" },
+    { value: "24h", label: "Quote turnaround", detail: "A clear plan and fixed price, fast" },
   ],
 } as const;
 

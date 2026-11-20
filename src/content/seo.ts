@@ -25,7 +25,58 @@ export type SeoEntry = {
 /** Date the site content was last reviewed. Bump it when pages change significantly. */
 export const SITE_UPDATED = "2026-11-19";
 
+/**
+ * Keyword-targeted titles and descriptions for service pages, based on the Google Search Console
+ * queries that brought impressions to the company's previous website (Nov 2026).
+ * Services not listed here use the generated title and description.
+ */
+const serviceSeo: Record<string, { title: string; description: string }> = {
+  "crm-development": {
+    title: "Bespoke CRM Development Services UK & Pakistan",
+    description: "Custom and bespoke CRM software development for UK and Pakistani businesses: tailor-made CRMs, HubSpot and Zoho setup, automation and integrations.",
+  },
+  "custom-software-development": {
+    title: "Bespoke Software Development Services",
+    description: "Bespoke and customised software development for UK and Pakistani businesses: SaaS products, internal tools, portals and APIs. Free quote in 24 hours.",
+  },
+  "ai-chatbot-development": {
+    title: "AI & WhatsApp Chatbot Development UK & Pakistan",
+    description: "Chatbot development for UK and Pakistani businesses: AI chatbots and WhatsApp automation that answer customers 24/7, capture leads and book appointments.",
+  },
+  "ai-automation": {
+    title: "AI Automation & Chatbot Automation Services",
+    description: "AI automation services: chatbot automation, AI agents and smart workflows that remove manual work and connect your apps. Free consultation in 24 hours.",
+  },
+  "shopify-development": {
+    title: "Shopify Store Developers UK & Pakistan",
+    description: "Shopify developers for UK and Pakistani brands: store setup, custom themes, apps and payment gateways for a fast, high-converting store. Free quote.",
+  },
+  "wordpress-development": {
+    title: "Custom WordPress Development UK & Pakistan",
+    description: "Custom WordPress development for UK and Pakistani businesses: bespoke themes, plugins and WooCommerce stores you can manage yourself. Free quote.",
+  },
+  seo: {
+    title: "SEO Services UK & Pakistan",
+    description: "SEO services for UK and Pakistani businesses: technical SEO, local SEO, content and safe link building that lift your Google rankings. Free SEO audit.",
+  },
+  "meta-google-ads": {
+    title: "Google Ads & Meta Ads Management (PPC)",
+    description: "PPC management for Google Ads, Facebook and Instagram: tracked campaigns that turn ad spend into leads for UK and Pakistani businesses. Free audit.",
+  },
+  "digital-marketing": {
+    title: "Digital Marketing Agency for Startups & SMEs",
+    description: "Digital marketing for startups and growing businesses in Pakistan and the UK: strategy, social media, content, email and ads with monthly reports.",
+  },
+  "care-agency-recruitment-compliance-system": {
+    title: "Care Agency Recruitment & Compliance Software",
+    description: "Recruitment and compliance system for UK care agencies: applicant tracking, DBS and document expiry alerts, training records and audit-ready reports.",
+  },
+};
+
 export const keywords = [
+  "bespoke CRM development UK", "CRM software development company", "custom CRM development", "bespoke software development",
+  "chatbot development UK", "WhatsApp automation UK", "chatbot automation", "Shopify developers UK", "custom WordPress development UK",
+  "digital marketing for startups Pakistan", "PPC management",
   "software house Lahore", "IT company Pakistan", "web development company UK", "AI automation",
   "AI chatbot development", "WhatsApp chatbot", "SaaS development", "website development",
   "Shopify store development", "WordPress development", "mobile app development", "SEO services",
@@ -118,8 +169,8 @@ export function allSeoEntries(): SeoEntry[] {
     ...staticPages,
     ...services.map<SeoEntry>((s) => ({
       path: `/services/${s.slug}`, group: "Services", priority: 0.9, changeFrequency: "monthly",
-      title: `${s.title} Services`,
-      description: clip(`${s.short} ${s.tagline} Free consultation and a fixed quote within 24 hours from Next Vision Technologies.`),
+      title: serviceSeo[s.slug]?.title ?? `${s.title} Services`,
+      description: serviceSeo[s.slug]?.description ?? clip(`${s.short} ${s.tagline} Free consultation and a fixed quote within 24 hours from Next Vision Technologies.`),
     })),
     ...posts.map<SeoEntry>((p) => ({
       path: `/blog/${p.slug}`, group: "Blog", priority: 0.7, changeFrequency: "monthly",

@@ -240,11 +240,17 @@
     width: min(36rem, calc(48% - 104px));
     transform: translate(-50%, -50%);
     will-change: left, top;
+    /* Responsive sizing: the font follows the card's width (the longest line is ~47 characters),
+       and the screen never grows taller than the card (stick height minus the card's 96px/40px insets,
+       the title and status bars, and breathing room). */
+    container-type: inline-size;
+    --term-max: calc(100svh - var(--header-h) - 96px - 40px - 7rem);
   }
   .nv-terminal { font-size-adjust: none; } /* monospace keeps its own size */
-  .nv-terminal__code { height: calc(14 * 1.7em + 2rem); }
-  @media (height < 720px) and (width >= 820px) {
-    .nv-terminal__code { font-size: 11px; }
+  .nv-terminal__code {
+    font-size: clamp(9px, calc((100cqi - 2.5rem) / 29), 12.5px);
+    height: min(calc(14 * 1.7em + 2rem), var(--term-max, 100vh));
+    display: flex; flex-direction: column; justify-content: flex-end; /* keep the line being typed in view */
   }
 
   /* 2. Shade */
@@ -292,19 +298,20 @@
   }
 
   /* Phones and small tablets: full-bleed media, terminal at the top, text at the bottom */
-  @media (width < 820px) {
+  @media (width < 1024px) {
     .pinned-hero__clip { clip-path: inset(0); }
     .pinned-hero__media { transform: none; }
     .pinned-hero__shade { opacity: max(0.7, var(--shade)); }
     .pinned-hero__chip { display: none; }
     .pinned-hero__hint { left: 50%; }
     .pinned-hero__terminal { left: 50%; top: 1rem; width: calc(100% - 2rem); max-width: 34rem; transform: translateX(-50%); }
-    .nv-terminal__code {
-      height: calc(7 * 1.7em + 1rem); padding-block: 0.5rem; font-size: 10.5px;
-      display: flex; flex-direction: column; justify-content: flex-end; /* keep the line being typed in view */
-    }
+    .nv-terminal__code { height: calc(7 * 1.7em + 1rem); padding-block: 0.5rem; }
   }
-  @media (width < 820px) and (height < 720px) {
+  /* Shorter phones: 5 lines so the terminal stays above the heading */
+  @media (width < 1024px) and (height < 860px) {
+    .nv-terminal__code { height: calc(5 * 1.7em + 1rem); }
+  }
+  @media (width < 1024px) and (height < 700px) {
     .pinned-hero__terminal { display: none; } /* not enough room next to the heading */
   }
 
@@ -331,14 +338,14 @@
     mix-blend-mode: overlay;
   }
   .nv-caret--hack { background: #39ff88; box-shadow: 0 0 8px rgb(57 255 136 / 0.8); }
-  .nv-hack-welcome { font-size: clamp(1.15rem, 0.7rem + 1.4vw, 1.7rem); line-height: 1.25; }
+  .nv-hack-welcome { font-size: clamp(0.95rem, calc((100cqi - 2.5rem) / 15), 1.7rem); line-height: 1.25; } /* "Next Vision Technologies" (24 chars) fits the card */
   .nv-hack-grad {
     background-image: linear-gradient(100deg, #c084fc 0%, #f0437a 50%, #ff9a3c 100%);
     -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
     filter: drop-shadow(0 0 10px rgb(240 67 122 / 0.35));
     text-shadow: none;
   }
-  @media (width < 820px) { .nv-hack-welcome { font-size: 1rem; margin-block: 0.35rem; } }
+  @media (width < 1024px) { .nv-hack-welcome { margin-block: 0.35rem; } }
 
   /* ---------- Animated brand backdrop (shown when there is no hero video) ---------- */
   .nv-anim {
@@ -353,7 +360,7 @@
       radial-gradient(35% 40% at 64% 78%, rgb(240 67 122 / 0.18), transparent 70%),
       radial-gradient(30% 35% at 86% 20%, rgb(255 154 60 / 0.10), transparent 70%);
   }
-  @media (width < 820px) {
+  @media (width < 1024px) {
     .nv-anim__light { background: radial-gradient(90% 50% at 50% 22%, rgb(124 58 237 / 0.42), transparent 70%); }
   }
 

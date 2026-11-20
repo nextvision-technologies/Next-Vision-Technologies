@@ -199,7 +199,7 @@ export function CodeTerminal({ className = "" }: { className?: string }) {
       </div>
 
       {/* Screen */}
-      <div className="nv-terminal__code relative overflow-hidden font-mono text-[11px] leading-[1.7] sm:text-[12.5px]">
+      <div className="nv-terminal__code relative overflow-hidden font-mono leading-[1.7]">
         {!reduced && <MatrixRain running={active} />}
         <div className="nv-scanlines pointer-events-none absolute inset-0" />
         <div className="relative px-4 py-4 sm:px-5">

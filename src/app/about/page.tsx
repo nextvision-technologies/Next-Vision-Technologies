@@ -26,7 +26,18 @@ export default function AboutPage() {
           <p>Today one team plans, builds and grows your digital presence, with AI and automation built in from day one.</p>
         </div>
       </section>
-      <section className="section-dark py-16"><div className="container-page"><StatsStrip tone="dark" /></div></section>
+      <section className="section-dark py-16 sm:py-20" aria-labelledby="about-stats">
+        <div className="container-page flex flex-col gap-10">
+          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            <div className="flex flex-col gap-2">
+              <span className="text-xs font-semibold tracking-[0.16em] text-brand-400 uppercase">By the numbers</span>
+              <h2 id="about-stats" className="text-3xl font-extrabold text-white sm:text-4xl">Results that speak for themselves</h2>
+            </div>
+            <p className="max-w-sm text-white/65">Every number below is a business we helped launch, automate or grow.</p>
+          </div>
+          <StatsStrip tone="dark" />
+        </div>
+      </section>
       <section className="container-page flex flex-col gap-12 py-20">
         <SectionHeading eyebrow="Our values" title="How we work" />
         <div className="grid gap-6 md:grid-cols-3">

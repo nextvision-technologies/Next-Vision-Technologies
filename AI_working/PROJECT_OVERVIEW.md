@@ -101,7 +101,7 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 | `opengraph-image.tsx` | Default social share image |
 | `not-found.tsx` | 404 page |
 | `api/contact/route.ts` | Receives contact, demo and chatbot lead submissions and emails them via Resend |
-| `icon.png`, `apple-icon.png` | Favicons |
+| `favicon.ico`, `icon.png`, `apple-icon.png` | Favicons. `favicon.ico` holds 16/32/48 px; `icon.png` is 192x192 |
 
 ### 4.2 Shared components: `src/components/`
 | File | Purpose |
@@ -195,6 +195,11 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 - Design changes are shown to the owner first as a standalone HTML file in `AI_working/design-previews/`, then implemented after approval.
 
 ## 7. Gotchas (learned the hard way)
+
+- **Hero terminal sizing:** its font and height come from CSS in `globals.css` (container query units on `.pinned-hero__terminal`), not Tailwind text classes. Do not add `text-[..px]` to `.nv-terminal__code`: utilities would override the responsive size. The hero switches to its mobile layout below 1024px (CSS media queries and `lg:` classes in `PinnedHero.tsx` must stay in sync).
+
+- **Favicon in Google results:** Google needs `/favicon.ico` or an icon whose size is a multiple of 48px (48, 96, 144, 192). A 512px-only icon shows as a grey globe in search results.
+- **After `git pull`, run `npm install`:** teammates add packages (e.g. `@next/third-parties`); without it the dev server fails with "Module not found". Do not run `npm ci` while `npm run dev` is running on Windows: locked files make it delete half of node_modules.
 1. **This is Next.js 16.4, not the version in your training data.** Read `node_modules/next/dist/docs/` before using an API (see `AGENTS.md`).
 2. **Cache Components:** reading `params`/`searchParams` outside `<Suspense>` triggers the dev error "Next.js encountered URL data during prerendering". Pattern: a sync page renders `<Suspense fallback={<PageSkeleton />}><Content params={params} /></Suspense>`.
 3. **Replacing an image?** Save it under a **new file name**. `next/image` caches optimised images by URL (about 4 hours), so overwriting a file keeps showing the old picture.
