@@ -15,7 +15,7 @@ export const site = {
   ],
   whatsapp: "923003209005", // WhatsApp number, international format, digits only
   offices: [
-    { label: "Pakistan Office", address: "Lahore, Pakistan" }, // TODO: add street address
+    { label: "Pakistan Office", address: "28 Davis Road, Lahore, Punjab, Pakistan" }, // registered office (SECP/FBR documents)
     { label: "UK Office", address: "United Kingdom" }, // TODO: add street address
   ],
   socials: {

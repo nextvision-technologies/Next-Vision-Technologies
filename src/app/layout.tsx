@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { NavigationProgress } from "@/components/layout/NavigationProgress";
 import { ChatBot } from "@/features/chat/ChatBot";
 import { themeInitScript } from "@/components/layout/ThemeToggle";
 import { site } from "@/content/site";
@@ -66,6 +67,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <noscript>
           <iframe src={`https://www.googletagmanager.com/ns.html?id=${site.gtmId}`} height="0" width="0" style={{ display: "none", visibility: "hidden" }} title="Google Tag Manager" />
         </noscript>
+        <NavigationProgress />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

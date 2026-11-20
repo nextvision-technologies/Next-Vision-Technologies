@@ -128,7 +128,8 @@ export function Header() {
           {/* Mega menu panel: hover bridge (pt-3) keeps it open while the pointer moves down */}
           {active && (
             <div className={`absolute top-full left-1/2 hidden -translate-x-1/2 pt-1 lg:block ${active.columns === 2 ? "w-[min(56rem,calc(100vw-2rem))]" : "w-[min(44rem,calc(100vw-2rem))]"}`}
-              onMouseEnter={() => open(active.label)} onMouseLeave={scheduleClose}>
+              onMouseEnter={() => open(active.label)} onMouseLeave={scheduleClose}
+              onClick={(e) => { if ((e.target as HTMLElement).closest("a")) { if (closeTimer.current) clearTimeout(closeTimer.current); setOpenMenu(null); } }}>
               <div key={active.label} className="animate-rise [animation-duration:.25s]">
                 <MegaMenuPanel group={active} />
               </div>
@@ -140,7 +141,8 @@ export function Header() {
       {mobile && (
         <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label="Menu">
           <div className="absolute inset-0 bg-night-950/50" onClick={() => setMobile(false)} />
-          <div data-lenis-prevent className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col overflow-y-auto bg-card p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
+          <div data-lenis-prevent className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col overflow-y-auto bg-card p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]"
+            onClick={(e) => { if ((e.target as HTMLElement).closest("a")) setMobile(false); }}>
             <div className="flex items-center justify-between">
               <Image src="/brand/logo-header.webp" alt={site.name} width={933} height={195} className="h-10 w-auto dark:hidden" />
               <Image src="/brand/logo-header-white.webp" alt={site.name} width={933} height={195} className="hidden h-10 w-auto dark:block" />

@@ -1,4 +1,5 @@
 import { site } from "@/content/site";
+import { company } from "@/content/company";
 import { services } from "@/content/services";
 
 /** Organization + WebSite structured data, rendered once in the root layout */
@@ -10,7 +11,10 @@ export function SiteJsonLd() {
       "@type": "Organization",
       "@id": `${site.url}/#organization`,
       name: site.name,
+      legalName: company.legalName,
       alternateName: site.shortName,
+      taxID: company.ntn,
+      identifier: { "@type": "PropertyValue", propertyID: "SECP Corporate Unique Identification No.", value: company.cuin },
       url: site.url,
       logo: `${site.url}/brand/logo-square.png`,
       image: `${site.url}/brand/logo-og.png`,
@@ -19,7 +23,7 @@ export function SiteJsonLd() {
       email: site.email,
       telephone: site.phones[0].value.replace(/\s/g, ""),
       address: [
-        { "@type": "PostalAddress", addressLocality: "Lahore", addressCountry: "PK" },
+        { "@type": "PostalAddress", streetAddress: "28 Davis Road", addressLocality: "Lahore", addressRegion: "Punjab", addressCountry: "PK" },
         { "@type": "PostalAddress", addressCountry: "GB" },
       ],
       areaServed: ["Pakistan", "United Kingdom", "Worldwide"],

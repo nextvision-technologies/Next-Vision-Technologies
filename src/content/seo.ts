@@ -33,6 +33,12 @@ export const keywords = [
 
 const staticPages: SeoEntry[] = [
   {
+    path: "/company-registration", group: "Legal", priority: 0.6, changeFrequency: "yearly",
+    title: "Company Registration: SECP & FBR Verified",
+    description: "Next Vision Technologies (Private) Limited is incorporated with the SECP (CUIN 0366776) and registered with the FBR (K680541). View our documents and verify us.",
+    image: "/company-docs/secp-certificate-of-incorporation.webp",
+  },
+  {
     path: "/", group: "Main pages", priority: 1, changeFrequency: "weekly",
     title: "AI Automation, SaaS, Websites & Digital Marketing",
     description: "Next Vision Technologies is a software house in Lahore and the UK building AI chatbots, automation, SaaS products, websites and marketing campaigns that grow your business.",

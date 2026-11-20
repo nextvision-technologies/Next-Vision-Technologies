@@ -2,7 +2,7 @@
 
 > **Read this first.** It explains what every file does, where new code belongs and the traps that have already cost time.
 > Keep it accurate: after every task, update the sections your change affects and add an entry to [CHANGELOG.md](CHANGELOG.md).
-> Last updated: 2026-11-19
+> Last updated: 2026-11-20
 
 ---
 
@@ -41,6 +41,7 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 ├── Logo/00-Final/webp/    Master brand logo (source file, not served)
 ├── public/                Static files served at the site root
 │   ├── brand/             Logos used by the site (header, OG image, app icons)
+│   ├── company-docs/      SECP and FBR registration documents (A4 WebP) for /company-registration
 │   ├── blog/              Blog cover images (16:9, 3840x2160 WebP)
 │   ├── projects/          Projects Gallery screenshots (1440x900 WebP)
 │   └── team/              Team photos
@@ -92,6 +93,7 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 | `jobs/page.tsx`, `jobs/[slug]/page.tsx` | Careers list and job detail (`[slug]` reads `params` inside `<Suspense>`) |
 | `contact/page.tsx`, `book-demo/page.tsx` | Contact form and demo booking |
 | `(legal)/*/page.tsx` | Terms, privacy, refund, GDPR, security, cookies (all render `LegalView`) |
+| `(legal)/company-registration/page.tsx` | **Company Registration**: registration details (no incorporation date card, owner's request), official documents (popup viewer, no download), verify steps, SECP online record, fraud notice, FAQ (renders `CompanyRegistrationView`). First item in the Legal menu and footer |
 | `(locations)/*/page.tsx` | Local SEO pages: software-house-lahore, web-development-company-uk |
 | `site-map/page.tsx` | Human-readable sitemap built from `content/seo.ts` |
 | `sitemap.ts`, `robots.ts`, `manifest.ts` | sitemap.xml, robots.txt, web manifest |
@@ -103,8 +105,9 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 ### 4.2 Shared components: `src/components/`
 | File | Purpose |
 |---|---|
-| `layout/Header.tsx` | Top bar (email, phones, socials) + sticky nav: **Home** link, mega-menu groups, theme toggle, Book a Demo, mobile drawer. Logo: `/brand/logo-header.webp` (light) and `logo-header-white.webp` (dark) |
+| `layout/Header.tsx` | Top bar (email, phones, socials) + sticky nav: **Home** link, mega-menu groups (close immediately when a link inside is clicked), theme toggle, Book a Demo, mobile drawer (also closes on link tap). Logo: `/brand/logo-header.webp` (light) and `logo-header-white.webp` (dark) |
 | `layout/MegaMenu.tsx` | Dropdown panel content + promo illustrations |
+| `layout/NavigationProgress.tsx` | Logo-gradient loading bar at the top while a page loads (starts on internal link clicks, finishes on route change, 15 s safety timeout). Rendered in `layout.tsx` |
 | `layout/Footer.tsx` | Footer (still uses `/brand/logo-tagline-white.svg`) |
 | `layout/ThemeToggle.tsx` | Light/dark toggle + `themeInitScript` (runs before paint) |
 | `layout/SmoothScroll.tsx` | Lenis smooth scrolling for desktop |
@@ -129,7 +132,7 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 | `blog/` | `PostCard` |
 | `chat/` | `ChatBot` (launcher), `ChatPanel` (lazy chat window), `engine.ts` (rule-based matching; no AI API is called) |
 | `contact/` | `ContactForm`, `DemoBooking` |
-| `legal/` | `LegalView` |
+| `legal/` | `LegalView` (policy pages), `CompanyRegistrationView` (/company-registration), `DocumentGallery` (client: document cards + native `<dialog>` popup with Previous/Next and arrow keys; the document is fitted with `object-contain` so the whole page shows without scrolling, popup width follows the A4 ratio of the screen height) |
 | `locations/` | `LocationView` |
 | `pricing/` | `PricingCards` |
 | `team/` | `TeamGrid` |
@@ -137,6 +140,7 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 ### 4.4 Content: `src/content/` (one topic per file)
 | File | Holds |
 |---|---|
+| `company.ts` | Legal registration facts (legal name, SECP CUIN 0366776, FBR No. K680541, incorporation 17 Nov 2026, registered office), `secpRecord`, `companyDocuments`, trust points and FAQs. Values copied exactly from the documents |
 | `site.ts` | Company name, URL, GTM container ID (`gtmId`), email, phones, offices, socials, stats, `whatsappLink()` |
 | `navigation.ts` | `mainNav` (mega menu groups) and `footerNav` |
 | `services.ts` | 16 services, `getService()`, `serviceCategories` |
@@ -196,11 +200,13 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 5. Many source files use **CRLF** line endings. When editing with scripts, normalise to `\n`, edit, then restore `\r\n`.
 6. React lint forbids calling `setState` directly inside `useEffect`; derive values during render instead.
 7. `Math.random()`/`Date` in render cause hydration mismatches; only use them inside effects/timers.
+8. **Never publish personal ID numbers.** The SECP record's "Applicant ID" is the director's CNIC; it is deliberately left off the site. Check any pasted government record for CNICs, phone numbers or signatures before publishing.
 
 ## 8. Open items and owner decisions
 - Team page still lists **"Ehtisham Malik, CTO"**; on blogs the same person is credited as **"Ehtisham Iftikhar, AI Engineer"** (owner's instruction). Confirm whether the team page should change too.
 - HR blog states the CV screening pipeline supports Rozee.pk, Indeed, LinkedIn, WhatsApp, OCR and keeps personal details out of scoring. **Owner must confirm these claims are true.**
-- `testimonials.ts` holds placeholders; `site.ts` has TODO street addresses and an empty LinkedIn URL.
+- `testimonials.ts` holds placeholders; `site.ts` has a TODO UK street address and an empty LinkedIn URL (Pakistan office is now the registered office, 28 Davis Road, Lahore).
+- Home stats say "5+ years of experience" while the company was incorporated on 17 Nov 2026. Consider wording such as "5+ years of team experience" so visitors don't see a contradiction.
 - The rank-on-Google cover source is 2566 px wide (upscaled to 4K).
 - Footer still uses the older SVG logo (`logo-tagline-white.svg`).
 - Suggested: a dedicated "AI CV Screening" service page to rank for that keyword.

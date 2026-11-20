@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  ArrowRight, BookOpen, Building, BriefcaseBusiness, Cookie, FileText, Globe, GraduationCap, Lock,
+  ArrowRight, BadgeCheck, BookOpen, Building, BriefcaseBusiness, Cookie, FileText, Globe, GraduationCap, Lock,
   MessagesSquare, Newspaper, RotateCcw, ShieldCheck, Tags, UserPlus, Users, type LucideIcon,
 } from "lucide-react";
 import type { NavGroup, NavPromo } from "@/types/content";
@@ -9,7 +9,7 @@ import { ServiceIcon } from "@/components/ui/ServiceIcon";
 const navIcons: Record<string, LucideIcon> = {
   building: Building, briefcase: BriefcaseBusiness, users: Users, chat: MessagesSquare, news: Newspaper,
   graduation: GraduationCap, tags: Tags, userplus: UserPlus, file: FileText, lock: Lock, refund: RotateCcw,
-  globe: Globe, shieldcheck: ShieldCheck, cookie: Cookie,
+  globe: Globe, shieldcheck: ShieldCheck, cookie: Cookie, badgecheck: BadgeCheck,
 };
 
 function NavIcon({ name }: { name?: string }) {

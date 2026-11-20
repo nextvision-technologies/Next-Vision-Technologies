@@ -5,6 +5,29 @@ Format: `## YYYY-MM-DD: short title`, then bullets.
 
 ---
 
+## 2026-11-20: Menu closes on click + page loading bar
+- `src/components/layout/Header.tsx`: the mega menu panel and the mobile drawer now close the moment a link inside them is clicked (before, they stayed open until the next page finished loading because the pointer was still over the panel).
+- New `src/components/layout/NavigationProgress.tsx` (rendered in `src/app/layout.tsx`): thin logo-gradient bar at the top of the window during page loads.
+- Verified in a headless browser: menu closed 30 ms after clicking a service link; bar completed and reset after the new page rendered.
+
+## 2026-11-20: Document popup fits the screen
+- `src/features/legal/DocumentGallery.tsx`: the popup now shows the whole document at once (no scrolling) on desktop and mobile: image uses `fill` + `object-contain`, popup height 94dvh and width derived from the A4 ratio. Subtitle wraps to two lines instead of being cut off.
+
+## 2026-11-20: Company Registration page tweaks
+- Removed the Download links; "View document" (and clicking a thumbnail) now opens the document in a popup on the same page: `src/features/legal/DocumentGallery.tsx` (native `<dialog>`, Esc/backdrop closes, Previous/Next + arrow keys).
+- Removed the "Date of incorporation" card; "Registered office" now spans two columns.
+- Official documents section moved directly below Registration details.
+- Note: the incorporation date still appears inside the documents, on each document card and in the SECP record table.
+
+## 2026-11-20: Company Registration page
+- New page `/company-registration` (`src/app/(legal)/company-registration/page.tsx`, `src/features/legal/CompanyRegistrationView.tsx`, data in `src/content/company.ts`).
+- Shows SECP incorporation (CUIN 0366776) and FBR registration (K680541) details, steps to verify, SECP online record, the three official documents (view full size / download), what registration means for clients, a fraud notice and FAQs.
+- Renamed the owner's documents in `public/company-docs/` to URL-safe names (`secp-certificate-of-incorporation.webp`, `secp-acknowledgement-of-filing.webp`, `fbr-taxpayer-registration-certificate.webp`).
+- Added the page to the Legal mega menu (first item, `badgecheck` icon in `MegaMenu.tsx`), the footer support links and `content/seo.ts`.
+- `site.ts`: Pakistan office address set to the registered office. `SiteJsonLd.tsx`: `legalName`, `taxID`, SECP identifier and street address.
+- The SECP record's Applicant ID (a CNIC) is intentionally not shown.
+- Open: owner said "principle page"; implemented as "Company Registration". Rename if a different title was meant. The "5+ years" stat vs. 2026 incorporation.
+
 ## 2026-11-19: Google Tag Manager
 - Installed `@next/third-parties@16.4.6` (exact, matches Next 16.4.6) and added `<GoogleTagManager gtmId={site.gtmId} />` plus the `<noscript>` iframe to `src/app/layout.tsx`.
 - Container ID `GTM-PM9BTDMZ` stored in `src/content/site.ts` (`gtmId`).

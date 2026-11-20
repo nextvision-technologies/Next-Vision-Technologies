@@ -54,7 +54,10 @@ export const mainNav: NavGroup[] = [
   {
     label: "Legal",
     columns: 2,
-    children: legalPages.map((p) => ({ label: p.title, href: `/${p.slug}`, ...legalMeta[p.slug] })),
+    children: [
+      { label: "Company Registration", href: "/company-registration", icon: "badgecheck", description: "SECP and FBR registration, verify us yourself" },
+      ...legalPages.map((p) => ({ label: p.title, href: `/${p.slug}`, ...legalMeta[p.slug] })),
+    ],
     promo: { eyebrow: "Your data, your rights", title: "Questions about your data?", text: "Ask us what we hold, or request a copy or deletion. We reply within one month.", href: "/contact", art: "shield" },
   },
 ];
@@ -77,6 +80,7 @@ export const footerNav = {
   support: [
     { label: "Contact Us", href: "/contact" },
     { label: "Book a Demo", href: "/book-demo" },
+    { label: "Company Registration", href: "/company-registration" },
     ...legalPages.map((p) => ({ label: p.title, href: `/${p.slug}` })),
     { label: "Sitemap", href: "/site-map" },
   ],
