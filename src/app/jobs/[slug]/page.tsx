@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { Check } from "lucide-react";
 import { getJob, jobs } from "@/content/jobs";
-import { site, whatsappLink } from "@/content/site";
+import { emailBodies, emailLink, site, whatsappLink } from "@/content/site";
 import { PageHero } from "@/components/sections/PageHero";
 import { Button } from "@/components/ui/Button";
 import { pageMetadata } from "@/lib/seo";
@@ -54,7 +54,7 @@ async function JobContent({ params }: { params: PageProps<"/jobs/[slug]">["param
           <h2 className="text-lg font-bold text-heading">How to apply</h2>
           <p className="mt-3 text-muted">Send your CV to <strong className="text-heading">{site.email}</strong> with &ldquo;{job.title}&rdquo; in the subject, or message us on WhatsApp.</p>
           <div className="mt-6 flex flex-col gap-3">
-            <Button href={`mailto:${site.email}?subject=${encodeURIComponent(`Application: ${job.title}`)}`}>Email your CV</Button>
+            <Button href={emailLink(`Job application: ${job.title} - Next Vision Technologies`, emailBodies.job(job.title, job.location))}>Email your CV</Button>
             <Button href={whatsappLink(`Hi, I'd like to apply for the ${job.title} role.`)} variant="secondary">Apply on WhatsApp</Button>
           </div>
         </aside>

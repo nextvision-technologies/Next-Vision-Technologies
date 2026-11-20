@@ -84,11 +84,12 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 | `about/page.tsx` | About page |
 | `services/page.tsx` | All services grouped by category |
 | `services/[slug]/page.tsx` | One service (16 slugs). Reads `params` inside `<Suspense>` |
-| `projects/page.tsx` | **Projects Gallery** (was `/portfolio`, 308 redirect in `next.config.ts`). Stats strip + `ProjectsGallery` + CollectionPage/ItemList JSON-LD |
+| `projects/page.tsx` | **Projects Gallery** (was `/portfolio`, 308 redirect in `next.config.ts`). Animated stat cards (`CountUp`) + `ProjectsGallery` + CollectionPage/ItemList JSON-LD |
 | `blog/page.tsx` | Blog index: latest post as a wide card, then a 1/2/3-column grid |
 | `blog/[slug]/page.tsx` | Blog post: hero with writer + reviewer, cover image, takeaways, body blocks, service CTA, FAQ, author/reviewer cards, BlogPosting + FAQPage JSON-LD. Reads `params` inside `<Suspense>` |
 | `pricing/page.tsx` | Growth packages |
-| `team/page.tsx` | Leadership team |
+| `team/page.tsx` | Leadership team (cards: photo, name, title, social links, "View profile") |
+| `team/[slug]/page.tsx` | Team member profile (`/team/ali-raza` etc.): about, background (role, expertise, education, experience), book/email buttons, rest of the team, ProfilePage + Person JSON-LD. Reads `params` inside `<Suspense>` |
 | `courses/page.tsx` | Training courses |
 | `jobs/page.tsx`, `jobs/[slug]/page.tsx` | Careers list and job detail (`[slug]` reads `params` inside `<Suspense>`) |
 | `contact/page.tsx`, `book-demo/page.tsx` | Contact form and demo booking |
@@ -108,7 +109,7 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 | `layout/Header.tsx` | Top bar (email, phones, socials) + sticky nav: **Home** link, mega-menu groups (close immediately when a link inside is clicked), theme toggle, Book a Demo, mobile drawer (also closes on link tap). Logo: `/brand/logo-header.webp` (light) and `logo-header-white.webp` (dark) |
 | `layout/MegaMenu.tsx` | Dropdown panel content + promo illustrations |
 | `layout/NavigationProgress.tsx` | Logo-gradient loading bar at the top while a page loads (starts on internal link clicks, finishes on route change, 15 s safety timeout). Rendered in `layout.tsx` |
-| `layout/Footer.tsx` | Footer (still uses `/brand/logo-tagline-white.svg`) |
+| `layout/Footer.tsx` | Footer (still uses `/brand/logo-tagline-white.svg`) + full-width "Find us on Google" band: address, View on Google, Get directions, lazy Google Maps iframe pinned to our listing |
 | `layout/ThemeToggle.tsx` | Light/dark toggle + `themeInitScript` (runs before paint) |
 | `layout/SmoothScroll.tsx` | Lenis smooth scrolling for desktop |
 | `layout/WhatsAppButton.tsx` | Floating WhatsApp button |
@@ -120,6 +121,7 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 | `cards/ServiceCard.tsx` | Service card with per-category tint (services pages + location pages) |
 | `seo/SiteJsonLd.tsx` | Organization/WebSite JSON-LD + `BreadcrumbJsonLd` |
 | `ui/Button.tsx` | `Button` + `buttonClass()` variants |
+| `ui/CountUp.tsx` | Number that counts up from 0 when scrolled into view (real value in HTML + screen-reader text; reduced motion shows the final value) |
 | `ui/RichText.tsx` | Renders `[text](href)` links and `**bold**` inside content strings |
 | `ui/ScrollReveal.tsx` | Animates `data-reveal` elements on scroll |
 | `ui/SectionHeading.tsx`, `ui/ServiceIcon.tsx`, `ui/SocialIcons.tsx` | Heading block, icon tiles, brand social icons |
@@ -135,21 +137,21 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 | `legal/` | `LegalView` (policy pages), `CompanyRegistrationView` (/company-registration), `DocumentGallery` (client: document cards + native `<dialog>` popup with Previous/Next and arrow keys; the document is fitted with `object-contain` so the whole page shows without scrolling, popup width follows the A4 ratio of the screen height) |
 | `locations/` | `LocationView` |
 | `pricing/` | `PricingCards` |
-| `team/` | `TeamGrid` |
+| `team/` | `TeamGrid` (simple cards, whole card links to the profile), `MemberProfile` (profile page body), `MemberSocials` (shows only links filled in `team.ts`) |
 
 ### 4.4 Content: `src/content/` (one topic per file)
 | File | Holds |
 |---|---|
 | `company.ts` | Legal registration facts (legal name, SECP CUIN 0366776, FBR No. K680541, incorporation 17 Nov 2026, registered office), `secpRecord`, `companyDocuments`, trust points and FAQs. Values copied exactly from the documents |
-| `site.ts` | Company name, URL, GTM container ID (`gtmId`), email, phones, offices, socials, stats, `whatsappLink()` |
+| `site.ts` | Company name, URL, `emailLink(subject?, body?)` + `emailBodies` (every email link opens the mail app with our address, a subject and a template; never write `mailto:` by hand), GTM container ID (`gtmId`), Google Business Profile (`google`: share link, map name, `kgmid` /g/11_1lpfmmp, directions query), email, phones, offices, socials, stats, `whatsappLink()` |
 | `navigation.ts` | `mainNav` (mega menu groups) and `footerNav` |
 | `services.ts` | 16 services, `getService()`, `serviceCategories` |
-| `projects.ts` | 19 Projects Gallery entries (`type`: Website / Software / AI, `publicSite: false` hides the live link for login-only software) |
+| `projects.ts` | `projectStats` (company totals: 100+ projects, 50+ websites, 30+ software & AI, 20+ industries) and 19 Projects Gallery entries (`type`: Website / Software / AI, `publicSite: false` hides the live link for login-only software) |
 | `blog.ts` | Blog posts (published + drafts), `postImage()`, `postAuthor()`, `postReviewer()`, `draftSlugs` |
 | `people.ts` | Blog writer/reviewers and `reviewerByCategory` |
 | `seo.ts` | Title + meta description + sitemap settings for EVERY page. A page without an entry throws at build |
 | `pricing.ts` | Silver/Gold/Platinum packages |
-| `team.ts` | Leadership team (with specialty, education, experience, bio) |
+| `team.ts` | Leadership team (with specialty, education, experience, bio, socials), `memberSlug()`, `getMember()` |
 | `jobs.ts` | Open roles + `getJob()` |
 | `courses.ts` | Courses |
 | `testimonials.ts` | Client reviews (placeholders, hidden until real) |
@@ -169,7 +171,7 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 ### 4.6 Root config
 | File | Purpose |
 |---|---|
-| `next.config.ts` | `cacheComponents`, `partialPrefetching`, redirects (`/portfolio` → `/projects` permanent; draft posts → `/blog` temporary), Turbopack CSS rule |
+| `next.config.ts` | `cacheComponents`, `partialPrefetching`, `poweredByHeader: false`, security headers (HSTS, X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy; no COOP/CSP on purpose, see comments), redirects (`/portfolio` → `/projects` permanent; draft posts → `/blog` temporary), Turbopack CSS rule |
 | `eslint.config.mjs`, `tsconfig.json` | Lint and TypeScript (`@/*` → `src/*`) |
 | `.vscode/settings.json` | Hides `node_modules`, `.next` and generated files in the Explorer |
 
@@ -201,11 +203,17 @@ Environment variables (`.env.example` → `.env.local`, and in Vercel): `RESEND_
 6. React lint forbids calling `setState` directly inside `useEffect`; derive values during render instead.
 7. `Math.random()`/`Date` in render cause hydration mismatches; only use them inside effects/timers.
 8. **Never publish personal ID numbers.** The SECP record's "Applicant ID" is the director's CNIC; it is deliberately left off the site. Check any pasted government record for CNICs, phone numbers or signatures before publishing.
+9. **`next/image` sizes:** give fixed-size images their *displayed* `width`/`height` (header logo: 211x44), not the file's pixel size, or Next serves a 1920 px version.
+10. **Don't enable `experimental.inlineCss`.** Measured 2026-11-20: home HTML grew from 58 KB to 110 KB gzipped (CSS duplicated in the RSC payload) versus a 16.5 KB cacheable CSS file.
+11. PageSpeed baseline (mobile, 2026-11-20): Performance 97, Accessibility/Best Practices/SEO 100. Remaining items are GTM's unused JS (third party), Next's built-in polyfills (not configurable) and Speed Index from the animated hero terminal (intentional).
+12. **Google Maps embed:** a name-only `q=` also pins the nearby "Nextech Vision" listing. Use `q=<listing name>&kgmid=/g/11_1lpfmmp&output=embed` (no API key) to show only our listing with its info card. Don't automate Google Search; it returns a CAPTCHA.
 
 ## 8. Open items and owner decisions
 - Team page still lists **"Ehtisham Malik, CTO"**; on blogs the same person is credited as **"Ehtisham Iftikhar, AI Engineer"** (owner's instruction). Confirm whether the team page should change too.
 - HR blog states the CV screening pipeline supports Rozee.pk, Indeed, LinkedIn, WhatsApp, OCR and keeps personal details out of scoring. **Owner must confirm these claims are true.**
-- `testimonials.ts` holds placeholders; `site.ts` has a TODO UK street address and an empty LinkedIn URL (Pakistan office is now the registered office, 28 Davis Road, Lahore).
+- Team social links are set (`team.ts`). Members can also have `youtube` (Ali Raza shows the company channel). Ehtisham's Facebook `/people/Ehtisham-Iftikhar/` has no numeric ID and may not open; his Instagram is the company account by the owner's choice.
+- Email is temporarily the Gmail address `nextvisiontechnologies.pvt.ltd@gmail.com` (`site.email`, also used by legal pages and as the default form recipient). Switch to the business domain email later; if Vercel has `CONTACT_TO` set, update it too.
+- `testimonials.ts` holds placeholders; `site.ts` has a TODO UK street address (LinkedIn is now set) (Pakistan office is now the registered office, 28 Davis Road, Lahore).
 - Home stats say "5+ years of experience" while the company was incorporated on 17 Nov 2026. Consider wording such as "5+ years of team experience" so visitors don't see a contradiction.
 - The rank-on-Google cover source is 2566 px wide (upscaled to 4K).
 - Footer still uses the older SVG logo (`logo-tagline-white.svg`).

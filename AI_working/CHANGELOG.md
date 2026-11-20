@@ -5,6 +5,42 @@ Format: `## YYYY-MM-DD: short title`, then bullets.
 
 ---
 
+## 2026-11-20: Ali Raza LinkedIn + YouTube
+- `team.ts`: Ali Raza's LinkedIn added, plus the company YouTube channel (`site.socials.youtube`). `TeamMember.socials` now supports `youtube` (`types/content.ts`, red style in `MemberSocials.tsx`).
+
+## 2026-11-20: Team social links
+- `src/content/team.ts`: Facebook/Instagram/LinkedIn for Muhammad Ahsan Khan, Babar Ali and Ehtisham (Instagram = company account, `site.socials.instagram`); Facebook + Instagram for Ali Raza. Shown on /team cards and profile pages (11 icons).
+- Open: Ali Raza's LinkedIn URL; confirm Ehtisham's Facebook link (missing numeric ID).
+
+## 2026-11-20: Team profile pages
+- `/team` cards now show only photo, name, title, social links and "View profile" (`src/features/team/TeamGrid.tsx`, links in `MemberSocials.tsx`).
+- New profile pages `/team/[slug]` (`src/app/team/[slug]/page.tsx`, `src/features/team/MemberProfile.tsx`): about, background (role, expertise, education, experience), "Book a meeting" and "Send an email" (subject with the member's name), rest of the team, ProfilePage/Person JSON-LD. SEO entries generated in `content/seo.ts`; `lib/seo.ts` accepts `type: "profile"`.
+- Open: owner to provide each member's LinkedIn/Facebook/Instagram URLs; blog author cards could link to these profiles.
+
+## 2026-11-20: Projects stats counter + email links with subject
+- `/projects`: stats are now company totals from `projectStats` in `src/content/projects.ts` (100+ projects delivered, 50+ business websites, 30+ software & AI systems, 20+ industries), shown as cards that count up from 0 (`src/components/ui/CountUp.tsx`). "Live projects" was renamed "Projects delivered" because the gallery lists 19 live projects.
+- New `emailLink()` + `emailBodies` in `src/content/site.ts`: every email link (header, footer, home, contact, legal pages, Company Registration, jobs, chatbot) opens the visitor's mail app with our address, a context-specific subject and a short template (name, company, phone, details).
+- Verified: counter goes 0 → 100 in about 1.6 s; decoded mailto links show the right subject and full body.
+
+## 2026-11-20: Gmail address + LinkedIn
+- `src/content/site.ts`: email → `nextvisiontechnologies.pvt.ltd@gmail.com` (temporary, until the business email is ready); LinkedIn → https://www.linkedin.com/company/next-vision-technologies-pvt-ltd/ (icon now shows in the header top bar and footer; also added to the mobile menu).
+- `src/content/legal.ts` now reads the contact email from `site.email` instead of a hard-coded address. `.env.example` and the API route comment updated.
+- `Header.tsx` top bar: no wrapping; the UK WhatsApp number hides below 1024 px to keep one line with the longer email.
+- Open: if `CONTACT_TO` is set in Vercel, update it; switch to the business email later (one line in `site.ts`).
+
+## 2026-11-20: Google Business Profile map in the footer
+- `src/components/layout/Footer.tsx`: new full-width "Find us on Google" band with the registered address, "View on Google" (share link) and "Get directions" buttons, and a lazy-loaded Google Maps iframe (no API key).
+- `src/content/site.ts`: `google` block (profile share link https://share.google/EVQmjR9jFzx2MvSQc, listing name, kgmid `/g/11_1lpfmmp`, directions query). `SiteJsonLd.tsx`: profile added to `sameAs` + `hasMap`.
+- Owner first sent a link to the "NEXTECH VISION (PRIVATE) LIMITED" listing, then the correct "Next Vision Technologies Pvt. Ltd." one. The map uses `kgmid` so only the correct listing is pinned.
+- Open (owner, in Google Business Profile): listing shows "Own this business?" (claim/verify it), no website, no reviews, and the address reads "A, Next Vision Technologies, 28 Davis Road, A". The Google Maps iframe sets Google cookies (consent banner still open).
+
+## 2026-11-20: PageSpeed improvements
+- Header logo now requests a 256/640 px image instead of 1920 px (`width={211} height={44}` in `Header.tsx`): about 2-7 KB instead of 48 KB.
+- `next.config.ts`: security headers on every response (HSTS, X-Frame-Options SAMEORIGIN, X-Content-Type-Options, Referrer-Policy, Permissions-Policy) and `poweredByHeader: false`.
+- Tested and rejected `experimental.inlineCss` (HTML 58 KB → 110 KB gzipped). Reason kept as a comment in `next.config.ts`.
+- Not changed (explained to owner): GTM unused JS (77 KB, third party), Next's polyfills, Speed Index from the hero animation, COOP/CSP.
+- Open: owner may choose to delay GTM until first interaction; a CSP with GTM nonces.
+
 ## 2026-11-20: Menu closes on click + page loading bar
 - `src/components/layout/Header.tsx`: the mega menu panel and the mobile drawer now close the moment a link inside them is clicked (before, they stayed open until the next page finished loading because the pointer was still over the panel).
 - New `src/components/layout/NavigationProgress.tsx` (rendered in `src/app/layout.tsx`): thin logo-gradient bar at the top of the window during page loads.

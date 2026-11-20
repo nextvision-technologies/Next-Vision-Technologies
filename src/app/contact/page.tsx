@@ -1,5 +1,5 @@
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
-import { site, whatsappLink } from "@/content/site";
+import { emailLink, site, whatsappLink } from "@/content/site";
 import { PageHero } from "@/components/sections/PageHero";
 import { ContactForm } from "@/features/contact/ContactForm";
 import { SocialIcon } from "@/components/ui/SocialIcons";
@@ -11,7 +11,7 @@ export const metadata = pageMetadata("/contact");
 
 export default function ContactPage() {
   const items = [
-    { icon: Mail, label: "Email", value: site.email, href: `mailto:${site.email}` },
+    { icon: Mail, label: "Email", value: site.email, href: emailLink() },
     ...site.phones.map((p) => ({ icon: p.whatsapp ? WhatsAppIcon : Phone, label: p.whatsapp ? `${p.label} (WhatsApp)` : p.label, value: p.value, href: p.href })),
     ...site.offices.map((o) => ({ icon: MapPin, label: o.label, value: o.address, href: undefined })),
     { icon: Clock, label: "Hours", value: "Monday to Saturday, 10am to 7pm PKT", href: undefined },

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, CalendarDays, ChevronRight, Clock, Cookie, FileText, Globe, Lock, Mail, RotateCcw, ShieldCheck, type LucideIcon } from "lucide-react";
 import { getLegal, legalPages, legalUpdated } from "@/content/legal";
 import { headingId } from "@/lib/format";
-import { site, whatsappLink } from "@/content/site";
+import { emailBodies, emailLink, site, whatsappLink } from "@/content/site";
 import { ArticleBlock } from "@/components/article/ArticleBlocks";
 import { RichText } from "@/components/ui/RichText";
 import { ReadingProgress, TableOfContents } from "@/components/article/ArticleChrome";
@@ -113,7 +113,7 @@ export function LegalView({ slug }: { slug: string }) {
               <span className="solid-primary inline-flex size-14 shrink-0 items-center justify-center rounded-2xl"><Mail className="size-7" /></span>
               <div className="flex-1">
                 <p className="font-display text-xl font-bold">Questions about this policy?</p>
-                <p className="mt-1 text-white/70">Email <RichText text={`[${site.email}](mailto:${site.email})`} /> and we&apos;ll reply within 2 working days.</p>
+                <p className="mt-1 text-white/70">Email <RichText text={`[${site.email}](${emailLink(`Question about our ${page.title}`, emailBodies.question)})`} /> and we&apos;ll reply within 2 working days.</p>
               </div>
               <div className="flex flex-wrap gap-3">
                 <Link href="/contact" className={buttonClass("primary")}>Contact us <ArrowRight className="size-4" /></Link>

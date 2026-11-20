@@ -34,7 +34,8 @@ export function SiteJsonLd() {
         areaServed: p.label === "Pakistan" ? "PK" : "GB",
         availableLanguage: ["English", "Urdu"],
       })),
-      sameAs,
+      sameAs: [...sameAs, site.google.profileUrl],
+      hasMap: site.google.profileUrl,
       knowsAbout: services.map((s) => s.title),
     },
     {

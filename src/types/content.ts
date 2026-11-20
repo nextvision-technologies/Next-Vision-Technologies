@@ -96,7 +96,7 @@ export type TeamMember = {
   experience?: string;
   /** Short professional bio shown under the role */
   bio?: string;
-  socials: { facebook?: string; instagram?: string; linkedin?: string };
+  socials: { facebook?: string; instagram?: string; linkedin?: string; youtube?: string };
 };
 
 // ---------- Chatbot ----------

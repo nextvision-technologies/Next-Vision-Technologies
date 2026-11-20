@@ -4,7 +4,7 @@ import {
   MapPin, Receipt, ScanLine, ShieldAlert, ShieldCheck,
 } from "lucide-react";
 import { company, companyDocuments, companyFaqs, registrationPromises, secpRecord } from "@/content/company";
-import { site, whatsappLink } from "@/content/site";
+import { emailBodies, emailLink, site, whatsappLink } from "@/content/site";
 import { formatDate } from "@/lib/format";
 import { buttonClass } from "@/components/ui/Button";
 import { SocialIcon } from "@/components/ui/SocialIcons";
@@ -167,7 +167,7 @@ export function CompanyRegistrationView() {
             <p className="mt-1 text-sm leading-relaxed text-body">
               We never ask for fees for jobs or internships, and we never take deposits or offer investment, MLM or lottery schemes.
               All payments are made only against a signed agreement or an official invoice from {company.legalName}.
-              If someone contacts you in our name and asks for money, email <a href={`mailto:${site.email}`} className="font-semibold text-brand-600 hover:underline">{site.email}</a> before you pay.
+              If someone contacts you in our name and asks for money, email <a href={emailLink("Verification request - Next Vision Technologies", emailBodies.verification)} className="font-semibold text-brand-600 hover:underline">{site.email}</a> before you pay.
             </p>
           </div>
         </aside>

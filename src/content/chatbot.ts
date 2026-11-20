@@ -2,7 +2,7 @@
 // Answers support [text](/link) and **bold**. Each intent has an English and a Roman Urdu reply.
 import { services } from "./services";
 import { packages } from "./pricing";
-import { site } from "./site";
+import { emailLink, site } from "./site";
 import type { Intent, Lang, Reply } from "@/types/content";
 
 const PK = site.phones[0].value;
@@ -79,8 +79,8 @@ const general: Intent[] = [
   {
     id: "contact",
     keywords: ["contact", "phone", "number", "call you", "email", "mail", "reach", "rabta", "raabta", "contact number", "phone number", "mobile number", "kaise contact", "touch"],
-    en: { text: `You can reach us anytime:\n• Pakistan: **${PK}**\n• UK: **${UK}**\n• Email: [${EMAIL}](mailto:${EMAIL})\n• WhatsApp: [Chat now](${WA})\nOr use our [contact page](/contact).`, chips: ["Get a quote", "Office location"] },
-    ur: { text: `Aap hum se kabhi bhi rabta kar sakte hain:\n• Pakistan: **${PK}**\n• UK: **${UK}**\n• Email: [${EMAIL}](mailto:${EMAIL})\n• WhatsApp: [Abhi chat karein](${WA})\nYa [contact page](/contact) use karein.`, chips: ["Quote chahiye", "Office location"] },
+    en: { text: `You can reach us anytime:\n• Pakistan: **${PK}**\n• UK: **${UK}**\n• Email: [${EMAIL}](${emailLink()})\n• WhatsApp: [Chat now](${WA})\nOr use our [contact page](/contact).`, chips: ["Get a quote", "Office location"] },
+    ur: { text: `Aap hum se kabhi bhi rabta kar sakte hain:\n• Pakistan: **${PK}**\n• UK: **${UK}**\n• Email: [${EMAIL}](${emailLink()})\n• WhatsApp: [Abhi chat karein](${WA})\nYa [contact page](/contact) use karein.`, chips: ["Quote chahiye", "Office location"] },
   },
   {
     id: "whatsapp",

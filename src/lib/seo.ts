@@ -6,7 +6,7 @@ import { site } from "@/content/site";
  * Full metadata for a page listed in src/content/seo.ts:
  * title, description, canonical URL, Open Graph and Twitter cards.
  */
-export function pageMetadata(path: string, extra: { type?: "website" | "article"; publishedTime?: string } = {}): Metadata {
+export function pageMetadata(path: string, extra: { type?: "website" | "article" | "profile"; publishedTime?: string } = {}): Metadata {
   const e = getSeo(path);
   const fullTitle = path === "/" ? `${site.name} | ${e.title}` : `${e.title} | ${site.name}`;
   // Page image (blog covers) or the generated default share image (src/app/opengraph-image.tsx)

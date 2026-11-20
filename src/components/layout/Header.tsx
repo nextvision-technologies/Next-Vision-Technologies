@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { CalendarDays, ChevronDown, Menu, X, Mail, Phone } from "lucide-react";
 import { mainNav } from "@/content/navigation";
-import { site } from "@/content/site";
+import { emailLink, site } from "@/content/site";
 import { buttonClass } from "@/components/ui/Button";
 import { SocialIcon, SocialLinks } from "@/components/ui/SocialIcons";
 import { useScrolledPast } from "@/hooks/useScroll";
@@ -17,12 +17,13 @@ function TopBar() {
   return (
     <div className="section-dark hidden text-white md:block">
       <div className="container-page flex h-9 items-center justify-between text-[13px]">
-        <div className="flex items-center gap-7">
-          <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 font-medium hover:opacity-80">
+        <div className="flex items-center gap-5 lg:gap-7">
+          <a href={emailLink()} className="inline-flex items-center gap-2 font-medium whitespace-nowrap hover:opacity-80">
             <Mail className="size-3.5" aria-hidden /> {site.email}
           </a>
           {site.phones.map((p) => (
-            <a key={p.label} href={p.href} className="inline-flex items-center gap-2 font-medium hover:opacity-80"
+            // Tablets: the WhatsApp number is hidden here to keep one line (it's in the floating button and footer)
+            <a key={p.label} href={p.href} className={`items-center gap-2 font-medium whitespace-nowrap hover:opacity-80 ${p.whatsapp ? "hidden lg:inline-flex" : "inline-flex"}`}
               {...(p.whatsapp ? { target: "_blank", rel: "noopener noreferrer", "aria-label": `WhatsApp ${p.value}` } : {})}>
               {p.whatsapp ? <SocialIcon name="whatsapp" className="size-3.5" /> : <Phone className="size-3.5" aria-hidden />}
               <span className="font-bold">{p.label === "Pakistan" ? "PK" : "UK"}</span> {p.value}
@@ -83,9 +84,9 @@ export function Header() {
         <nav ref={navRef} className="container-page relative flex h-16 items-center justify-between gap-6 lg:h-[4.5rem]" aria-label="Main"
           onMouseLeave={scheduleClose}>
           <Link href="/" className="shrink-0" aria-label={`${site.name} home`}>
-            <Image src="/brand/logo-header.webp" alt={`${site.name}: ${site.tagline}`} width={933} height={195} priority
+            <Image src="/brand/logo-header.webp" alt={`${site.name}: ${site.tagline}`} width={211} height={44} priority
               className="h-9 w-auto sm:h-10 lg:h-11 dark:hidden" />
-            <Image src="/brand/logo-header-white.webp" alt={`${site.name}: ${site.tagline}`} width={933} height={195} priority
+            <Image src="/brand/logo-header-white.webp" alt={`${site.name}: ${site.tagline}`} width={211} height={44} priority
               className="hidden h-9 w-auto sm:h-10 lg:h-11 dark:block" />
           </Link>
 
@@ -144,8 +145,8 @@ export function Header() {
           <div data-lenis-prevent className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col overflow-y-auto bg-card p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]"
             onClick={(e) => { if ((e.target as HTMLElement).closest("a")) setMobile(false); }}>
             <div className="flex items-center justify-between">
-              <Image src="/brand/logo-header.webp" alt={site.name} width={933} height={195} className="h-10 w-auto dark:hidden" />
-              <Image src="/brand/logo-header-white.webp" alt={site.name} width={933} height={195} className="hidden h-10 w-auto dark:block" />
+              <Image src="/brand/logo-header.webp" alt={site.name} width={191} height={40} className="h-10 w-auto dark:hidden" />
+              <Image src="/brand/logo-header-white.webp" alt={site.name} width={191} height={40} className="hidden h-10 w-auto dark:block" />
               <button type="button" onClick={() => setMobile(false)} aria-label="Close menu"
                 className="inline-flex size-11 items-center justify-center rounded-full border border-line">
                 <X className="size-5" />
@@ -174,6 +175,8 @@ export function Header() {
             </ul>
             <Link href="/book-demo" className={buttonClass("primary", "lg", "mt-6")}>Book a Demo</Link>
             <Link href="/contact" className={buttonClass("secondary", "lg", "mt-3")}>Get a free quote</Link>
+            {/* Social links (the top bar with them is hidden on phones) */}
+            <SocialLinks className="mt-6 justify-center text-heading" />
           </div>
         </div>
       )}

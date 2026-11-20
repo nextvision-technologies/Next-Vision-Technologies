@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, BadgeCheck, Headset, Mail, Rocket, Zap } from "lucide-react";
 import { services } from "@/content/services";
 import { testimonials } from "@/content/testimonials";
-import { site, whatsappLink } from "@/content/site";
+import { emailLink, site, whatsappLink } from "@/content/site";
 import { publicFile } from "@/lib/files";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -157,7 +157,7 @@ export default function Home() {
               {[
                 { label: "WhatsApp Pakistan", value: site.phones[0].value, href: whatsappLink(), icon: <SocialIcon name="whatsapp" className="size-5 text-[#25D366]" /> },
                 { label: "WhatsApp UK", value: site.phones[1].value, href: site.phones[1].href, icon: <SocialIcon name="whatsapp" className="size-5 text-[#25D366]" /> },
-                { label: "Email", value: site.email, href: `mailto:${site.email}`, icon: <Mail className="size-5 text-brand-600" /> },
+                { label: "Email", value: site.email, href: emailLink(), icon: <Mail className="size-5 text-brand-600" /> },
               ].map((c) => (
                 <a key={c.label} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
                   className="flex items-center gap-4 rounded-2xl border border-line bg-card p-4 transition hover:border-brand-600/40 hover:shadow-card">

@@ -4,6 +4,7 @@
 import { services } from "./services";
 import { posts, postImage } from "./blog";
 import { jobs } from "./jobs";
+import { memberSlug, team } from "./team";
 import { locations } from "./locations";
 import { legalPages } from "./legal";
 import { site } from "./site";
@@ -123,6 +124,11 @@ export function allSeoEntries(): SeoEntry[] {
     ...posts.map<SeoEntry>((p) => ({
       path: `/blog/${p.slug}`, group: "Blog", priority: 0.7, changeFrequency: "monthly",
       title: p.seoTitle ?? p.title, description: p.metaDescription ?? clip(p.excerpt), lastModified: p.updated ?? p.date, image: postImage(p.slug),
+    })),
+    ...team.map<SeoEntry>((m) => ({
+      path: `/team/${memberSlug(m.name)}`, group: "Main pages", priority: 0.6, changeFrequency: "monthly",
+      title: `${m.name}, ${m.role}`,
+      description: clip(m.bio ?? `${m.name} is ${m.role} at Next Vision Technologies.`),
     })),
     ...jobs.map<SeoEntry>((j) => ({
       path: `/jobs/${j.slug}`, group: "Careers", priority: 0.5, changeFrequency: "weekly",

@@ -85,3 +85,11 @@ export const projects: Project[] = [
 ];
 
 export const projectImage = (slug: string) => `/projects/${slug}.webp`;
+
+/** Company totals shown above the gallery (all-time work, not just the live projects listed here) */
+export const projectStats = [
+  { value: 100, suffix: "+", label: "Projects delivered", text: "Websites, software and AI for clients in Pakistan, the UK and beyond", icon: "rocket" },
+  { value: 50, suffix: "+", label: "Business websites", text: "Fast, mobile-ready sites built to rank and convert", icon: "globe" },
+  { value: 30, suffix: "+", label: "Software & AI systems", text: "Portals, POS, clinic, courier and AI chatbot solutions", icon: "cpu" },
+  { value: 20, suffix: "+", label: "Industries served", text: "From healthcare and hospitality to logistics and retail", icon: "building" },
+] as const;

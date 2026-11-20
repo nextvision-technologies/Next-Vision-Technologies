@@ -1,9 +1,11 @@
 // Legal pages. Inline links use [text](/path) and **bold** (rendered by components/article/ArticleBlocks).
 // Written for Next Vision Technologies' own services. Have a qualified lawyer review before relying on them.
 import type { LegalPage } from "@/types/content";
+import { emailBodies, emailLink, site } from "./site";
 
 export const legalUpdated = "18 November 2026";
-const CONTACT = "[info@nextvision-technologies.com](mailto:info@nextvision-technologies.com)";
+// Follows the email in site.ts; opens the email app with a subject and template
+const CONTACT = `[${site.email}](${emailLink("Privacy or policy question - Next Vision Technologies", emailBodies.question)})`;
 
 export const legalPages: LegalPage[] = [
   // ------------------------------------------------------------------ Terms

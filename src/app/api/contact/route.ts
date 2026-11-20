@@ -2,7 +2,7 @@
 //
 // Email is sent with Resend (https://resend.com). Set these environment variables (Vercel → Settings → Environment Variables):
 //   RESEND_API_KEY   required, e.g. re_xxxxxxxx
-//   CONTACT_TO       optional, inbox that receives leads (default: info@nextvision-technologies.com)
+//   CONTACT_TO       optional, inbox that receives leads (default: site.email from src/content/site.ts)
 //   CONTACT_FROM     optional, sender. Until your domain is verified in Resend, keep the default onboarding@resend.dev
 //                    (Resend then only delivers to the email address you signed up with).
 import { site } from "@/content/site";
