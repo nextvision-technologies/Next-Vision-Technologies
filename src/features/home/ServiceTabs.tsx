@@ -17,7 +17,7 @@ export function ServiceTabs() {
 
   return (
     <div className="flex flex-col gap-8">
-      <div role="tablist" aria-label="Service categories" className="mx-auto flex max-w-full gap-2 overflow-x-auto rounded-full border border-line bg-card p-1.5 shadow-card">
+      <div role="tablist" aria-label="Service categories" className="mx-auto flex max-w-full gap-1.5 overflow-x-auto rounded-2xl border border-line bg-card p-1.5 shadow-card sm:rounded-full">
         {serviceCategories.map((c) => (
           <button key={c} role="tab" type="button" aria-selected={c === cat}
             onClick={() => { setCat(c); setActiveSlug(services.find((s) => s.category === c)!.slug); }}

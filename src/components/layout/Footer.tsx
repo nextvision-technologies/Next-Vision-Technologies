@@ -86,7 +86,7 @@ export function Footer() {
       <div className="relative border-t border-white/10">
         <div className="container-page flex flex-col items-center justify-between gap-3 py-6 text-xs text-white/55 sm:flex-row">
           <p>© {site.copyrightYear} {site.name}. All rights reserved.</p>
-          <div className="flex gap-5">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-5">
             <Link href="/software-house-lahore" className="hover:text-white">Software house in Lahore</Link>
             <Link href="/web-development-company-uk" className="hover:text-white">Web development UK</Link>
           </div>

@@ -56,11 +56,11 @@ export default function Home() {
       <PinnedHero video={heroVideo} />
 
       {/* ---------- Stats card overlapping hero ---------- */}
-      <section className="container-page relative z-10 -mt-16 lg:-mt-20">
+      <section className="container-page relative z-10 -mt-10 sm:-mt-14 lg:-mt-20">
         <dl data-reveal="zoom" className="grid grid-cols-2 divide-line overflow-hidden rounded-[1.5rem] border border-line bg-card shadow-lift lg:grid-cols-4 lg:divide-x">
           {site.stats.map((s) => (
-            <div key={s.label} className="flex flex-col gap-1 p-6 text-center sm:p-8">
-              <dd className="text-brand-600 font-display text-4xl font-extrabold sm:text-5xl">{s.value}</dd>
+            <div key={s.label} className="flex flex-col gap-1 p-4 text-center sm:p-6 lg:p-8">
+              <dd className="text-brand-600 font-display text-3xl font-extrabold sm:text-4xl lg:text-5xl">{s.value}</dd>
               <dt className="text-sm font-medium text-muted">{s.label}</dt>
             </div>
           ))}
@@ -82,7 +82,7 @@ export default function Home() {
       {/* ---------- Why us (bento) ---------- */}
       <section className="container-page py-20 sm:py-24">
         <div data-reveal-stagger className="grid gap-5 lg:grid-cols-3">
-          <div className="section-dark relative flex flex-col justify-between gap-10 overflow-hidden rounded-[1.75rem] p-8 text-white sm:p-10 lg:row-span-2">
+          <div className="section-dark relative flex flex-col justify-between gap-8 overflow-hidden rounded-[1.75rem] p-6 text-white sm:p-10 lg:row-span-2">
             <div className="relative flex flex-col gap-5">
               <span className="text-xs font-semibold tracking-[0.16em] text-glow-400 uppercase">Why Next Vision</span>
               <h2 className="text-3xl leading-tight font-extrabold sm:text-4xl">One partner for AI, software and growth</h2>

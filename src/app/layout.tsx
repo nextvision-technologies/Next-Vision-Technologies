@@ -46,6 +46,8 @@ export const metadata: Metadata = {
 
 // Mobile browser bar colour matches the page in each theme
 export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#f5f0e8" },
     { media: "(prefers-color-scheme: dark)", color: "#121214" },

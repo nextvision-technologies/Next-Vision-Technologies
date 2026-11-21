@@ -111,19 +111,19 @@ export function PinnedHero({ video }: Props) {
 
         {/* 3. Intro copy (left side on desktop) */}
         <div ref={introRef} className="pinned-hero__intro">
-          <div className="container-page flex h-full flex-col justify-end pb-24 lg:justify-center lg:pb-16">
-            <div className="flex max-w-xl flex-col gap-5 sm:gap-6 lg:w-[46%]">
+          <div className="container-page flex h-full flex-col justify-end pb-20 pt-[220px] sm:pt-[240px] lg:justify-center lg:pb-16 lg:pt-0">
+            <div className="flex max-w-xl flex-col gap-4 sm:gap-6 lg:w-[46%]">
               <span className="hidden w-fit items-center gap-2 rounded-full border border-white/15 lg:inline-flex bg-white/[0.06] px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.18em] text-white/80 uppercase md:backdrop-blur sm:text-xs">
                 <span className="size-1.5 rounded-full bg-emerald-400" aria-hidden />
                 Pakistan · United Kingdom
               </span>
-              <h1 className="text-[2.4rem] leading-[1.05] font-bold tracking-tight sm:text-5xl xl:text-[4rem]">
+              <h1 className="text-[1.9rem] leading-[1.08] font-bold tracking-tight sm:text-5xl xl:text-[4rem]">
                 <span className="sr-only">We build AI chatbots, AI automation, SaaS products, websites, mobile apps and ad campaigns for your business.</span>
                 <span aria-hidden className="block">We build</span>
-                <Typewriter words={typedWords} className="text-gradient block min-h-[1.1em] font-semibold whitespace-nowrap italic" />
+                <Typewriter words={typedWords} className="text-gradient block min-h-[1.1em] font-semibold italic" />
                 <span aria-hidden className="block text-[0.72em] text-white/90">for your business</span>
               </h1>
-              <p className="max-w-md text-lg leading-relaxed text-white/75">
+              <p className="max-w-md text-sm leading-relaxed text-white/75 sm:text-lg">
                 One team in Pakistan and the UK that plans, builds and grows your digital business.
               </p>
               <div className="flex flex-wrap gap-3">
@@ -145,12 +145,12 @@ export function PinnedHero({ video }: Props) {
 
         {/* 4. Caption shown once expanded */}
         <div ref={captionRef} className="pinned-hero__caption" inert>
-          <div className="container-page flex h-full flex-col items-start justify-end gap-5 pb-28 sm:pb-32">
+          <div className="container-page flex h-full flex-col items-start justify-end gap-4 pb-20 sm:pb-28 lg:pb-32">
             <span data-cap className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.14em] uppercase md:backdrop-blur sm:text-xs">
               <Sparkles className="size-3.5 text-brand-400" aria-hidden />
               Free consultation
             </span>
-            <h2 data-cap className="max-w-3xl text-4xl leading-[1.08] font-extrabold tracking-tight sm:text-6xl">
+            <h2 data-cap className="max-w-3xl text-2xl leading-[1.08] font-extrabold tracking-tight sm:text-4xl lg:text-6xl">
               Custom software and <em className="text-gradient font-serif font-semibold italic">affordable</em> packages
             </h2>
             <div data-cap>

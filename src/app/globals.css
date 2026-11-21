@@ -304,17 +304,17 @@
     .pinned-hero__shade { opacity: max(0.7, var(--shade)); }
     .pinned-hero__chip { display: none; }
     .pinned-hero__hint { left: 50%; }
-    .pinned-hero__terminal { left: 50%; top: 1rem; width: calc(100% - 2rem); max-width: 34rem; transform: translateX(-50%); }
-    .nv-terminal__code { height: calc(7 * 1.7em + 1rem); padding-block: 0.5rem; }
+    .pinned-hero__terminal { left: 50%; top: 0.5rem; width: min(calc(100% - 2rem), 34rem); max-width: none; transform: translateX(-50%); }
+    .nv-terminal__code { height: calc(5 * 1.7em + 1rem); padding-block: 0.5rem; }
   }
-  /* Shorter phones: 5 lines so the terminal stays above the heading */
-  @media (width < 1024px) and (height < 860px) {
-    .nv-terminal__code { height: calc(5 * 1.7em + 1rem); }
-  }
+  /* Short phones: hide terminal so heading has room */
   @media (width < 1024px) and (height < 700px) {
-    .pinned-hero__terminal { display: none; } /* not enough room next to the heading */
+    .pinned-hero__terminal { display: none; }
   }
-
+  /* Extra-small width phones (< 390px) */
+  @media (width < 390px) {
+    .pinned-hero__terminal { width: calc(100% - 1rem); }
+  }
   /* Reduced motion: no scroll distance, final state is set once by JS */
   @media (prefers-reduced-motion: reduce) {
     .pinned-hero { height: auto; }
